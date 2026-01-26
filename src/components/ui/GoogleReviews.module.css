@@ -1,0 +1,44 @@
+.reviewsWidget {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.header {
+    margin-bottom: 1.5rem;
+}
+
+.stars {
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.rating {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-dark);
+    margin-bottom: 0.25rem;
+}
+
+.score {
+    color: var(--primary-blue);
+}
+
+.outOf {
+    color: var(--text-gray);
+    font-size: 1.5rem;
+}
+
+.subtitle {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.cta {
+    margin-top: 1.5rem;
+}

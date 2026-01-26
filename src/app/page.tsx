@@ -16,13 +16,13 @@ export default function HomePage() {
         <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }}>
           <div>
             <h1 style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '1rem', lineHeight: '1.2', color: 'white' }}>
-              Climatisation & Pompe à Chaleur à Miramas
+              Votre Spécialiste Climatisation à Miramas
             </h1>
             <p style={{ fontSize: '1.5rem', marginBottom: '0.5rem', opacity: 0.95 }}>
-              Installation en 48h
+              Installation • Entretien • Dépannage
             </p>
             <p style={{ fontSize: '1.2rem', marginBottom: '2rem', opacity: 0.9 }}>
-              Devis Gratuit • Garantie Décennale • Intervention Rapide
+              Devis sous 24h • Intervention Rapide • Garantie Décennale
             </p>
 
             {/* CTA Buttons */}
@@ -63,8 +63,8 @@ export default function HomePage() {
           {/* Hero Image */}
           <div style={{ position: 'relative', height: '500px', borderRadius: '1rem', overflow: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.3)' }}>
             <Image
-              src="/images/hero-technician.png"
-              alt="Technicien AIR G Energie installant une climatisation"
+              src="/images/hero-airgenergie.png"
+              alt="Technicien AIR G Energie - Installation climatisation Miramas"
               fill
               style={{ objectFit: 'cover' }}
               priority
@@ -83,10 +83,36 @@ export default function HomePage() {
       </section>
 
       {/* Urgence Section */}
+      {/* Google Reviews Section */}
+      <section style={{ background: 'white', padding: '3rem 0', borderBottom: '1px solid var(--border-color)' }}>
+        <div className="container" style={{ textAlign: 'center' }}>
+          <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem', color: 'var(--text-dark)' }}>
+            Ils Nous Font Confiance
+          </h2>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
+            <div style={{ fontSize: '3rem', color: '#FBBC04' }}>★★★★★</div>
+            <div style={{ textAlign: 'left' }}>
+              <p style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--text-dark)', margin: 0 }}>4.9/5</p>
+              <p style={{ fontSize: '1rem', color: 'var(--text-gray)', margin: 0 }}>Basé sur les avis Google</p>
+            </div>
+          </div>
+          <a
+            href="https://share.google/sLKMxADrGA36sYOhR"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-outline"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+          >
+            Voir tous nos avis Google
+          </a>
+        </div>
+      </section>
+
+      {/* Urgence Section */}
       <section style={{ background: 'var(--bg-light)', padding: '2rem 0', borderBottom: '2px solid var(--primary-blue)' }}>
         <div className="container" style={{ textAlign: 'center' }}>
           <h2 style={{ fontSize: '1.8rem', marginBottom: '1rem', color: 'var(--text-dark)' }}>
-            🔥 Besoin Urgent ? Dépannage 7j/7
+            Besoin d'un Dépannage Rapide ?
           </h2>
           <p style={{ fontSize: '1.2rem', marginBottom: '1.5rem', color: 'var(--text-gray)' }}>
             Intervention rapide dans tout le secteur de Miramas
@@ -166,8 +192,8 @@ export default function HomePage() {
               <div style={{ background: 'var(--primary-blue)', color: 'white', width: '80px', height: '80px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
                 <Award size={40} />
               </div>
-              <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--text-dark)' }}>Expert RGE</h3>
-              <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem' }}>Certifié QualiPAC pour vos aides financières</p>
+              <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--text-dark)' }}>Certifié RGE</h3>
+              <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem' }}>Éligibilité aux aides financières</p>
             </div>
 
             <div>
@@ -175,7 +201,7 @@ export default function HomePage() {
                 <Clock size={40} />
               </div>
               <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--text-dark)' }}>Réactivité</h3>
-              <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem' }}>Intervention sous 24h, devis sous 2h</p>
+              <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem' }}>Devis sous 24h, prise de rendez-vous rapide</p>
             </div>
 
             <div>
@@ -221,12 +247,12 @@ export default function HomePage() {
 
       {/* Final CTA Section */}
       <section style={{ background: 'linear-gradient(135deg, #0091DA 0%, #006BA6 100%)', color: 'white', padding: '4rem 0', textAlign: 'center' }}>
-        <div className="container">
+        <div className="container" style={{ textAlign: 'center' }}>
           <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>
-            Prêt à Améliorer Votre Confort ?
+            Votre Projet de Climatisation à Miramas
           </h2>
           <p style={{ fontSize: '1.3rem', marginBottom: '2rem', opacity: 0.9 }}>
-            Contactez-nous dès maintenant pour un devis gratuit et personnalisé
+            Devis gratuit sous 24h • Intervention rapide • Garantie décennale
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
             <a href="tel:0413414901" className="btn" style={{ background: 'white', color: 'var(--primary-blue)', fontSize: '1.2rem', padding: '1rem 2rem' }}>
