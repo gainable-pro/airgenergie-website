@@ -1,0 +1,161 @@
+.header {
+    height: var(--header-height);
+    background-color: var(--bg-white);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+
+.navbarContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+}
+
+.logoHighlight {
+    color: var(--accent-orange);
+}
+
+.navMenu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.navLinks {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.navLinks a {
+    font-weight: 500;
+    color: var(--primary-blue);
+    transition: color 0.2s;
+}
+
+.navLinks a:hover {
+    color: var(--accent-orange);
+}
+
+.dropdown {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdownContent {
+    position: absolute;
+    top: 100%;
+    /* Bottom of the parent */
+    left: 0;
+    background: white;
+    box-shadow: var(--shadow-md);
+    min-width: 200px;
+    border-radius: var(--radius-md);
+    padding: 0.5rem 0;
+    display: none;
+    /* Hidden by default */
+    flex-direction: column;
+    list-style: none;
+}
+
+.dropdown:hover .dropdownContent {
+    display: flex;
+}
+
+.dropdownContent li a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: var(--text-dark);
+}
+
+.dropdownContent li a:hover {
+    background-color: var(--bg-light);
+    color: var(--accent-orange);
+}
+
+.navActions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.langSwitch {
+    background: none;
+    border: 1px solid var(--border-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: var(--text-gray);
+}
+
+.mobileToggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--primary-blue);
+    cursor: pointer;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .mobileToggle {
+        display: block;
+    }
+
+    .navMenu {
+        position: absolute;
+        top: var(--header-height);
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-white);
+        flex-direction: column;
+        padding: 2rem;
+        box-shadow: var(--shadow-lg);
+        clip-path: circle(0% at 100% 0);
+        transition: clip-path 0.4s ease-in-out;
+    }
+
+    .navMenu.active {
+        clip-path: circle(140% at 100% 0);
+    }
+
+    .navLinks {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        width: 100%;
+    }
+
+    .dropdownContent {
+        position: static;
+        box-shadow: none;
+        display: none;
+        /* Keep hidden unless logic expands */
+        padding-left: 1rem;
+        background: transparent;
+    }
+
+    /* Simplified for prototype: show services inline in mobile later or keep simple */
+
+    .navActions {
+        margin-top: 2rem;
+        flex-direction: column;
+        width: 100%;
+    }
+}

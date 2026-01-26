@@ -1,0 +1,78 @@
+.zigzagRoot {
+    background-color: white;
+}
+
+.zigzagContainer {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+.zigzagContainer.reverse {
+    flex-direction: row-reverse;
+}
+
+.visualCol,
+.contentCol {
+    flex: 1;
+}
+
+.imagePlaceholder {
+    width: 100%;
+    height: 350px;
+    background-color: #F1F5F9;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: var(--text-gray);
+    box-shadow: var(--shadow-md);
+}
+
+.description {
+    color: var(--text-gray);
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.featureList {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.featureList li {
+    position: relative;
+    padding-left: 1.5rem;
+    color: var(--text-dark);
+}
+
+.featureList li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-orange);
+    font-weight: bold;
+}
+
+.actions {
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 900px) {
+
+    .zigzagContainer,
+    .zigzagContainer.reverse {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .featureList {
+        text-align: left;
+        display: inline-block;
+    }
+}
