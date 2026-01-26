@@ -19,7 +19,7 @@ export default function HomePage() {
           left: 0,
           right: 0,
           bottom: 0,
-          opacity: 0.25
+          opacity: 1
         }}>
           <Image
             src="/images/hero-technician-ac.png"
@@ -30,14 +30,14 @@ export default function HomePage() {
           />
         </div>
 
-        {/* Overlay gradient */}
+        {/* Overlay gradient - very light for text readability */}
         <div style={{
           position: 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          background: 'linear-gradient(135deg, rgba(0, 145, 218, 0.75) 0%, rgba(0, 107, 166, 0.75) 100%)'
+          background: 'linear-gradient(to right, rgba(0, 145, 218, 0.85) 0%, rgba(0, 145, 218, 0.3) 60%, transparent 100%)'
         }} />
 
         {/* Content */}
