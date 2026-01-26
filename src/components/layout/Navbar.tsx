@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Phone } from 'lucide-react';
 import styles from './Navbar.module.css';
 
@@ -6,6 +7,11 @@ export default function Navbar() {
     return (
         <nav className={styles.navbar}>
             <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+
+                {/* Logo */}
+                <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
+                    <Image src="/logo.png" alt="AIR G Energie" width={180} height={50} priority style={{ height: 'auto' }} />
+                </Link>
 
                 {/* Navigation Links */}
                 <div className={styles.navLinks}>

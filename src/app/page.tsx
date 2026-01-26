@@ -15,11 +15,11 @@ export default function HomePage() {
       }}>
         <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }}>
           <div>
-            <h1 style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '1rem', lineHeight: '1.2' }}>
+            <h1 style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '1rem', lineHeight: '1.2', color: 'white' }}>
               Climatisation & Pompe à Chaleur à Miramas
             </h1>
             <p style={{ fontSize: '1.5rem', marginBottom: '0.5rem', opacity: 0.95 }}>
-              Installation en 48h • Expert RGE
+              Installation en 48h
             </p>
             <p style={{ fontSize: '1.2rem', marginBottom: '2rem', opacity: 0.9 }}>
               Devis Gratuit • Garantie Décennale • Intervention Rapide
@@ -77,7 +77,7 @@ export default function HomePage() {
       <section style={{ background: 'white', padding: '3rem 0', borderBottom: '1px solid var(--border-color)' }}>
         <div className="container">
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '3rem', flexWrap: 'wrap' }}>
-            <Image src="/images/trust-badges.png" alt="Certifications RGE QualiPAC" width={600} height={150} />
+            <Image src="/images/certifications.png" alt="Certifications professionnelles" width={800} height={200} />
           </div>
         </div>
       </section>
@@ -115,9 +115,6 @@ export default function HomePage() {
               <p style={{ color: 'var(--text-gray)', marginBottom: '1.5rem' }}>
                 Installation de climatisation réversible. Confort été comme hiver.
               </p>
-              <p style={{ fontSize: '1.3rem', fontWeight: 'bold', color: 'var(--primary-blue)', marginBottom: '1rem' }}>
-                À partir de 1 200€
-              </p>
               <Link href="/climatisation" className="btn btn-outline" style={{ width: '100%', justifyContent: 'center' }}>
                 En savoir plus
               </Link>
@@ -129,14 +126,11 @@ export default function HomePage() {
                 ⭐ POPULAIRE
               </div>
               <div style={{ position: 'relative', height: '200px', marginBottom: '1.5rem', borderRadius: '0.5rem', overflow: 'hidden' }}>
-                <Image src="/images/ac-unit.png" alt="Gainable" fill style={{ objectFit: 'cover' }} />
+                <Image src="/images/gainable-vents.png" alt="Climatisation Gainable - Grilles de soufflage" fill style={{ objectFit: 'cover' }} />
               </div>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--primary-blue)' }}>Gainable</h3>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--primary-blue)' }}>Climatisation Gainable</h3>
               <p style={{ color: 'var(--text-gray)', marginBottom: '1.5rem' }}>
                 Climatisation invisible et silencieuse. Confort discret garanti.
-              </p>
-              <p style={{ fontSize: '1.3rem', fontWeight: 'bold', color: 'var(--primary-orange)', marginBottom: '1rem' }}>
-                À partir de 3 500€
               </p>
               <Link href="/gainable" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
                 Découvrir
@@ -151,9 +145,6 @@ export default function HomePage() {
               <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--primary-blue)' }}>Pompe à Chaleur</h3>
               <p style={{ color: 'var(--text-gray)', marginBottom: '1.5rem' }}>
                 Chauffage économique et écologique. Jusqu'à 70% d'économies.
-              </p>
-              <p style={{ fontSize: '1.3rem', fontWeight: 'bold', color: 'var(--primary-orange)', marginBottom: '1rem' }}>
-                À partir de 5 000€
               </p>
               <Link href="/pompe-a-chaleur" className="btn btn-outline" style={{ width: '100%', justifyContent: 'center' }}>
                 En savoir plus
