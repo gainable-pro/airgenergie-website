@@ -27,6 +27,8 @@ export default function ClimatisationPage() {
                 title="Le Split Mural : L'efficacité immédiate"
                 description="Idéal pour équiper une chambre ou un salon sans gros travaux. Le mural s'installe vite et vous offre une fraîcheur instantanée de jour comme de nuit."
                 imagePlacement="left"
+                imageSrc="/images/split-mural.png"
+                imageAlt="Climatisation split mural dans salon moderne"
                 features={[
                     "Installation rapide (souvent 1 jour)",
                     "Silencieux (mode nuit ultra-discret)",
@@ -40,6 +42,8 @@ export default function ClimatisationPage() {
                 title="La Console : Discrétion façon radiateur"
                 description="Vous n'aimez pas voir un appareil en hauteur ? La console basse se pose comme un radiateur classique, s'intégrant parfaitement sous une fenêtre ou dans des combles."
                 imagePlacement="right"
+                imageSrc="/images/console-ac.png"
+                imageAlt="Climatisation console au sol"
                 features={[
                     "Flux d'air double (haut/bas) pour un confort homogène",
                     "Parfait pour remplacer des radiateurs électriques",
@@ -53,6 +57,8 @@ export default function ClimatisationPage() {
                 title="La Cassette : Pour les grands volumes"
                 description="Souvent réservée aux bureaux ou aux très grands séjours avec faux-plafond. Elle libère totalement vos murs pour votre décoration."
                 imagePlacement="left"
+                imageSrc="/images/cassette-ac.png"
+                imageAlt="Climatisation cassette plafond 4 voies"
                 features={[
                     "Distribution de l'air à 360° ou 4 voies",
                     "Intégration plafond (gain de place)",
@@ -65,6 +71,8 @@ export default function ClimatisationPage() {
                 title="Multi-Split : Tout une maison, un seul moteur"
                 description="Équipez 2, 3, 4 ou 5 pièces avec un seul groupe extérieur. Vous préservez l'esthétique de votre façade tout en climatisant l'ensemble de votre foyer."
                 imagePlacement="right"
+                imageSrc="/images/multi-split.png"
+                imageAlt="Système multi-split avec unités intérieures et extérieures"
                 features={[
                     "1 Groupe Extérieur = jusqu'à 5 unités intérieures",
                     "Contrôle individuel de la température par pièce",

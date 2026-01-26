@@ -1,11 +1,13 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './ZigZagSection.module.css';
 
 interface ZigZagProps {
     title: string;
     description: string;
     imagePlacement: 'left' | 'right';
-    imageSrc?: string; // Optional if you don't have images yet
+    imageSrc?: string;
+    imageAlt?: string;
     features?: string[];
     ctaLink?: string;
     ctaText?: string;
@@ -16,25 +18,31 @@ export default function ZigZagSection({
     description,
     imagePlacement,
     imageSrc,
+    imageAlt,
     features,
     ctaLink = "/contact",
     ctaText = "Demander un devis"
 }: ZigZagProps) {
+    const imageContent = (
+        <div className={styles.visualCol}>
+            <div style={{ position: 'relative', height: '400px', borderRadius: '1rem', overflow: 'hidden', boxShadow: 'var(--shadow-lg)' }}>
+                {imageSrc ? (
+                    <Image src={imageSrc} alt={imageAlt || title} fill style={{ objectFit: 'cover' }} />
+                ) : (
+                    <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#64748B', fontSize: '1.2rem' }}>
+                        {imageAlt || title}
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+
     return (
         <div className={`section-padding ${styles.zigzagRoot}`}>
             <div className={`container ${styles.zigzagContainer} ${imagePlacement === 'right' ? styles.reverse : ''}`}>
 
                 {/* Visual Side */}
-                <div className={styles.visualCol}>
-                    <div className={styles.imagePlaceholder}>
-                        {imageSrc ? (
-                            // Simple text for now until images are real
-                            <span>IMG: {title}</span>
-                        ) : (
-                            <span>Visuel: {title}</span>
-                        )}
-                    </div>
-                </div>
+                {imageContent}
 
                 {/* Content Side */}
                 <div className={styles.contentCol}>

@@ -26,11 +26,13 @@ export default function HeatPumpPage() {
             {/* 1. PAC Air/Air */}
             <ZigZagSection
                 title="Pompe à Chaleur Air / Air"
-                description="C&apos;est tout simplement une climatisation réversible. Elle souffle du chaud l&apos;hiver et du froid l&apos;été. C&apos;est le système le plus réactif pour monter en température rapidement."
+                description="C'est tout simplement une climatisation réversible. Elle souffle du chaud l'hiver et du froid l'été. C'est le système le plus réactif pour monter en température rapidement."
                 imagePlacement="left"
+                imageSrc="/images/pac-air-air.png"
+                imageAlt="Pompe à chaleur air-air unité extérieure"
                 features={[
                     "Chauffage très économique (COP > 4)",
-                    "Climatisation en bonus pour l&apos;été",
+                    "Climatisation en bonus pour l'été",
                     "Idéal en rénovation électrique"
                 ]}
             />
@@ -38,10 +40,13 @@ export default function HeatPumpPage() {
             {/* 2. PAC Air/Eau (Coming Soon or Brief mention if relevant for them) */}
             {/* NOTE: User brief emphasized Clim Reversible (Air/Air), but usually PAC implies Air/Water replacement. 
            I'll keep it focused on the benefits user requested: Savings. */}
+            {/* 2. PAC Air/Eau */}
             <ZigZagSection
                 title="Pompe à Chaleur Air / Eau"
                 description="Le remplacement idéal de votre vieille chaudière fioul ou gaz. Elle se connecte directement sur vos radiateurs existants ou votre plancher chauffant."
                 imagePlacement="right"
+                imageSrc="/images/pac-air-eau.png"
+                imageAlt="Pompe à chaleur air-eau installation complète"
                 features={[
                     "Conservez vos radiateurs actuels",
                     "Eau chaude sanitaire incluse (selon modèles)",

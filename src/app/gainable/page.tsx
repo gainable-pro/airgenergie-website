@@ -25,8 +25,10 @@ export default function GainablePage() {
             {/* 1. What is Gainable */}
             <ZigZagSection
                 title="Comment ça marche ?"
-                description="Tout le système est caché dans vos combles ou faux-plafonds. L&apos;air frais (ou chaud) redescend doucement par de fines grilles d&apos;aération. C&apos;est la solution préférée des architectes d&apos;intérieur."
+                description="Tout le système est caché dans vos combles ou faux-plafonds. L'air frais (ou chaud) redescend doucement par de fines grilles d'aération. C'est la solution préférée des architectes d'intérieur."
                 imagePlacement="left"
+                imageSrc="/images/ducted-system.png"
+                imageAlt="Installation climatisation gainable avec gaines et grilles"
                 features={[
                     "Aucun appareil apparent sur les murs",
                     "Diffusion douce : pas de courant d'air direct",
@@ -37,8 +39,10 @@ export default function GainablePage() {
             {/* 2. Zoning / Regulation */}
             <ZigZagSection
                 title="Régulation Pièce par Pièce (Zoning)"
-                description="Fini les disputes sur la température ! Avec le système de Zoning (Airzone ou Delta Dore), chaque chambre a son propre thermostat. M. veut 19°C, Mme veut 22°C ? C&apos;est possible."
+                description="Fini les disputes sur la température ! Avec le système de Zoning (Airzone ou Delta Dore), chaque chambre a son propre thermostat. M. veut 19°C, Mme veut 22°C ? C'est possible."
                 imagePlacement="right"
+                imageSrc="/images/gainable-vents.png"
+                imageAlt="Grilles de soufflage climatisation gainable"
                 features={[
                     "Thermostats individuels dans chaque pièce",
                     "Réduction de la consommation (ne chauffez que ce que vous utilisez)",
