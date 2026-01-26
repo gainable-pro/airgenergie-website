@@ -2,6 +2,7 @@ import { getCityData } from '@/data/cities';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+import ZigZagSection from '@/components/ui/ZigZagSection';
 import { MapPin, Phone, CheckCircle } from 'lucide-react';
 import type { Metadata } from 'next';
 
@@ -17,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     if (!city) {
         return {
-            title: "Climatisation Local | Air Energie",
+            title: "Climatisation Local | Air G Energie",
         };
     }
 
@@ -35,14 +36,17 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
         return notFound();
     }
 
+    // Determine hero image based on city
+    const heroImage = slug === 'miramas' ? '/images/city-miramas-hero.png' : '/images/hero-technician-ac.png';
+
     return (
         <div className="city-page">
-            {/* City Hero - Light Gray with Image Overlay */}
+            {/* City Hero - Blue Gradient like Homepage */}
             <section style={{
                 position: 'relative',
                 minHeight: '500px',
                 overflow: 'hidden',
-                background: '#F8FAFC'
+                background: 'linear-gradient(135deg, #0091DA 0%, #006BA6 100%)'
             }}>
                 {/* Background Image */}
                 <div style={{
@@ -51,24 +55,25 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    opacity: 0.15
+                    opacity: 0.2
                 }}>
                     <Image
-                        src="/images/hero-technician-ac.png"
-                        alt="Technicien AIR G Energie"
+                        src={heroImage}
+                        alt={`Climatisation ${city.name}`}
                         fill
                         style={{ objectFit: 'cover', objectPosition: 'center' }}
+                        priority
                     />
                 </div>
 
-                {/* Light overlay for readability */}
+                {/* Blue overlay for readability */}
                 <div style={{
                     position: 'absolute',
                     top: 0,
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    background: 'linear-gradient(to right, rgba(248, 250, 252, 0.95) 0%, rgba(248, 250, 252, 0.85) 60%, rgba(248, 250, 252, 0.95) 100%)'
+                    background: 'linear-gradient(to right, rgba(0, 145, 218, 0.85) 0%, rgba(0, 107, 166, 0.7) 60%, rgba(0, 107, 166, 0.85) 100%)'
                 }} />
 
                 {/* Content */}
@@ -77,90 +82,148 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                     padding: '4rem 0',
                     zIndex: 1
                 }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: 'var(--primary-blue)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: '#FF6B00' }}>
                         <MapPin size={20} />
-                        <span style={{ textTransform: 'uppercase', fontWeight: 'bold' }}>Zone d&apos;intervention : {city.name}</span>
+                        <span style={{ textTransform: 'uppercase', fontWeight: 'bold', fontSize: '0.9rem' }}>Zone d&apos;intervention : {city.name}</span>
                     </div>
-                    <h1 style={{ color: 'var(--text-dark)', fontSize: '2.5rem', marginBottom: '1.5rem' }}>{city.h1}</h1>
-                    <p style={{ maxWidth: '700px', fontSize: '1.125rem', color: 'var(--text-gray)', marginBottom: '2rem' }}>
+                    <h1 style={{ color: 'white', fontSize: '2.5rem', marginBottom: '1.5rem', maxWidth: '800px' }}>{city.h1}</h1>
+                    <p style={{ maxWidth: '700px', fontSize: '1.125rem', color: 'rgba(255,255,255,0.95)', marginBottom: '2rem', lineHeight: '1.7' }}>
                         {city.intro}
                     </p>
-                    <div style={{ display: 'flex', gap: '1rem' }}>
-                        <a href="tel:0413414901" className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                        <a href="tel:0413414901" className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: '#FF6B00', border: 'none' }}>
                             <Phone size={20} />
                             04 13 41 49 01
                         </a>
-                        <Link href="/contact" className="btn btn-outline">
+                        <Link href="/contact" className="btn" style={{ background: 'white', color: 'var(--primary-blue)', border: 'none' }}>
                             Devis Gratuit
                         </Link>
                     </div>
                 </div>
             </section>
 
-            {/* Main Content Structure */}
-            <section className="section-padding">
+            {/* Installation Section with Image */}
+            <ZigZagSection
+                title={city.h2_install}
+                description={city.txt_install}
+                imagePlacement="left"
+                imageSrc="/images/city-installation.png"
+                imageAlt={`Installation climatisation ${city.name}`}
+                features={[
+                    "Installation adaptée à votre quartier",
+                    "Respect des contraintes locales",
+                    "Marques premium (Daikin, Mitsubishi, Toshiba)",
+                    "Dimensionnement précis selon votre logement"
+                ]}
+            />
+
+            {/* Reversible Section with Comfort Image */}
+            <ZigZagSection
+                title={city.h2_reversible}
+                description={city.txt_reversible}
+                imagePlacement="right"
+                imageSrc="/images/city-comfort.png"
+                imageAlt={`Confort climatisation ${city.name}`}
+                features={[
+                    "Fraîcheur en été, chaleur en hiver",
+                    "Jusqu'à 60% d'économies sur le chauffage",
+                    "Système économique et écologique",
+                    "Idéal pour le climat provençal"
+                ]}
+            />
+
+            {/* Gainable Section */}
+            <ZigZagSection
+                title={city.h2_gainable}
+                description={city.txt_gainable}
+                imagePlacement="left"
+                imageSrc="/images/ducted-system.png"
+                imageAlt={`Climatisation gainable ${city.name}`}
+                features={[
+                    "Solution invisible et élégante",
+                    "Intégration dans combles ou faux-plafonds",
+                    "Régulation pièce par pièce (zoning)",
+                    "Confort optimal et économies maximales"
+                ]}
+            />
+
+            {/* Maintenance Section */}
+            <ZigZagSection
+                title={city.h2_maintenance}
+                description={city.txt_maintenance}
+                imagePlacement="right"
+                imageSrc="/images/city-maintenance.png"
+                imageAlt={`Entretien climatisation ${city.name}`}
+                features={[
+                    "Intervention rapide en urgence",
+                    "Entretien annuel obligatoire",
+                    "Contrats d'entretien disponibles",
+                    "Dépannage toutes marques"
+                ]}
+            />
+
+            {/* Local Expertise Section */}
+            <section className="section-padding" style={{ background: 'var(--bg-light)' }}>
                 <div className="container" style={{ maxWidth: '900px' }}>
+                    <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem', color: 'var(--text-dark)' }}>{city.h2_why_us}</h2>
+                    <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: 'var(--text-gray)', marginBottom: '2rem' }}>
+                        {city.txt_why_us}
+                    </p>
 
-                    {/* Section 1: Installation */}
-                    <div style={{ marginBottom: '4rem' }}>
-                        <h2>{city.h2_install}</h2>
-                        <p>{city.txt_install}</p>
-                    </div>
-
-                    {/* Section 2: Reversible */}
-                    <div style={{ marginBottom: '4rem', padding: '2rem', background: '#F8FAFC', borderRadius: '1rem' }}>
-                        <h2>{city.h2_reversible}</h2>
-                        <p>{city.txt_reversible}</p>
-                        <ul style={{ listStyle: 'none', padding: 0, marginTop: '1rem' }}>
-                            <li style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem' }}><CheckCircle size={18} className="text-accent" /> Été au frais</li>
-                            <li style={{ display: 'flex', gap: '0.5rem' }}><CheckCircle size={18} className="text-accent" /> Hiver au chaud</li>
-                        </ul>
-                    </div>
-
-                    {/* Section 3: Gainable */}
-                    <div style={{ marginBottom: '4rem' }}>
-                        <h2>{city.h2_gainable}</h2>
-                        <p>{city.txt_gainable}</p>
-                    </div>
-
-                    {/* Section 4: Maintenance */}
-                    <div style={{ marginBottom: '4rem' }}>
-                        <h2>{city.h2_maintenance}</h2>
-                        <p>{city.txt_maintenance}</p>
-                    </div>
-
-                    {/* Section 5: Excellence Locale */}
-                    <div style={{ marginBottom: '4rem', borderLeft: '4px solid #FF6B00', paddingLeft: '2rem' }}>
-                        <h2>{city.h2_why_us}</h2>
-                        <p>{city.txt_why_us}</p>
-                    </div>
-
-                    {/* FAQ specific to city */}
-                    <div style={{ marginTop: '4rem' }}>
-                        <h3>Questions Fréquentes à {city.name}</h3>
-                        <div style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                            {city.faq.map((item, idx) => (
-                                <div key={idx} style={{ background: 'white', padding: '1.5rem', borderRadius: '0.5rem', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
-                                    <p style={{ fontWeight: 'bold', marginBottom: '0.5rem', color: '#0A2342' }}>{item.q}</p>
-                                    <p style={{ color: '#64748B', fontSize: '0.95rem' }}>{item.a}</p>
-                                </div>
-                            ))}
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', marginTop: '2rem' }}>
+                        <div style={{ padding: '1.5rem', background: 'white', borderRadius: '0.5rem', boxShadow: 'var(--shadow-sm)' }}>
+                            <CheckCircle size={32} style={{ color: 'var(--primary-blue)', marginBottom: '1rem' }} />
+                            <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Certifié RGE</h3>
+                            <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem' }}>Accédez aux aides financières (MaPrimeRénov', CEE)</p>
+                        </div>
+                        <div style={{ padding: '1.5rem', background: 'white', borderRadius: '0.5rem', boxShadow: 'var(--shadow-sm)' }}>
+                            <CheckCircle size={32} style={{ color: 'var(--primary-blue)', marginBottom: '1rem' }} />
+                            <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Garantie Décennale</h3>
+                            <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem' }}>Protection sur le long terme de votre installation</p>
+                        </div>
+                        <div style={{ padding: '1.5rem', background: 'white', borderRadius: '0.5rem', boxShadow: 'var(--shadow-sm)' }}>
+                            <CheckCircle size={32} style={{ color: 'var(--primary-blue)', marginBottom: '1rem' }} />
+                            <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Entreprise Locale</h3>
+                            <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem' }}>Proximité, réactivité et connaissance du terrain</p>
                         </div>
                     </div>
+                </div>
+            </section>
 
+            {/* FAQ Section */}
+            <section className="section-padding" style={{ background: 'white' }}>
+                <div className="container" style={{ maxWidth: '900px' }}>
+                    <h2 style={{ fontSize: '2rem', marginBottom: '2rem', textAlign: 'center', color: 'var(--text-dark)' }}>
+                        Questions Fréquentes sur la Climatisation à {city.name}
+                    </h2>
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                        {city.faq.map((item, idx) => (
+                            <div key={idx} style={{ padding: '1.5rem', background: 'var(--bg-light)', borderRadius: '0.5rem', borderLeft: '4px solid var(--primary-blue)' }}>
+                                <h3 style={{ fontSize: '1.1rem', marginBottom: '0.75rem', color: 'var(--text-dark)' }}>{item.q}</h3>
+                                <p style={{ color: 'var(--text-gray)', lineHeight: '1.7', margin: 0 }}>{item.a}</p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </section>
 
             {/* Final CTA */}
-            <section style={{ background: '#FF6B00', padding: '3rem 0', textAlign: 'center' }}>
+            <section className="section-padding" style={{ background: 'linear-gradient(135deg, #0091DA 0%, #006BA6 100%)', color: 'white', textAlign: 'center' }}>
                 <div className="container">
                     <h2 style={{ color: 'white', fontSize: '2rem', marginBottom: '1rem' }}>{city.h2_cta}</h2>
-                    <p style={{ color: 'white', marginBottom: '2rem', opacity: 0.9 }}>
-                        Réponse sous 24h garantie. Intervention rapide sur {city.name}.
+                    <p style={{ fontSize: '1.1rem', marginBottom: '2rem', opacity: 0.95 }}>
+                        Intervention rapide à {city.name} • Devis gratuit sous 24h • Certifié RGE
                     </p>
-                    <Link href="/contact" className="btn" style={{ background: 'white', color: '#FF6B00' }}>
-                        Contacter un expert à {city.name}
-                    </Link>
+                    <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                        <a href="tel:0413414901" className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: '#FF6B00', border: 'none' }}>
+                            <Phone size={20} />
+                            04 13 41 49 01
+                        </a>
+                        <Link href="/contact" className="btn" style={{ background: 'white', color: 'var(--primary-blue)', border: 'none' }}>
+                            Demander un Devis Gratuit
+                        </Link>
+                    </div>
                 </div>
             </section>
         </div>

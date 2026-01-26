@@ -26,24 +26,50 @@ export const citiesData: Record<string, CityContent> = {
     "miramas": {
         slug: "miramas",
         name: "Miramas",
-        metaTitle: "Climatisation à Miramas – Installation, Dépannage & Devis Rapide | Air G Énergie",
-        metaDesc: "Besoin d'un installateur de climatisation à Miramas (13140) ? Intervention rapide quartiers Gare, Le Mercure, Vieux-Miramas. Devis gratuit pour particuliers et pros.",
-        h1: "Installateur de climatisation à Miramas",
-        intro: "Bienvenue chez Air G Énergie. Basés au cœur de Miramas, nous connaissons parfaitement les besoins thermiques des maisons de ville et pavillons du secteur. Que vous soyez proche de la Gare ou sur les hauteurs du Vieux-Miramas, nos équipes interviennent en quelques minutes.",
-        h2_install: "Installation de climatisation à Miramas pour maisons et appartements",
-        txt_install: "Nous proposons des poses soignées, adaptées aux façades parfois classées du centre-ville ou aux règlements de copropriété strictes des résidences récentes.",
-        h2_reversible: "Climatisation réversible : confort été comme hiver à Miramas",
-        txt_reversible: "Le climat de l'étang de Berre est contrasté. Nos systèmes réversibles vous garantissent une fraîcheur idéale lors des canicules de juillet et un chauffage douillet quand le Mistral souffle l'hiver.",
-        h2_gainable: "Climatisation gainable à Miramas : solution discrète et premium",
-        txt_gainable: "Idéal pour les rénovations dans les zones pavillonnaires calmes. Tout passe dans les combles, rien ne dénature votre intérieur.",
-        h2_maintenance: "Entretien et dépannage de climatisation à Miramas",
-        txt_maintenance: "Une panne un 15 août ? Notre proximité nous permet d'être ultra-réactifs pour nos clients Miramasséens. Contrats d'entretien disponibles.",
-        h2_why_us: "Pourquoi choisir un installateur local de climatisation à Miramas",
-        txt_why_us: "Pas de sous-traitance, que du local. En choisissant Air G Énergie, vous faites travailler une entreprise de votre ville.",
-        h2_cta: "Demandez votre devis climatisation à Miramas",
+        metaTitle: "Climatisation à Miramas (13140) – Installation & Dépannage Rapide | Air G Énergie",
+        metaDesc: "Installateur climatisation à Miramas : Gare, Mercure, Vieux-Miramas. Entreprise locale, intervention rapide, devis gratuit sous 24h. ✓ Certifié RGE ✓ Garantie décennale",
+        h1: "Votre Installateur de Climatisation à Miramas",
+        intro: "Basés au cœur de Miramas depuis plusieurs années, nous connaissons parfaitement les spécificités climatiques et architecturales de notre ville. Du quartier de la Gare aux hauteurs du Vieux-Miramas, en passant par Le Mercure et les zones pavillonnaires récentes, Air G Énergie intervient rapidement pour tous vos besoins en climatisation. Notre proximité est votre garantie de réactivité et de service personnalisé.",
+        h2_install: "Installation de Climatisation à Miramas : Expertise Locale et Solutions Sur-Mesure",
+        txt_install: "Chaque quartier de Miramas a ses particularités. Les maisons de ville du centre historique nécessitent une approche respectueuse du patrimoine, tandis que les résidences récentes du Mercure ou de la zone des Molières demandent une intégration discrète conforme aux règlements de copropriété. Nos techniciens connaissent ces contraintes et adaptent chaque installation : choix de l'emplacement des unités extérieures, passage des gaines en respectant l'esthétique, solutions gainables pour les combles aménagés. Nous travaillons avec les meilleures marques (Daikin, Mitsubishi, Toshiba) et dimensionnons précisément votre système selon la surface, l'isolation et l'exposition de votre logement. Résultat : un confort optimal sans surconsommation.",
+        h2_reversible: "Climatisation Réversible à Miramas : Confort Toute l'Année Face au Climat Provençal",
+        txt_reversible: "Le climat de Miramas, typique de l'étang de Berre, est marqué par des étés caniculaires (régulièrement au-dessus de 35°C en juillet-août) et des hivers où le Mistral fait chuter les températures ressenties. Une climatisation réversible est la solution idéale pour faire face à ces extrêmes. En été, elle rafraîchit efficacement votre intérieur. En hiver, elle fonctionne comme une pompe à chaleur air-air, offrant un chauffage économique et rapide. Nos clients miramasséens constatent en moyenne 60% d'économies sur leur facture de chauffage par rapport à des radiateurs électriques classiques. Le système réversible est particulièrement adapté aux maisons récentes bien isolées, nombreuses dans les nouveaux lotissements de Miramas.",
+        h2_gainable: "Climatisation Gainable à Miramas : L'Élégance Invisible pour Votre Intérieur",
+        txt_gainable: "Vous rénovez une maison dans les quartiers pavillonnaires de Miramas ? Vous construisez dans la zone d'extension nord ? La climatisation gainable est la solution premium qui préserve l'esthétique de votre intérieur. Tout le système de distribution d'air est dissimulé dans vos combles ou faux-plafonds. Seules de discrètes grilles de soufflage, parfaitement intégrées au plafond, sont visibles. Cette solution est particulièrement prisée dans les maisons avec combles perdus, très courantes à Miramas. Avec un système de zoning (Airzone ou Delta Dore), vous pouvez même réguler la température pièce par pièce, pour un confort personnalisé et des économies d'énergie maximales.",
+        h2_maintenance: "Entretien et Dépannage Climatisation à Miramas : Réactivité et Proximité",
+        txt_maintenance: "Une panne de climatisation en pleine canicule miramasséenne, c'est l'urgence absolue. Notre atelier étant situé à Miramas même, nous intervenons en quelques heures, même les week-ends et jours fériés en période estivale. Nous assurons l'entretien annuel obligatoire de votre installation (nettoyage des filtres, contrôle du fluide frigorigène, vérification des performances), indispensable pour maintenir l'efficacité et la longévité de votre système. Nos contrats d'entretien incluent un dépannage prioritaire et des tarifs préférentiels. Nous intervenons sur toutes marques, même si nous n'avons pas réalisé l'installation initiale.",
+        h2_why_us: "Pourquoi Choisir Air G Énergie, Votre Installateur Local à Miramas",
+        txt_why_us: "Faire appel à une entreprise locale, c'est choisir la proximité, la réactivité et la connaissance du terrain. Nous connaissons les spécificités de chaque quartier de Miramas : les contraintes du Vieux-Miramas, les règlements des copropriétés récentes, les particularités des maisons provençales traditionnelles. Nous sommes certifiés RGE (Reconnu Garant de l'Environnement), ce qui vous permet de bénéficier des aides financières (MaPrimeRénov', CEE). Notre garantie décennale vous protège sur le long terme. Mais surtout, nous sommes vos voisins : votre satisfaction est notre meilleure publicité dans la ville.",
+        h2_cta: "Demandez Votre Devis Gratuit pour une Climatisation à Miramas",
         faq: [
-            { q: "Intervenez-vous dans le vieux Miramas ?", a: "Oui, nous avons l'habitude des contraintes techniques du centre historique." },
-            { q: "Quel est le délai pour une installation à Miramas ?", a: "Étant sur place, nous pouvons souvent intervenir sous 1 à 2 semaines selon la saison." }
+            {
+                q: "Quels quartiers de Miramas couvrez-vous ?",
+                a: "Nous intervenons dans tous les quartiers de Miramas : centre-ville et Vieux-Miramas, quartier de la Gare, Le Mercure, Les Molières, zone pavillonnaire nord, et tous les secteurs résidentiels. Notre atelier étant à Miramas, nous sommes à moins de 10 minutes de n'importe quel point de la ville."
+            },
+            {
+                q: "Quel est le délai pour une installation de climatisation à Miramas ?",
+                a: "Grâce à notre proximité, nous pouvons réaliser une visite technique sous 48h et installer votre climatisation sous 1 à 2 semaines en période normale. En haute saison (mai-juillet), les délais peuvent s'allonger à 3 semaines, d'où l'intérêt d'anticiper."
+            },
+            {
+                q: "Intervenez-vous dans le Vieux-Miramas avec ses contraintes patrimoniales ?",
+                a: "Oui, nous avons l'habitude des contraintes du centre historique : façades à préserver, impossibilité de percer certains murs, règles d'urbanisme strictes. Nous proposons des solutions adaptées (unités extérieures en toiture, passages de gaines discrets) en conformité avec les exigences de la mairie."
+            },
+            {
+                q: "Combien coûte une installation de climatisation à Miramas ?",
+                a: "Le prix dépend du type de système (split mural, gainable, multi-split), de la surface à climatiser et de la complexité de l'installation. Comptez entre 1 500€ et 3 500€ pour un split mural simple, 4 000€ à 8 000€ pour un système gainable. Nous établissons un devis gratuit et détaillé après visite technique."
+            },
+            {
+                q: "Proposez-vous des aides au financement pour une climatisation à Miramas ?",
+                a: "Oui, étant certifiés RGE, vos travaux sont éligibles aux aides : MaPrimeRénov' (pour les pompes à chaleur air-air dans certains cas), Certificats d'Économie d'Énergie (CEE), TVA réduite à 10%. Nous vous accompagnons dans les démarches administratives."
+            },
+            {
+                q: "Faites-vous l'entretien des climatisations existantes à Miramas ?",
+                a: "Absolument. Nous assurons l'entretien annuel obligatoire et le dépannage de toutes marques de climatisation, même si nous ne les avons pas installées. Nos contrats d'entretien incluent une visite annuelle complète et un dépannage prioritaire."
+            },
+            {
+                q: "Intervenez-vous en urgence à Miramas ?",
+                a: "Oui, en cas de panne en période de forte chaleur, nous intervenons en urgence, généralement le jour même ou le lendemain. Notre proximité (atelier à Miramas) nous permet cette réactivité que ne peuvent pas offrir les entreprises basées à Marseille ou Aix."
+            }
         ]
     },
     "istres": {
