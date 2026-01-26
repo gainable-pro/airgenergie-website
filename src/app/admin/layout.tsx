@@ -29,10 +29,10 @@ export default function AdminLayout({
                         <Users size={20} /> Leads
                     </Link>
                     <Link
-                        href="/admin/articles"
-                        className={`${styles.navItem} ${pathname.includes('/articles') ? styles.active : ''}`}
+                        href="/admin/blog"
+                        className={`${styles.navItem} ${pathname.includes('/blog') ? styles.active : ''}`}
                     >
-                        <FileText size={20} /> Articles (Blog)
+                        <FileText size={20} /> Blog CMS
                     </Link>
                 </nav>
 

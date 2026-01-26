@@ -1,23 +1,23 @@
+import { getAllCitySlugs, getCityData } from '@/data/cities';
 import Link from 'next/link';
-import { MapPin, Phone, CheckCircle } from 'lucide-react';
+import { MapPin, Phone } from 'lucide-react';
 
 export const metadata = {
     title: "Zones d'Intervention - Climatisation Bouches-du-Rhône | Air G Énergie",
-    description: "Air G Énergie intervient dans tout le département des Bouches-du-Rhône : Miramas, Istres, Salon-de-Provence, Saint-Chamas, Marseille et environs.",
+    description: "Air G Énergie intervient dans tout le département des Bouches-du-Rhône : Miramas, Istres, Salon-de-Provence, Saint-Chamas, Marseille et plus de 30 communes.",
 };
 
 export default function ZonesInterventionPage() {
-    const cities = [
-        { name: "Miramas", slug: "miramas", description: "Notre ville d'origine, intervention ultra-rapide" },
-        { name: "Istres", slug: "istres", description: "Spécialiste climatisation secteur étang de Berre" },
-        { name: "Salon-de-Provence", slug: "salon-de-provence", description: "Installation et entretien climatisation" },
-        { name: "Saint-Chamas", slug: "saint-chamas", description: "Proximité et réactivité garanties" },
-    ];
+    // Get all cities dynamically
+    const slugs = getAllCitySlugs();
+    const allCities = slugs.map(slug => getCityData(slug)!).sort((a, b) => a.name.localeCompare(b.name));
 
-    const otherCities = [
-        "Aix-en-Provence", "Martigues", "Vitrolles", "Grans", "La Fare-les-Oliviers",
-        "Marseille", "Côte Bleue", "Port-de-Bouc", "Fos-sur-Mer", "Arles"
-    ];
+    // Highlight Main Cities (Tier 1 + HeadQuarters)
+    const highlightSlugs = ['miramas', 'istres', 'salon-de-provence', 'martigues', 'marseille', 'aix-en-provence'];
+    const mainCities = allCities.filter(c => highlightSlugs.includes(c.slug));
+
+    // Other cities
+    const otherCities = allCities.filter(c => !highlightSlugs.includes(c.slug));
 
     return (
         <div>
@@ -28,7 +28,7 @@ export default function ZonesInterventionPage() {
                         Nos Zones d'Intervention
                     </h1>
                     <p style={{ fontSize: '1.3rem', maxWidth: '700px', margin: '0 auto', opacity: 0.95 }}>
-                        Air G Énergie intervient dans tout le département des Bouches-du-Rhône pour vos installations de climatisation
+                        Air G Énergie intervient dans plus de 30 communes des Bouches-du-Rhône pour vos installations de climatisation
                     </p>
                 </div>
             </section>
@@ -41,7 +41,7 @@ export default function ZonesInterventionPage() {
                     </h2>
 
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-                        {cities.map((city) => (
+                        {mainCities.map((city) => (
                             <Link
                                 key={city.slug}
                                 href={`/ville/${city.slug}`}
@@ -60,7 +60,9 @@ export default function ZonesInterventionPage() {
                                     <MapPin size={24} />
                                     <h3 style={{ fontSize: '1.5rem', margin: 0, color: 'var(--text-dark)' }}>{city.name}</h3>
                                 </div>
-                                <p style={{ color: 'var(--text-gray)', margin: 0 }}>{city.description}</p>
+                                <p style={{ color: 'var(--text-gray)', margin: 0 }}>
+                                    {city.intro.substring(0, 120)}...
+                                </p>
                                 <div style={{ marginTop: '1rem', color: 'var(--primary-blue)', fontWeight: 'bold' }}>
                                     En savoir plus →
                                 </div>
@@ -74,10 +76,10 @@ export default function ZonesInterventionPage() {
             <section className="section-padding" style={{ background: 'var(--bg-light)' }}>
                 <div className="container">
                     <h2 style={{ textAlign: 'center', fontSize: '2.5rem', marginBottom: '2rem', color: 'var(--text-dark)' }}>
-                        Autres Communes Desservies
+                        Toutes nos Communes Desservies ({allCities.length})
                     </h2>
                     <p style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 3rem', color: 'var(--text-gray)' }}>
-                        Nous intervenons également dans de nombreuses autres communes des Bouches-du-Rhône
+                        Nous intervenons également dans toutes ces communes, avec la même réactivité et garantie de qualité.
                     </p>
 
                     <div style={{
@@ -85,23 +87,27 @@ export default function ZonesInterventionPage() {
                         flexWrap: 'wrap',
                         gap: '1rem',
                         justifyContent: 'center',
-                        maxWidth: '900px',
+                        maxWidth: '1000px',
                         margin: '0 auto'
                     }}>
                         {otherCities.map((city) => (
-                            <div
-                                key={city}
+                            <Link
+                                key={city.slug}
+                                href={`/ville/${city.slug}`}
                                 style={{
+                                    textDecoration: 'none',
                                     background: 'white',
                                     padding: '0.75rem 1.5rem',
                                     borderRadius: '2rem',
                                     border: '1px solid var(--border-color)',
                                     color: 'var(--text-dark)',
-                                    fontSize: '1rem'
+                                    fontSize: '1rem',
+                                    transition: 'all 0.2s',
+                                    boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
                                 }}
                             >
-                                {city}
-                            </div>
+                                {city.name}
+                            </Link>
                         ))}
                     </div>
                 </div>

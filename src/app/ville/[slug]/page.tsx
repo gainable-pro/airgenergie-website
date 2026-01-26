@@ -61,7 +61,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
     }
 
     // Determine hero image based on city
-    const heroImage = slug === 'miramas' ? '/images/city-miramas-hero.png' : '/images/hero-technician-ac.png';
+    const heroImage = city.heroImage || (slug === 'miramas' ? '/images/city-miramas-hero.png' : '/images/hero-technician-ac.png');
 
     // Schema LocalBusiness
     const schemaLocalBusiness = {
