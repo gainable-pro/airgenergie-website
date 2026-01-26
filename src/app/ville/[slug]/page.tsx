@@ -1,6 +1,7 @@
 import { getCityData } from '@/data/cities';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { MapPin, Phone, CheckCircle } from 'lucide-react';
 import type { Metadata } from 'next';
 
@@ -36,24 +37,62 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
 
     return (
         <div className="city-page">
-            {/* City Hero */}
-            <section style={{ background: '#0F172A', color: 'white', padding: '4rem 0' }}>
-                <div className="container">
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: '#FF6B00' }}>
+            {/* City Hero - Light Gray with Image Overlay */}
+            <section style={{
+                position: 'relative',
+                minHeight: '500px',
+                overflow: 'hidden',
+                background: '#F8FAFC'
+            }}>
+                {/* Background Image */}
+                <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    opacity: 0.15
+                }}>
+                    <Image
+                        src="/images/hero-technician-ac.png"
+                        alt="Technicien AIR G Energie"
+                        fill
+                        style={{ objectFit: 'cover', objectPosition: 'center' }}
+                    />
+                </div>
+
+                {/* Light overlay for readability */}
+                <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: 'linear-gradient(to right, rgba(248, 250, 252, 0.95) 0%, rgba(248, 250, 252, 0.85) 60%, rgba(248, 250, 252, 0.95) 100%)'
+                }} />
+
+                {/* Content */}
+                <div className="container" style={{
+                    position: 'relative',
+                    padding: '4rem 0',
+                    zIndex: 1
+                }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: 'var(--primary-blue)' }}>
                         <MapPin size={20} />
                         <span style={{ textTransform: 'uppercase', fontWeight: 'bold' }}>Zone d&apos;intervention : {city.name}</span>
                     </div>
-                    <h1 style={{ color: 'white', fontSize: '2.5rem', marginBottom: '1.5rem' }}>{city.h1}</h1>
-                    <p style={{ maxWidth: '700px', fontSize: '1.125rem', color: '#CBD5E1', marginBottom: '2rem' }}>
+                    <h1 style={{ color: 'var(--text-dark)', fontSize: '2.5rem', marginBottom: '1.5rem' }}>{city.h1}</h1>
+                    <p style={{ maxWidth: '700px', fontSize: '1.125rem', color: 'var(--text-gray)', marginBottom: '2rem' }}>
                         {city.intro}
                     </p>
                     <div style={{ display: 'flex', gap: '1rem' }}>
-                        <Link href="/contact" className="btn btn-primary">
-                            Devis GRATUIT à {city.name}
-                        </Link>
-                        <a href="tel:0490000000" className="btn btn-secondary" style={{ background: 'rgba(255,255,255,0.1)' }}>
-                            <Phone size={18} /> 04 90 XX XX XX
+                        <a href="tel:0413414901" className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            <Phone size={20} />
+                            04 13 41 49 01
                         </a>
+                        <Link href="/contact" className="btn btn-outline">
+                            Devis Gratuit
+                        </Link>
                     </div>
                 </div>
             </section>
