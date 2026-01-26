@@ -22,9 +22,33 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         };
     }
 
+    const heroImage = slug === 'miramas' ? '/images/city-miramas-hero.png' : '/images/hero-technician-ac.png';
+
     return {
         title: city.metaTitle,
         description: city.metaDesc,
+        openGraph: {
+            title: city.metaTitle,
+            description: city.metaDesc,
+            url: `https://airgenergie.fr/ville/${slug}`,
+            siteName: "AIR G Energie",
+            images: [
+                {
+                    url: heroImage,
+                    width: 1200,
+                    height: 630,
+                    alt: `Climatisation ${city.name} - AIR G Energie`,
+                },
+            ],
+            locale: "fr_FR",
+            type: "website",
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: city.metaTitle,
+            description: city.metaDesc,
+            images: [heroImage],
+        },
     };
 }
 
