@@ -259,7 +259,7 @@ export default function HomePage() {
             Pourquoi Choisir AIR G Energie ?
           </h2>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem', textAlign: 'center' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem', textAlign: 'center' }}>
             <div>
               <div style={{ background: 'var(--primary-blue)', color: 'white', width: '80px', height: '80px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
                 <MapPin size={40} />
@@ -277,41 +277,12 @@ export default function HomePage() {
             </div>
 
             <div>
-              <div style={{ background: 'var(--primary-blue)', color: 'white', width: '80px', height: '80px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
-                <Award size={40} />
-              </div>
-              <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--text-dark)' }}>Certifié RGE</h3>
-              <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem' }}>Éligibilité aux aides financières</p>
-            </div>
-
-            <div>
               <div style={{ background: 'var(--text-gray)', color: 'white', width: '80px', height: '80px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
                 <CheckCircle size={40} />
               </div>
               <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--text-dark)' }}>Garantie Décennale</h3>
               <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem' }}>Travaux garantis, assurance complète</p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section style={{ background: 'linear-gradient(135deg, #0091DA 0%, #006BA6 100%)', color: 'white', padding: '4rem 0', textAlign: 'center' }}>
-        <div className="container">
-          <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>
-            Un Projet de Climatisation à Miramas ?
-          </h2>
-          <p style={{ fontSize: '1.3rem', marginBottom: '2rem', opacity: 0.9 }}>
-            Contactez-nous pour un devis gratuit sous 24h
-          </p>
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-            <a href="tel:0413414901" className="btn" style={{ background: 'white', color: 'var(--primary-blue)', fontSize: '1.2rem', padding: '1rem 2rem' }}>
-              <Phone size={24} />
-              04 13 41 49 01
-            </a>
-            <Link href="/contact" className="btn" style={{ background: 'var(--text-dark)', color: 'white', fontSize: '1.2rem', padding: '1rem 2rem' }}>
-              Formulaire de Contact
-            </Link>
           </div>
         </div>
       </section>
