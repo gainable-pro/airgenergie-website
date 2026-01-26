@@ -11,7 +11,7 @@ export default function Footer() {
 
                 {/* Company Info */}
                 <div className={styles.col}>
-                    <h3 className={styles.colTitle}>Air Energie</h3>
+                    <h3 className={styles.colTitle}>AIR G Energie</h3>
                     <p className={styles.description}>
                         Expert en solutions de confort thermique à Miramas et alentours.
                         Installation, entretien et dépannage.
@@ -62,7 +62,7 @@ export default function Footer() {
                     <ul className={styles.hoursList}>
                         <li><Clock size={16} /> Lun - Ven: 8h00 - 18h00</li>
                         <li><Clock size={16} /> Samedi: Sur Rendez-vous</li>
-                        <li><Clock size={16} /> Dimanche: Fermé</li>
+                        <li><Phone size={16} /> 04 13 41 49 01</li>
                     </ul>
                 </div>
             </div>

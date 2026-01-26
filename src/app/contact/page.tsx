@@ -72,7 +72,7 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <p style={{ fontWeight: 'bold', margin: 0 }}>Téléphone</p>
-                                    <a href="tel:0490000000" style={{ fontSize: '1.2rem' }}>04 90 XX XX XX</a>
+                                    <a href="tel:0413414901" style={{ fontSize: '1.2rem' }}>04 13 41 49 01</a>
                                 </div>
                             </div>
 
