@@ -19,7 +19,7 @@ export default function HomePage() {
           left: 0,
           right: 0,
           bottom: 0,
-          opacity: 0.3
+          opacity: 0.25
         }}>
           <Image
             src="/images/hero-technician-ac.png"
@@ -37,7 +37,7 @@ export default function HomePage() {
           left: 0,
           right: 0,
           bottom: 0,
-          background: 'linear-gradient(135deg, rgba(0, 145, 218, 0.85) 0%, rgba(0, 107, 166, 0.85) 100%)'
+          background: 'linear-gradient(135deg, rgba(0, 145, 218, 0.75) 0%, rgba(0, 107, 166, 0.75) 100%)'
         }} />
 
         {/* Content */}
