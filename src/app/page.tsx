@@ -162,15 +162,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Certifications */}
-      <section style={{ background: 'var(--bg-light)', padding: '2rem 0', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
-        <div className="container">
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '3rem', flexWrap: 'wrap' }}>
-            <Image src="/images/certifications.png" alt="Certifications professionnelles AIR G Energie" width={800} height={200} />
-          </div>
-        </div>
-      </section>
-
       {/* Services Section */}
       <section className="section-padding" style={{ background: 'white' }}>
         <div className="container">
