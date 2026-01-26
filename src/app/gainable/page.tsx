@@ -1,9 +1,33 @@
 import ZigZagSection from '@/components/ui/ZigZagSection';
 import Link from 'next/link';
 
-export const metadata = {
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
     title: "Climatisation Gainable Premium | Le Confort invisible",
     description: "La solution de climatisation la plus esthétique. Diffuseurs discrets, silence absolu et régulation pièce par pièce (Zone Control).",
+    openGraph: {
+        title: "Climatisation Gainable Premium | Le Confort invisible",
+        description: "La solution de climatisation la plus esthétique. Diffuseurs discrets, silence absolu et régulation pièce par pièce.",
+        url: "https://airgenergie.fr/gainable",
+        siteName: "AIR G Energie",
+        images: [
+            {
+                url: "/images/real-gainable-kitchen-vents.jpg",
+                width: 1200,
+                height: 630,
+                alt: "Installation climatisation gainable avec grilles discrètes",
+            },
+        ],
+        locale: "fr_FR",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Climatisation Gainable Premium | Le Confort invisible",
+        description: "La solution de climatisation la plus esthétique. Diffuseurs discrets, silence absolu.",
+        images: ["/images/real-gainable-kitchen-vents.jpg"],
+    },
 };
 
 export default function GainablePage() {

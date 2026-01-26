@@ -2,9 +2,33 @@ import ZigZagSection from '@/components/ui/ZigZagSection';
 import Link from 'next/link';
 import { ArrowDown } from 'lucide-react';
 
-export const metadata = {
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
     title: "Pompe à Chaleur (PAC) | Économies d'Énergie",
     description: "Divisez votre facture de chauffage par 3. Installation de Pompes à Chaleur Air/Air et Air/Eau en remplacement de chaudière.",
+    openGraph: {
+        title: "Pompe à Chaleur (PAC) | Économies d'Énergie",
+        description: "Divisez votre facture de chauffage par 3. Installation de Pompes à Chaleur Air/Air et Air/Eau.",
+        url: "https://airgenergie.fr/pompe-a-chaleur",
+        siteName: "AIR G Energie",
+        images: [
+            {
+                url: "/images/real-outdoor-units-daikin.jpg",
+                width: 1200,
+                height: 630,
+                alt: "Installation pompe à chaleur Daikin unités extérieures",
+            },
+        ],
+        locale: "fr_FR",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Pompe à Chaleur (PAC) | Économies d'Énergie",
+        description: "Divisez votre facture de chauffage par 3. Installation de Pompes à Chaleur Air/Air et Air/Eau.",
+        images: ["/images/real-outdoor-units-daikin.jpg"],
+    },
 };
 
 export default function HeatPumpPage() {
