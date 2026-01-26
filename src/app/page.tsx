@@ -5,98 +5,114 @@ import { Phone, CheckCircle, Clock, Award, MapPin, Star } from 'lucide-react';
 export default function HomePage() {
   return (
     <div>
-      {/* Hero Section - Clean HTML/CSS */}
+      {/* Hero Section - Full Width Image with Text Overlay */}
       <section style={{
-        background: 'linear-gradient(135deg, #0091DA 0%, #006BA6 100%)',
-        padding: '5rem 0',
+        position: 'relative',
+        height: '600px',
+        overflow: 'hidden',
+        background: '#0091DA'
       }}>
-        <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+        {/* Background Image */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          opacity: 0.3
+        }}>
+          <Image
+            src="/images/hero-maintenance.png"
+            alt="Technicien AIR G Energie"
+            fill
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+            priority
+          />
+        </div>
 
-            {/* Left: Text Content */}
-            <div>
-              <h1 style={{
-                fontSize: '3.5rem',
-                fontWeight: 'bold',
-                marginBottom: '1.5rem',
-                lineHeight: '1.1',
-                color: 'white'
-              }}>
-                Votre Spécialiste Climatisation à Miramas
-              </h1>
+        {/* Overlay gradient */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'linear-gradient(135deg, rgba(0, 145, 218, 0.85) 0%, rgba(0, 107, 166, 0.85) 100%)'
+        }} />
 
-              <p style={{
-                fontSize: '1.5rem',
-                marginBottom: '2rem',
-                color: 'white',
-                opacity: 0.95
-              }}>
-                Installation • Entretien • Dépannage
-              </p>
+        {/* Content */}
+        <div className="container" style={{
+          position: 'relative',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center'
+        }}>
+          <div style={{ maxWidth: '600px' }}>
+            <h1 style={{
+              fontSize: '3.5rem',
+              fontWeight: 'bold',
+              marginBottom: '1.5rem',
+              lineHeight: '1.1',
+              color: 'white',
+              textShadow: '0 2px 4px rgba(0,0,0,0.1)'
+            }}>
+              Votre Spécialiste Climatisation à Miramas
+            </h1>
 
-              {/* CTA Buttons */}
-              <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
-                <a
-                  href="tel:0413414901"
-                  className="btn"
-                  style={{
-                    background: 'white',
-                    color: 'var(--primary-blue)',
-                    fontSize: '1.2rem',
-                    padding: '1rem 2rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
-                  }}
-                >
-                  <Phone size={22} />
-                  04 13 41 49 01
-                </a>
+            <p style={{
+              fontSize: '1.5rem',
+              marginBottom: '2.5rem',
+              color: 'white',
+              opacity: 0.95
+            }}>
+              Installation • Entretien • Dépannage
+            </p>
 
-                <Link
-                  href="/contact"
-                  className="btn"
-                  style={{
-                    background: 'var(--text-dark)',
-                    color: 'white',
-                    fontSize: '1.2rem',
-                    padding: '1rem 2rem',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
-                  }}
-                >
-                  Devis Gratuit
-                </Link>
-              </div>
+            {/* CTA Buttons */}
+            <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
+              <a
+                href="tel:0413414901"
+                className="btn"
+                style={{
+                  background: 'white',
+                  color: 'var(--primary-blue)',
+                  fontSize: '1.2rem',
+                  padding: '1rem 2rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
+                }}
+              >
+                <Phone size={22} />
+                04 13 41 49 01
+              </a>
 
-              {/* Trust Indicators */}
-              <div style={{ display: 'flex', gap: '2rem', color: 'white', fontSize: '0.95rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <CheckCircle size={20} />
-                  <span>Devis sous 24h</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <Award size={20} />
-                  <span>Certifié RGE</span>
-                </div>
-              </div>
+              <Link
+                href="/contact"
+                className="btn"
+                style={{
+                  background: 'var(--text-dark)',
+                  color: 'white',
+                  fontSize: '1.2rem',
+                  padding: '1rem 2rem',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
+                }}
+              >
+                Devis Gratuit
+              </Link>
             </div>
 
-            {/* Right: Image */}
-            <div style={{
-              position: 'relative',
-              height: '500px',
-              borderRadius: '1rem',
-              overflow: 'hidden',
-              boxShadow: '0 20px 60px rgba(0,0,0,0.3)'
-            }}>
-              <Image
-                src="/images/hero-maintenance.png"
-                alt="Technicien AIR G Energie - Entretien climatisation à Miramas"
-                fill
-                style={{ objectFit: 'cover' }}
-                priority
-              />
+            {/* Trust Indicators */}
+            <div style={{ display: 'flex', gap: '2rem', color: 'white', fontSize: '0.95rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <CheckCircle size={20} />
+                <span>Devis sous 24h</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Award size={20} />
+                <span>Certifié RGE</span>
+              </div>
             </div>
           </div>
         </div>
