@@ -51,8 +51,40 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const schemaOrganization = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AIR G Energie",
+    "url": "https://airgenergie.fr",
+    "logo": "https://airgenergie.fr/images/hero-technician-ac.png",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+33-4-13-41-49-01",
+      "contactType": "customer service",
+      "areaServed": "FR",
+      "availableLanguage": "French"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Miramas",
+      "postalCode": "13140",
+      "addressRegion": "Bouches-du-Rhône",
+      "addressCountry": "FR"
+    },
+    "sameAs": [
+      "https://www.facebook.com/airgenergie",
+      "https://www.instagram.com/airgenergie"
+    ]
+  };
+
   return (
     <html lang="fr">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrganization) }}
+        />
+      </head>
       <body>
         <Navbar />
         <main>{children}</main>

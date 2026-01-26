@@ -63,8 +63,67 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
     // Determine hero image based on city
     const heroImage = slug === 'miramas' ? '/images/city-miramas-hero.png' : '/images/hero-technician-ac.png';
 
+    // Schema LocalBusiness
+    const schemaLocalBusiness = {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": `AIR G Energie - Climatisation ${city.name}`,
+        "image": `https://airgenergie.fr${heroImage}`,
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": city.name,
+            "addressRegion": "Bouches-du-Rhône",
+            "addressCountry": "FR"
+        },
+        "telephone": "+33-4-13-41-49-01",
+        "priceRange": "€€",
+        "openingHours": "Mo-Fr 08:00-18:00",
+        "url": `https://airgenergie.fr/ville/${slug}`,
+        "areaServed": {
+            "@type": "City",
+            "name": city.name
+        }
+    };
+
+    // Schema FAQ
+    const schemaFAQ = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": city.faq.map(item => ({
+            "@type": "Question",
+            "name": item.q,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": item.a
+            }
+        }))
+    };
+
     return (
         <div className="city-page">
+            {/* Schema Markup */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaLocalBusiness) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaFAQ) }}
+            />
+
+            {/* Breadcrumbs */}
+            <nav style={{ background: '#F8FAFC', padding: '1rem 0', borderBottom: '1px solid #E2E8F0' }}>
+                <div className="container">
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem', color: 'var(--text-gray)' }}>
+                        <Link href="/" style={{ color: 'var(--primary-blue)', textDecoration: 'none' }}>Accueil</Link>
+                        <span>›</span>
+                        <Link href="/zones-intervention" style={{ color: 'var(--primary-blue)', textDecoration: 'none' }}>Zones d'intervention</Link>
+                        <span>›</span>
+                        <span style={{ color: 'var(--text-dark)', fontWeight: '500' }}>{city.name}</span>
+                    </div>
+                </div>
+            </nav>
+
             {/* City Hero - Blue Gradient like Homepage */}
             <section style={{
                 position: 'relative',
