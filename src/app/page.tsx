@@ -22,8 +22,8 @@ export default function HomePage() {
           opacity: 0.3
         }}>
           <Image
-            src="/images/hero-maintenance.png"
-            alt="Technicien AIR G Energie"
+            src="/images/hero-technician-ac.png"
+            alt="Technicien AIR G Energie - Entretien climatisation"
             fill
             style={{ objectFit: 'cover', objectPosition: 'center' }}
             priority
