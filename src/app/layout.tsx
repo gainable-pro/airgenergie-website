@@ -19,17 +19,10 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body>
-        <header style={{ background: 'white', borderBottom: '1px solid #E2E8F0', position: 'sticky', top: 0, zIndex: 1000 }}>
-          <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem 0' }}>
-            <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
-              <Image src="/logo.png" alt="AIR G Energie" width={200} height={60} priority style={{ height: 'auto' }} />
-            </Link>
-          </div>
-        </header>
+        <Navbar />
         <main>{children}</main>
         <Footer />
       </body>
     </html>
   );
 }
-```

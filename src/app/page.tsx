@@ -1,117 +1,250 @@
 import Link from 'next/link';
-import { ArrowRight, CheckCircle, Shield, ThermometerSun } from 'lucide-react';
-import styles from './page.module.css';
+import Image from 'next/image';
+import { Phone, CheckCircle, Clock, Award, MapPin } from 'lucide-react';
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className={styles.homePrefix}>
-      {/* Hero Section */}
-      <section className={styles.hero}>
-        <div className={`container ${styles.heroContent}`}>
-          <div className={styles.heroText}>
-            <span className={styles.badge}>Expert Local depuis 10 ans</span>
-            <h1 className={styles.heroTitle}>
-              Votre confort thermique à <span className="text-accent">Miramas</span> et en Provence
+    <div>
+      {/* Hero Section - Conversion Focused */}
+      <section style={{
+        background: 'linear-gradient(135deg, #0091DA 0%, #006BA6 100%)',
+        color: 'white',
+        padding: '4rem 0',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }}>
+          <div>
+            <h1 style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '1rem', lineHeight: '1.2' }}>
+              Climatisation & Pompe à Chaleur à Miramas
             </h1>
-            <p className={styles.heroSubtitle}>
-              Installation, entretien et dépannage de climatisation réversible et pompes à chaleur.
-              Intervention rapide et devis gratuit.
+            <p style={{ fontSize: '1.5rem', marginBottom: '0.5rem', opacity: 0.95 }}>
+              Installation en 48h • Expert RGE
             </p>
-            <div className={styles.heroActions}>
-              <Link href="/contact" className="btn btn-primary">
-                Demander un devis gratuit
+            <p style={{ fontSize: '1.2rem', marginBottom: '2rem', opacity: 0.9 }}>
+              Devis Gratuit • Garantie Décennale • Intervention Rapide
+            </p>
+
+            {/* CTA Buttons */}
+            <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
+              <a href="tel:0413414901" className="btn" style={{
+                background: 'white',
+                color: 'var(--primary-blue)',
+                fontSize: '1.2rem',
+                padding: '1rem 2rem',
+                boxShadow: '0 6px 20px rgba(255, 255, 255, 0.3)'
+              }}>
+                <Phone size={24} />
+                04 13 41 49 01
+              </a>
+              <Link href="/contact" className="btn" style={{
+                background: 'var(--text-dark)',
+                color: 'white',
+                fontSize: '1.2rem',
+                padding: '1rem 2rem'
+              }}>
+                Devis en Ligne
               </Link>
-              <Link href="/services" className="btn btn-secondary">
-                Découvrir nos services
-              </Link>
+            </div>
+
+            {/* Trust Indicators */}
+            <div style={{ display: 'flex', gap: '2rem', fontSize: '0.95rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <CheckCircle size={20} />
+                <span>500+ Installations</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Clock size={20} />
+                <span>Réponse sous 2h</span>
+              </div>
             </div>
           </div>
-          <div className={styles.heroVisual}>
-            {/* Placeholder for Hero Image */}
-            <div className={styles.placeholderImage}>
-              <span>Image Hero (Technicien / Clim)</span>
-            </div>
+
+          {/* Hero Image */}
+          <div style={{ position: 'relative', height: '500px', borderRadius: '1rem', overflow: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.3)' }}>
+            <Image
+              src="/images/hero-technician.png"
+              alt="Technicien AIR G Energie installant une climatisation"
+              fill
+              style={{ objectFit: 'cover' }}
+              priority
+            />
           </div>
         </div>
       </section>
 
-      {/* Trust Badges */}
-      <section className={styles.trustSection}>
+      {/* Trust Badges Section */}
+      <section style={{ background: 'white', padding: '3rem 0', borderBottom: '1px solid var(--border-color)' }}>
         <div className="container">
-          <div className={styles.trustGrid}>
-            <div className={styles.trustItem}>
-              <CheckCircle className="text-accent" />
-              <span>Devis sous 24h</span>
-            </div>
-            <div className={styles.trustItem}>
-              <Shield className="text-accent" />
-              <span>Assurance Décennale</span>
-            </div>
-            <div className={styles.trustItem}>
-              <ThermometerSun className="text-accent" />
-              <span>Certifié RGE QualiPAC</span>
-            </div>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '3rem', flexWrap: 'wrap' }}>
+            <Image src="/images/trust-badges.png" alt="Certifications RGE QualiPAC" width={600} height={150} />
           </div>
         </div>
       </section>
 
-      {/* Services Highlights */}
-      <section className="section-padding">
-        <div className="container">
-          <h2 className="text-center">Nos Solutions de Climatisation</h2>
-          <p className="text-center text-gray" style={{ maxWidth: '600px', margin: '0 auto 3rem' }}>
-            Des solutions performantes et économes pour votre maison ou vos locaux professionnels.
+      {/* Urgence Section */}
+      <section style={{ background: 'var(--bg-light)', padding: '2rem 0', borderBottom: '2px solid var(--primary-blue)' }}>
+        <div className="container" style={{ textAlign: 'center' }}>
+          <h2 style={{ fontSize: '1.8rem', marginBottom: '1rem', color: 'var(--text-dark)' }}>
+            🔥 Besoin Urgent ? Dépannage 7j/7
+          </h2>
+          <p style={{ fontSize: '1.2rem', marginBottom: '1.5rem', color: 'var(--text-gray)' }}>
+            Intervention rapide dans tout le secteur de Miramas
           </p>
+          <a href="tel:0413414901" className="btn btn-primary" style={{ fontSize: '1.3rem', padding: '1rem 2.5rem' }}>
+            <Phone size={24} />
+            Appeler Maintenant
+          </a>
+        </div>
+      </section>
 
-          <div className={styles.servicesGrid}>
-            {/* Service 1 */}
-            <div className={styles.serviceCard}>
-              <div className={styles.cardContent}>
-                <h3>Climatisation Réversible</h3>
-                <p>Le confort en toute saisont. Fraîcheur l&apos;été, chauffage économique l&apos;hiver.</p>
-                <Link href="/climatisation" className={styles.readMore}>
-                  En savoir plus <ArrowRight size={16} />
-                </Link>
+      {/* Services Section */}
+      <section className="section-padding" style={{ background: 'var(--bg-light)' }}>
+        <div className="container">
+          <h2 style={{ textAlign: 'center', fontSize: '2.5rem', marginBottom: '3rem', color: 'var(--text-dark)' }}>
+            Nos Services à Miramas
+          </h2>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
+            {/* Climatisation Card */}
+            <div style={{ background: 'white', padding: '2rem', borderRadius: '1rem', boxShadow: 'var(--shadow-md)', textAlign: 'center' }}>
+              <div style={{ position: 'relative', height: '200px', marginBottom: '1.5rem', borderRadius: '0.5rem', overflow: 'hidden' }}>
+                <Image src="/images/ac-unit.png" alt="Climatisation" fill style={{ objectFit: 'cover' }} />
               </div>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--primary-blue)' }}>Climatisation</h3>
+              <p style={{ color: 'var(--text-gray)', marginBottom: '1.5rem' }}>
+                Installation de climatisation réversible. Confort été comme hiver.
+              </p>
+              <p style={{ fontSize: '1.3rem', fontWeight: 'bold', color: 'var(--primary-blue)', marginBottom: '1rem' }}>
+                À partir de 1 200€
+              </p>
+              <Link href="/climatisation" className="btn btn-outline" style={{ width: '100%', justifyContent: 'center' }}>
+                En savoir plus
+              </Link>
             </div>
 
-            {/* Service 2 */}
-            <div className={styles.serviceCard}>
-              <div className={styles.cardContent}>
-                <h3>Systèmes Gainables</h3>
-                <p>La solution invisible et silencieuse pour un confort haut de gamme.</p>
-                <Link href="/gainable" className={styles.readMore}>
-                  En savoir plus <ArrowRight size={16} />
-                </Link>
+            {/* Gainable Card */}
+            <div style={{ background: 'white', padding: '2rem', borderRadius: '1rem', boxShadow: 'var(--shadow-md)', textAlign: 'center', border: '2px solid var(--primary-blue)' }}>
+              <div style={{ background: 'var(--primary-blue)', color: 'white', padding: '0.25rem 1rem', borderRadius: '1rem', display: 'inline-block', marginBottom: '1rem', fontSize: '0.9rem', fontWeight: 'bold' }}>
+                ⭐ POPULAIRE
               </div>
+              <div style={{ position: 'relative', height: '200px', marginBottom: '1.5rem', borderRadius: '0.5rem', overflow: 'hidden' }}>
+                <Image src="/images/ac-unit.png" alt="Gainable" fill style={{ objectFit: 'cover' }} />
+              </div>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--primary-blue)' }}>Gainable</h3>
+              <p style={{ color: 'var(--text-gray)', marginBottom: '1.5rem' }}>
+                Climatisation invisible et silencieuse. Confort discret garanti.
+              </p>
+              <p style={{ fontSize: '1.3rem', fontWeight: 'bold', color: 'var(--primary-orange)', marginBottom: '1rem' }}>
+                À partir de 3 500€
+              </p>
+              <Link href="/gainable" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
+                Découvrir
+              </Link>
             </div>
 
-            {/* Service 3 */}
-            <div className={styles.serviceCard}>
-              <div className={styles.cardContent}>
-                <h3>Pompes à Chaleur</h3>
-                <p>Remplacez votre chaudière et divisez vos factures par 3.</p>
-                <Link href="/pompe-a-chaleur" className={styles.readMore}>
-                  En savoir plus <ArrowRight size={16} />
-                </Link>
+            {/* Pompe à Chaleur Card */}
+            <div style={{ background: 'white', padding: '2rem', borderRadius: '1rem', boxShadow: 'var(--shadow-md)', textAlign: 'center' }}>
+              <div style={{ position: 'relative', height: '200px', marginBottom: '1.5rem', borderRadius: '0.5rem', overflow: 'hidden' }}>
+                <Image src="/images/heat-pump.png" alt="Pompe à Chaleur" fill style={{ objectFit: 'cover' }} />
               </div>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--primary-blue)' }}>Pompe à Chaleur</h3>
+              <p style={{ color: 'var(--text-gray)', marginBottom: '1.5rem' }}>
+                Chauffage économique et écologique. Jusqu'à 70% d'économies.
+              </p>
+              <p style={{ fontSize: '1.3rem', fontWeight: 'bold', color: 'var(--primary-orange)', marginBottom: '1rem' }}>
+                À partir de 5 000€
+              </p>
+              <Link href="/pompe-a-chaleur" className="btn btn-outline" style={{ width: '100%', justifyContent: 'center' }}>
+                En savoir plus
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className={styles.ctaSection}>
-        <div className={`container ${styles.ctaContainer}`}>
-          <h2>Prêt à améliorer votre confort ?</h2>
-          <p>Nos experts sont à votre disposition pour une étude personnalisée à domicile.</p>
-          <div className={styles.ctaButtons}>
-            <Link href="/contact" className="btn btn-primary">
-              Prendre rendez-vous
-            </Link>
-            <a href="tel:0490000000" className="btn btn-secondary">
-              Appeler maintenant
+      {/* Why Choose Us Section */}
+      <section className="section-padding" style={{ background: 'white' }}>
+        <div className="container">
+          <h2 style={{ textAlign: 'center', fontSize: '2.5rem', marginBottom: '3rem', color: 'var(--text-dark)' }}>
+            Pourquoi Choisir AIR G Energie ?
+          </h2>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem', textAlign: 'center' }}>
+            <div>
+              <div style={{ background: 'var(--primary-blue)', color: 'white', width: '80px', height: '80px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
+                <Award size={40} />
+              </div>
+              <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--text-dark)' }}>Expert RGE</h3>
+              <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem' }}>Certifié QualiPAC pour vos aides financières</p>
+            </div>
+
+            <div>
+              <div style={{ background: 'var(--text-gray)', color: 'white', width: '80px', height: '80px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
+                <Clock size={40} />
+              </div>
+              <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--text-dark)' }}>Réactivité</h3>
+              <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem' }}>Intervention sous 24h, devis sous 2h</p>
+            </div>
+
+            <div>
+              <div style={{ background: 'var(--primary-blue)', color: 'white', width: '80px', height: '80px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
+                <MapPin size={40} />
+              </div>
+              <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--text-dark)' }}>Proximité</h3>
+              <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem' }}>Basés à Miramas, nous connaissons votre secteur</p>
+            </div>
+
+            <div>
+              <div style={{ background: 'var(--text-gray)', color: 'white', width: '80px', height: '80px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
+                <CheckCircle size={40} />
+              </div>
+              <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--text-dark)' }}>Garantie</h3>
+              <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem' }}>Assurance décennale, travaux garantis</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Zone d'Intervention */}
+      <section className="section-padding" style={{ background: 'var(--bg-light)' }}>
+        <div className="container" style={{ textAlign: 'center' }}>
+          <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem', color: 'var(--text-dark)' }}>
+            Nos Zones d'Intervention
+          </h2>
+          <p style={{ fontSize: '1.2rem', marginBottom: '2rem', color: 'var(--text-gray)' }}>
+            Intervention rapide dans un rayon de 30km autour de Miramas
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem', marginBottom: '2rem' }}>
+            {['Miramas', 'Salon-de-Provence', 'Istres', 'Martigues', 'Aix-en-Provence', 'Vitrolles', 'Grans', 'La Fare-les-Oliviers', 'Saint-Chamas'].map(ville => (
+              <span key={ville} style={{ background: 'white', padding: '0.75rem 1.5rem', borderRadius: '2rem', boxShadow: 'var(--shadow-sm)', color: 'var(--text-dark)', fontWeight: '500' }}>
+                {ville}
+              </span>
+            ))}
+          </div>
+          <Link href="/contact" className="btn btn-primary" style={{ fontSize: '1.2rem', padding: '1rem 2rem' }}>
+            Demander un Devis Gratuit
+          </Link>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section style={{ background: 'linear-gradient(135deg, #0091DA 0%, #006BA6 100%)', color: 'white', padding: '4rem 0', textAlign: 'center' }}>
+        <div className="container">
+          <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>
+            Prêt à Améliorer Votre Confort ?
+          </h2>
+          <p style={{ fontSize: '1.3rem', marginBottom: '2rem', opacity: 0.9 }}>
+            Contactez-nous dès maintenant pour un devis gratuit et personnalisé
+          </p>
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+            <a href="tel:0413414901" className="btn" style={{ background: 'white', color: 'var(--primary-blue)', fontSize: '1.2rem', padding: '1rem 2rem' }}>
+              <Phone size={24} />
+              04 13 41 49 01
             </a>
+            <Link href="/contact" className="btn" style={{ background: 'var(--text-dark)', color: 'white', fontSize: '1.2rem', padding: '1rem 2rem' }}>
+              Formulaire de Contact
+            </Link>
           </div>
         </div>
       </section>
