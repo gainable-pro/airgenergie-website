@@ -18,6 +18,7 @@ export default function Navbar() {
                     <Link href="/climatisation">Climatisation</Link>
                     <Link href="/gainable">Gainable</Link>
                     <Link href="/pompe-a-chaleur">Pompe à Chaleur</Link>
+                    <Link href="/blog">Blog</Link>
                     <Link href="/contact">Contact</Link>
                 </div>
 
