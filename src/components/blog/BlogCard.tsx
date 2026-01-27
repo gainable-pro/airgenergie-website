@@ -1,5 +1,7 @@
+'use client';
+
 import Link from 'next/link';
-import { BlogPostWithCategory } from '@/lib/blog-public';
+import type { BlogPostWithCategory } from '@/lib/blog-public';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 
 interface BlogCardProps {
