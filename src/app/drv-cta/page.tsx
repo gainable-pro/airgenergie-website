@@ -78,7 +78,7 @@ export default function DrvCtaPage() {
                         </div>
                         <div style={{ flex: '1 1 400px', position: 'relative', height: '350px', background: '#EDF2F7', borderRadius: '1rem', overflow: 'hidden' }}>
                             <Image
-                                src="/images/drv-vrv-new.png"
+                                src="/images/drv-system-final.png"
                                 alt="Système DRV extérieur"
                                 fill
                                 style={{ objectFit: 'contain', padding: '1rem' }}
