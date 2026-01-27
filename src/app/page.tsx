@@ -35,16 +35,22 @@ export default function HomePage() {
     <div>
       {/* Hero Section - Video/Image only */}
       {/* Hero Section - Video/Image only */}
+      {/* Hero Section - Video/Image only */}
       <section style={{
         position: 'relative',
         width: '100%',
-        background: '#0091DA'
+        background: '#F8FAFC', // Changed to light gray/white to blend better if video has light bg
+        padding: '2rem 0'
       }}>
-        {/* Video container - Natural height to show full video without cropping */}
-        <div style={{
-          width: '100%',
+        {/* Video container - Constrained width to prevent "too big" height */}
+        <div className="container" style={{
+          maxWidth: '1200px', // Limit width
+          margin: '0 auto',
           position: 'relative',
-          lineHeight: 0 // Removes bottom spacing for inline-block video
+          lineHeight: 0,
+          boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)', // Nice shadow for "pro" look
+          borderRadius: '1rem', // Rounded corners
+          overflow: 'hidden'
         }}>
           <video
             autoPlay
@@ -55,13 +61,9 @@ export default function HomePage() {
               width: '100%',
               height: 'auto',
               display: 'block',
-              maxHeight: '85vh' // Prevent it from being too tall on huge screens
             }}
           >
             <source src="/videos/hero.mp4" type="video/mp4" />
-            {/* Fallback code if video fails could go here, but overlapping image while video loads in this layout requires absolute positioning. 
-                For simplicity and "pro" feel, letting video load is standard. 
-                We can add a loader or just keep the bg color. */}
           </video>
         </div>
 
