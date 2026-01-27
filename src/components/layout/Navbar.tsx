@@ -22,8 +22,8 @@ export default function Navbar() {
             <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
 
                 {/* Logo */}
-                <Link href="/" style={{ display: 'flex', alignItems: 'center' }} onClick={closeMenu}>
-                    <Image src="/logo.png" alt="AIR G Energie" width={150} height={42} priority style={{ height: 'auto' }} />
+                <Link href="/" style={{ display: 'flex', alignItems: 'center', marginRight: '2rem' }} onClick={closeMenu}>
+                    <Image src="/logo.png" alt="AIR G Energie" width={180} height={50} priority style={{ height: 'auto' }} />
                 </Link>
 
                 {/* Desktop Navigation Links */}
@@ -31,7 +31,6 @@ export default function Navbar() {
                     <Link href="/climatisation">Climatisation</Link>
                     <Link href="/gainable">Gainable</Link>
                     <Link href="/pompe-a-chaleur">Pompe à Chaleur</Link>
-                    <Link href="/blog">Blog</Link>
                 </div>
 
                 {/* CTA Buttons (Desktop) */}

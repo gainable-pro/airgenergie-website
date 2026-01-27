@@ -10,8 +10,15 @@
 
 .navLinks {
     display: flex;
-    gap: 2rem;
+    gap: 3rem;
+    /* Increased gap between links */
     align-items: center;
+    margin-left: 2rem;
+    /* Explicit spacing from logo */
+    flex-grow: 1;
+    /* Allow it to take space if needed */
+    justify-content: center;
+    /* Center links in the available space */
 }
 
 .navLinks a {
