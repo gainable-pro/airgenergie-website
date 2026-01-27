@@ -8,7 +8,14 @@ export interface CityContent {
     metaDesc: string;
     h1: string;
     intro: string;
-    heroImage: string; // New field for specific image
+    heroImage: string;
+
+    // Dynamic Images per section
+    img_install: string;
+    img_reversible: string;
+    img_gainable: string;
+    img_maintenance: string;
+
     h2_install: string;
     txt_install: string;
     h2_reversible: string;
@@ -31,24 +38,53 @@ interface CityConfig {
     quartiers: string;
     angle: string;
     isAirSalin?: boolean;
-    // Image is now assigned automatically via rotation
 }
 
-// Pool of high-quality real images to rotate
-const realImages = [
-    "/images/hero-installation-real.png",          // User 1
-    "/images/hero-real-installation-2.png",        // User 2
-    "/images/real-van-airgenergie.jpg",            // User Batch 5 (Van)
-    "/images/real-install-roof-action.jpg",        // User Batch 5 (Roof)
-    "/images/real-outdoor-cover-top.jpg",          // User Batch 5 (Cover Top)
-    "/images/real-outdoor-cover-side.jpg",         // User Batch 5 (Cover Side)
-    "/images/real-indoor-split-white.jpg",         // User Batch 5 (Split)
-    "/images/real-outdoor-units-daikin.jpg",       // Stock Real
-    "/images/real-split-mural-daikin.jpg",         // Stock Real
-    "/images/real-gainable-living-room.png",       // Stock Real
-    "/images/real-gainable-unit-floor.jpg",        // Stock Real
-    "/images/hero-technician-ac.png",              // Stock Hero
-    "/images/hero-maintenance.png"                 // Stock Maintenance
+// Global Hero Images
+const heroImages = [
+    "/images/hero-technician-ac.png",
+    "/images/hero-maintenance.png",
+    "/images/city-install/img-1.jpg",
+    "/images/city-install/img-2.jpg",
+    "/images/city-install/img-3.jpg",
+];
+
+// Installation Section Images (Outdoor units, Tools, Technicians)
+const installImages = [
+    "/images/city-install/img-1.jpg",
+    "/images/city-install/img-2.jpg",
+    "/images/city-install/img-3.jpg",
+    "/images/city-install/img-4.jpg",
+];
+
+// Gainable Section Images (Vents, Attics, Finished Ceilings)
+const gainableImages = [
+    "/images/city-gainable/img-1.jpg",
+    "/images/city-gainable/img-2.png",
+    "/images/city-gainable/img-3.jpg",
+    "/images/city-gainable/img-4.jpg",
+];
+
+// Reversible Section Images (Comfort, Savings, Thermostats)
+const reversibleImages = [
+    "/images/city-reversible/img-1.jpg", // Radiator/Money (renamed in logic if needed, ensuring match)
+    "/images/city-reversible/img-2.jpg", // Thermostat
+    "/images/city-reversible/img-3.jpg", // Living room
+    "/images/city-reversible/img-1.png", // Verify extension match
+    "/images/city-reversible/img-2.png",
+    "/images/city-reversible/img-6.png",
+    "/images/city-reversible/img-7.png",
+    "/images/city-reversible/img-8.jpg",
+    "/images/city-reversible/img-9.jpg",
+];
+
+// Maintenance Section Images (Cleaning, Filters)
+const maintenanceImages = [
+    "/images/city-maintenance/img-1.png",
+    "/images/city-maintenance/img-2.png",
+    "/images/city-maintenance/img-3.png",
+    "/images/city-maintenance/img-4.png",
+    "/images/city-maintenance/img-5.png",
 ];
 
 // Configuration for generated cities (Tier 1, 2, 3)
@@ -100,9 +136,13 @@ const generateCityContent = (config: CityConfig, index: number): CityContent => 
         ? "L'air marin et la salinité de notre secteur nécessitent des équipements robustes et un entretien spécifique que nous maîtrisons parfaitement."
         : "Le climat sec et chaud de notre secteur impose des installations performantes pour garantir votre confort estival.";
 
-    // Deterministic image assignment based on index
-    // This allows better variety than manual assignment
-    const assignedImage = realImages[index % realImages.length];
+    // Deterministic image assignment based on index to ensure variety
+    // Using primes to offset the cycles so cities don't get the same set of images
+    const heroImage = heroImages[index % heroImages.length];
+    const img_install = installImages[index % installImages.length];
+    const img_gainable = gainableImages[(index + 1) % gainableImages.length];
+    const img_reversible = reversibleImages[(index + 2) % reversibleImages.length];
+    const img_maintenance = maintenanceImages[(index + 3) % maintenanceImages.length];
 
     return {
         slug: config.slug,
@@ -111,7 +151,12 @@ const generateCityContent = (config: CityConfig, index: number): CityContent => 
         metaDesc: `Installateur climatisation à ${config.name} : ${config.quartiers}. Intervention rapide (${config.dist}), devis gratuit. ✓ RGE ✓ Décennale. Spécialiste local.`,
         h1: `Votre Installateur de Climatisation à ${config.name}`,
         intro: `Air G Énergie intervient quotidiennement à ${config.name} et dans ses quartiers comme ${config.quartiers}. Basés à Miramas, nous sommes à seulement ${config.dist} de chez vous, ce qui nous permet une réactivité exceptionnelle pour l'installation, l'entretien et le dépannage de votre climatisation. Nous connaissons parfaitement ${config.angle}, et adaptons nos solutions techniques à l'architecture locale.`,
-        heroImage: assignedImage,
+
+        heroImage,
+        img_install,
+        img_reversible,
+        img_gainable,
+        img_maintenance,
 
         h2_install: `Installation de Climatisation à ${config.name} : Notre Expertise`,
         txt_install: `Que vous habitiez une villa récente, un appartement en centre-ville ou une maison traditionnelle à ${config.name}, nous avons la solution adaptée. Nos techniciens réalisent une étude thermique précise pour dimensionner votre installation. Nous posons des systèmes split (muraux), consoles ou cassettes, en privilégiant l'esthétique et le silence. ${airSalinText} Nous travaillons avec les marques leaders (Daikin, Mitsubishi, Toshiba) pour vous garantir fiabilité et économies d'énergie.`,
@@ -151,6 +196,13 @@ const miramasData: CityContent = {
     h1: "Votre Installateur de Climatisation à Miramas",
     intro: "Basés au cœur de Miramas depuis plusieurs années, nous connaissons parfaitement les spécificités climatiques et architecturales de notre ville. Du quartier de la Gare aux hauteurs du Vieux-Miramas, en passant par Le Mercure et les zones pavillonnaires récentes, Air G Énergie intervient rapidement pour tous vos besoins en climatisation. Notre proximité est votre garantie de réactivité et de service personnalisé.",
     heroImage: "/images/city-miramas-hero.png",
+
+    // Manual image selection for Headquarters
+    img_install: "/images/city-install/img-1.jpg",
+    img_reversible: "/images/city-reversible/img-3.jpg",
+    img_gainable: "/images/city-gainable/img-1.jpg",
+    img_maintenance: "/images/city-maintenance/img-1.png",
+
     h2_install: "Installation de Climatisation à Miramas : Expertise Locale",
     txt_install: "Chaque quartier de Miramas a ses particularités. Les maisons de ville du centre historique nécessitent une approche respectueuse du patrimoine, tandis que les résidences récentes du Mercure demandent une intégration discrète. Nos techniciens connaissent ces contraintes et adaptent chaque installation. Nous travaillons avec les meilleures marques (Daikin, Mitsubishi, Toshiba) et dimensionnons précisément votre système.",
     h2_reversible: "Climatisation Réversible à Miramas : Confort Toute l'Année",
@@ -181,6 +233,13 @@ const istresData: CityContent = {
     h1: "Votre Installateur de Climatisation à Istres",
     intro: "Voisins d'Istres, nous intervenons quotidiennement sur la commune, des Heures Claires au Ranquet en passant par le centre-ville. Nous connaissons les spécificités de l'habitat istréen et les contraintes liées à la proximité de l'étang.",
     heroImage: "/images/hero-technician-ac.png",
+
+    // Manual image selection for Headquarters
+    img_install: "/images/city-install/img-2.jpg",
+    img_reversible: "/images/city-reversible/img-2.jpg",
+    img_gainable: "/images/city-gainable/img-3.jpg",
+    img_maintenance: "/images/city-maintenance/img-2.png",
+
     h2_install: "Installation Climatisation à Istres",
     txt_install: "Nous équipons appartements et villas à Istres avec des solutions performantes et silencieuses. Split, multi-split ou gainable, nous étudions la meilleure configuration pour votre logement.",
     h2_reversible: "Confort Thermique à Istres",

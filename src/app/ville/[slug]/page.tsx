@@ -190,7 +190,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                 title={city.h2_install}
                 description={city.txt_install}
                 imagePlacement="left"
-                imageSrc="/images/city-installation.png"
+                imageSrc={city.img_install}
                 imageAlt={`Installation climatisation ${city.name}`}
                 features={[
                     "Installation adaptée à votre quartier",
@@ -205,7 +205,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                 title={city.h2_reversible}
                 description={city.txt_reversible}
                 imagePlacement="right"
-                imageSrc="/images/city-comfort.png"
+                imageSrc={city.img_reversible}
                 imageAlt={`Confort climatisation ${city.name}`}
                 features={[
                     "Fraîcheur en été, chaleur en hiver",
@@ -220,7 +220,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                 title={city.h2_gainable}
                 description={city.txt_gainable}
                 imagePlacement="left"
-                imageSrc="/images/ducted-system.png"
+                imageSrc={city.img_gainable}
                 imageAlt={`Climatisation gainable ${city.name}`}
                 features={[
                     "Solution invisible et élégante",
@@ -235,7 +235,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                 title={city.h2_maintenance}
                 description={city.txt_maintenance}
                 imagePlacement="right"
-                imageSrc="/images/city-maintenance.png"
+                imageSrc={city.img_maintenance}
                 imageAlt={`Entretien climatisation ${city.name}`}
                 features={[
                     "Intervention rapide en urgence",
