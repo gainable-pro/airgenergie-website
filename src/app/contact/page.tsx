@@ -46,7 +46,17 @@ export default function ContactPage() {
             // Reset form
             setFormData({ nom: '', email: '', telephone: '', ville: '', service: 'climatisation', message: '' });
 
-            // TODO: Call API route to send email notification (e.g. /api/send-email)
+            // Call API route to send email notification
+            try {
+                await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData),
+                });
+            } catch (err) {
+                console.error('Failed to send email notification:', err);
+                // We don't fail the whole submission if email fails, as it's in Supabase
+            }
         }
     };
 
@@ -191,7 +201,9 @@ export default function ContactPage() {
 
                             {status === 'success' && (
                                 <div style={{ marginTop: '1rem', padding: '1rem', background: '#DCFCE7', color: '#166534', borderRadius: '0.5rem', textAlign: 'center' }}>
-                                    Merci ! Votre demande a été envoyée. Nous vous rappelons très vite.
+                                    <strong>Votre demande a bien été envoyée.</strong><br />
+                                    Nous vous contacterons sous un délai de 24h.<br />
+                                    Pour toute urgence, contactez-nous au <a href="tel:0413414901" style={{ textDecoration: 'underline' }}>04 13 41 49 01</a>.
                                 </div>
                             )}
 
