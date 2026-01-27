@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { citiesList } from '@/data/cities';
+import { getAllCitySlugs } from '@/data/cities';
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://airgenergie.fr';
@@ -14,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/entretien',
         '/zones-intervention',
         '/blog',
-        '/mentions-legales', // Assuming it exists or will exist
+        '/mentions-legales',
     ].map((route) => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date(),
@@ -23,11 +23,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
 
     // City pages (Dynamic)
-    const cityRoutes = citiesList.map((city) => ({
-        url: `${baseUrl}/ville/${city.slug}`,
+    const citySlugs = getAllCitySlugs();
+    const cityRoutes = citySlugs.map((slug) => ({
+        url: `${baseUrl}/ville/${slug}`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
-        priority: 0.9, // High priority for local SEO landing pages
+        priority: 0.9,
     }));
 
     return [...routes, ...cityRoutes];
