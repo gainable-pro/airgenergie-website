@@ -169,7 +169,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                         <MapPin size={20} />
                         <span style={{ textTransform: 'uppercase', fontWeight: 'bold', fontSize: '0.9rem' }}>Zone d&apos;intervention : {city.name}</span>
                     </div>
-                    <h1 style={{ color: 'white', fontSize: '2.5rem', marginBottom: '1.5rem', maxWidth: '800px' }}>{city.h1}</h1>
+                    <h1 style={{ color: 'white', fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', marginBottom: '1.5rem', maxWidth: '800px', lineHeight: '1.2' }}>{city.h1}</h1>
                     <p style={{ maxWidth: '700px', fontSize: '1.125rem', color: 'rgba(255,255,255,0.95)', marginBottom: '2rem', lineHeight: '1.7' }}>
                         {city.intro}
                     </p>

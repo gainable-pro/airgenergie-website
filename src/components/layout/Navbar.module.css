@@ -101,43 +101,38 @@
         display: block;
     }
 
-    /* Clarify Mobile Header Buttons */
+    /* Mobile Header Layout Fixes */
     .ctaGroup {
         display: flex;
-        gap: 0.75rem;
-        /* Better spacing than 0.5rem */
+        gap: 0.5rem;
+        align-items: center;
     }
 
+    /* Hide text-based buttons on mobile to save space */
     .ctaGroup .btn {
-        padding: 0.5rem 0.75rem;
-        font-size: 0.85rem;
-        white-space: nowrap;
-        /* Prevent wrapping */
-    }
-
-    /* Hide the "Réserver" button on mobile header to save space (it's in the menu) */
-    .ctaGroup .btnPulse {
-        display: none !important;
-    }
-
-    /* Ensure Phone icon is visible but text hidden */
-    .hideOnMobile {
         display: none;
     }
-}
 
-/* Pulsing Animation for Booking Button */
-@keyframes pulse-blue {
-    0% {
-        box-shadow: 0 0 0 0 rgba(0, 145, 218, 0.7);
+    /* Only show the Phone icon button (custom style override might be needed if btn class hides it) */
+    .ctaGroup a[href^="tel"] {
+        display: flex;
+        padding: 0.5rem;
+        border-radius: 50%;
+        background-color: var(--bg-light);
+        color: var(--text-dark);
+        border: 1px solid #e2e8f0;
     }
 
-    70% {
-        box-shadow: 0 0 0 10px rgba(0, 145, 218, 0);
+    .ctaGroup a[href^="tel"] span {
+        display: none;
+        /* Ensure text is hidden */
     }
 
-    100% {
-        box-shadow: 0 0 0 0 rgba(0, 145, 218, 0);
+    /* Ensure hamburger is visible and positioned correctly */
+    .hamburger {
+        display: flex;
+        align-items: center;
+        margin-left: 0.5rem;
     }
 }
 

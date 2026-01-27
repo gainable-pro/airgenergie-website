@@ -15,7 +15,7 @@ export async function POST(request: Request) {
         const resend = new Resend(process.env.RESEND_API_KEY);
 
         const data = await resend.emails.send({
-            from: 'Air G Énergie <contact@airgenergie.fr>',
+            from: 'Air G Énergie <onboarding@resend.dev>',
             to: ['contact@airgenergie.fr'],
             subject: `Nouveau Contact: ${nom} (${service})`,
             html: `
