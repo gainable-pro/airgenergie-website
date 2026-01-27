@@ -256,8 +256,8 @@ export default function GainablePage() {
                                 <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
                                     <td style={{ padding: '1rem', fontWeight: 'bold' }}>Prix</td>
                                     <td style={{ padding: '1rem', textAlign: 'center' }}>10-18k€</td>
-                                    <td style={{ padding: '1rem', textAlign: 'center' }}>6-12k€</td>
-                                    <td style={{ padding: '1rem', textAlign: 'center' }}>2,5-4,5k€</td>
+                                    <td style={{ padding: '1rem', textAlign: 'center' }}>3k€ - 8k€</td>
+                                    <td style={{ padding: '1rem', textAlign: 'center' }}>1.5k€ - 4.5k€</td>
                                 </tr>
                                 <tr style={{ borderBottom: '1px solid #E2E8F0', background: '#F8FAFC' }}>
                                     <td style={{ padding: '1rem', fontWeight: 'bold' }}>Installation</td>
@@ -273,7 +273,7 @@ export default function GainablePage() {
                                 </tr>
                                 <tr style={{ background: '#F8FAFC' }}>
                                     <td style={{ padding: '1rem', fontWeight: 'bold' }}>Idéal pour</td>
-                                    <td style={{ padding: '1rem', textAlign: 'center', fontSize: '0.9rem' }}>Maison 100m²+</td>
+                                    <td style={{ padding: '1rem', textAlign: 'center', fontSize: '0.9rem' }}>50m² - 200m²</td>
                                     <td style={{ padding: '1rem', textAlign: 'center', fontSize: '0.9rem' }}>Maison 80-120m²</td>
                                     <td style={{ padding: '1rem', textAlign: 'center', fontSize: '0.9rem' }}>Appart / 1-2 pièces</td>
                                 </tr>
