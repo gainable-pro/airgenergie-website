@@ -38,7 +38,7 @@ export default function HomePage() {
         <div className="container" style={{ textAlign: 'center' }}>
           <div style={{ maxWidth: '800px', margin: '0 auto' }}>
             <h1 style={{
-              fontSize: '3rem',
+              fontSize: 'clamp(1.8rem, 5vw, 3rem)',
               fontWeight: 'bold',
               marginBottom: '1.5rem',
               lineHeight: '1.2',

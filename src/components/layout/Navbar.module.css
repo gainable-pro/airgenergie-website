@@ -103,29 +103,7 @@
 
     /* Mobile Header Layout Fixes */
     .ctaGroup {
-        display: flex;
-        gap: 0.5rem;
-        align-items: center;
-    }
-
-    /* Hide text-based buttons on mobile to save space */
-    .ctaGroup .btn {
         display: none;
-    }
-
-    /* Only show the Phone icon button (custom style override might be needed if btn class hides it) */
-    .ctaGroup a[href^="tel"] {
-        display: flex;
-        padding: 0.5rem;
-        border-radius: 50%;
-        background-color: var(--bg-light);
-        color: var(--text-dark);
-        border: 1px solid #e2e8f0;
-    }
-
-    .ctaGroup a[href^="tel"] span {
-        display: none;
-        /* Ensure text is hidden */
     }
 
     /* Ensure hamburger is visible and positioned correctly */
