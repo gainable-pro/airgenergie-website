@@ -55,13 +55,13 @@ export default function EntretienPage() {
                 </div>
             </section>
 
-            {/* Why Maintenance Section */}
+            {/* Why Maintenance Section - SEO Enriched */}
             <section className="section-padding" style={{ padding: '5rem 0' }}>
                 <div className="container">
                     <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 4rem' }}>
-                        <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#1a365d' }}>Pourquoi entretenir votre climatisation ?</h2>
+                        <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#1a365d' }}>Pourquoi l'entretien de votre climatisation est essentiel ?</h2>
                         <p style={{ fontSize: '1.1rem', color: '#4a5568' }}>
-                            Un entretien régulier n'est pas seulement une obligation légale pour certains appareils, c'est surtout la garantie d'un air sain et d'économies durables.
+                            Que vous possédiez une **climatisation réversible**, un système **gainable** ou une **pompe à chaleur**, un entretien annuel est crucial. Il garantit non seulement la longévité de votre matériel, mais aussi la qualité de l'air que vous respirez.
                         </p>
                     </div>
 
@@ -69,23 +69,23 @@ export default function EntretienPage() {
                         {[
                             {
                                 icon: <ShieldCheck size={40} color="#0091DA" />,
-                                title: "Longévité accrue",
-                                text: "Un système bien entretenu dure jusqu'à 30% plus longtemps, rentabilisant votre investissement initial."
+                                title: "Fiabilité & Durée de vie",
+                                text: "Un entretien régulier de votre pompe à chaleur ou climatisation prolonge sa durée de vie jusqu'à 30%."
                             },
                             {
                                 icon: <CheckCircle size={40} color="#0091DA" />,
-                                title: "Air Intérieur Sain",
-                                text: "Nous nettoyons et désinfectons les filtres et les échangeurs pour éliminer bactéries, moisissures et allergènes."
+                                title: "Air Sain & Hygiène",
+                                text: "Nous nettoyons intégralement vos filtres et échangeurs pour éliminer bactéries et moisissures de votre climatisation."
                             },
                             {
                                 icon: <Wrench size={40} color="#0091DA" />,
                                 title: "Économies d'Énergie",
-                                text: "Un appareil encrassé surconsomme de l'électricité. L'entretien maintient le rendement optimal (COP)."
+                                text: "Un système encrassé surconsomme. L'entretien de votre gainable assure un rendement optimal et réduit votre facture."
                             },
                             {
                                 icon: <Clock size={40} color="#0091DA" />,
-                                title: "Moins de Pannes",
-                                text: "La maintenance préventive permet de détecter les pièces d'usure avant qu'elles ne causent une panne majeure."
+                                title: "Sérénité Totale",
+                                text: "Prévenez les pannes en plein été ou en hiver grâce à notre expertise technique sur toutes marques."
                             }
                         ].map((item, idx) => (
                             <div key={idx} style={{
@@ -104,21 +104,56 @@ export default function EntretienPage() {
                 </div>
             </section>
 
-            {/* Maintenance Points Checklist */}
-            <section style={{ background: '#F7FAFC', padding: '5rem 0' }}>
+            {/* Gallery Section - New Images */}
+            <section style={{ background: '#F8FAFC', padding: '5rem 0' }}>
+                <div className="container">
+                    <h2 style={{ fontSize: '2.5rem', textAlign: 'center', marginBottom: '3rem', color: '#1a365d' }}>
+                        Nos techniciens en action : la qualité en images
+                    </h2>
+                    <p style={{ textAlign: 'center', maxWidth: '700px', margin: '-2rem auto 3rem', color: '#718096' }}>
+                        Découvrez le niveau de détail de nos interventions d'entretien : nettoyage haute pression, protection des lieux, et vérification minutieuse.
+                    </p>
+
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+                        gap: '1.5rem'
+                    }}>
+                        {[1, 2, 3, 4, 5].map((num) => (
+                            <div key={num} style={{
+                                position: 'relative',
+                                height: '300px',
+                                borderRadius: '1rem',
+                                overflow: 'hidden',
+                                boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+                            }}>
+                                <Image
+                                    src={`/images/maintenance/img-${num}.png`}
+                                    alt={`Entretien climatisation étape ${num}`}
+                                    fill
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Maintenance Points Checklist - Adjusted */}
+            <section style={{ padding: '5rem 0' }}>
                 <div className="container">
                     <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '4rem' }}>
                         <div style={{ flex: '1 1 500px' }}>
                             <h2 style={{ fontSize: '2rem', marginBottom: '2rem', color: '#1a365d' }}>Les points clés de notre visite d'entretien</h2>
                             <ul style={{ listStyle: 'none', padding: 0 }}>
                                 {[
-                                    "Nettoyage et désinfection des échangeurs (intérieur/extérieur)",
-                                    "Nettoyage des filtres à air et remplacement si nécessaire",
-                                    "Contrôle de l'étanchéité du circuit frigorifique (obligatoire)",
+                                    "Nettoyage complet et désinfection des unités intérieures (mural, gainable...)",
+                                    "Nettoyage de l'unité extérieure (échangeur, hélice)",
+                                    "Contrôle de l'étanchéité du circuit frigorifique (Attestation fournie)",
                                     "Vérification des connexions électriques et serrages",
-                                    "Contrôle de l'évacuation des condensats (prévention fuites)",
-                                    "Mesure des pressions et des températures de fonctionnement",
-                                    "Vérification du bon fonctionnement de la régulation"
+                                    "Test des écoulements de condensats pour éviter les fuites d'eau",
+                                    "Relevé des températures et pressions de fonctionnement",
+                                    "Conseils d'utilisation pour optimiser votre consommation"
                                 ].map((point, i) => (
                                     <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem', fontSize: '1.1rem', color: '#4a5568' }}>
                                         <div style={{ minWidth: '24px' }}>
@@ -129,28 +164,77 @@ export default function EntretienPage() {
                                 ))}
                             </ul>
                         </div>
-                        <div style={{ flex: '1 1 400px', position: 'relative', height: '400px', background: '#E2E8F0', borderRadius: '1rem', overflow: 'hidden' }}>
-                            <Image
-                                src="/images/hero-maintenance.png"
-                                alt="Entretien climatisation détail"
-                                fill
-                                style={{ objectFit: 'cover' }}
-                            />
+                        <div style={{ flex: '1 1 400px', display: 'flex', justifyContent: 'center' }}>
+                            <div style={{
+                                padding: '2rem',
+                                background: '#EBF8FF',
+                                borderRadius: '1rem',
+                                border: '2px dashed #0091DA',
+                                textAlign: 'center'
+                            }}>
+                                <h3 style={{ color: '#0091DA', marginBottom: '1rem' }}>Rappel Important</h3>
+                                <p style={{ color: '#2C5282' }}>
+                                    L'entretien est <strong>obligatoire tous les 2 ans</strong> pour les pompes à chaleur et climatisations dont la puissance est comprise entre 4kW et 70kW.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* CTA Section */}
-            <section style={{ textAlign: 'center', padding: '5rem 0' }}>
+            {/* CTA Section - Booking */}
+            <section style={{ textAlign: 'center', padding: '5rem 0', background: '#1a365d', color: 'white' }}>
                 <div className="container">
-                    <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>Besoin d'un contrat d'entretien ou d'un dépannage ?</h2>
-                    <p style={{ fontSize: '1.2rem', color: '#718096', marginBottom: '2rem' }}>
-                        Nos équipes interviennent rapidement à Miramas, Istres, Salon-de-Provence et alentours.
+                    <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>Prêt à optimiser votre confort ?</h2>
+                    <p style={{ fontSize: '1.2rem', marginBottom: '3rem', opacity: 0.9 }}>
+                        Réservez votre créneau d'entretien en quelques clics ou contactez-nous pour un dépannage urgent.
                     </p>
-                    <Link href="/contact" className="btn btn-primary" style={{ transform: 'scale(1.1)', padding: '1rem 2.5rem' }}>
-                        Prendre Rendez-vous
-                    </Link>
+
+                    <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                        <Link
+                            href="https://www.airgenergie.fr/book-online"
+                            className="btn"
+                            style={{
+                                background: 'white',
+                                color: '#0091DA',
+                                padding: '1rem 2.5rem',
+                                borderRadius: '0.5rem',
+                                fontWeight: 'bold',
+                                fontSize: '1.1rem',
+                                boxShadow: '0 0 0 0 rgba(255, 255, 255, 0.7)',
+                                animation: 'pulse-white 2s infinite'
+                            }}
+                        >
+                            Réserver votre entretien en ligne
+                        </Link>
+
+                        <a
+                            href="tel:0413414901"
+                            className="btn"
+                            style={{
+                                background: 'transparent',
+                                border: '2px solid white',
+                                color: 'white',
+                                padding: '1rem 2.5rem',
+                                borderRadius: '0.5rem',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '0.5rem',
+                                fontSize: '1.1rem'
+                            }}
+                        >
+                            <Phone size={20} />
+                            04 13 41 49 01
+                        </a>
+                    </div>
+
+                    <style jsx>{`
+                        @keyframes pulse-white {
+                            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+                            70% { box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
+                            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+                        }
+                    `}</style>
                 </div>
             </section>
         </div>
