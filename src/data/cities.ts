@@ -31,56 +31,78 @@ interface CityConfig {
     quartiers: string;
     angle: string;
     isAirSalin?: boolean;
-    image: string; // Image assignment
+    // Image is now assigned automatically via rotation
 }
+
+// Pool of high-quality real images to rotate
+const realImages = [
+    "/images/hero-installation-real.png",          // User 1
+    "/images/hero-real-installation-2.png",        // User 2
+    "/images/real-van-airgenergie.jpg",            // User Batch 5 (Van)
+    "/images/real-install-roof-action.jpg",        // User Batch 5 (Roof)
+    "/images/real-outdoor-cover-top.jpg",          // User Batch 5 (Cover Top)
+    "/images/real-outdoor-cover-side.jpg",         // User Batch 5 (Cover Side)
+    "/images/real-indoor-split-white.jpg",         // User Batch 5 (Split)
+    "/images/real-outdoor-units-daikin.jpg",       // Stock Real
+    "/images/real-split-mural-daikin.jpg",         // Stock Real
+    "/images/real-gainable-living-room.png",       // Stock Real
+    "/images/real-gainable-unit-floor.jpg",        // Stock Real
+    "/images/hero-technician-ac.png",              // Stock Hero
+    "/images/hero-maintenance.png"                 // Stock Maintenance
+];
 
 // Configuration for generated cities (Tier 1, 2, 3)
 const citiesList: CityConfig[] = [
     // TIER 1 (Proche & Gros volume)
-    { name: "Martigues", slug: "martigues", zip: "13500", dist: "25 min", quartiers: "Jonquières, Ferrières, L'Île, Croix-Sainte", angle: "la Venise Provençale et ses spécificités balnéaires", isAirSalin: true, image: "/images/hero-installation-real.png" },
-    { name: "Vitrolles", slug: "vitrolles", zip: "13127", dist: "20 min", quartiers: "Les Pins, Le Liourat, Le Griffon, Zone Industrielle", angle: "une ville dynamique entre aéroport et plateau", isAirSalin: false, image: "/images/real-outdoor-units-daikin.jpg" },
-    { name: "Grans", slug: "grans", zip: "13450", dist: "10 min", quartiers: "Le Village, Les Coussouls", angle: "ce village provençal au charme authentique", isAirSalin: false, image: "/images/real-split-mural-daikin.jpg" },
-    { name: "La Fare-les-Oliviers", slug: "la-fare-les-oliviers", zip: "13580", dist: "15 min", quartiers: "Le Village, Les Cadeneaux", angle: "cette commune résidentielle au cœur des oliviers", isAirSalin: false, image: "/images/real-gainable-unit-floor.jpg" },
-    { name: "Lançon-Provence", slug: "lancon-provence", zip: "13680", dist: "15 min", quartiers: "Le Village, Val de Sibourg", angle: "ce village perché dominant la Provence", isAirSalin: false, image: "/images/city-miramas-hero.png" }, // Backup hero
+    { name: "Martigues", slug: "martigues", zip: "13500", dist: "25 min", quartiers: "Jonquières, Ferrières, L'Île, Croix-Sainte", angle: "la Venise Provençale et ses spécificités balnéaires", isAirSalin: true },
+    { name: "Vitrolles", slug: "vitrolles", zip: "13127", dist: "20 min", quartiers: "Les Pins, Le Liourat, Le Griffon, Zone Industrielle", angle: "une ville dynamique entre aéroport et plateau", isAirSalin: false },
+    { name: "Grans", slug: "grans", zip: "13450", dist: "10 min", quartiers: "Le Village, Les Coussouls", angle: "ce village provençal au charme authentique", isAirSalin: false },
+    { name: "La Fare-les-Oliviers", slug: "la-fare-les-oliviers", zip: "13580", dist: "15 min", quartiers: "Le Village, Les Cadeneaux", angle: "cette commune résidentielle au cœur des oliviers", isAirSalin: false },
+    { name: "Lançon-Provence", slug: "lancon-provence", zip: "13680", dist: "15 min", quartiers: "Le Village, Val de Sibourg", angle: "ce village perché dominant la Provence", isAirSalin: false },
 
     // TIER 2 (Marseille Ouest & Alentours)
-    { name: "Aix-en-Provence", slug: "aix-en-provence", zip: "13100", dist: "35 min", quartiers: "Centre-Ville, Les Milles, Puyricard, La Duranne", angle: "cette ville d'eau et d'art aux nombreuses bastides", isAirSalin: false, image: "/images/real-gainable-living-room.png" },
-    { name: "Marseille", slug: "marseille", zip: "13000", dist: "40 min", quartiers: "l'Estaque, Saint-Antoine, Les Aygalades (Quartiers Nord/Ouest)", angle: "la cité phocéenne et ses exigences urbaines", isAirSalin: true, image: "/images/real-van-airgenergie.jpg" },
-    { name: "Aubagne", slug: "aubagne", zip: "13400", dist: "45 min", quartiers: "Le centre, Beaudinard, Les Passons", angle: "le pays de Pagnol et son climat intérieur", isAirSalin: false, image: "/images/real-split-mural-green.jpg" },
-    { name: "Arles", slug: "arles", zip: "13200", dist: "35 min", quartiers: "Trinquetaille, Barriol, Le centre historique", angle: "cette ville d'art et d'histoire aux portes de la Camargue", isAirSalin: false, image: "/images/hero-installation-real.png" },
-    { name: "Cassis", slug: "cassis", zip: "13260", dist: "50 min", quartiers: "Le port, Le Bestouan, Les hauts", angle: "ce joyau du littoral et ses villas d'exception", isAirSalin: true, image: "/images/real-gainable-living-room.png" },
-    { name: "Carry-le-Rouet", slug: "carry-le-rouet", zip: "13620", dist: "30 min", quartiers: "Le port, Sausset, Le Rouet", angle: "la perle de la Côte Bleue", isAirSalin: true, image: "/images/real-gainable-living-room.png" },
+    { name: "Aix-en-Provence", slug: "aix-en-provence", zip: "13100", dist: "35 min", quartiers: "Centre-Ville, Les Milles, Puyricard, La Duranne", angle: "cette ville d'eau et d'art aux nombreuses bastides", isAirSalin: false },
+    { name: "Marseille", slug: "marseille", zip: "13000", dist: "40 min", quartiers: "l'Estaque, Saint-Antoine, Les Aygalades (Quartiers Nord/Ouest)", angle: "la cité phocéenne et ses exigences urbaines", isAirSalin: true },
+    { name: "Aubagne", slug: "aubagne", zip: "13400", dist: "45 min", quartiers: "Le centre, Beaudinard, Les Passons", angle: "le pays de Pagnol et son climat intérieur", isAirSalin: false },
+    { name: "Arles", slug: "arles", zip: "13200", dist: "35 min", quartiers: "Trinquetaille, Barriol, Le centre historique", angle: "cette ville d'art et d'histoire aux portes de la Camargue", isAirSalin: false },
+    { name: "Cassis", slug: "cassis", zip: "13260", dist: "50 min", quartiers: "Le port, Le Bestouan, Les hauts", angle: "ce joyau du littoral et ses villas d'exception", isAirSalin: true },
+    { name: "Carry-le-Rouet", slug: "carry-le-rouet", zip: "13620", dist: "30 min", quartiers: "Le port, Sausset, Le Rouet", angle: "la perle de la Côte Bleue", isAirSalin: true },
 
     // TIER 3 (Complétion Maillage)
-    { name: "Berre-l'Étang", slug: "berre-l-etang", zip: "13130", dist: "15 min", quartiers: "Le centre, Mauran, Saint-Estève", angle: "les rives de l'étang et son micro-climat", isAirSalin: true, image: "/images/real-install-roof-action.jpg" },
-    { name: "Bouc-Bel-Air", slug: "bouc-bel-air", zip: "13320", dist: "30 min", quartiers: "La Malle, Les Terres Blanches", angle: "cette zone résidentielle prisée entre Aix et Marseille", isAirSalin: false, image: "/images/real-outdoor-cover-top.jpg" },
-    { name: "Châteauneuf-les-Martigues", slug: "chateauneuf-les-martigues", zip: "13220", dist: "20 min", quartiers: "La Mède, Le centre", angle: "entre étang et collines", isAirSalin: true, image: "/images/real-outdoor-cover-side.jpg" },
-    { name: "Cornillon-Confoux", slug: "cornillon-confoux", zip: "13250", dist: "12 min", quartiers: "Le village perché", angle: "ce village authentique avec vue panoramique", isAirSalin: false, image: "/images/real-indoor-split-white.jpg" },
-    { name: "Éguilles", slug: "eguilles", zip: "13510", dist: "35 min", quartiers: "Le village, Les Figons", angle: "ce village résidentiel chic proche d'Aix", isAirSalin: false, image: "/images/real-gainable-living-room.png" },
-    { name: "Fos-sur-Mer", slug: "fos-sur-mer", zip: "13270", dist: "25 min", quartiers: "La plage, Le centre, Les Carabins", angle: "cette ville industrielle et balnéaire", isAirSalin: true, image: "/images/real-outdoor-units-daikin.jpg" },
-    { name: "Gardanne", slug: "gardanne", zip: "13120", dist: "40 min", quartiers: "Biver, Le centre", angle: "le bassin minier en pleine mutation", isAirSalin: false, image: "/images/hero-installation-real.png" },
-    { name: "Gignac-la-Nerthe", slug: "gignac-la-nerthe", zip: "13180", dist: "20 min", quartiers: "Laure, Le centre", angle: "cette commune pavillonnaire dynamique", isAirSalin: false, image: "/images/hero-real-installation-2.png" },
-    { name: "Les Pennes-Mirabeau", slug: "les-pennes-mirabeau", zip: "13170", dist: "25 min", quartiers: "Plan de Campagne, Les Cadeneaux, La Gavotte", angle: "ce carrefour stratégique aux portes de Marseille", isAirSalin: false, image: "/images/city-installation.png" },
-    { name: "Lambesc", slug: "lambesc", zip: "13410", dist: "20 min", quartiers: "Le centre historique", angle: "la cité des festivals au cœur de la Provence", isAirSalin: false, image: "/images/real-indoor-split-white.jpg" },
-    { name: "Mallemort", slug: "mallemort", zip: "13370", dist: "18 min", quartiers: "Pont Royal, Le village", angle: "les bords de Durance et le golf", isAirSalin: false, image: "/images/real-gainable-living-room.png" },
-    { name: "Marignane", slug: "marignane", zip: "13700", dist: "25 min", quartiers: "Le Jaï, Saint-Pierre, Le centre", angle: "la cité aéroportuaire et son étang", isAirSalin: true, image: "/images/real-install-roof-action.jpg" },
-    { name: "Miramas-le-Vieux", slug: "miramas-le-vieux", zip: "13140", dist: "5 min", quartiers: "Le village médiéval", angle: "ce joyau historique perché", isAirSalin: false, image: "/images/city-miramas-hero.png" },
-    { name: "Pélissanne", slug: "pelissanne", zip: "13330", dist: "12 min", quartiers: "Le centre ancien, Les Enjouvènes", angle: "ce village typique au pied des collines", isAirSalin: false, image: "/images/real-indoor-split-white.jpg" },
-    { name: "Plan-de-Cuques", slug: "plan-de-cuques", zip: "13380", dist: "35 min", quartiers: "Le centre, Les collines", angle: "le balcon vert de Marseille", isAirSalin: false, image: "/images/real-gainable-living-room.png" },
-    { name: "Port-de-Bouc", slug: "port-de-bouc", zip: "13110", dist: "25 min", quartiers: "La Lèque, Le port", angle: "cette ville tournée vers la mer et l'industrie", isAirSalin: true, image: "/images/hero-real-installation-2.png" },
-    { name: "Port-Saint-Louis-du-Rhône", slug: "port-saint-louis-du-rhone", zip: "13230", dist: "40 min", quartiers: "Le Faubourg, La plage", angle: "le bout du monde camarguais", isAirSalin: true, image: "/images/hero-installation-real.png" },
-    { name: "Rognac", slug: "rognac", zip: "13340", dist: "15 min", quartiers: "Les Barjaquets, Le centre", angle: "entre colline et étang", isAirSalin: false, image: "/images/hero-real-installation-2.png" },
-    { name: "Saint-Martin-de-Crau", slug: "saint-martin-de-crau", zip: "13310", dist: "35 min", quartiers: "Caphan, Le centre", angle: "au cœur de la plaine de la Crau", isAirSalin: false, image: "/images/real-outdoor-units-daikin.jpg" },
-    { name: "Septèmes-les-Vallons", slug: "septemes-les-vallons", zip: "13240", dist: "30 min", quartiers: "Notre-Dame limite, Le vallon", angle: "cette commune limitrophe de Marseille", isAirSalin: false, image: "/images/hero-technician-ac.png" },
-    { name: "Salon-de-Provence", slug: "salon-de-provence", zip: "13300", dist: "10 min", quartiers: "Michelet, Les Canourgues, Centre-ville", angle: "la cité de Nostradamus", isAirSalin: false, image: "/images/hero-technician-ac.png" },
-    { name: "Allauch", slug: "allauch", zip: "13190", dist: "40 min", quartiers: "Le Logis-Neuf, La Pounche", angle: "ce village provençal aux portes de la ville", isAirSalin: false, image: "/images/real-gainable-living-room.png" }
+    { name: "Berre-l'Étang", slug: "berre-l-etang", zip: "13130", dist: "15 min", quartiers: "Le centre, Mauran, Saint-Estève", angle: "les rives de l'étang et son micro-climat", isAirSalin: true },
+    { name: "Bouc-Bel-Air", slug: "bouc-bel-air", zip: "13320", dist: "30 min", quartiers: "La Malle, Les Terres Blanches", angle: "cette zone résidentielle prisée entre Aix et Marseille", isAirSalin: false },
+    { name: "Châteauneuf-les-Martigues", slug: "chateauneuf-les-martigues", zip: "13220", dist: "20 min", quartiers: "La Mède, Le centre", angle: "entre étang et collines", isAirSalin: true },
+    { name: "Cornillon-Confoux", slug: "cornillon-confoux", zip: "13250", dist: "12 min", quartiers: "Le village perché", angle: "ce village authentique avec vue panoramique", isAirSalin: false },
+    { name: "Éguilles", slug: "eguilles", zip: "13510", dist: "35 min", quartiers: "Le village, Les Figons", angle: "ce village résidentiel chic proche d'Aix", isAirSalin: false },
+    { name: "Fos-sur-Mer", slug: "fos-sur-mer", zip: "13270", dist: "25 min", quartiers: "La plage, Le centre, Les Carabins", angle: "cette ville industrielle et balnéaire", isAirSalin: true },
+    { name: "Gardanne", slug: "gardanne", zip: "13120", dist: "40 min", quartiers: "Biver, Le centre", angle: "le bassin minier en pleine mutation", isAirSalin: false },
+    { name: "Gignac-la-Nerthe", slug: "gignac-la-nerthe", zip: "13180", dist: "20 min", quartiers: "Laure, Le centre", angle: "cette commune pavillonnaire dynamique", isAirSalin: false },
+    { name: "Les Pennes-Mirabeau", slug: "les-pennes-mirabeau", zip: "13170", dist: "25 min", quartiers: "Plan de Campagne, Les Cadeneaux, La Gavotte", angle: "ce carrefour stratégique aux portes de Marseille", isAirSalin: false },
+    { name: "Lambesc", slug: "lambesc", zip: "13410", dist: "20 min", quartiers: "Le centre historique", angle: "la cité des festivals au cœur de la Provence", isAirSalin: false },
+    { name: "Mallemort", slug: "mallemort", zip: "13370", dist: "18 min", quartiers: "Pont Royal, Le village", angle: "les bords de Durance et le golf", isAirSalin: false },
+    { name: "Marignane", slug: "marignane", zip: "13700", dist: "25 min", quartiers: "Le Jaï, Saint-Pierre, Le centre", angle: "la cité aéroportuaire et son étang", isAirSalin: true },
+    { name: "Miramas-le-Vieux", slug: "miramas-le-vieux", zip: "13140", dist: "5 min", quartiers: "Le village médiéval", angle: "ce joyau historique perché", isAirSalin: false },
+    { name: "Pélissanne", slug: "pelissanne", zip: "13330", dist: "12 min", quartiers: "Le centre ancien, Les Enjouvènes", angle: "ce village typique au pied des collines", isAirSalin: false },
+    { name: "Plan-de-Cuques", slug: "plan-de-cuques", zip: "13380", dist: "35 min", quartiers: "Le centre, Les collines", angle: "le balcon vert de Marseille", isAirSalin: false },
+    { name: "Port-de-Bouc", slug: "port-de-bouc", zip: "13110", dist: "25 min", quartiers: "La Lèque, Le port", angle: "cette ville tournée vers la mer et l'industrie", isAirSalin: true },
+    { name: "Port-Saint-Louis-du-Rhône", slug: "port-saint-louis-du-rhone", zip: "13230", dist: "40 min", quartiers: "Le Faubourg, La plage", angle: "le bout du monde camarguais", isAirSalin: true },
+    { name: "Rognac", slug: "rognac", zip: "13340", dist: "15 min", quartiers: "Les Barjaquets, Le centre", angle: "entre colline et étang", isAirSalin: false },
+    { name: "Saint-Martin-de-Crau", slug: "saint-martin-de-crau", zip: "13310", dist: "35 min", quartiers: "Caphan, Le centre", angle: "au cœur de la plaine de la Crau", isAirSalin: false },
+    { name: "Septèmes-les-Vallons", slug: "septemes-les-vallons", zip: "13240", dist: "30 min", quartiers: "Notre-Dame limite, Le vallon", angle: "cette commune limitrophe de Marseille", isAirSalin: false },
+    { name: "Salon-de-Provence", slug: "salon-de-provence", zip: "13300", dist: "10 min", quartiers: "Michelet, Les Canourgues, Centre-ville", angle: "la cité de Nostradamus", isAirSalin: false },
+    { name: "Allauch", slug: "allauch", zip: "13190", dist: "40 min", quartiers: "Le Logis-Neuf, La Pounche", angle: "ce village provençal aux portes de la ville", isAirSalin: false },
+    { name: "Saint-Chamas", slug: "saint-chamas", zip: "13250", dist: "15 min", quartiers: "Le Delà, Le Centre, Les Mololières", angle: "le village bordé par l'étang de Berre", isAirSalin: true }
 ];
 
 // Helper to generate content
-const generateCityContent = (config: CityConfig): CityContent => {
+const generateCityContent = (config: CityConfig, index: number): CityContent => {
     const airSalinText = config.isAirSalin
         ? "L'air marin et la salinité de notre secteur nécessitent des équipements robustes et un entretien spécifique que nous maîtrisons parfaitement."
         : "Le climat sec et chaud de notre secteur impose des installations performantes pour garantir votre confort estival.";
+
+    // Deterministic image assignment based on index
+    // This allows better variety than manual assignment
+    const assignedImage = realImages[index % realImages.length];
 
     return {
         slug: config.slug,
@@ -89,7 +111,7 @@ const generateCityContent = (config: CityConfig): CityContent => {
         metaDesc: `Installateur climatisation à ${config.name} : ${config.quartiers}. Intervention rapide (${config.dist}), devis gratuit. ✓ RGE ✓ Décennale. Spécialiste local.`,
         h1: `Votre Installateur de Climatisation à ${config.name}`,
         intro: `Air G Énergie intervient quotidiennement à ${config.name} et dans ses quartiers comme ${config.quartiers}. Basés à Miramas, nous sommes à seulement ${config.dist} de chez vous, ce qui nous permet une réactivité exceptionnelle pour l'installation, l'entretien et le dépannage de votre climatisation. Nous connaissons parfaitement ${config.angle}, et adaptons nos solutions techniques à l'architecture locale.`,
-        heroImage: config.image, // Using configured image
+        heroImage: assignedImage,
 
         h2_install: `Installation de Climatisation à ${config.name} : Notre Expertise`,
         txt_install: `Que vous habitiez une villa récente, un appartement en centre-ville ou une maison traditionnelle à ${config.name}, nous avons la solution adaptée. Nos techniciens réalisent une étude thermique précise pour dimensionner votre installation. Nous posons des systèmes split (muraux), consoles ou cassettes, en privilégiant l'esthétique et le silence. ${airSalinText} Nous travaillons avec les marques leaders (Daikin, Mitsubishi, Toshiba) pour vous garantir fiabilité et économies d'énergie.`,
@@ -98,7 +120,7 @@ const generateCityContent = (config: CityConfig): CityContent => {
         txt_reversible: `Optez pour une climatisation réversible (pompe à chaleur air-air) pour chauffer et rafraîchir votre logement à ${config.name}. Ce système 2-en-1 est particulièrement rentable dans notre région : il divise par 3 votre facture de chauffage en hiver tout en assurant une fraîcheur parfaite lors des canicules estivales. C'est la solution de rénovation énergétique préférée des habitants de ${config.name} pour gagner en confort thermique toute l'année.`,
 
         h2_gainable: `Climatisation Gainable à ${config.name} : Discrétion Absolue`,
-        txt_gainable: `Pour les maisons individuelles à ${config.name}, notamment dans les quartiers résidentiels comme ${config.quartiers.split(',')[0]}, le gainable est le choix premium. Invisible (caché dans les combles), silencieux et performant, il diffuse l'air via des grilles discrètes. Couplé à un système de régulation par zone (Airzone), il permet de choisir la température dans chaque pièce indépendamment.`,
+        txt_gainable: `Pour les maisons individuelles à ${config.name}, notamment dans les quartiers résidentiels comme ${config.quartiers.split(',')[0]}, le gainable est la solution premium. Invisible (caché dans les combles), silencieux et performant, il diffuse l'air via des grilles discrètes. Couplé à un système de régulation par zone (Airzone), il permet de choisir la température dans chaque pièce indépendamment.`,
 
         h2_maintenance: `Entretien et Dépannage Rapide à ${config.name}`,
         txt_maintenance: `Une panne en plein été ? Notre proximité (${config.dist}) nous permet d'intervenir en urgence à ${config.name}. Nous proposons également des contrats d'entretien annuel pour pérenniser votre matériel, assainir l'air intérieur et prévenir les pannes. Un entretien régulier est indispensable pour maintenir les performances énergétiques de votre climatisation.`,
@@ -119,7 +141,8 @@ const generateCityContent = (config: CityConfig): CityContent => {
     };
 };
 
-// Custom content for headquarters (Miramas & Istres) to keep manual polish
+// Custom content for headquarters (Miramas & Istres)
+// Kept separate to allow specific manual overrides if needed, but following same structure
 const miramasData: CityContent = {
     slug: "miramas",
     name: "Miramas",
@@ -181,8 +204,8 @@ const istresData: CityContent = {
 };
 
 // Generate all cities data
-const generatedCities = citiesList.reduce((acc, config) => {
-    acc[config.slug] = generateCityContent(config);
+const generatedCities = citiesList.reduce((acc, config, index) => {
+    acc[config.slug] = generateCityContent(config, index);
     return acc;
 }, {} as Record<string, CityContent>);
 

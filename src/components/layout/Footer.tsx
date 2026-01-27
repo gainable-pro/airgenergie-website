@@ -23,7 +23,7 @@ export default function Footer() {
                         </div>
                         <div className={styles.contactItem}>
                             <Phone size={18} className={styles.icon} />
-                            <span>04 90 XX XX XX</span>
+                            <span>04 13 41 49 01</span>
                         </div>
                         <div className={styles.contactItem}>
                             <Mail size={18} className={styles.icon} />
