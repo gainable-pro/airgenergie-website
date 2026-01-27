@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  // Trigger deployment update
+  // Trigger deployment: Vercel Reconnected
 };
 
 export default nextConfig;
