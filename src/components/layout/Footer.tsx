@@ -41,6 +41,7 @@ export default function Footer() {
                         <li><Link href="/pompe-a-chaleur">Pompes à Chaleur</Link></li>
                         <li><Link href="/entretien">Entretien & SAV</Link></li>
                         <li><Link href="/drv-cta">Solutions Tertiaires</Link></li>
+                        <li><Link href="/contact">Contact</Link></li>
                     </ul>
                 </div>
 
