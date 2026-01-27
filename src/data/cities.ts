@@ -136,9 +136,17 @@ const generateCityContent = (config: CityConfig, index: number): CityContent => 
         ? "L'air marin et la salinité de notre secteur nécessitent des équipements robustes et un entretien spécifique que nous maîtrisons parfaitement."
         : "Le climat sec et chaud de notre secteur impose des installations performantes pour garantir votre confort estival.";
 
+    const specificHeroImages: Record<string, string> = {
+        "aix-en-provence": "/images/aix-cours-mirabeau.png",
+        "salon-de-provence": "/images/salon-fontaine-moussue.png",
+        "martigues": "/images/martigues-miroir-oiseaux.png",
+        "marseille": "/images/marseille-vieux-port.png",
+        "arles": "/images/arles-arenes.png",
+    };
+
     // Deterministic image assignment based on index to ensure variety
     // Using primes to offset the cycles so cities don't get the same set of images
-    const heroImage = heroImages[index % heroImages.length];
+    const heroImage = specificHeroImages[config.slug] || heroImages[index % heroImages.length];
     const img_install = installImages[index % installImages.length];
     const img_gainable = gainableImages[(index + 1) % gainableImages.length];
     const img_reversible = reversibleImages[(index + 2) % reversibleImages.length];
