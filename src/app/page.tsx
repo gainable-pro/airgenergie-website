@@ -33,47 +33,8 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <div>
-      {/* Hero Section - Video/Image only */}
-      {/* Hero Section - Video/Image only */}
-      {/* Hero Section - Video/Image only */}
-      <section style={{
-        position: 'relative',
-        width: '100%',
-        background: '#F8FAFC', // Changed to light gray/white to blend better if video has light bg
-        padding: '2rem 0'
-      }}>
-        {/* Video container - Constrained width to prevent "too big" height */}
-        <div className="container" style={{
-          maxWidth: '1200px', // Limit width
-          margin: '0 auto',
-          position: 'relative',
-          lineHeight: 0,
-          boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)', // Nice shadow for "pro" look
-          borderRadius: '1rem', // Rounded corners
-          overflow: 'hidden'
-        }}>
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            style={{
-              width: '100%',
-              height: 'auto',
-              display: 'block',
-            }}
-          >
-            <source src="/videos/hero.mp4" type="video/mp4" />
-          </video>
-        </div>
-
-
-
-
-      </section>
-
-      {/* Hero Content Section (Text Below Video) */}
-      <section style={{ padding: '4rem 0', background: 'white', borderBottom: '1px solid #E2E8F0' }}>
+      {/* Hero Content Section (Text Above Video) */}
+      <section style={{ padding: '4rem 0 2rem 0', background: 'white' }}>
         <div className="container" style={{ textAlign: 'center' }}>
           <div style={{ maxWidth: '800px', margin: '0 auto' }}>
             <h1 style={{
@@ -144,6 +105,39 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Hero Section - Video/Image only (Now Below Text) */}
+      <section style={{
+        position: 'relative',
+        width: '100%',
+        background: '#F8FAFC',
+        paddingBottom: '4rem' // Add some bottom spacing
+      }}>
+        {/* Video container - Constrained width */}
+        <div className="container" style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          position: 'relative',
+          lineHeight: 0,
+          boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+          borderRadius: '1rem',
+          overflow: 'hidden'
+        }}>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{
+              width: '100%',
+              height: 'auto',
+              display: 'block',
+            }}
+          >
+            <source src="/videos/hero.mp4" type="video/mp4" />
+          </video>
         </div>
       </section>
 
