@@ -193,7 +193,7 @@ export default function EntretienPage() {
                     <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
                         <Link
                             href="https://www.airgenergie.fr/book-online"
-                            className="btn"
+                            className="btn btn-pulse-white"
                             style={{
                                 background: 'white',
                                 color: '#0091DA',
@@ -201,8 +201,7 @@ export default function EntretienPage() {
                                 borderRadius: '0.5rem',
                                 fontWeight: 'bold',
                                 fontSize: '1.1rem',
-                                boxShadow: '0 0 0 0 rgba(255, 255, 255, 0.7)',
-                                animation: 'pulse-white 2s infinite'
+                                boxShadow: '0 0 0 0 rgba(255, 255, 255, 0.7)'
                             }}
                         >
                             Réserver votre entretien en ligne
@@ -227,14 +226,6 @@ export default function EntretienPage() {
                             04 13 41 49 01
                         </a>
                     </div>
-
-                    <style jsx>{`
-                        @keyframes pulse-white {
-                            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
-                            70% { box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
-                            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
-                        }
-                    `}</style>
                 </div>
             </section>
         </div>
