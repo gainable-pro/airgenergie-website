@@ -78,10 +78,10 @@ export default function DrvCtaPage() {
                         </div>
                         <div style={{ flex: '1 1 400px', position: 'relative', height: '350px', background: '#EDF2F7', borderRadius: '1rem', overflow: 'hidden' }}>
                             <Image
-                                src="/images/multi-split.png"
+                                src="/images/drv-vrv-new.png"
                                 alt="Système DRV extérieur"
                                 fill
-                                style={{ objectFit: 'contain', padding: '2rem' }}
+                                style={{ objectFit: 'contain', padding: '1rem' }}
                             />
                         </div>
                     </div>
@@ -94,8 +94,8 @@ export default function DrvCtaPage() {
                     <div className="row" style={{ display: 'flex', flexWrap: 'wrap-reverse', alignItems: 'center', gap: '4rem' }}>
                         <div style={{ flex: '1 1 400px', position: 'relative', height: '350px', background: 'white', borderRadius: '1rem', overflow: 'hidden', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' }}>
                             <Image
-                                src="/images/ducted-system.png"
-                                alt="Réseau de gaines CTA"
+                                src="/images/cta-unit-new.jpg"
+                                alt="Centrale de Traitement d'Air (CTA)"
                                 fill
                                 style={{ objectFit: 'cover' }}
                             />
