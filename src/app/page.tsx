@@ -34,20 +34,17 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero Section - Video/Image only */}
+      {/* Hero Section - Video/Image only */}
       <section style={{
         position: 'relative',
-        height: '400px', // Reduced from 600px since content is below
-        overflow: 'hidden',
+        width: '100%',
         background: '#0091DA'
       }}>
-        {/* Background Video (optional) */}
+        {/* Video container - Natural height to show full video without cropping */}
         <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          zIndex: 0
+          width: '100%',
+          position: 'relative',
+          lineHeight: 0 // Removes bottom spacing for inline-block video
         }}>
           <video
             autoPlay
@@ -56,46 +53,20 @@ export default function HomePage() {
             playsInline
             style={{
               width: '100%',
-              height: '100%',
-              objectFit: 'cover'
+              height: 'auto',
+              display: 'block',
+              maxHeight: '85vh' // Prevent it from being too tall on huge screens
             }}
           >
             <source src="/videos/hero.mp4" type="video/mp4" />
-            {/* Fallback to image if video doesn't load */}
+            {/* Fallback code if video fails could go here, but overlapping image while video loads in this layout requires absolute positioning. 
+                For simplicity and "pro" feel, letting video load is standard. 
+                We can add a loader or just keep the bg color. */}
           </video>
         </div>
 
-        {/* Background Image (Fallback/Overlay) */}
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          opacity: 1,
-          zIndex: -1 // Ensure video is on top if it loads, or handle fallback logic via CSS/JS if needed. 
-          // Actually, standard practice for simple implementation: Put Image, then Video on top if available.
-          // Let's keep the Image as a base layer in case video fails or loads slow.
-        }}>
-          <Image
-            src="/images/hero-technician-ac.png"
-            alt="Technicien AIR G Energie - Entretien climatisation"
-            fill
-            style={{ objectFit: 'cover', objectPosition: 'center' }}
-            priority
-            quality={100}
-          />
-        </div>
 
-        {/* Overlay gradient - reduced opacity for better image visibility */}
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'linear-gradient(to right, rgba(0, 145, 218, 0.6) 0%, rgba(0, 145, 218, 0.1) 60%, transparent 100%)'
-        }} />
+
 
       </section>
 
