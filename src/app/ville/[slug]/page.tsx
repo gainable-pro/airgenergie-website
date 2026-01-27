@@ -156,7 +156,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    background: 'linear-gradient(to right, rgba(0, 145, 218, 0.85) 0%, rgba(0, 107, 166, 0.7) 60%, rgba(0, 107, 166, 0.85) 100%)'
+                    background: 'linear-gradient(to right, rgba(0, 145, 218, 0.6) 0%, rgba(0, 107, 166, 0.4) 60%, rgba(0, 107, 166, 0.6) 100%)'
                 }} />
 
                 {/* Content */}
