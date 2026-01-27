@@ -55,17 +55,18 @@ export default function HomePage() {
             fill
             style={{ objectFit: 'cover', objectPosition: 'center' }}
             priority
+            quality={100}
           />
         </div>
 
-        {/* Overlay gradient - very light for text readability */}
+        {/* Overlay gradient - reduced opacity for better image visibility */}
         <div style={{
           position: 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          background: 'linear-gradient(to right, rgba(0, 145, 218, 0.85) 0%, rgba(0, 145, 218, 0.3) 60%, transparent 100%)'
+          background: 'linear-gradient(to right, rgba(0, 145, 218, 0.6) 0%, rgba(0, 145, 218, 0.1) 60%, transparent 100%)'
         }} />
 
         {/* Content */}
