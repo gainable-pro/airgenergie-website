@@ -14,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/entretien',
         '/zones-intervention',
         '/blog',
-        '/mentions-legales',
+        '/drv-cta',
     ].map((route) => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date(),
