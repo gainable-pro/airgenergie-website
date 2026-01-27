@@ -11,6 +11,8 @@ interface ZigZagProps {
     features?: string[];
     ctaLink?: string;
     ctaText?: string;
+    ctaLinkSecondary?: string;
+    ctaTextSecondary?: string;
 }
 
 export default function ZigZagSection({
@@ -21,7 +23,9 @@ export default function ZigZagSection({
     imageAlt,
     features,
     ctaLink = "/contact",
-    ctaText = "Demander un devis"
+    ctaText = "Demander un devis",
+    ctaLinkSecondary,
+    ctaTextSecondary
 }: ZigZagProps) {
     const imageContent = (
         <div className={styles.visualCol}>
@@ -61,6 +65,11 @@ export default function ZigZagSection({
                         <Link href={ctaLink} className="btn btn-primary">
                             {ctaText}
                         </Link>
+                        {ctaLinkSecondary && ctaTextSecondary && (
+                            <Link href={ctaLinkSecondary} className="btn btn-primary" style={{ marginLeft: '1rem', background: 'white', color: 'var(--primary-blue)', border: '2px solid var(--primary-blue)' }}>
+                                {ctaTextSecondary}
+                            </Link>
+                        )}
                     </div>
                 </div>
 
