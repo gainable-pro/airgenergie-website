@@ -40,14 +40,42 @@ export default function HomePage() {
         overflow: 'hidden',
         background: '#0091DA'
       }}>
-        {/* Background Image */}
+        {/* Background Video (optional) */}
         <div style={{
           position: 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          opacity: 1
+          zIndex: 0
+        }}>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover'
+            }}
+          >
+            <source src="/videos/hero.mp4" type="video/mp4" />
+            {/* Fallback to image if video doesn't load */}
+          </video>
+        </div>
+
+        {/* Background Image (Fallback/Overlay) */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          opacity: 1,
+          zIndex: -1 // Ensure video is on top if it loads, or handle fallback logic via CSS/JS if needed. 
+          // Actually, standard practice for simple implementation: Put Image, then Video on top if available.
+          // Let's keep the Image as a base layer in case video fails or loads slow.
         }}>
           <Image
             src="/images/hero-technician-ac.png"
