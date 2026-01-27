@@ -44,7 +44,7 @@ export default function HomePage() {
               lineHeight: '1.2',
               color: 'var(--text-dark)',
             }}>
-              Votre Spécialiste Climatisation à Miramas
+              Votre Spécialiste Climatisation dans les Bouches-du-Rhône
             </h1>
 
             <p style={{
