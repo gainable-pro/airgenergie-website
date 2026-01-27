@@ -33,10 +33,10 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <div>
-      {/* Hero Section - Full Width Image with Text Overlay */}
+      {/* Hero Section - Video/Image only */}
       <section style={{
         position: 'relative',
-        height: '600px',
+        height: '400px', // Reduced from 600px since content is below
         overflow: 'hidden',
         background: '#0091DA'
       }}>
@@ -97,21 +97,18 @@ export default function HomePage() {
           background: 'linear-gradient(to right, rgba(0, 145, 218, 0.6) 0%, rgba(0, 145, 218, 0.1) 60%, transparent 100%)'
         }} />
 
-        {/* Content */}
-        <div className="container" style={{
-          position: 'relative',
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center'
-        }}>
-          <div style={{ maxWidth: '600px' }}>
+      </section>
+
+      {/* Hero Content Section (Text Below Video) */}
+      <section style={{ padding: '4rem 0', background: 'white', borderBottom: '1px solid #E2E8F0' }}>
+        <div className="container" style={{ textAlign: 'center' }}>
+          <div style={{ maxWidth: '800px', margin: '0 auto' }}>
             <h1 style={{
-              fontSize: '3.5rem',
+              fontSize: '3rem',
               fontWeight: 'bold',
               marginBottom: '1.5rem',
-              lineHeight: '1.1',
-              color: 'white',
-              textShadow: '0 2px 4px rgba(0,0,0,0.1)'
+              lineHeight: '1.2',
+              color: 'var(--text-dark)',
             }}>
               Votre Spécialiste Climatisation à Miramas
             </h1>
@@ -119,26 +116,27 @@ export default function HomePage() {
             <p style={{
               fontSize: '1.5rem',
               marginBottom: '2.5rem',
-              color: 'white',
-              opacity: 0.95
+              color: 'var(--text-gray)',
+              fontWeight: '500'
             }}>
               Installation • Entretien • Dépannage
             </p>
 
             {/* CTA Buttons */}
-            <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginBottom: '2.5rem', flexWrap: 'wrap' }}>
               <a
                 href="tel:0413414901"
                 className="btn"
                 style={{
-                  background: 'white',
-                  color: 'var(--primary-blue)',
+                  background: 'var(--primary-blue)',
+                  color: 'white',
                   fontSize: '1.2rem',
                   padding: '1rem 2rem',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.5rem',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
+                  boxShadow: '0 4px 6px rgba(0,145,218,0.2)',
+                  borderRadius: '0.5rem'
                 }}
               >
                 <Phone size={22} />
@@ -149,11 +147,12 @@ export default function HomePage() {
                 href="/contact"
                 className="btn"
                 style={{
-                  background: 'var(--text-dark)',
-                  color: 'white',
+                  background: 'white',
+                  color: 'var(--text-dark)',
+                  border: '2px solid var(--text-dark)',
                   fontSize: '1.2rem',
                   padding: '1rem 2rem',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
+                  borderRadius: '0.5rem'
                 }}
               >
                 Devis Gratuit
@@ -161,13 +160,13 @@ export default function HomePage() {
             </div>
 
             {/* Trust Indicators */}
-            <div style={{ display: 'flex', gap: '2rem', color: 'white', fontSize: '0.95rem' }}>
+            <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', color: 'var(--text-gray)', fontSize: '1rem', flexWrap: 'wrap' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <CheckCircle size={20} />
+                <CheckCircle size={20} style={{ color: 'var(--primary-blue)' }} />
                 <span>Devis sous 24h</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Award size={20} />
+                <Award size={20} style={{ color: 'var(--primary-blue)' }} />
                 <span>Certifié RGE</span>
               </div>
             </div>
