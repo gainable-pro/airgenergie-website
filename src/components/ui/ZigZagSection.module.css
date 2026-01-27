@@ -68,11 +68,38 @@
     .zigzagContainer.reverse {
         flex-direction: column;
         text-align: center;
-        gap: 2rem;
+        gap: 3rem;
+        /* Increased gap for better separation */
+    }
+
+    .visualCol,
+    .contentCol {
+        width: 100%;
+        /* Ensure full width */
+        flex: auto;
+        /* Reset flex */
+    }
+
+    .imagePlaceholder {
+        height: 250px;
+        /* Smaller image height on mobile */
     }
 
     .featureList {
         text-align: left;
         display: inline-block;
+        margin-top: 1rem;
+    }
+
+    .actions {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .actions .btn {
+        width: 100%;
+        justify-content: center;
     }
 }

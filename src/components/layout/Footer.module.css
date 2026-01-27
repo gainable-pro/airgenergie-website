@@ -94,3 +94,36 @@
     font-size: 0.875rem;
     color: var(--text-gray);
 }
+
+@media (max-width: 768px) {
+    .footer {
+        padding-top: 2rem;
+        margin-top: 2rem;
+    }
+
+    .footerGrid {
+        grid-template-columns: 1fr;
+        /* Force single column on mobile */
+        gap: 2rem;
+        text-align: center;
+        /* Center align for better mobile look */
+    }
+
+    .colTitle::after {
+        left: 50%;
+        transform: translateX(-50%);
+        /* Center the underline */
+    }
+
+    .contactInfo,
+    .linkList,
+    .hoursList {
+        align-items: center;
+        /* Center flex items */
+    }
+
+    .linkList a:hover {
+        padding-left: 0;
+        color: var(--accent-orange);
+    }
+}
