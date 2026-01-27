@@ -7,7 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://airgenergie.fr'),
+  metadataBase: new URL('https://airgenergie.com'),
   title: "AIR G Energie - Climatisation & Pompe à Chaleur Miramas",
   description: "Expert en climatisation réversible, gainable et pompe à chaleur à Miramas. Installation, entretien et dépannage. Devis gratuit.",
   keywords: "climatisation Miramas, pompe à chaleur, climatisation réversible, gainable, installation climatisation, Bouches-du-Rhône",
