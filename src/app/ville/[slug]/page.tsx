@@ -1,4 +1,4 @@
-import { getCityData } from '@/data/cities';
+import { getCityData, getAllCitySlugs } from '@/data/cities';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -9,6 +9,12 @@ import type { Metadata } from 'next';
 interface PageProps {
     params: { slug: string };
     searchParams?: { [key: string]: string | string[] | undefined };
+}
+
+// Generate Static Params for SSG
+export async function generateStaticParams() {
+    const slugs = getAllCitySlugs();
+    return slugs.map((slug) => ({ slug }));
 }
 
 // Generate Metadata dynamically for SEO
@@ -22,15 +28,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         };
     }
 
-    const heroImage = slug === 'miramas' ? '/images/city-miramas-hero.png' : '/images/hero-technician-ac.png';
+    const heroImage = city.heroImage || (slug === 'miramas' ? '/images/city-miramas-hero.png' : '/images/hero-technician-ac.png');
+    const canonicalUrl = `https://airgenergie.fr/ville/${slug}`;
 
     return {
         title: city.metaTitle,
         description: city.metaDesc,
+        alternates: {
+            canonical: canonicalUrl,
+        },
         openGraph: {
             title: city.metaTitle,
             description: city.metaDesc,
-            url: `https://airgenergie.fr/ville/${slug}`,
+            url: canonicalUrl,
             siteName: "AIR G Energie",
             images: [
                 {
