@@ -21,7 +21,7 @@ export default function MentionsLegalesPage() {
                         Spécialisée dans les solutions de climatisation et de chauffage, l'entreprise est établie au :
                     </p>
                     <div className="bg-slate-50 p-4 rounded-lg mb-6 border border-slate-200">
-                        <p className="mb-1"><strong>Siège social :</strong> 3 rue du Pourra, 13140 Miramas, France</p>
+                        <p className="mb-1"><strong>Siège social :</strong> Zone Industrielle, 13140 Miramas, France</p>
                         <p className="mb-1"><strong>SIRET :</strong> 909 266 256 00017</p>
                         <p className="mb-1"><strong>TVA Intracommunautaire :</strong> FR88 909 266 256</p>
                         <p className="mb-0">
