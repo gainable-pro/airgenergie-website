@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { getAllCitySlugs } from '@/data/cities';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://airgenergie.com';
+    const baseUrl = 'https://www.airgenergie.com';
 
     // Static pages
     const routes = [

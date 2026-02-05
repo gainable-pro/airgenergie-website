@@ -7,7 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://airgenergie.com'),
+  metadataBase: new URL('https://www.airgenergie.com'),
   title: "AIR G Energie - Climatisation & Pompe à Chaleur Miramas",
   description: "Expert en climatisation réversible, gainable et pompe à chaleur à Miramas. Installation, entretien et dépannage. Devis gratuit.",
   keywords: "climatisation Miramas, pompe à chaleur, climatisation réversible, gainable, installation climatisation, Bouches-du-Rhône",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "https://airgenergie.fr",
+    url: "https://www.airgenergie.com",
     siteName: "AIR G Energie",
     title: "AIR G Energie - Climatisation & Pompe à Chaleur Miramas",
     description: "Expert en climatisation réversible, gainable et pompe à chaleur à Miramas. Installation, entretien et dépannage. Devis gratuit.",
@@ -33,6 +33,9 @@ export const metadata: Metadata = {
     title: "AIR G Energie - Climatisation & Pompe à Chaleur Miramas",
     description: "Expert en climatisation réversible, gainable et pompe à chaleur à Miramas. Installation, entretien et dépannage. Devis gratuit.",
     images: ["/images/hero-technician-ac.png"],
+  },
+  alternates: {
+    canonical: './',
   },
   robots: {
     index: true,
@@ -59,7 +62,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "AIR G Energie",
-    "url": "https://airgenergie.fr",
+    "url": "https://www.airgenergie.com",
     "logo": "https://airgenergie.fr/images/hero-technician-ac.png",
     "contactPoint": {
       "@type": "ContactPoint",
