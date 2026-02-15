@@ -7,9 +7,9 @@ export const metadata: Metadata = {
     title: "Climatisation Gainable Miramas, Salon, Istres | Installation Invisible | Air G Énergie",
     description: "Climatisation gainable invisible avec zoning intelligent. Esthétique préservée, confort optimal. Devis gratuit. Prix 10-18k€ TTC. Certifié RGE.",
     openGraph: {
-        title: "Climatisation Gainable Premium | Le Confort invisible",
-        description: "La solution de climatisation la plus esthétique. Diffuseurs discrets, silence absolu et régulation pièce par pièce.",
-        url: "https://airgenergie.fr/gainable",
+        title: "Climatisation Gainable | Confort Invisible & Silencieux | Air G Energie",
+        description: "Installation experte de climatisation gainable. Une solution discrète et performante pour votre confort thermique. Devis gratuit sur Miramas et sa région.",
+        url: "https://www.airgenergie.com/gainable",
         siteName: "AIR G Energie",
         images: [
             {

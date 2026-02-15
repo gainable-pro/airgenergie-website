@@ -8,9 +8,9 @@ export const metadata: Metadata = {
     title: "Pompe à Chaleur Miramas, Salon, Istres | PAC Air-Air & Air-Eau | Air G Énergie",
     description: "Installation pompe à chaleur (PAC) air-air et air-eau. Économisez jusqu'à 70% sur votre facture. Aides financières jusqu'à 8000€. Devis gratuit. Certifié RGE.",
     openGraph: {
-        title: "Pompe à Chaleur (PAC) | Économies d'Énergie",
-        description: "Divisez votre facture de chauffage par 3. Installation de Pompes à Chaleur Air/Air et Air/Eau.",
-        url: "https://airgenergie.fr/pompe-a-chaleur",
+        title: "Pompe à Chaleur Air/Eau | Installation & Remplacement | Air G Energie",
+        description: "Optez pour une pompe à chaleur air/eau performante. Économies d'énergie, aides de l'État (MaPrimeRénov') et installation par des experts RGE à Miramas et alentours.",
+        url: "https://www.airgenergie.com/pompe-a-chaleur",
         siteName: "AIR G Energie",
         images: [
             {

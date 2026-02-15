@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Climatisation Miramas & Salon-de-Provence | Air G Énergie",
     description: "Installation climatisation réversible à Miramas, Istres, Salon-de-Provence. Devis gratuit sous 24h. Entreprise locale certifiée RGE.",
-    url: "https://airgenergie.fr",
+    url: "https://www.airgenergie.com",
     siteName: "AIR G Energie",
     images: [
       {

@@ -63,7 +63,7 @@ export default function RootLayout({
     "@type": "Organization",
     "name": "AIR G Energie",
     "url": "https://www.airgenergie.com",
-    "logo": "https://airgenergie.fr/images/hero-technician-ac.png",
+    "logo": "https://www.airgenergie.com/images/hero-technician-ac.png",
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+33-4-13-41-49-01",

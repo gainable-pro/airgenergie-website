@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     }
 
     const heroImage = city.heroImage || (slug === 'miramas' ? '/images/city-miramas-hero.png' : '/images/hero-technician-ac.png');
-    const canonicalUrl = `https://airgenergie.fr/ville/${slug}`;
+    const canonicalUrl = `https://www.airgenergie.com/ville/${slug}`;
 
     return {
         title: city.metaTitle,
@@ -78,7 +78,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": `AIR G Energie - Climatisation ${city.name}`,
-        "image": `https://airgenergie.fr${heroImage}`,
+        "image": `https://www.airgenergie.com${heroImage}`,
         "address": {
             "@type": "PostalAddress",
             "addressLocality": city.name,
@@ -88,7 +88,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
         "telephone": "+33-4-13-41-49-01",
         "priceRange": "€€",
         "openingHours": "Mo-Fr 08:00-18:00",
-        "url": `https://airgenergie.fr/ville/${slug}`,
+        "url": `https://www.airgenergie.com/ville/${slug}`,
         "areaServed": {
             "@type": "City",
             "name": city.name
