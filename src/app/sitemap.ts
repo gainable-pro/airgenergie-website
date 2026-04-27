@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { getAllCitySlugs } from '@/data/cities';
+import { CITIES_SLUGS, SERVICES_SLUGS } from '@/lib/seo-data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://www.airgenergie.com';
@@ -22,14 +23,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: route === '' ? 1 : 0.8,
     }));
 
-    // City pages (Dynamic)
-    const citySlugs = getAllCitySlugs();
-    const cityRoutes = citySlugs.map((slug) => ({
+    // Old City pages (Legacy support if still present)
+    const oldCitySlugs = getAllCitySlugs();
+    const oldCityRoutes = oldCitySlugs.map((slug) => ({
         url: `${baseUrl}/ville/${slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.5,
+    }));
+
+    // New SEO Matrix Hubs
+    const hubRoutes = CITIES_SLUGS.map((ville) => ({
+        url: `${baseUrl}/${ville}`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.9,
     }));
 
-    return [...routes, ...cityRoutes];
+    // New SEO Matrix Combinations
+    const matrixRoutes = CITIES_SLUGS.flatMap(ville => {
+        return SERVICES_SLUGS.map(service => ({
+            url: `${baseUrl}/${ville}/${service}`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly' as const,
+            priority: 0.8,
+        }));
+    });
+
+    return [...routes, ...oldCityRoutes, ...hubRoutes, ...matrixRoutes];
 }
