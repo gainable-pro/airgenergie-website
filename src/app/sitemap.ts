@@ -23,15 +23,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: route === '' ? 1 : 0.8,
     }));
 
-    // Old City pages (Legacy support if still present)
-    const oldCitySlugs = getAllCitySlugs();
-    const oldCityRoutes = oldCitySlugs.map((slug) => ({
-        url: `${baseUrl}/ville/${slug}`,
-        lastModified: new Date(),
-        changeFrequency: 'monthly' as const,
-        priority: 0.5,
-    }));
-
     // New SEO Matrix Hubs
     const hubRoutes = CITIES_SLUGS.map((ville) => ({
         url: `${baseUrl}/${ville}`,
@@ -50,5 +41,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
         }));
     });
 
-    return [...routes, ...oldCityRoutes, ...hubRoutes, ...matrixRoutes];
+    return [...routes, ...hubRoutes, ...matrixRoutes];
 }

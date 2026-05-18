@@ -44,7 +44,7 @@ export default function ZonesInterventionPage() {
                         {mainCities.map((city) => (
                             <Link
                                 key={city.slug}
-                                href={`/ville/${city.slug}`}
+                                href={`/${city.slug}`}
                                 style={{
                                     textDecoration: 'none',
                                     background: 'white',
@@ -93,7 +93,7 @@ export default function ZonesInterventionPage() {
                         {otherCities.map((city) => (
                             <Link
                                 key={city.slug}
-                                href={`/ville/${city.slug}`}
+                                href={`/${city.slug}`}
                                 style={{
                                     textDecoration: 'none',
                                     background: 'white',

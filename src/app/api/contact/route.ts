@@ -4,7 +4,20 @@ import { Resend } from 'resend';
 export async function POST(request: Request) {
     try {
         const body = await request.json();
-        const { nom, email, telephone, ville, service, message } = body;
+        const { nom, email, telephone, ville, service, message, honeypot } = body;
+
+        // Anti-spam honeypot
+        if (honeypot) {
+            console.warn('Spam attempt blocked by honeypot on API:', email);
+            return NextResponse.json({ success: true, fake: true });
+        }
+
+        // Anti-spam pattern matching (typical bot behavior: random characters with no spaces)
+        const isSpamPattern = (str: string) => str && str.length > 12 && !str.includes(' ');
+        if (isSpamPattern(nom) || isSpamPattern(ville) || isSpamPattern(message)) {
+            console.warn('Spam attempt blocked by pattern matching:', email);
+            return NextResponse.json({ success: true, fake: true });
+        }
 
         // Verify API Key exists (it might be missing in dev env)
         if (!process.env.RESEND_API_KEY) {

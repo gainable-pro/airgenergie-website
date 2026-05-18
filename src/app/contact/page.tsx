@@ -12,7 +12,8 @@ export default function ContactPage() {
         telephone: '',
         ville: '',
         service: 'climatisation',
-        message: ''
+        message: '',
+        honeypot: ''
     });
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
@@ -23,6 +24,16 @@ export default function ContactPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setStatus('loading');
+
+        // Spam protection: honeypot
+        if (formData.honeypot) {
+            console.warn('Spam submission detected by honeypot');
+            setTimeout(() => {
+                setStatus('success');
+                setFormData({ nom: '', email: '', telephone: '', ville: '', service: 'climatisation', message: '', honeypot: '' });
+            }, 1000);
+            return;
+        }
 
         const leadData = createInsert('leads', {
             full_name: formData.nom,
@@ -44,7 +55,7 @@ export default function ContactPage() {
         } else {
             setStatus('success');
             // Reset form
-            setFormData({ nom: '', email: '', telephone: '', ville: '', service: 'climatisation', message: '' });
+            setFormData({ nom: '', email: '', telephone: '', ville: '', service: 'climatisation', message: '', honeypot: '' });
 
             // Call API route to send email notification
             try {
@@ -113,6 +124,19 @@ export default function ContactPage() {
                         <h2 style={{ marginBottom: '1.5rem', fontSize: '1.5rem' }}>Parlez-nous de votre projet</h2>
 
                         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+
+                            {/* Honeypot field (hidden) */}
+                            <div style={{ display: 'none' }} aria-hidden="true">
+                                <label>Ne pas remplir ce champ</label>
+                                <input
+                                    type="text"
+                                    name="honeypot"
+                                    value={formData.honeypot}
+                                    onChange={handleChange}
+                                    tabIndex={-1}
+                                    autoComplete="off"
+                                />
+                            </div>
 
                             <div>
                                 <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>Nom complet</label>

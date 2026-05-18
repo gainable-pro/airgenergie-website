@@ -50,10 +50,10 @@ export default function Footer() {
                 <div className={styles.col}>
                     <h3 className={styles.colTitle}>Zones d&apos;Intervention</h3>
                     <ul className={styles.linkList}>
-                        <li><Link href="/ville/miramas">Climatisation Miramas</Link></li>
-                        <li><Link href="/ville/istres">Climatisation Istres</Link></li>
-                        <li><Link href="/ville/salon-de-provence">Climatisation Salon</Link></li>
-                        <li><Link href="/ville/saint-chamas">Climatisation St-Chamas</Link></li>
+                        <li><Link href="/miramas">Climatisation Miramas</Link></li>
+                        <li><Link href="/istres">Climatisation Istres</Link></li>
+                        <li><Link href="/salon-de-provence">Climatisation Salon</Link></li>
+                        <li><Link href="/saint-chamas">Climatisation St-Chamas</Link></li>
                         <li><Link href="/zones-intervention">Voir toutes les villes</Link></li>
                     </ul>
                 </div>
