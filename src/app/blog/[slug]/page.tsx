@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Calendar, Tag, ArrowLeft, Clock } from 'lucide-react';
+import { getSeoAlternates } from '@/lib/seo-url';
 
 interface ArticlePageProps {
     params: {
@@ -18,13 +19,17 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
         return { title: 'Article non trouvé | Air G Énergie' };
     }
 
+    const alternates = await getSeoAlternates(`/blog/${params.slug}`);
+
     return {
         title: post.meta_title || post.title + ' | Blog Air G Énergie',
         description: post.meta_description || post.excerpt || `Lisez notre article sur ${post.title}`,
+        alternates,
         openGraph: {
             title: post.meta_title || post.title,
             description: post.meta_description || post.excerpt || '',
             images: post.featured_image ? [post.featured_image] : [],
+            url: alternates.canonical,
         }
     };
 }

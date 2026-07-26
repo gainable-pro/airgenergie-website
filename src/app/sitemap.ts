@@ -1,9 +1,12 @@
 import { MetadataRoute } from 'next';
 import { getAllCitySlugs } from '@/data/cities';
 import { CITIES_SLUGS, SERVICES_SLUGS } from '@/lib/seo-data';
+import { getSeoDomain } from '@/lib/seo-url';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://www.airgenergie.com';
+export const dynamic = 'force-dynamic';
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+    const baseUrl = await getSeoDomain();
 
     // Static pages
     const routes = [
@@ -16,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/zones-intervention',
         '/blog',
         '/drv-cta',
+        '/reservation-en-ligne',
     ].map((route) => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date(),

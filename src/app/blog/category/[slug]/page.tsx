@@ -4,6 +4,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import { getSeoAlternates } from '@/lib/seo-url';
 
 interface CategoryPageProps {
     params: {
@@ -19,9 +20,12 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
         return { title: 'Catégorie non trouvée | Air G Énergie' };
     }
 
+    const alternates = await getSeoAlternates(`/blog/category/${params.slug}`);
+
     return {
         title: `Blog ${category.name} | Conseils Climatisation`,
         description: `Découvrez tous nos articles et guides sur le thème : ${category.name}. Air G Énergie, votre expert en Provence.`,
+        alternates,
     };
 }
 

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import ZigZagSection from '@/components/ui/ZigZagSection';
 import { MapPin, Phone, CheckCircle } from 'lucide-react';
 import type { Metadata } from 'next';
+import { getSeoAlternates, getSeoDomain } from '@/lib/seo-url';
 
 interface PageProps {
     params: { slug: string };
@@ -29,18 +30,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     }
 
     const heroImage = city.heroImage || (slug === 'miramas' ? '/images/city-miramas-hero.png' : '/images/hero-technician-ac.png');
-    const canonicalUrl = `https://www.airgenergie.com/ville/${slug}`;
+    const alternates = await getSeoAlternates(`/ville/${slug}`);
 
     return {
         title: city.metaTitle,
         description: city.metaDesc,
-        alternates: {
-            canonical: canonicalUrl,
-        },
+        alternates,
         openGraph: {
             title: city.metaTitle,
             description: city.metaDesc,
-            url: canonicalUrl,
+            url: alternates.canonical,
             siteName: "AIR G Energie",
             images: [
                 {
@@ -73,12 +72,14 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
     // Determine hero image based on city
     const heroImage = city.heroImage || (slug === 'miramas' ? '/images/city-miramas-hero.png' : '/images/hero-technician-ac.png');
 
+    const domain = await getSeoDomain();
+
     // Schema LocalBusiness
     const schemaLocalBusiness = {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": `AIR G Energie - Climatisation ${city.name}`,
-        "image": `https://www.airgenergie.com${heroImage}`,
+        "image": `${domain}${heroImage}`,
         "address": {
             "@type": "PostalAddress",
             "addressLocality": city.name,
@@ -88,7 +89,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
         "telephone": "+33-4-13-41-49-01",
         "priceRange": "€€",
         "openingHours": "Mo-Fr 08:00-18:00",
-        "url": `https://www.airgenergie.com/ville/${slug}`,
+        "url": `${domain}/ville/${slug}`,
         "areaServed": {
             "@type": "City",
             "name": city.name

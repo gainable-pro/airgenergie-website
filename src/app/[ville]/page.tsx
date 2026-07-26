@@ -5,6 +5,7 @@ import { MapPin, ArrowRight, CheckCircle, Phone } from 'lucide-react';
 import type { Metadata } from 'next';
 import { CITIES_SLUGS, SERVICES_SLUGS, unslugify, formatServiceName } from '@/lib/seo-data';
 import { getCityData } from '@/data/cities';
+import { getSeoAlternates, getSeoDomain } from '@/lib/seo-url';
 
 interface PageProps {
     params: Promise<{ ville: string }>;
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
 
     const cityName = unslugify(ville);
-    const canonicalUrl = `https://www.airgenergie.com/${ville}`;
+    const alternates = await getSeoAlternates(`/${ville}`);
     const cityData = getCityData(ville);
 
     const title = cityData?.metaTitle || `【Devis Gratuit】 Climatisation Réversible à ${cityName} | Air G Energie`;
@@ -31,9 +32,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
         title,
         description,
-        alternates: {
-            canonical: canonicalUrl,
-        }
+        alternates,
     };
 }
 
@@ -51,6 +50,8 @@ export default async function VilleHubPage({ params }: PageProps) {
         return notFound();
     }
 
+    const domain = await getSeoDomain();
+
     // SEO LocalBusiness Schema
     const schemaLocalBusiness = {
         "@context": "https://schema.org",
@@ -64,7 +65,7 @@ export default async function VilleHubPage({ params }: PageProps) {
         },
         "telephone": "+33-4-13-41-49-01",
         "priceRange": "€€",
-        "url": `https://www.airgenergie.com/${ville}`,
+        "url": `${domain}/${ville}`,
         "areaServed": {
             "@type": "City",
             "name": cityName

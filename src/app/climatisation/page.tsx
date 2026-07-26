@@ -1,10 +1,16 @@
 import ZigZagSection from '../../components/ui/ZigZagSection';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+import { getSeoAlternates } from '@/lib/seo-url';
 
-export const metadata = {
-    title: "Climatisation Réversible Miramas, Salon, Istres | Installation & Prix | Air G Énergie",
-    description: "Installation climatisation réversible en Provence : Split, Console, Gainable, Multi-split. Devis gratuit, certifié RGE, aides financières. Prix à partir de 2500€ TTC.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+    const alternates = await getSeoAlternates('/climatisation');
+    return {
+        title: "Climatisation Réversible Miramas, Salon, Istres | Installation & Prix | Air G Énergie",
+        description: "Installation climatisation réversible en Provence : Split, Console, Gainable, Multi-split. Devis gratuit, certifié RGE, aides financières. Prix à partir de 2500€ TTC.",
+        alternates,
+    };
+}
 
 export default function ClimatisationPage() {
     return (

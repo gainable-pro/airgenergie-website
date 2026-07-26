@@ -5,6 +5,7 @@ import { MapPin, Phone, CheckCircle } from 'lucide-react';
 import type { Metadata } from 'next';
 import { CITIES_SLUGS, SERVICES_SLUGS, unslugify, formatServiceName } from '@/lib/seo-data';
 import { getSeoVariations } from '@/lib/spintax';
+import { getSeoAlternates, getSeoDomain } from '@/lib/seo-url';
 
 interface PageProps {
     params: Promise<{ ville: string; service: string }>;
@@ -26,18 +27,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const serviceName = formatServiceName(service);
     const spine = getSeoVariations(ville, service);
 
-    const canonicalUrl = `https://www.airgenergie.com/${ville}/${service}`;
+    const alternates = await getSeoAlternates(`/${ville}/${service}`);
 
     return {
         title: `${serviceName} à ${cityName} - Expert Certifié RGE | Air G Energie`,
         description: spine.heroSubtitle.substring(0, 155),
-        alternates: {
-            canonical: canonicalUrl,
-        },
+        alternates,
         openGraph: {
             title: `${serviceName} à ${cityName} - Devis Gratuit`,
             description: spine.heroSubtitle,
-            url: canonicalUrl,
+            url: alternates.canonical,
             siteName: "AIR G Energie",
             locale: "fr_FR",
             type: "website",
@@ -57,6 +56,8 @@ export default async function DynamicSeoMatrixPage({ params }: PageProps) {
     const serviceName = formatServiceName(service);
     const spine = getSeoVariations(ville, service);
 
+    const domain = await getSeoDomain();
+
     // Schema LocalBusiness
     const schemaLocalBusiness = {
         "@context": "https://schema.org",
@@ -70,7 +71,7 @@ export default async function DynamicSeoMatrixPage({ params }: PageProps) {
         },
         "telephone": "+33-4-13-41-49-01",
         "priceRange": "€€",
-        "url": `https://www.airgenergie.com/${ville}/${service}`,
+        "url": `${domain}/${ville}/${service}`,
         "areaServed": {
             "@type": "City",
             "name": cityName

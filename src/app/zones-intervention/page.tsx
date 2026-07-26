@@ -1,11 +1,17 @@
 import { getAllCitySlugs, getCityData } from '@/data/cities';
 import Link from 'next/link';
 import { MapPin, Phone } from 'lucide-react';
+import type { Metadata } from 'next';
+import { getSeoAlternates } from '@/lib/seo-url';
 
-export const metadata = {
-    title: "Zones d'Intervention - Climatisation Bouches-du-Rhône | Air G Énergie",
-    description: "Air G Énergie intervient dans tout le département des Bouches-du-Rhône : Miramas, Istres, Salon-de-Provence, Saint-Chamas, Marseille et plus de 30 communes.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+    const alternates = await getSeoAlternates('/zones-intervention');
+    return {
+        title: "Zones d'Intervention - Climatisation Bouches-du-Rhône | Air G Énergie",
+        description: "Air G Énergie intervient dans tout le département des Bouches-du-Rhône : Miramas, Istres, Salon-de-Provence, Saint-Chamas, Marseille et plus de 30 communes.",
+        alternates,
+    };
+}
 
 export default function ZonesInterventionPage() {
     // Get all cities dynamically

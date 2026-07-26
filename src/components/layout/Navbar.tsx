@@ -40,7 +40,7 @@ export default function Navbar() {
                         <span className={styles.hideOnMobile}>04 13 41 49 01</span>
                     </a>
                     <Link
-                        href="https://www.airgenergie.fr/book-online"
+                        href="/reservation-en-ligne"
                         className={`btn ${styles.btnPulse}`}
                         style={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}
                     >
@@ -63,7 +63,7 @@ export default function Navbar() {
                 <Link href="/gainable" onClick={closeMenu}>Gainable</Link>
                 <Link href="/pompe-a-chaleur" onClick={closeMenu}>Pompe à Chaleur</Link>
                 <Link href="/entretien" onClick={closeMenu}>Entretien</Link>
-                <Link href="https://www.airgenergie.fr/book-online" onClick={closeMenu} style={{ color: 'var(--primary-blue)', fontWeight: 'bold' }}>Réserver votre entretien</Link>
+                <Link href="/reservation-en-ligne" onClick={closeMenu} style={{ color: 'var(--primary-blue)', fontWeight: 'bold' }}>Réserver votre entretien</Link>
                 <Link href="/blog" onClick={closeMenu}>Blog</Link>
                 <Link href="/contact" onClick={closeMenu}>Contact</Link>
                 <hr style={{ width: '100%', borderColor: '#E2E8F0', margin: '1rem 0' }} />

@@ -1,12 +1,20 @@
 import { Metadata } from 'next';
+import { getSeoAlternates, getSeoDomain } from '@/lib/seo-url';
 
-export const metadata: Metadata = {
-    title: 'Mentions Légales & Confidentialité - Air G Energie',
-    description: 'Informations légales, politique de confidentialité et conditions d’utilisation du site Air G Energie.',
-    robots: 'index, follow',
-};
+export async function generateMetadata(): Promise<Metadata> {
+    const alternates = await getSeoAlternates('/mentions-legales');
+    return {
+        title: 'Mentions Légales & Confidentialité - Air G Energie',
+        description: 'Informations légales, politique de confidentialité et conditions d’utilisation du site Air G Energie.',
+        robots: 'index, follow',
+        alternates,
+    };
+}
 
-export default function MentionsLegalesPage() {
+export default async function MentionsLegalesPage() {
+    const domain = await getSeoDomain();
+    const cleanDomain = domain.replace('https://www.', '').replace('https://', '');
+
     return (
         <main className="container mx-auto px-4 py-12 max-w-4xl">
             <h1 className="text-3xl font-bold mb-8 text-slate-900 border-b pb-4">Mentions Légales</h1>
@@ -31,7 +39,7 @@ export default function MentionsLegalesPage() {
 
                     <h2 className="text-xl font-bold text-slate-800 mt-8 mb-4">2. Hébergement</h2>
                     <p className="mb-4">
-                        L'infrastructure technique du site <em>airgenergie.com</em> est assurée par la société <strong>OVHcloud</strong>.
+                        L'infrastructure technique du site <em>{cleanDomain}</em> est assurée par la société <strong>OVHcloud</strong>.
                     </p>
                     <p className="text-sm text-slate-600">
                         Adresse : 2 rue Kellermann, 59100 Roubaix, France<br />
@@ -110,7 +118,7 @@ export default function MentionsLegalesPage() {
                         <div>
                             <h3 className="text-lg font-bold text-slate-800">Accès et Frais</h3>
                             <p>
-                                L'accès au site <em>airgenergie.com</em> est libre et gratuit. Les coûts liés à votre connexion internet restent à votre charge.
+                                L'accès au site <em>{cleanDomain}</em> est libre et gratuit. Les coûts liés à votre connexion internet restent à votre charge.
                             </p>
                         </div>
 

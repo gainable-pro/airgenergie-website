@@ -4,11 +4,16 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Building2, Fan, Activity, Phone } from 'lucide-react';
+import { getSeoAlternates } from '@/lib/seo-url';
 
-export const metadata: Metadata = {
-    title: "Solutions Tertiaires : DRV \u0026 CTA | Air G Énergie",
-    description: "Installation et maintenance de systèmes CVC pour professionnels, bureaux et commerces. DRV (VRV) et Centrales de Traitement d'Air (CTA).",
-};
+export async function generateMetadata(): Promise<Metadata> {
+    const alternates = await getSeoAlternates('/drv-cta');
+    return {
+        title: "Solutions Tertiaires : DRV & CTA | Air G Énergie",
+        description: "Installation et maintenance de systèmes CVC pour professionnels, bureaux et commerces. DRV (VRV) et Centrales de Traitement d'Air (CTA).",
+        alternates,
+    };
+}
 
 export default function DrvCtaPage() {
     return (

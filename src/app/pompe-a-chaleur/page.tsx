@@ -3,33 +3,38 @@ import Link from 'next/link';
 import { ArrowDown } from 'lucide-react';
 
 import type { Metadata } from 'next';
+import { getSeoAlternates } from '@/lib/seo-url';
 
-export const metadata: Metadata = {
-    title: "Pompe à Chaleur Miramas, Salon, Istres | PAC Air-Air & Air-Eau | Air G Énergie",
-    description: "Installation pompe à chaleur (PAC) air-air et air-eau. Économisez jusqu'à 70% sur votre facture. Aides financières jusqu'à 8000€. Devis gratuit. Certifié RGE.",
-    openGraph: {
-        title: "Pompe à Chaleur Air/Eau | Installation & Remplacement | Air G Energie",
-        description: "Optez pour une pompe à chaleur air/eau performante. Économies d'énergie, aides de l'État (MaPrimeRénov') et installation par des experts RGE à Miramas et alentours.",
-        url: "https://www.airgenergie.com/pompe-a-chaleur",
-        siteName: "AIR G Energie",
-        images: [
-            {
-                url: "/images/real-outdoor-units-daikin.jpg",
-                width: 1200,
-                height: 630,
-                alt: "Installation pompe à chaleur Daikin unités extérieures",
-            },
-        ],
-        locale: "fr_FR",
-        type: "website",
-    },
-    twitter: {
-        card: "summary_large_image",
-        title: "Pompe à Chaleur (PAC) | Économies d'Énergie",
-        description: "Divisez votre facture de chauffage par 3. Installation de Pompes à Chaleur Air/Air et Air/Eau.",
-        images: ["/images/real-outdoor-units-daikin.jpg"],
-    },
-};
+export async function generateMetadata(): Promise<Metadata> {
+    const alternates = await getSeoAlternates('/pompe-a-chaleur');
+    return {
+        title: "Pompe à Chaleur Miramas, Salon, Istres | PAC Air-Air & Air-Eau | Air G Énergie",
+        description: "Installation pompe à chaleur (PAC) air-air et air-eau. Économisez jusqu'à 70% sur votre facture. Aides financières jusqu'à 8000€. Devis gratuit. Certifié RGE.",
+        alternates,
+        openGraph: {
+            title: "Pompe à Chaleur Air/Eau | Installation & Remplacement | Air G Energie",
+            description: "Optez pour une pompe à chaleur air/eau performante. Économies d'énergie, aides de l'État (MaPrimeRénov') et installation par des experts RGE à Miramas et alentours.",
+            url: alternates.canonical,
+            siteName: "AIR G Energie",
+            images: [
+                {
+                    url: "/images/real-outdoor-units-daikin.jpg",
+                    width: 1200,
+                    height: 630,
+                    alt: "Installation pompe à chaleur Daikin unités extérieures",
+                },
+            ],
+            locale: "fr_FR",
+            type: "website",
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: "Pompe à Chaleur (PAC) | Économies d'Énergie",
+            description: "Divisez votre facture de chauffage par 3. Installation de Pompes à Chaleur Air/Air et Air/Eau.",
+            images: ["/images/real-outdoor-units-daikin.jpg"],
+        },
+    };
+}
 
 export default function HeatPumpPage() {
     return (

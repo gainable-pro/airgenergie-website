@@ -1,11 +1,16 @@
 import { getPublishedPosts } from '@/lib/blog-public';
 import BlogCard from '@/components/blog/BlogCard';
 import { Metadata } from 'next';
+import { getSeoAlternates } from '@/lib/seo-url';
 
-export const metadata: Metadata = {
-    title: 'Le Blog Climatisation & Énergie | Air G Énergie',
-    description: 'Conseils d\'experts, guides pratiques, aides financières et actualités sur la climatisation et les pompes à chaleur dans les Bouches-du-Rhône.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+    const alternates = await getSeoAlternates('/blog');
+    return {
+        title: 'Le Blog Climatisation & Énergie | Air G Énergie',
+        description: 'Conseils d\'experts, guides pratiques, aides financières et actualités sur la climatisation et les pompes à chaleur dans les Bouches-du-Rhône.',
+        alternates,
+    };
+}
 
 export default async function BlogIndex() {
     const posts = await getPublishedPosts();

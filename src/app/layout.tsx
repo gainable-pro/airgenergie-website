@@ -5,65 +5,71 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Link from 'next/link';
 import Image from 'next/image';
+import { getSeoDomain, getSeoAlternates } from "@/lib/seo-url";
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://www.airgenergie.com'),
-  title: "AIR G Energie - Climatisation & Pompe à Chaleur Miramas",
-  description: "Expert en climatisation réversible, gainable et pompe à chaleur à Miramas. Installation, entretien et dépannage. Devis gratuit.",
-  keywords: "climatisation Miramas, pompe à chaleur, climatisation réversible, gainable, installation climatisation, Bouches-du-Rhône",
-  authors: [{ name: "AIR G Energie" }],
-  openGraph: {
-    type: "website",
-    locale: "fr_FR",
-    url: "https://www.airgenergie.com",
-    siteName: "AIR G Energie",
+export async function generateMetadata(): Promise<Metadata> {
+  const domain = await getSeoDomain();
+  const alternates = await getSeoAlternates('/');
+
+  return {
+    metadataBase: new URL(domain),
     title: "AIR G Energie - Climatisation & Pompe à Chaleur Miramas",
     description: "Expert en climatisation réversible, gainable et pompe à chaleur à Miramas. Installation, entretien et dépannage. Devis gratuit.",
-    images: [
-      {
-        url: "/images/hero-technician-ac.png",
-        width: 1200,
-        height: 630,
-        alt: "AIR G Energie - Expert Climatisation Miramas",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "AIR G Energie - Climatisation & Pompe à Chaleur Miramas",
-    description: "Expert en climatisation réversible, gainable et pompe à chaleur à Miramas. Installation, entretien et dépannage. Devis gratuit.",
-    images: ["/images/hero-technician-ac.png"],
-  },
-  alternates: {
-    canonical: './',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    keywords: "climatisation Miramas, pompe à chaleur, climatisation réversible, gainable, installation climatisation, Bouches-du-Rhône",
+    authors: [{ name: "AIR G Energie" }],
+    openGraph: {
+      type: "website",
+      locale: "fr_FR",
+      url: domain,
+      siteName: "AIR G Energie",
+      title: "AIR G Energie - Climatisation & Pompe à Chaleur Miramas",
+      description: "Expert en climatisation réversible, gainable et pompe à chaleur à Miramas. Installation, entretien et dépannage. Devis gratuit.",
+      images: [
+        {
+          url: "/images/hero-technician-ac.png",
+          width: 1200,
+          height: 630,
+          alt: "AIR G Energie - Expert Climatisation Miramas",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "AIR G Energie - Climatisation & Pompe à Chaleur Miramas",
+      description: "Expert en climatisation réversible, gainable et pompe à chaleur à Miramas. Installation, entretien et dépannage. Devis gratuit.",
+      images: ["/images/hero-technician-ac.png"],
+    },
+    alternates,
+    robots: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
-  },
-  verification: {
-    google: 'FjUew4ck6TLq7BEywClYpvr161vLXX3O57rBQ21sDhk',
-  },
-};
+    verification: {
+      google: 'FjUew4ck6TLq7BEywClYpvr161vLXX3O57rBQ21sDhk',
+    },
+  };
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const domain = await getSeoDomain();
+
   const schemaOrganization = {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "AIR G Energie",
-    "url": "https://www.airgenergie.com",
-    "logo": "https://www.airgenergie.com/images/hero-technician-ac.png",
+    "url": domain,
+    "logo": `${domain}/images/hero-technician-ac.png`,
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+33-4-13-41-49-01",

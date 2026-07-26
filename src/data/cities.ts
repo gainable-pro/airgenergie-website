@@ -127,7 +127,14 @@ const citiesList: CityConfig[] = [
     { name: "Septèmes-les-Vallons", slug: "septemes-les-vallons", zip: "13240", dist: "30 min", quartiers: "Notre-Dame limite, Le vallon", angle: "cette commune limitrophe de Marseille", isAirSalin: false },
     { name: "Salon-de-Provence", slug: "salon-de-provence", zip: "13300", dist: "10 min", quartiers: "Michelet, Les Canourgues, Centre-ville", angle: "la cité de Nostradamus", isAirSalin: false },
     { name: "Allauch", slug: "allauch", zip: "13190", dist: "40 min", quartiers: "Le Logis-Neuf, La Pounche", angle: "ce village provençal aux portes de la ville", isAirSalin: false },
-    { name: "Saint-Chamas", slug: "saint-chamas", zip: "13250", dist: "15 min", quartiers: "Le Delà, Le Centre, Les Mololières", angle: "le village bordé par l'étang de Berre", isAirSalin: true }
+    { name: "Saint-Chamas", slug: "saint-chamas", zip: "13250", dist: "15 min", quartiers: "Le Delà, Le Centre, Les Mololières", angle: "le village bordé par l'étang de Berre", isAirSalin: true },
+    { name: "Fontvieille", slug: "fontvieille", zip: "13990", dist: "35 min", quartiers: "Le centre, Les Alpilles", angle: "ce village historique rendu célèbre par Alphonse Daudet", isAirSalin: false },
+    { name: "Velaux", slug: "velaux", zip: "13880", dist: "20 min", quartiers: "Le village, Les Quatre Vents", angle: "cette commune résidentielle de la vallée de l'Arc", isAirSalin: false },
+    { name: "Sénas", slug: "senas", zip: "13560", dist: "20 min", quartiers: "Le village, La Cabre", angle: "cette commune maraîchère des Alpilles", isAirSalin: false },
+    { name: "La Grande-Motte", slug: "la-grande-motte", zip: "34280", dist: "60 min", quartiers: "Le port, Point Zéro", angle: "cette célèbre station balnéaire de l'Hérault", isAirSalin: true },
+    { name: "Cabannes", slug: "cabannes", zip: "13440", dist: "35 min", quartiers: "Le village", angle: "ce charmant village au bord de la Durance", isAirSalin: false },
+    { name: "Mouriès", slug: "mouries", zip: "13890", dist: "25 min", quartiers: "Le village", angle: "la capitale de l'huile d'olive en Provence", isAirSalin: false },
+    { name: "Eygalières", slug: "eygalieres", zip: "13810", dist: "30 min", quartiers: "Le village", angle: "ce magnifique village des Alpilles", isAirSalin: false }
 ];
 
 // Helper to generate content with variations (Spintax-like)
