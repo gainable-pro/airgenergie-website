@@ -8,11 +8,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: "Climatisation Miramas & Salon-de-Provence | Air G Énergie",
-    description: "Installation climatisation réversible à Miramas, Istres, Salon-de-Provence. Devis gratuit sous 24h. Entreprise locale certifiée RGE.",
+    description: "Installation climatisation réversible à Miramas, Istres, Salon-de-Provence. Devis gratuit sous 24h. Artisan local labellisé Garantie 2025 et Expert Gainable.fr.",
     alternates,
     openGraph: {
       title: "Climatisation Miramas & Salon-de-Provence | Air G Énergie",
-      description: "Installation climatisation réversible à Miramas, Istres, Salon-de-Provence. Devis gratuit sous 24h. Entreprise locale certifiée RGE.",
+      description: "Installation climatisation réversible à Miramas, Istres, Salon-de-Provence. Devis gratuit sous 24h. Artisan local labellisé Garantie 2025 et Expert Gainable.fr.",
       url: alternates.canonical,
       siteName: "AIR G Energie",
       images: [

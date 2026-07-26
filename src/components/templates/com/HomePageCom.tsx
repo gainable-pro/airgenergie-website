@@ -74,7 +74,7 @@ export default function HomePageCom() {
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Award size={20} style={{ color: 'var(--primary-blue)' }} />
-                <span>Certifié RGE</span>
+                <span>Garantie 2025</span>
               </div>
             </div>
           </div>
@@ -164,8 +164,8 @@ export default function HomePageCom() {
                   <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
                     <CheckCircle size={24} style={{ color: 'var(--primary-blue)', flexShrink: 0, marginTop: '0.25rem' }} />
                     <div>
-                      <strong style={{ color: 'var(--text-dark)' }}>Certification RGE</strong>
-                      <p style={{ fontSize: '0.95rem', marginTop: '0.25rem', marginBottom: 0 }}>Reconnu Garant de l&apos;Environnement, obligatoire pour les aides financières</p>
+                      <strong style={{ color: 'var(--text-dark)' }}>Garantie 2025 & Expert Gainable.fr</strong>
+                      <p style={{ fontSize: '0.95rem', marginTop: '0.25rem', marginBottom: 0 }}>Labellisé Les Entreprises Garanties 2025 et Expert Vérifié Gainable.fr</p>
                     </div>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>

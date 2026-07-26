@@ -96,7 +96,7 @@ export default function HomePageFr() {
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Award size={18} style={{ color: 'var(--primary-blue)' }} />
-                <span>Artisan RGE - Garantie Décennale</span>
+                <span>Garantie Décennale & Entreprise Garantie 2025</span>
               </div>
             </div>
           </div>
@@ -144,7 +144,7 @@ export default function HomePageFr() {
         <div className="container">
           <div style={{ maxWidth: '900px', margin: '0 auto' }}>
             <h2 style={{ fontSize: '2.2rem', marginBottom: '1.5rem', color: '#0F172A', fontWeight: '800', textAlign: 'center' }}>
-              Votre Confort Thermique par un Installateur RGE qualifié
+              Votre Confort Thermique par un Artisan Qualifié & Garantie 2025
             </h2>
 
             <div style={{ fontSize: '1.1rem', lineHeight: '1.8', color: 'var(--text-gray)' }}>
@@ -153,7 +153,7 @@ export default function HomePageFr() {
               </p>
 
               <p style={{ marginBottom: '1.5rem' }}>
-                Nous maîtrisons les dernières technologies en matière de <strong>climatisation gainable</strong> (système discret et silencieux intégré en faux-plafond avec régulation pièce par pièce Airzone) ainsi que les monosplits et multisplits traditionnels de grandes marques. Notre certification <strong>RGE (Reconnu Garant de l&apos;Environnement)</strong> vous permet d&apos;accéder aux primes d&apos;État pour la pose de vos pompes à chaleur air-eau.
+                Nous maîtrisons les dernières technologies en matière de <strong>climatisation gainable</strong> (système discret et silencieux intégré en faux-plafond avec régulation pièce par pièce Airzone) ainsi que les monosplits et multisplits traditionnels de grandes marques. Notre labellisation <strong>Les Entreprises Garanties 2025</strong> et notre statut d&apos;<strong>Expert Vérifié Gainable.fr</strong> vous garantissent des installations conformes aux exigences thermiques et couvertes par notre assurance décennale.
               </p>
 
               <div style={{

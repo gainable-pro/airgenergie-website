@@ -9,11 +9,11 @@ export async function generateMetadata(): Promise<Metadata> {
     const alternates = await getSeoAlternates('/pompe-a-chaleur');
     return {
         title: "Pompe à Chaleur Miramas, Salon, Istres | PAC Air-Air & Air-Eau | Air G Énergie",
-        description: "Installation pompe à chaleur (PAC) air-air et air-eau. Économisez jusqu'à 70% sur votre facture. Aides financières jusqu'à 8000€. Devis gratuit. Certifié RGE.",
+        description: "Installation pompe à chaleur (PAC) air-air et air-eau. Économisez jusqu'à 70% sur votre facture. Devis gratuit. Labellisé Entreprise Garantie 2025.",
         alternates,
         openGraph: {
             title: "Pompe à Chaleur Air/Eau | Installation & Remplacement | Air G Energie",
-            description: "Optez pour une pompe à chaleur air/eau performante. Économies d'énergie, aides de l'État (MaPrimeRénov') et installation par des experts RGE à Miramas et alentours.",
+            description: "Optez pour une pompe à chaleur air/eau performante. Économies d'énergie et installation par des experts labellisés Garantie 2025 à Miramas et alentours.",
             url: alternates.canonical,
             siteName: "AIR G Energie",
             images: [
@@ -305,7 +305,7 @@ export default function HeatPumpPage() {
                         <div className="glass-panel" style={{ padding: '2rem', marginBottom: '1.5rem' }}>
                             <h3 style={{ color: 'var(--primary-blue)', marginBottom: '1rem' }}>Puis-je bénéficier des aides si je remplace des radiateurs électriques ?</h3>
                             <p style={{ color: 'var(--text-gray)', lineHeight: '1.7' }}>
-                                Pour une PAC air-air, vous êtes éligible aux <strong>CEE (500€ à 800€)</strong> et à la <strong>TVA réduite 10%</strong>. MaPrimeRénov&apos; n&apos;est pas disponible pour les PAC air-air. Pour une PAC air-eau, vous pouvez cumuler CEE + MaPrimeRénov&apos; + TVA réduite, soit jusqu&apos;à 8 000€ d&apos;aides pour les ménages modestes. <strong>Condition obligatoire :</strong> faire appel à un installateur RGE (comme AIR G Energie).
+                                Pour une PAC air-air, vous êtes éligible aux <strong>CEE (500€ à 800€)</strong> et à la <strong>TVA réduite 10%</strong>. MaPrimeRénov&apos; n&apos;est pas disponible pour les PAC air-air. Pour une PAC air-eau, nous assurons des installations conformes aux normes les plus strictes. <strong>Garantie de qualité :</strong> faire appel à un installateur qualifié et labellisé (comme AIR G Energie, labellisé Entreprise Garantie 2025 et Expert Gainable.fr).
                             </p>
                         </div>
 

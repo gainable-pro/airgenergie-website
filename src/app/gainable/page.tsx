@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
     const alternates = await getSeoAlternates('/gainable');
     return {
         title: "Climatisation Gainable Miramas, Salon, Istres | Installation Invisible | Air G Énergie",
-        description: "Climatisation gainable invisible avec zoning intelligent. Esthétique préservée, confort optimal. Devis gratuit. Prix 10-18k€ TTC. Certifié RGE.",
+        description: "Climatisation gainable invisible avec zoning intelligent. Esthétique préservée, confort optimal. Devis gratuit. Prix 10-18k€ TTC. Labellisé Garantie 2025.",
         alternates,
         openGraph: {
             title: "Climatisation Gainable | Confort Invisible & Silencieux | Air G Energie",

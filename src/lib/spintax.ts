@@ -21,7 +21,7 @@ function hashString(str: string): number {
 
 const HERO_SUBTITLES = [
   "L'expertise {service} au service de votre confort thermique à {city}.",
-  "Votre installateur certifié RGE spécialisé en {service} intervenant sur {city}.",
+  "Votre installateur de référence spécialisé en {service} intervenant sur {city}.",
   "Des solutions sur-mesure en {service} pour les particuliers et professionnels à {city}.",
   "La garantie d'une installation parfaite de votre {service} dans la région de {city}.",
   "Faites confiance à notre savoir-faire local pour votre projet de {service} à {city}."
@@ -44,7 +44,7 @@ const TRUST_CALLOUTS = [
 const BENEFITS = [
   [
     "Bilan thermique offert avant toute installation",
-    "Certification RGE QualiPAC",
+    "Labellisation Entreprise Garantie 2025",
     "Garantie décennale et matériel grandes marques (Daikin, Mitsubishi...)",
     "Contrats de maintenance personnalisés"
   ],

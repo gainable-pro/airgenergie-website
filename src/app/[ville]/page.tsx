@@ -127,7 +127,7 @@ export default async function VilleHubPage({ params }: PageProps) {
                 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: '#FF6B00' }}>
                         <MapPin size={20} />
-                        <span style={{ textTransform: 'uppercase', fontWeight: 'bold', fontSize: '0.9rem' }}>Votre Artisan RGE à {cityName}</span>
+                        <span style={{ textTransform: 'uppercase', fontWeight: 'bold', fontSize: '0.9rem' }}>Votre Artisan Garantie 2025 à {cityName}</span>
                     </div>
                     {/* OPTIMIZED H1 KEYWORD */}
                     <h1 style={{ color: 'white', fontSize: 'clamp(2rem, 5vw, 3.5rem)', marginBottom: '1.5rem', maxWidth: '800px', lineHeight: '1.2' }}>

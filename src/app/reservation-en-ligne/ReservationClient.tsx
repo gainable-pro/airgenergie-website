@@ -331,7 +331,7 @@ export default function ReservationClient() {
               {
                 icon: <ShieldCheck size={40} color="var(--primary-blue)" />,
                 title: "Garanties Assurances",
-                text: "Attestation légale périodique obligatoire remise à l'issue de l'intervention. Certification RGE et Assurance Décennale."
+                text: "Attestation légale périodique obligatoire remise à l'issue de l'intervention. Labellisé Entreprise Garantie 2025 et Assurance Décennale."
               },
               {
                 icon: <ShieldAlert size={40} color="var(--primary-blue)" />,

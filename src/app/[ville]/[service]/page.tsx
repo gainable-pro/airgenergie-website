@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const alternates = await getSeoAlternates(`/${ville}/${service}`);
 
     return {
-        title: `${serviceName} à ${cityName} - Expert Certifié RGE | Air G Energie`,
+        title: `${serviceName} à ${cityName} - Expert Garantie 2025 | Air G Energie`,
         description: spine.heroSubtitle.substring(0, 155),
         alternates,
         openGraph: {

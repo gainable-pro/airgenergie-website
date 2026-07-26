@@ -269,8 +269,8 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', marginTop: '2rem' }}>
                         <div style={{ padding: '1.5rem', background: 'white', borderRadius: '0.5rem', boxShadow: 'var(--shadow-sm)' }}>
                             <CheckCircle size={32} style={{ color: 'var(--primary-blue)', marginBottom: '1rem' }} />
-                            <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Certifié RGE</h3>
-                            <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem' }}>Accédez aux aides financières (MaPrimeRénov', CEE)</p>
+                            <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Garantie 2025</h3>
+                            <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem' }}>Artisan labellisé Les Entreprises Garanties 2025</p>
                         </div>
                         <div style={{ padding: '1.5rem', background: 'white', borderRadius: '0.5rem', boxShadow: 'var(--shadow-sm)' }}>
                             <CheckCircle size={32} style={{ color: 'var(--primary-blue)', marginBottom: '1rem' }} />
@@ -309,7 +309,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                 <div className="container">
                     <h2 style={{ color: 'white', fontSize: '2rem', marginBottom: '1rem' }}>{city.h2_cta}</h2>
                     <p style={{ fontSize: '1.1rem', marginBottom: '2rem', opacity: 0.95 }}>
-                        Intervention rapide à {city.name} • Devis gratuit sous 24h • Certifié RGE
+                        Intervention rapide à {city.name} • Devis gratuit sous 24h • Garantie 2025
                     </p>
                     <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
                         <a href="tel:0413414901" className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: '#FF6B00', border: 'none' }}>

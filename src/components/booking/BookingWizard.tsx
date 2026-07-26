@@ -443,17 +443,29 @@ Notes client : ${formData.notes || 'Aucune'}`;
               Étape 2 : Vos coordonnées pour l&apos;intervention
             </h3>
 
-            {/* Conditions d'intervention notice */}
-            <div style={{ background: '#FFFBEB', border: '1px solid #FCD34D', borderLeft: '4px solid #F59E0B', borderRadius: '0.75rem', padding: '1.25rem', marginBottom: '1.75rem', display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-              <span style={{ fontSize: '1.3rem', flexShrink: 0 }}>⚠️</span>
-              <div>
-                <h4 style={{ fontSize: '0.95rem', fontWeight: '800', color: '#92400E', marginBottom: '0.4rem' }}>Conditions d&apos;intervention</h4>
-                <p style={{ fontSize: '0.85rem', color: '#78350F', margin: 0, lineHeight: '1.5' }}>
-                  Avant toute prestation, notre technicien effectuera un <strong>contrôle de performance</strong> (prise de température, vérification du débit d&apos;air, test en modes chaud et froid).
-                  En cas de défaut détecté (panne, fuite de fluide, dysfonctionnement électrique), Air G Énergie se réserve le droit <strong>d&apos;annuler l&apos;entretien ou de le convertir en diagnostic facturable à 100 €</strong> afin d&apos;identifier précisément la problématique.
-                </p>
+            {/* Conditions d'intervention notice ou Préparation pour Devis */}
+            {selectedService?.id === 'devis' ? (
+              <div style={{ background: '#EFF6FF', border: '1px solid #BFDBFE', borderLeft: '4px solid #3B82F6', borderRadius: '0.75rem', padding: '1.25rem', marginBottom: '1.75rem', display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                <span style={{ fontSize: '1.3rem', flexShrink: 0 }}>ℹ️</span>
+                <div>
+                  <h4 style={{ fontSize: '0.95rem', fontWeight: '800', color: '#1E40AF', marginBottom: '0.4rem' }}>Préparation de votre visite</h4>
+                  <p style={{ fontSize: '0.85rem', color: '#1E3A8A', margin: 0, lineHeight: '1.5' }}>
+                    Afin de faciliter l&apos;étude technique de dimensionnement et d&apos;implantation de votre futur système de climatisation ou pompe à chaleur, <strong>nous vous invitons à préparer les plans de votre maison</strong> (si disponibles) pour le jour du rendez-vous.
+                  </p>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div style={{ background: '#FFFBEB', border: '1px solid #FCD34D', borderLeft: '4px solid #F59E0B', borderRadius: '0.75rem', padding: '1.25rem', marginBottom: '1.75rem', display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                <span style={{ fontSize: '1.3rem', flexShrink: 0 }}>⚠️</span>
+                <div>
+                  <h4 style={{ fontSize: '0.95rem', fontWeight: '800', color: '#92400E', marginBottom: '0.4rem' }}>Conditions d&apos;intervention</h4>
+                  <p style={{ fontSize: '0.85rem', color: '#78350F', margin: 0, lineHeight: '1.5' }}>
+                    Avant toute prestation, notre technicien effectuera un <strong>contrôle de performance</strong> (prise de température, vérification du débit d&apos;air, test en modes chaud et froid).
+                    En cas de défaut détecté (panne, fuite de fluide, dysfonctionnement électrique), Air G Énergie se réserve le droit <strong>d&apos;annuler l&apos;entretien ou de le convertir en diagnostic facturable à 100 €</strong> afin d&apos;identifier précisément la problématique.
+                  </p>
+                </div>
+              </div>
+            )}
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem', marginBottom: '1rem' }}>
               <div>

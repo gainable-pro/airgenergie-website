@@ -546,7 +546,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <ShieldCheck size={20} />
-                  <span>Certifié RGE & Décennale</span>
+                  <span>Garantie Décennale & Entreprise Garantie 2025</span>
                 </div>
               </div>
 
@@ -659,7 +659,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <Check size={14} style={{ color: '#48BB78' }} /> Assurance Décennale et Responsabilité Civile
                     </li>
                     <li style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <Check size={14} style={{ color: '#48BB78' }} /> Qualification RGE pour les aides de l&apos;État
+                      <Check size={14} style={{ color: '#48BB78' }} /> Expert Vérifié Gainable.fr & Labellisé Garantie 2025
                     </li>
                   </ul>
                 </div>

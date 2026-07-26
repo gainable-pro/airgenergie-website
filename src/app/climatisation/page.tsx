@@ -7,7 +7,7 @@ export async function generateMetadata(): Promise<Metadata> {
     const alternates = await getSeoAlternates('/climatisation');
     return {
         title: "Climatisation Réversible Miramas, Salon, Istres | Installation & Prix | Air G Énergie",
-        description: "Installation climatisation réversible en Provence : Split, Console, Gainable, Multi-split. Devis gratuit, certifié RGE, aides financières. Prix à partir de 2500€ TTC.",
+        description: "Installation climatisation réversible en Provence : Split, Console, Gainable, Multi-split. Devis gratuit, labellisé Garantie 2025. Prix à partir de 2500€ TTC.",
         alternates,
     };
 }
@@ -197,9 +197,9 @@ export default function ClimatisationPage() {
 
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', marginBottom: '2rem' }}>
                             <div style={{ padding: '1.5rem', background: 'white', borderRadius: '0.75rem', border: '2px solid #E2E8F0' }}>
-                                <h3 style={{ color: 'var(--primary-blue)', fontSize: '1.2rem', marginBottom: '0.75rem' }}>🏆 Certification RGE</h3>
+                                <h3 style={{ color: 'var(--primary-blue)', fontSize: '1.2rem', marginBottom: '0.75rem' }}>🏆 Label Garantie 2025</h3>
                                 <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem' }}>
-                                    Entreprise certifiée Reconnu Garant de l&apos;Environnement. Obligatoire pour bénéficier des aides financières (MaPrimeRénov&apos;, CEE).
+                                    Entreprise labellisée Les Entreprises Garanties 2025 et Expert Vérifié Gainable.fr. Gage suprême de qualité et de rigueur d&apos;installation.
                                 </p>
                             </div>
 
@@ -221,7 +221,7 @@ export default function ClimatisationPage() {
                         <div style={{ background: '#FFF7ED', padding: '1.5rem', borderRadius: '0.75rem', borderLeft: '4px solid #F59E0B' }}>
                             <h3 style={{ color: '#92400E', marginBottom: '0.75rem' }}>💡 Le saviez-vous ?</h3>
                             <p style={{ color: '#78350F', marginBottom: 0 }}>
-                                Une climatisation bien dimensionnée et installée par un professionnel RGE peut durer <strong>15 à 20 ans</strong>. L&apos;économie réalisée sur votre facture d&apos;énergie permet généralement de rentabiliser l&apos;investissement en <strong>3 à 5 ans</strong>.
+                                Une climatisation bien dimensionnée et installée par un professionnel qualifié peut durer <strong>15 à 20 ans</strong>. L&apos;économie réalisée sur votre facture d&apos;énergie permet généralement de rentabiliser l&apos;investissement en <strong>3 à 5 ans</strong>.
                             </p>
                         </div>
                     </div>

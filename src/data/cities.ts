@@ -173,11 +173,11 @@ const generateCityContent = (config: CityConfig, index: number): CityContent => 
     // 2. WHY US VARIATIONS
     let txt_why_us = "";
     if (variation === 0) {
-        txt_why_us = `Choisir Air G Énergie, c'est choisir un artisan local certifié RGE QualiPAC, proche de vous et de vos préoccupations. Contrairement aux grandes plateformes nationales, nous assurons nous-mêmes le suivi de A à Z, de la visite technique à la mise en service et au SAV. Notre garantie décennale couvre tous nos travaux. Nous vous accompagnons également pour l'obtention des aides financières (MaPrimeRénov', CEE) pour vos travaux à ${config.name}.`;
+        txt_why_us = `Choisir Air G Énergie, c'est choisir un artisan local labellisé Entreprise Garantie 2025 et reconnu comme Expert Vérifié Gainable.fr, proche de vous et de vos préoccupations. Contrairement aux grandes plateformes nationales, nous assurons nous-mêmes le suivi de A à Z, de la visite technique à la mise en service et au SAV. Notre garantie décennale couvre tous nos travaux à ${config.name}.`;
     } else if (variation === 1) {
-        txt_why_us = `Pourquoi nous faire confiance pour votre chantier à ${config.name} ? Parce que nous sommes une entreprise familiale, RGE et locale. Pas de sous-traitance opaque : nos techniciens qualifiés prennent soin de votre intérieur. Nous offrons le sérieux d'une garantie décennale couplé à la souplesse d'un artisan de proximité. De plus, nous gérons pour vous les dossiers d'aides de l'État pour alléger votre facture.`;
+        txt_why_us = `Pourquoi nous faire confiance pour votre chantier à ${config.name} ? Parce que nous sommes une entreprise familiale, locale, labellisée Entreprise Garantie 2025 et expert vérifié Gainable.fr. Pas de sous-traitance opaque : nos techniciens qualifiés prennent soin de votre intérieur. Nous offrons le sérieux d'une garantie décennale couplé à la souplesse d'un artisan de proximité.`;
     } else {
-        txt_why_us = `La force d'Air G Énergie à ${config.name}, c'est l'alliance de la compétence technique et de la proximité humaine. Certifiés RGE QualiPAC, nous vous garantissons des installations conformes aux normes les plus strictes. Nous sommes fiers de notre réputation locale et de notre capacité à accompagner nos clients de ${config.name} sur le long terme, du conseil initial jusqu'à l'entretien annuel, avec toutes les garanties requises.`;
+        txt_why_us = `La force d'Air G Énergie à ${config.name}, c'est l'alliance de la compétence technique et de la proximité humaine. Labellisés Entreprise Garantie 2025 et expert vérifié Gainable.fr, nous vous garantissons des installations conformes aux normes les plus strictes. Nous sommes fiers de notre réputation locale et de notre capacité à accompagner nos clients de ${config.name} sur le long terme, du conseil initial jusqu'à l'entretien annuel, avec toutes les garanties requises.`;
     }
 
     // 3. INSTALLATION VARIATIONS (Simple structure changes)
@@ -192,7 +192,7 @@ const generateCityContent = (config: CityConfig, index: number): CityContent => 
         slug: config.slug,
         name: config.name,
         metaTitle: `Climatisation à ${config.name} (${config.zip}) – Installation & Dépannage | Air G Énergie`,
-        metaDesc: `Installateur climatisation à ${config.name} : ${config.quartiers}. Intervention rapide (${config.dist}), devis gratuit. ✓ RGE ✓ Décennale. Spécialiste local.`,
+        metaDesc: `Installateur climatisation à ${config.name} : ${config.quartiers}. Intervention rapide (${config.dist}), devis gratuit. ✓ Garantie 2025 ✓ Décennale. Spécialiste local.`,
         h1: `Votre Installateur de Climatisation à ${config.name}`,
         intro,
         heroImage,
@@ -205,7 +205,7 @@ const generateCityContent = (config: CityConfig, index: number): CityContent => 
         h2_reversible: `Pompe à Chaleur Air-Air : Idéal pour ${config.name}`,
         txt_reversible: `Optez pour une climatisation réversible (pompe à chaleur air-air) pour chauffer et rafraîchir votre logement à ${config.name}. Ce système 2-en-1 est particulièrement rentable dans notre région : il divise par 3 votre facture de chauffage en hiver tout en assurant une fraîcheur parfaite lors des canicules estivales. C'est la solution de rénovation énergétique préférée des habitants de ${config.name} pour gagner en confort thermique toute l'année.`,
         h2_gainable: `Climatisation Gainable à ${config.name}`,
-        txt_gainable: `Pour les maisons individuelles à ${config.name}, notamment dans les quartiers résidentiels comme ${config.quartiers.split(',')[0]}, le gainable est la solution premium. Invisible (caché dans les combles), silencieux et performant, il diffuse l'air via des grilles discrètes. Couplé à un système de régulation par zone (Airzone), il permet de choisir la température dans chaque pièce indépendamment.`,
+        txt_gainable: `Pour les maisons individuelles à ${config.name}, notamment dans les quartiers résidentiels comme ${config.quartiers.split(',')[0]}, le gainable is la solution premium. Invisible (caché dans les combles), silencieux et performant, il diffuse l'air via des grilles discrètes. Couplé à un système de régulation par zone (Airzone), il permet de choisir la température dans chaque pièce indépendamment.`,
         h2_maintenance: `Entretien et Dépannage à ${config.name}`,
         txt_maintenance: `Une panne en plein été ? Notre proximité (${config.dist}) nous permet d'intervenir en urgence à ${config.name}. Nous proposons également des contrats d'entretien annuel pour pérenniser votre matériel, assainir l'air intérieur et prévenir les pannes. Un entretien régulier est indispensable pour maintenir les performances énergétiques de votre climatisation.`,
         h2_why_us: `Pourquoi choisir Air G Énergie à ${config.name} ?`,
@@ -214,10 +214,10 @@ const generateCityContent = (config: CityConfig, index: number): CityContent => 
         faq: [
             { q: `Intervenez-vous dans tous les quartiers de ${config.name} ?`, a: `Oui, nous couvrons l'intégralité de ${config.name} (${config.zip}) ainsi que les communes limitrophes. Notre équipe se déplace quotidiennement dans des quartiers comme ${config.quartiers}.` },
             { q: `Quel est le délai d'intervention à ${config.name} ?`, a: `Étant basés à proximité (${config.dist}), nous pouvons intervenir pour un devis sous 24/48h et pour un dépannage urgent dans la journée selon disponibilité.` },
-            { q: `Vos installations à ${config.name} sont-elles éligibles aux aides ?`, a: `Absolument. En tant qu'entreprise RGE, nos installations de pompes à chaleur air-air (climatisation réversible) à ${config.name} sont éligibles aux primes CEE et à la TVA réduite sous conditions.` },
+            { q: `Quelles sont vos certifications pour vos travaux à ${config.name} ?`, a: `Nous sommes labellisés 'Les Entreprises Garanties 2025' et reconnus comme 'Expert Vérifié Gainable.fr'. Toutes nos installations à ${config.name} bénéficient également d'une assurance décennale complète.` },
             { q: `Faites-vous l'entretien des clims non installées par vous à ${config.name} ?`, a: `Oui, nous assurons la maintenance et le dépannage de toutes marques de climatisation à ${config.name}, quelle que soit l'entreprise installatrice d'origine.` },
             { q: `Quel budget pour une clim posée à ${config.name} ?`, a: `Comptez entre 1500€ et 3000€ pour un mono-split, et à partir de 4000€ pour un multi-split ou gainable, selon la complexité. Nous réalisons des devis gratuits et fermes après visite technique à ${config.name}.` },
-            { q: `L'air marin de ${config.name} abîme-t-il les climatisations ?`, a: config.isAirSalin ? `Oui, c'est un facteur réel. Nous installons des unités extérieures traitées anticorrosion "Blue Fin" ou équivalent pour résister à l'environnement salin de ${config.name}.` : `Non, ${config.name} est assez éloigné du bord de mer direct pour ne pas subir de corrosion accélérée majeure, mais nous privilégions tout de même du matériel résistant.` },
+            { q: `L'air marin de ${config.name} abîme-t-il les climatisations ?`, a: config.isAirSalin ? `Oui, c'est un factor réel. Nous installons des unités extérieures traitées anticorrosion "Blue Fin" ou équivalent pour résister à l'environnement salin de ${config.name}.` : `Non, ${config.name} est assez éloigné du bord de mer direct pour ne pas subir de corrosion accélérée majeure, mais nous privilégions tout de même du matériel résistant.` },
             { q: `Quelle marque de climatisation conseillez-vous à ${config.name} ?`, a: `Nous recommandons Daikin, Mitsubishi Electric et Toshiba pour leur fiabilité exceptionnelle et leur SAV performant, parfaitement adaptés au climat exigeant de ${config.name}.` }
         ]
     };
@@ -231,7 +231,7 @@ const miramasData: CityContent = {
     slug: "miramas",
     name: "Miramas",
     metaTitle: "Climatisation à Miramas (13140) – Installation & Dépannage Rapide | Air G Énergie",
-    metaDesc: "Installateur climatisation à Miramas : Gare, Mercure, Vieux-Miramas. Entreprise locale, intervention rapide, devis gratuit sous 24h. ✓ Certifié RGE ✓ Garantie décennale",
+    metaDesc: "Installateur climatisation à Miramas : Gare, Mercure, Vieux-Miramas. Entreprise locale, intervention rapide, devis gratuit sous 24h. ✓ Garantie 2025 ✓ Garantie décennale",
     h1: "Votre Installateur de Climatisation à Miramas",
     intro: "Basés au cœur de Miramas depuis plusieurs années, nous connaissons parfaitement les spécificités climatiques et architecturales de notre ville. Du quartier de la Gare aux hauteurs du Vieux-Miramas, en passant par Le Mercure et les zones pavillonnaires récentes, Air G Énergie intervient rapidement pour tous vos besoins en climatisation. Notre proximité est votre garantie de réactivité et de service personnalisé.",
     heroImage: "/images/city-miramas-hero.png",
@@ -248,14 +248,14 @@ const miramasData: CityContent = {
     h2_maintenance: "Entretien et Dépannage à Miramas : Réactivité Maximale",
     txt_maintenance: "Notre atelier étant situé à Miramas même, nous intervenons en un temps record pour tout dépannage ou entretien. Ne laissez pas une panne gâcher votre confort. Nous assurons l'entretien annuel obligatoire pour garantir la longévité de votre installation.",
     h2_why_us: "Pourquoi Choisir Air G Énergie à Miramas ?",
-    txt_why_us: "Faire appel à nous, c'est choisir un artisan local, vos voisins. Nous sommes certifiés RGE, ce qui vous ouvre droit aux aides financières. Notre connaissance du terrain et notre réactivité sont inégalées sur la commune.",
+    txt_why_us: "Faire appel à nous, c'est choisir un artisan local, vos voisins. Labellisés Entreprise Garantie 2025 et Expert Vérifié Gainable.fr, nous garantissons notre travail par une assurance décennale complète.",
     h2_cta: "Demandez Votre Devis à Miramas",
     faq: [
         { q: "Quels quartiers de Miramas couvrez-vous ?", a: "Tous : Centre, Gare, Mercure, Molières, Vieux-Miramas, etc." },
         { q: "Quel délai pour une installation à Miramas ?", a: "Visite sous 24h, installation sous 1 à 2 semaines selon la saison." },
         { q: "Intervenez-vous au Vieux-Miramas ?", a: "Oui, nous avons l'habitude des contraintes patrimoniales du village." },
         { q: "Quel prix pour une clim à Miramas ?", a: "À partir de 1500€ posé pour un split. Devis gratuit sur place." },
-        { q: "Avez-vous les qualifications RGE ?", a: "Oui, nous sommes RGE QualiPAC, éligibles aux primes CEE." },
+        { q: "Quelles sont vos certifications ?", a: "Nous sommes labellisés 'Les Entreprises Garanties 2025' et reconnus comme 'Expert Vérifié Gainable.fr', avec garantie décennale sur tous nos travaux." },
         { q: "Où est situé votre atelier ?", a: "Nous sommes basés à Miramas même, ce qui garantit notre rapidité." },
         { q: "Faites-vous le dépannage ?", a: "Oui, toutes marques, en priorité pour nos clients locaux." }
     ]
@@ -265,7 +265,7 @@ const istresData: CityContent = {
     slug: "istres",
     name: "Istres",
     metaTitle: "Climatisation à Istres (13800) – Installation & Dépannage Rapide | Air G Énergie",
-    metaDesc: "Installateur climatisation à Istres : Heures Claires, Ranquet, Centre. Entreprise locale (15 min), intervention rapide. ✓ Certifié RGE ✓ Garantie décennale",
+    metaDesc: "Installateur climatisation à Istres : Heures Claires, Ranquet, Centre. Entreprise locale (15 min), intervention rapide. ✓ Garantie 2025 ✓ Garantie décennale",
     h1: "Votre Installateur de Climatisation à Istres",
     intro: "Voisins d'Istres, nous intervenons quotidiennement sur la commune, des Heures Claires au Ranquet en passant par le centre-ville. Nous connaissons les spécificités de l'habitat istréen et les contraintes liées à la proximité de l'étang.",
     heroImage: "/images/hero-technician-ac.png",
@@ -282,7 +282,7 @@ const istresData: CityContent = {
     h2_maintenance: "Maintenance Experte à Istres",
     txt_maintenance: "Nous assurons la maintenance de votre parc. Proches de vous, nous intervenons rapidement en cas de panne.",
     h2_why_us: "Expertise Locale pour Istres",
-    txt_why_us: "Proximité, qualification RGE, tarifs justes. Nous sommes votre partenaire confiance pour le génie climatique à Istres.",
+    txt_why_us: "Proximité, labellisation Garantie 2025, tarifs justes. Nous sommes votre partenaire confiance pour le génie climatique à Istres.",
     h2_cta: "Devis Gratuit à Istres",
     faq: [
         { q: "Quand pouvez-vous intervenir à Istres ?", a: "Sous 48h pour un devis, rapidement pour les travaux." },
@@ -300,7 +300,7 @@ const salonData: CityContent = {
     slug: "salon-de-provence",
     name: "Salon-de-Provence",
     metaTitle: "Climatisation à Salon-de-Provence (13300) – Installation & Entretien | Air G Énergie",
-    metaDesc: "Spécialiste climatisation à Salon-de-Provence. Intervention Michelet, Canourgues, Centre. RGE QualiPAC, devis gratuit. Installation et dépannage rapide.",
+    metaDesc: "Spécialiste climatisation à Salon-de-Provence. Intervention Michelet, Canourgues, Centre. Labellisé Garantie 2025, devis gratuit. Installation et dépannage rapide.",
     h1: "Climatisation et Pompe à Chaleur à Salon-de-Provence",
     intro: "À Salon-de-Provence, ville de Nostradamus et de la Patrouille de France, le climat peut être rude, avec un Mistral puissant et des étés très chauds. Air G Énergie vous accompagne pour sécuriser votre confort thermique. Que vous soyez proche du cours Gimon, dans le quartier des Canourgues ou vers Bel-Air, notre équipe technique intervient avec le soin et la rigueur attendus.",
     heroImage: "/images/salon-fontaine-moussue.png",
@@ -316,8 +316,8 @@ const salonData: CityContent = {
     txt_gainable: "Idéal pour les zones résidentielles de Salon, le gainable diffuse l'air par des grilles motorisées. Plus de bruit, plus de courants d'air désagréables, juste une température parfaite régulée pièce par pièce.",
     h2_maintenance: "Service Après-Vente Réactif",
     txt_maintenance: "Notre proximité immédiate (10 min) nous permet d'être sur place très vite en cas de panne sur Salon-de-Provence. Ne restez pas sans chauffage ou sans clim !",
-    h2_why_us: "Votre Installateur RGE à Salon-de-Provence",
-    txt_why_us: "Air G Énergie n'est pas une plateforme nationale impersonnelle. Nous sommes des artisans locaux, fiers de notre travail. Certifiés RGE, nous vous donnons accès à toutes les aides de l'État pour financer votre projet à Salon. Nous privilégions la relation humaine et la qualité technique.",
+    h2_why_us: "Votre Artisan Garantie 2025 à Salon-de-Provence",
+    txt_why_us: "Air G Énergie n'est pas une plateforme nationale impersonnelle. Nous sommes des artisans locaux, fiers de notre travail. Labellisés Entreprise Garantie 2025 et Expert Vérifié Gainable.fr, nous privilégions la relation humaine, la réactivité de proximité et la qualité technique pour vos projets à Salon.",
     h2_cta: "Obtenez votre Devis à Salon",
     faq: [
         { q: "Intervenez-vous en centre-ville de Salon ?", a: "Oui, nous avons l'habitude des accès restreints et des contraintes esthétiques." },
@@ -335,7 +335,7 @@ const aixData: CityContent = {
     slug: "aix-en-provence",
     name: "Aix-en-Provence",
     metaTitle: "Climatisation Aix-en-Provence (13100) – Installation Luxe & Design | Air G Énergie",
-    metaDesc: "Installation climatisation haut de gamme à Aix-en-Provence. Spécialiste gainable et PAC design. Centre, Puyricard, Les Milles. RGE QualiPAC.",
+    metaDesc: "Installation climatisation haut de gamme à Aix-en-Provence. Spécialiste gainable et PAC design. Centre, Puyricard, Les Milles. Labellisé Garantie 2025 & Expert Gainable.fr.",
     h1: "Expert Climatisation à Aix-en-Provence",
     intro: "Aix-en-Provence, ville d'eau et d'art, exige des prestations à la hauteur de son standing. Que vous résidiez dans une bastide à Puyricard, un appartement sur le Cours Mirabeau ou une villa moderne à la Duranne, Air G Énergie vous propose des solutions de climatisation alliant haute performance énergétique et discrétion absolue.",
     heroImage: "/images/aix-cours-mirabeau.png",
@@ -352,7 +352,7 @@ const aixData: CityContent = {
     h2_maintenance: "Maintenance Préventive",
     txt_maintenance: "Pour assurer la fiabilité de votre installation, nos contrats de maintenance incluent le nettoyage complet, la désinfection antibactérienne et le contrôle des fluides. Un service premium pour des clients exigeants.",
     h2_why_us: "Pourquoi Air G Énergie sur Aix-en-Provence ?",
-    txt_why_us: "Nous apportons la réactivité et la proximité d'une structure humaine, là où les gros acteurs peinent à suivre. Notre expertise technique nous permet de gérer des chantiers complexes (grandes hauteurs sous plafond, vieilles pierres). Certifiés RGE, nous garantissons un travail dans les règles de l'art.",
+    txt_why_us: "Nous apportons la réactivité et la proximité d'une structure humaine, là où les gros acteurs peinent à suivre. Notre expertise technique nous permet de gérer des chantiers complexes (grandes hauteurs sous plafond, vieilles pierres). Labellisés Entreprise Garantie 2025 et Expert Vérifié Gainable.fr, nous garantissons un travail dans les règles de l'art.",
     h2_cta: "Devis Prestige Gratuit à Aix",
     faq: [
         { q: "Intervenez-vous dans le centre historique piéton ?", a: "Oui, nous organisons la logistique en conséquence." },
@@ -370,7 +370,7 @@ const martiguesData: CityContent = {
     slug: "martigues",
     name: "Martigues",
     metaTitle: "Climatisation Martigues (13500) – La Venise Provençale | Air G Énergie",
-    metaDesc: "Climatisation à Martigues : Installation résistante air salin. Jonquières, Ferrières, L'Île. Devis gratuit RGE. Pompe à chaleur et entretien.",
+    metaDesc: "Climatisation à Martigues : Installation résistante air salin. Jonquières, Ferrières, L'Île. Devis gratuit. Labellisé Garantie 2025, expert gainable.fr et décennale.",
     h1: "Climatisation et Confort à Martigues",
     intro: "À Martigues, la Venise Provençale, la proximité de l'eau et de l'industrie demande une vraie expertise. L'air peut y être humide et salin. Air G Énergie intervient de Ferrières à Jonquières en passant par l'Île, avec du matériel robuste traité pour résister à ces conditions spécifiques tout en vous offrant un confort thermique optimal.",
     heroImage: "/images/martigues-miroir-oiseaux.png",
@@ -387,7 +387,7 @@ const martiguesData: CityContent = {
     h2_maintenance: "Entretien Spécifique Bord de Mer",
     txt_maintenance: "À Martigues, l'entretien n'est pas une option. Le sel et la pollution peuvent encrasser les échangeurs. Notre nettoyage approfondi protège votre investissement.",
     h2_why_us: "L'Expertise Locale à Martigues",
-    txt_why_us: "Connaître Martigues, c'est savoir quel matériel installer pour qu'il dure. Air G Énergie, c'est l'assurance d'un installateur RGE qui connaît son territoire et ne vous vendra pas une installation inadaptée. Proximité, conseil et prix juste.",
+    txt_why_us: "Connaître Martigues, c'est savoir quel matériel installer pour qu'il dure. Air G Énergie, c'est l'assurance d'un expert certifié Gainable.fr et labellisé Garantie 2025 qui connaît son territoire. Proximité, conseil et prix juste.",
     h2_cta: "Devis Gratuit Martigues",
     faq: [
         { q: "Le matériel résiste-t-il au sel ?", a: "Oui, nous privilégions les traitements anticorrosion type Blue Fin." },
@@ -405,7 +405,7 @@ const marseilleData: CityContent = {
     slug: "marseille",
     name: "Marseille",
     metaTitle: "Climatisation Marseille – Installation Pro & Rapide (13) | Air G Énergie",
-    metaDesc: "Installateur climatisation Marseille Nord/Ouest (L'Estaque, St Antoine, 13/14/15/16). RGE QualiPAC. Dépannage rapide et installation soignée.",
+    metaDesc: "Installateur climatisation Marseille Nord/Ouest (L'Estaque, St Antoine, 13/14/15/16). Labellisé Garantie 2025 et expert vérifié Gainable.fr. Dépannage rapide.",
     h1: "Climatisation à Marseille : Secteur Nord & Ouest",
     intro: "Marseille, la cité phocéenne, est une ville bouillonnante où la chaleur peut devenir étouffante. Nous concentrons nos interventions sur les 13ème, 14ème, 15ème et 16ème arrondissements (L'Estaque, Saint-Antoine, Château-Gombert...) pour garantir une réactivité maximale. Nous apportons le calme et la fraîcheur dans votre foyer marseillais.",
     heroImage: "/images/marseille-vieux-port.png",
@@ -422,7 +422,7 @@ const marseilleData: CityContent = {
     h2_maintenance: "Dépannage Clim Marseille",
     txt_maintenance: "Sur Marseille, la réactivité est clé. Notre sectorisation géographique nous permet d'éviter de traverser toute la ville et d'être chez vous rapidement en cas de pépin.",
     h2_why_us: "Votre Artisan de Confiance à Marseille",
-    txt_why_us: "Marseille regorge d'offres, mais la qualité est inégale. Air G Énergie vous apporte la rigueur d'un artisan certifié RGE, avec des garanties solides (décennale). Nous sommes une entreprise stable, pas des sous-traitants éphémères. Nous respectons nos devis et nos délais.",
+    txt_why_us: "Marseille regorge d'offres, mais la qualité est inégale. Air G Énergie vous apporte la rigueur d'un artisan labellisé Entreprise Garantie 2025 et expert vérifié Gainable.fr, avec des garanties solides (décennale). Nous sommes une entreprise stable, pas des sous-traitants éphémères. Nous respectons nos devis et nos délais.",
     h2_cta: "Devis Clim Marseille Gratuit",
     faq: [
         { q: "Intervenez-vous dans le centre (Vieux-Port) ?", a: "Principalement Nord/Ouest pour garantir nos délais, mais consultez-nous." },
