@@ -45,5 +45,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         }));
     });
 
-    return [...routes, ...hubRoutes, ...matrixRoutes];
+    const serviceDetailRoutes = [
+        'devis', 'diagnostic', 'preventive', 'curative', 'double-split',
+        'tri-split', 'gainable', 'console', 'cassette', 'vrv',
+        'thermodynamique', 'pac-air-eau'
+    ].map((service) => ({
+        url: `${baseUrl}/reservation-en-ligne/${service}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.8,
+    }));
+
+    return [...routes, ...hubRoutes, ...matrixRoutes, ...serviceDetailRoutes];
 }

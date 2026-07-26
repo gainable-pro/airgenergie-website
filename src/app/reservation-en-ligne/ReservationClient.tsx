@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import { Phone, CheckCircle, Clock, ShieldCheck, Wrench, ShieldAlert, Check, FileText } from 'lucide-react';
 import BookingWizard from '@/components/booking/BookingWizard';
@@ -564,6 +565,29 @@ export default function ReservationClient() {
                       ))}
                     </ul>
                   </div>
+
+                  {/* Detail link */}
+                  <Link
+                    href={`/reservation-en-ligne/${service.id}`}
+                    style={{
+                      display: 'block',
+                      textDecoration: 'none',
+                      color: 'var(--primary-blue)',
+                      border: '1px solid var(--primary-blue)',
+                      padding: '0.65rem',
+                      borderRadius: '0.5rem',
+                      fontWeight: '600',
+                      fontSize: '0.88rem',
+                      cursor: 'pointer',
+                      width: '100%',
+                      textAlign: 'center',
+                      transition: 'all 0.2s',
+                      marginBottom: '0.75rem',
+                      background: 'transparent'
+                    }}
+                  >
+                    Voir détails & conseils de l&apos;expert
+                  </Link>
 
                   {/* Reserve Button */}
                   <button
