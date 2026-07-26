@@ -60,8 +60,25 @@ const SERVICE_DEFAULT_UNITS: Record<string, Partial<UnitCounts>> = {
 
 const calculateUnitTotal = (units: UnitCounts, isCurative: boolean, isVrv: boolean): number => {
   const prices = isCurative ? CURATIVE_UNIT_PRICES : UNIT_PRICES;
+  
+  let splitsPrice = 0;
+  if (isCurative) {
+    splitsPrice = units.split * prices.split.price;
+  } else {
+    const numSplits = units.split;
+    if (numSplits >= 3) {
+      splitsPrice = 380 + (numSplits - 3) * prices.split.price;
+    } else if (numSplits === 2) {
+      splitsPrice = 270;
+    } else if (numSplits === 1) {
+      splitsPrice = 156;
+    } else {
+      splitsPrice = 0;
+    }
+  }
+
   const raw =
-    units.split * prices.split.price +
+    splitsPrice +
     units.gainable * prices.gainable.price +
     units.cassette * prices.cassette.price +
     units.console * prices.console.price;

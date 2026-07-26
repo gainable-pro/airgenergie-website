@@ -53,7 +53,16 @@ export async function POST(request: NextRequest) {
     const isComposerService = ['preventive', 'curative', 'gainable', 'console', 'cassette', 'double-split', 'tri-split', 'vrv'].includes(serviceId);
     const isCurative = serviceId === 'curative';
 
-    if (isComposerService && unitCounts) {
+    const isPackageOrMultiUnit = ['double-split', 'tri-split', 'vrv'].includes(serviceId) ||
+      (unitCounts && (
+        (unitCounts.split || 0) > 1 ||
+        (unitCounts.gainable || 0) > 1 ||
+        (unitCounts.cassette || 0) > 1 ||
+        (unitCounts.console || 0) > 1 ||
+        Object.values(unitCounts).filter(c => (c as number) > 0).length > 1
+      ));
+
+    if (isComposerService && unitCounts && !isPackageOrMultiUnit) {
       // Pour les installations composées, on utilise les prix unitaires réels du catalogue
       const servicePrefix = isCurative ? 'curative' : 'preventive';
       
