@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { STRIPE_CATALOG, VRV_COUPON_ID } from '@/lib/stripe-catalog';
+import { VRV_COUPON_ID } from '@/lib/stripe-catalog';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_dummy', {
   apiVersion: '2024-06-20',
@@ -12,6 +12,173 @@ const SERVICE_DURATIONS: Record<string, number> = {
   'double-split': 120, 'tri-split': 120, gainable: 45,
   console: 45, cassette: 45, thermodynamique: 45, 'pac-air-eau': 45, vrv: 90,
 };
+
+function buildStripeLineItems(
+  serviceId: string,
+  unitCounts: { split: number; gainable: number; cassette: number; console: number } | undefined,
+  date: string,
+  timeSlot: string
+): Stripe.Checkout.SessionCreateParams.LineItem[] {
+  const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
+  const isCurative = serviceId === 'curative';
+  
+  const formattedDate = new Date(date).toLocaleDateString('fr-FR', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+
+  const formatItem = (
+    name: string,
+    priceInEuros: number,
+    qty: number,
+    description: string
+  ): Stripe.Checkout.SessionCreateParams.LineItem => {
+    return {
+      price_data: {
+        currency: 'eur',
+        unit_amount: Math.round(priceInEuros * 100),
+        product_data: {
+          name,
+          description: `${description} (Planifié pour le ${formattedDate} sur le créneau ${timeSlot})`,
+          images: ['https://www.airgenergie.fr/images/hero-technician-ac.png'],
+        },
+      },
+      quantity: qty,
+    };
+  };
+
+  // If unitCounts are provided (composer / multi-unit or packages)
+  if (unitCounts) {
+    if (isCurative) {
+      if (unitCounts.split > 0) {
+        lineItems.push(formatItem(
+          "Entretien curatif +++ — Split mural",
+          192,
+          unitCounts.split,
+          "Désinfection et nettoyage complet en profondeur de l'unité intérieure split murale."
+        ));
+      }
+      if (unitCounts.gainable > 0) {
+        lineItems.push(formatItem(
+          "Entretien curatif +++ — Gainable / Plénum",
+          260,
+          unitCounts.gainable,
+          "Désinfection et nettoyage complet de l'unité gainable en comble / plénum."
+        ));
+      }
+      if (unitCounts.cassette > 0) {
+        lineItems.push(formatItem(
+          "Entretien curatif +++ — Cassette 4 voies",
+          220,
+          unitCounts.cassette,
+          "Désinfection et nettoyage complet de cassette de soufflage encastrée 4 voies."
+        ));
+      }
+      if (unitCounts.console > 0) {
+        lineItems.push(formatItem(
+          "Entretien curatif +++ — Console basse",
+          192,
+          unitCounts.console,
+          "Désinfection et nettoyage de l'unité console basse posée au sol."
+        ));
+      }
+    } else {
+      // Preventive & Packages (double-split, tri-split, etc.)
+      if (unitCounts.split > 0) {
+        const splitCount = unitCounts.split;
+        if (splitCount === 1) {
+          lineItems.push(formatItem(
+            "Entretien préventif — Split mural",
+            156,
+            1,
+            "Nettoyage de filtre, désinfection et contrôle de performance d'un split mural."
+          ));
+        } else if (splitCount === 2) {
+          lineItems.push(formatItem(
+            "Forfait Entretien Double-split (2 Splits muraux)",
+            270,
+            1,
+            "Forfait préférentiel d'entretien préventif pour 2 splits muraux."
+          ));
+        } else if (splitCount === 3) {
+          lineItems.push(formatItem(
+            "Forfait Entretien Tri-split (3 Splits muraux)",
+            380,
+            1,
+            "Forfait préférentiel d'entretien préventif pour 3 splits muraux."
+          ));
+        } else {
+          lineItems.push(formatItem(
+            "Forfait Entretien Tri-split (3 Splits muraux)",
+            380,
+            1,
+            "Forfait préférentiel d'entretien préventif pour 3 splits muraux."
+          ));
+          lineItems.push(formatItem(
+            "Split mural supplémentaire — Entretien préventif",
+            156,
+            splitCount - 3,
+            "Nettoyage et contrôle de performance de split mural supplémentaire."
+          ));
+        }
+      }
+      if (unitCounts.gainable > 0) {
+        lineItems.push(formatItem(
+          "Entretien préventif — Gainable / Plénum",
+          220,
+          unitCounts.gainable,
+          "Nettoyage de l'échangeur, désinfection de la turbine et plénum pour gainable."
+        ));
+      }
+      if (unitCounts.cassette > 0) {
+        lineItems.push(formatItem(
+          "Entretien préventif — Cassette 4 voies",
+          180,
+          unitCounts.cassette,
+          "Nettoyage de turbine et bac à condensats pour cassette de soufflage encastrée 4 voies."
+        ));
+      }
+      if (unitCounts.console > 0) {
+        lineItems.push(formatItem(
+          "Entretien préventif — Console basse",
+          154,
+          unitCounts.console,
+          "Nettoyage complet pour climatiseur de type console basse posée au sol."
+        ));
+      }
+    }
+  }
+
+  // Fallbacks if no line items generated yet
+  if (lineItems.length === 0) {
+    if (serviceId === 'diagnostic') {
+      lineItems.push(formatItem(
+        "Diagnostic & Rapport de panne",
+        100,
+        1,
+        "Recherche de panne technique, examen des codes défauts et diagnostic détaillé."
+      ));
+    } else if (serviceId === 'thermodynamique') {
+      lineItems.push(formatItem(
+        "Entretien ballon thermodynamique",
+        174,
+        1,
+        "Nettoyage évaporateur, contrôle d'usure de l'anode de protection et étanchéité."
+      ));
+    } else if (serviceId === 'pac-air-eau') {
+      lineItems.push(formatItem(
+        "Entretien — Pompe à Chaleur Air/Eau",
+        270,
+        1,
+        "Nettoyage de l'unité extérieure, contrôle de la pression hydraulique et des vases d'expansion."
+      ));
+    }
+  }
+
+  return lineItems;
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -47,56 +214,12 @@ export async function POST(request: NextRequest) {
     const realDuration = durationMins ?? SERVICE_DURATIONS[serviceId] ?? 45;
 
     // Détermination des line_items Stripe
-    const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
+    const lineItems = buildStripeLineItems(serviceId, unitCounts, date, timeSlot);
     const discounts: Stripe.Checkout.SessionCreateParams.Discount[] = [];
 
-    const isComposerService = ['preventive', 'curative', 'gainable', 'console', 'cassette', 'double-split', 'tri-split', 'vrv'].includes(serviceId);
-    const isCurative = serviceId === 'curative';
-
-    const isPackageOrMultiUnit = ['double-split', 'tri-split', 'vrv'].includes(serviceId) ||
-      (unitCounts && (
-        (unitCounts.split || 0) > 1 ||
-        (unitCounts.gainable || 0) > 1 ||
-        (unitCounts.cassette || 0) > 1 ||
-        (unitCounts.console || 0) > 1 ||
-        Object.values(unitCounts).filter(c => (c as number) > 0).length > 1
-      ));
-
-    if (isComposerService && unitCounts && !isPackageOrMultiUnit) {
-      // Pour les installations composées, on utilise les prix unitaires réels du catalogue
-      const servicePrefix = isCurative ? 'curative' : 'preventive';
-      
-      const unitTypes = ['split', 'gainable', 'cassette', 'console'] as const;
-      for (const type of unitTypes) {
-        const count = unitCounts[type] || 0;
-        if (count > 0) {
-          const catalogKey = `${servicePrefix}-${type}` as keyof typeof STRIPE_CATALOG;
-          const catalogItem = STRIPE_CATALOG[catalogKey];
-          
-          if (catalogItem && 'priceId' in catalogItem) {
-            lineItems.push({
-              price: catalogItem.priceId,
-              quantity: count,
-            });
-          }
-        }
-      }
-
-      // Appliquer le coupon -10% pour le VRV/DRV
-      if (isVrv) {
-        discounts.push({ coupon: VRV_COUPON_ID });
-      }
-    } else {
-      // Pour les services fixes (diagnostic, thermodynamique, pac-air-eau)
-      const catalogKey = serviceId as keyof typeof STRIPE_CATALOG;
-      const catalogItem = STRIPE_CATALOG[catalogKey];
-
-      if (catalogItem && 'priceId' in catalogItem) {
-        lineItems.push({
-          price: catalogItem.priceId,
-          quantity: 1,
-        });
-      }
+    // Appliquer le coupon -10% pour le VRV/DRV
+    if (isVrv) {
+      discounts.push({ coupon: VRV_COUPON_ID });
     }
 
     // Si pour une raison quelconque aucun line item n'a été créé (ex: fallback), on génère un prix dynamique
@@ -134,6 +257,19 @@ export async function POST(request: NextRequest) {
       customer_email: client.email || undefined,
       line_items: lineItems,
       discounts: discounts.length > 0 ? discounts : undefined,
+
+      // Auto-génération de la facture Stripe après paiement
+      invoice_creation: {
+        enabled: true,
+        invoice_data: {
+          description: `Intervention d'entretien climatisation le ${new Date(date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })} sur le créneau ${timeSlot} à ${client.ville}. Client : ${client.nom} (${client.telephone}).`,
+          custom_fields: [
+            { name: "Date intervention", value: date },
+            { name: "Creneau horaire", value: timeSlot },
+            { name: "Lieu intervention", value: client.ville },
+          ]
+        }
+      },
 
       // Données complètes stockées dans la session pour le webhook
       metadata: {
