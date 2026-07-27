@@ -210,7 +210,7 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://www.airgenergie.fr';
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://www.airgenergie.com';
     const realDuration = durationMins ?? SERVICE_DURATIONS[serviceId] ?? 45;
 
     // Détermination des line_items Stripe
@@ -258,11 +258,12 @@ export async function POST(request: NextRequest) {
       line_items: lineItems,
       discounts: discounts.length > 0 ? discounts : undefined,
 
-      // Auto-génération de la facture Stripe après paiement
+      // Auto-génération de la facture Stripe téléchargeable après paiement
       invoice_creation: {
         enabled: true,
         invoice_data: {
-          description: `Intervention d'entretien climatisation le ${new Date(date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })} sur le créneau ${timeSlot} à ${client.ville}. Client : ${client.nom} (${client.telephone}).`,
+          description: `Intervention d'entretien climatisation le ${new Date(date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })} sur le créneau ${timeSlot} à ${client.ville}. Client : ${client.nom} (${client.telephone}). Tarifs exprimés en TTC (TVA 20% incluse).`,
+          footer: "Air G Énergie — Entretien & Dépannage Climatisation | Tarifs indiqués en TTC (TVA 20% incluse). Merci pour votre confiance.",
           custom_fields: [
             { name: "Date intervention", value: date },
             { name: "Creneau horaire", value: timeSlot },
