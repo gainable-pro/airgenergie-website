@@ -34,7 +34,7 @@ export default function HomePageFr() {
               color: '#0F172A',
               letterSpacing: '-0.03em'
             }}>
-              Artisan Climatisation à Miramas & Salon-de-Provence
+              Artisan Climatisation & Pompe à Chaleur — Bouches-du-Rhône (Rayon 70 km)
             </h1>
 
             <p style={{

@@ -14,7 +14,7 @@ const DETAILED_SERVICES = [
     price: 0,
     duration: '45 min',
     image: '/images/technician-handshake.png',
-    subtitle: 'Déplacement jusqu\'à 100 km — Miramas et Provence (gratuit)',
+    subtitle: 'Déplacement sous 48h sur 70 km alentour (Bouches-du-Rhône & Provence - gratuit)',
     desc: 'Réalisation d\'une étude technique complète pour l\'installation ou le remplacement d\'une climatisation ou pompe à chaleur.',
     details: [
       'Calcul des puissances thermiques nécessaires (bilan thermique)',

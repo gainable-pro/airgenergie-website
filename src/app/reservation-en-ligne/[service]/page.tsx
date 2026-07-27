@@ -31,7 +31,7 @@ const SERVICES_CATALOG: Record<string, ServiceData> = {
     price: 0,
     duration: '45 min',
     image: '/images/technician-handshake.png',
-    subtitle: 'Déplacement jusqu\'à 100 km — Miramas, Salon-de-Provence et alentours (gratuit)',
+    subtitle: 'Déplacement sous 48h dans tout le département (rayon 70 km) — Miramas, Aix, Marseille, Salon, Arles... (gratuit)',
     desc: 'Réalisation d\'une étude technique complète pour l\'installation ou le remplacement d\'une climatisation réversible ou pompe à chaleur.',
     details: [
       'Calcul des puissances thermiques nécessaires (bilan thermique)',
@@ -41,7 +41,7 @@ const SERVICES_CATALOG: Record<string, ServiceData> = {
       'Établissement d\'un devis gratuit détaillé sous 24h'
     ],
     conseilsTitle: 'Conseil de l\'expert : Pourquoi un dimensionnement précis est-il capital ?',
-    conseilsContent: 'Avant d\'installer un climatiseur réversible à Miramas ou Salon-de-Provence, une étude thermique de votre pièce ou local est essentielle. Un système sous-dimensionné fonctionnera en continu sans jamais atteindre la température de consigne, entraînant une surconsommation électrique et une usure prématurée du compresseur. À l\'inverse, un appareil sur-dimensionné engendrera des cycles courts répétés préjudiciables à la longévité de l\'électronique et du compresseur.',
+    conseilsContent: 'Avant d\'installer un climatiseur réversible dans votre logement ou local professionnel (à Miramas, Salon-de-Provence, Aix-en-Provence, Marseille, Istres, Arles ou dans toute la région), une étude thermique de votre pièce est essentielle. Un système sous-dimensionné fonctionnera en continu sans jamais atteindre la température de consigne, entraînant une surconsommation électrique et une usure prématurée du compresseur. À l\'inverse, un appareil sur-dimensionné engendrera des cycles courts répétés préjudiciables à la longévité de l\'électronique et du compresseur.',
     conseilsList: [
       'Choisissez l\'emplacement de l\'unité extérieure de manière à limiter les nuisances sonores pour le voisinage.',
       'Privilégiez les appareils certifiés Eurovent pour garantir les performances annoncées.',
@@ -61,7 +61,7 @@ const SERVICES_CATALOG: Record<string, ServiceData> = {
     price: 100,
     duration: '45 min',
     image: '/images/hero-technician-ac.png',
-    subtitle: 'Recherche de panne et rapport officiel pour assurance',
+    subtitle: 'Recherche de panne et rapport officiel pour assurance dans tout le 13',
     desc: 'Identification de l\'origine de votre panne (anomalie électrique, code erreur, fuite) avant réparation.',
     details: [
       'Lecture et décodage des codes défauts de la carte électronique',
@@ -71,7 +71,7 @@ const SERVICES_CATALOG: Record<string, ServiceData> = {
       'Rédaction d\'un rapport de panne écrit certifié pour votre assurance'
     ],
     conseilsTitle: 'Que faire en cas de code erreur sur votre climatisation ?',
-    conseilsContent: 'Si l\'unité de votre maison clignote ou affiche un code d\'erreur (ex: E1, H6, U4), il est conseillé de couper le disjoncteur dédié pendant 10 minutes puis de le réenclencher pour réinitialiser la carte. Si le problème persiste à Istres ou Miramas, ne forcez pas le démarrage de l\'appareil. Cela risquerait d\'endommager définitivement le compresseur ou d\'autres composants onéreux. Notre diagnostic technique vous permet d\'avoir une certitude sur l\'origine exacte de la panne.',
+    conseilsContent: 'Si l\'unité de votre logement clignote ou affiche un code d\'erreur (ex: E1, H6, U4), il est conseillé de couper le disjoncteur dédié pendant 10 minutes puis de le réenclencher pour réinitialiser la carte. Si le problème persiste lors de notre venue (à Miramas, Istres, Salon, Aix, Marseille, Arles ou dans toute la région), ne forcez pas le démarrage de l\'appareil. Cela risquerait d\'endommager définitivement le compresseur ou d\'autres composants onéreux. Notre diagnostic technique vous permet d\'avoir une certitude sur l\'origine exacte de la panne.',
     conseilsList: [
       'Notez précisément le code erreur affiché sur la télécommande ou l\'unité intérieure.',
       'Vérifiez que le filtre à air n\'est pas complètement obturé par de la poussière.',
@@ -102,7 +102,7 @@ const SERVICES_CATALOG: Record<string, ServiceData> = {
       'Délivrance de l\'attestation d\'entretien légale obligatoire'
     ],
     conseilsTitle: 'L\'avis de l\'expert : Pourquoi entretenir sa climatisation chaque année ?',
-    conseilsContent: 'L\'accumulation de poussière sur l\'évaporateur d\'un climatiseur split gêne l\'échange thermique. L\'appareil doit travailler plus pour rafraîchir ou chauffer, ce qui augmente votre facture d\'électricité de 20% à 30%. De plus, l\'humidité dans le bac à condensats favorise la prolifération de moisissures qui se diffusent dans l\'air intérieur. Un entretien préventif régulier à Miramas, Fos-sur-Mer ou Salon élimine ces risques pour votre santé et votre budget.',
+    conseilsContent: 'L\'accumulation de poussière sur l\'évaporateur d\'un climatiseur split gêne l\'échange thermique. L\'appareil doit travailler plus pour rafraîchir ou chauffer, ce qui augmente votre facture d\'électricité de 20% à 30%. De plus, l\'humidité dans le bac à condensats favorise la prolifération de moisissures qui se diffusent dans l\'air intérieur. Un entretien préventif régulier dans toutes les Bouches-du-Rhône (rayon de 70 km) élimine ces risques pour votre santé et votre budget.',
     conseilsList: [
       'Nettoyez vous-même les filtres amovibles à l\'eau tiède une fois par mois.',
       'L\'attestation d\'entretien est obligatoire pour conserver les garanties constructeur Daikin, Mitsubishi, Atlantic, etc.',
@@ -164,7 +164,7 @@ const SERVICES_CATALOG: Record<string, ServiceData> = {
       'Attestation d\'entretien annuelle et Cerfa d\'intervention'
     ],
     conseilsTitle: 'Entretien bi-split : Le point de vigilance sur le groupe extérieur unique',
-    conseilsContent: 'Dans une installation double-split, deux pièces (par exemple le salon et une chambre) dépendent du même compresseur extérieur. Si le flux d\'air extérieur est entravé par des feuilles, de la poussière ou du pollen à Miramas ou Saint-Chamas, le compresseur va surchauffer, ce qui dégradera les performances dans tout le logement. L\'entretien régulier de l\'échangeur extérieur est donc le garant de l\'équilibre thermique de vos pièces.',
+    conseilsContent: 'Dans une installation double-split, deux pièces (par exemple le salon et une chambre) dépendent du même compresseur extérieur. Si le flux d\'air extérieur est entravé par des feuilles, de la poussière ou du pollen, le compresseur va surchauffer, ce qui dégradera les performances dans tout le logement. L\'entretien régulier de l\'échangeur extérieur dans les Bouches-du-Rhône est donc le garant de l\'équilibre thermique de vos pièces.',
     conseilsList: [
       'Vérifiez qu\'aucun arbuste ou objet ne bloque le souffle de l\'unité extérieure.',
       'Un entretien annuel est fortement préconisé pour protéger le moteur unique qui alimente vos deux splits.',
@@ -226,7 +226,7 @@ const SERVICES_CATALOG: Record<string, ServiceData> = {
       'Signature et remise de l\'attestation d\'entretien périodique'
     ],
     conseilsTitle: 'Entretien Gainable : L\'importance cruciale de la désinfection des gaines',
-    conseilsContent: 'Contrairement aux splits muraux, une climatisation gainable diffuse l\'air via un réseau de gaines caché dans vos combles ou faux-plafonds. Si la poussière ou l\'humidité s\'y installe, des odeurs désagréables se propageront dans toute la maison à Istres ou Salon. L\'entretien nécessite l\'utilisation d\'un fumigène ou d\'un nébulisateur biocide afin de traiter l\'intérieur même des gaines sur toute leur longueur, garantissant un air sain.',
+    conseilsContent: 'Contrairement aux splits muraux, une climatisation gainable diffuse l\'air via un réseau de gaines caché dans vos combles ou faux-plafonds. Si la poussière ou l\'humidité s\'y installe, des odeurs désagréables se propageront dans toute la maison. L\'entretien nécessite l\'utilisation d\'un fumigène ou d\'un nébulisateur biocide afin de traiter l\'intérieur même des gaines sur toute leur longueur, garantissant un air sain.',
     conseilsList: [
       'Le filtre de reprise d\'air (souvent dans le couloir) doit être aspiré toutes les 3 semaines en été.',
       'Un filtre encrassé limite le débit d\'air et peut forcer le système gainable à geler dans les combles.',
@@ -257,7 +257,7 @@ const SERVICES_CATALOG: Record<string, ServiceData> = {
       'Remise du rapport de contrôle annuel'
     ],
     conseilsTitle: 'Conseil de l\'expert : Pourquoi la console basse s\'encrasse-t-elle plus vite ?',
-    conseilsContent: 'La console basse est positionnée près du sol, comme un radiateur. Cette position basse fait qu\'elle aspire beaucoup plus facilement les poussières, poils d\'animaux et fibres de tapis qui circulent au niveau du sol. Ses filtres s\'obstruent donc plus rapidement que ceux d\'un split mural placé en hauteur. Il est donc recommandé d\'inspecter régulièrement sa console à Miramas ou Grans pour éviter une baisse de débit d\'air.',
+    conseilsContent: 'La console basse est positionnée près du sol, comme un radiateur. Cette position basse fait qu\'elle aspire beaucoup plus facilement les poussières, poils d\'animaux et fibres de tapis qui circulent au niveau du sol. Ses filtres s\'obstruent donc plus rapidement que ceux d\'un split mural placé en hauteur. Il est donc recommandé d\'inspecter régulièrement sa console (à Miramas, Salon, Aix, Marseille ou alentours) pour éviter une baisse de débit d\'air.',
     conseilsList: [
       'Nettoyez le filtre à air de la console toutes les 2 à 3 semaines si vous avez des animaux de compagnie.',
       'Vérifiez que le flux d\'air vers le haut et vers le bas n\'est pas bloqué par des meubles.',
@@ -288,7 +288,7 @@ const SERVICES_CATALOG: Record<string, ServiceData> = {
       'Attestation de contrôle réglementaire remise'
     ],
     conseilsTitle: 'Entretien de Cassette : La pompe de relevage, organe sensible des bureaux',
-    conseilsContent: 'Les cassettes encastrées dans le plafond utilisent une pompe de relevage électrique pour évacuer l\'eau des condensats vers l\'extérieur. Si des algues ou de la poussière s\'accumulent dans le bac inférieur de la cassette à Miramas ou Vitrolles, la pompe se bouche et tombe en panne, provoquant un débordement d\'eau et des dégâts sur votre faux-plafond. Notre intervention comprend le nettoyage complet de ce bac et le test de bon fonctionnement de la pompe.',
+    conseilsContent: 'Les cassettes encastrées dans le plafond utilisent une pompe de relevage électrique pour évacuer l\'eau des condensats vers l\'extérieur. Si des algues ou de la poussière s\'accumulent dans le bac inférieur de la cassette, la pompe se bouche et tombe en panne, provoquant un débordement d\'eau et des dégâts sur votre faux-plafond. Notre intervention comprend le nettoyage complet de ce bac et le test de bon fonctionnement de la pompe.',
     conseilsList: [
       'Recommandé dans les commerces, bureaux et cabinets médicaux tous les ans.',
       'L\'accumulation de poussière sur le filtre 4 voies réduit le confort des salariés et clients.',
@@ -320,7 +320,7 @@ const SERVICES_CATALOG: Record<string, ServiceData> = {
       'Tarification à la composition : –10% sur chaque unité en installation VRV'
     ],
     conseilsTitle: 'Hôtels, Restaurants : Pourquoi le suivi d\'un système VRV/DRV est-il stratégique ?',
-    conseilsContent: 'Un système VRV (ou DRV) relie des dizaines d\'unités intérieures à un seul groupe de forte puissance. Dans un hôtel ou un restaurant à Miramas, Salon ou Aix, une panne sur le groupe extérieur met à l\'arrêt l\'ensemble de l\'établissement. Un entretien planifié permet d\'éviter ce sinistre en contrôlant l\'usure du compresseur Inverter, l\'état des vannes solénoïdes et la communication du réseau de régulation. Notre configurateur de tarification applique automatiquement une réduction de 10% sur chaque unité pour les systèmes VRV.',
+    conseilsContent: 'Un système VRV (ou DRV) relie des dizaines d\'unités intérieures à un seul groupe de forte puissance. Dans un hôtel, restaurant ou établissement en Provence (Miramas, Salon, Aix, Marseille, Arles...), une panne sur le groupe extérieur met à l\'arrêt l\'ensemble de l\'établissement. Un entretien planifié permet d\'éviter ce sinistre en contrôlant l\'usure du compresseur Inverter, l\'état des vannes solénoïdes et la communication du réseau de régulation. Notre configurateur de tarification applique automatiquement une réduction de 10% sur chaque unité pour les systèmes VRV.',
     conseilsList: [
       'L\'entretien bisannuel est une obligation légale pour les installations contenant plus de 2 kg de fluide.',
       'Un rapport par zone est fourni pour faciliter la gestion de votre registre de sécurité.',
@@ -351,7 +351,7 @@ const SERVICES_CATALOG: Record<string, ServiceData> = {
       'Rapport technique de maintenance remis au client'
     ],
     conseilsTitle: 'Comment prolonger la durée de vie de votre chauffe-eau thermodynamique ?',
-    conseilsContent: 'Le chauffe-eau thermodynamique utilise une petite pompe à chaleur pour chauffer l\'eau sanitaire. Il dispose d\'une anode (en magnésium ou en titane) pour protéger la cuve contre la corrosion de l\'eau. Si l\'anode en magnésium est usée (consommée à plus de 50%), le ballon commencera à rouiller, ce qui provoquera une fuite irréversible sous quelques années à Miramas ou Istres. Notre entretien vérifie cet élément protecteur crucial ainsi que le filtre à air de la PAC.',
+    conseilsContent: 'Le chauffe-eau thermodynamique utilise une petite pompe à chaleur pour chauffer l\'eau sanitaire. Il dispose d\'une anode (en magnésium ou en titane) pour protéger la cuve contre la corrosion de l\'eau. Si l\'anode en magnésium est usée (consommée à plus de 50%), le ballon commencera à rouiller, ce qui provoquera une fuite irréversible sous quelques années. Notre entretien vérifie cet élément protecteur crucial ainsi que le filtre à air de la PAC.',
     conseilsList: [
       'Nettoyez régulièrement la grille d\'aspiration d\'air pour éviter que la PAC intégrée ne force.',
       'Un ballon entretenu produit de l\'eau chaude jusqu\'à 3 fois moins cher qu\'un chauffe-eau électrique classique.',
@@ -382,7 +382,7 @@ const SERVICES_CATALOG: Record<string, ServiceData> = {
       'Remise du Cerfa réglementaire et de l\'attestation d\'entretien'
     ],
     conseilsTitle: 'Pompe à Chaleur Air/Eau : La qualité de l\'eau du circuit, clé de voûte de votre chauffage',
-    conseilsContent: 'Une pompe à chaleur air/eau alimente un réseau de radiateurs ou un plancher chauffant. Avec le temps, l\'eau du circuit s\'oxyde et forme des boues (dépôts de fer et calcaire) qui bouchent l\'échangeur à plaques de la PAC. Cela réduit considérablement le transfert de chaleur, augmente votre consommation électrique et peut casser le compresseur à Miramas ou Eyguières. Notre technicien contrôle la qualité de l\'eau et préconise un désembouage si nécessaire.',
+    conseilsContent: 'Une pompe à chaleur air/eau alimente un réseau de radiateurs ou un plancher chauffant. Avec le temps, l\'eau du circuit s\'oxyde et forme des boues (dépôts de fer et calcaire) qui bouchent l\'échangeur à plaques de la PAC. Cela réduit considérablement le transfert de chaleur, augmente votre consommation électrique et peut casser le compresseur. Notre technicien contrôle la qualité de l\'eau et préconise un désembouage si nécessaire.',
     conseilsList: [
       'L\'entretien annuel prévient les chutes de pression hydraulique qui coupent le chauffage en plein hiver.',
       'Conservez les attestations d\'entretien fournies, elles sont exigées par les assurances et en cas de revente du logement.',
@@ -411,8 +411,8 @@ export async function generateMetadata({ params }: { params: Promise<{ service: 
   const alternates = await getSeoAlternates(`/reservation-en-ligne/${service}`);
 
   return {
-    title: `${data.name} Miramas, Salon, Istres | Tarif & Réservation | Air G Énergie`,
-    description: `${data.subtitle}. ${data.desc} Intervention sous 48h dans un rayon de 70km autour de Miramas. Prenez rendez-vous en ligne.`,
+    title: `${data.name} | Bouches-du-Rhône & Rayon 70 km | Tarif & Réservation | Air G Énergie`,
+    description: `${data.subtitle}. ${data.desc} Intervention sous 48h dans un rayon de 70km autour de Miramas, Salon, Aix, Marseille, Arles, Martigues. Prenez rendez-vous en ligne.`,
     alternates,
     openGraph: {
       title: `${data.name} | Air G Énergie`,
