@@ -31,7 +31,7 @@ const SERVICES_CATALOG: Record<string, ServiceData> = {
     price: 0,
     duration: '45 min',
     image: '/images/technician-handshake.png',
-    subtitle: 'Déplacement sous 48h dans tout le département (rayon 70 km) — Miramas, Aix, Marseille, Salon, Arles... (gratuit)',
+    subtitle: 'Déplacement sous 48h jusqu\'à 100 km à la ronde — Miramas, Aix, Marseille, Salon, Alpilles, La Ciotat... (gratuit)',
     desc: 'Réalisation d\'une étude technique complète pour l\'installation ou le remplacement d\'une climatisation réversible ou pompe à chaleur.',
     details: [
       'Calcul des puissances thermiques nécessaires (bilan thermique)',
@@ -618,11 +618,16 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               {/* Serviced Cities / SEO Local */}
               <div style={{ background: 'white', borderRadius: '1.25rem', padding: '2rem', border: '1px solid #E2E8F0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.02)' }}>
                 <h2 style={{ fontSize: '1.3rem', fontWeight: '800', color: '#0F172A', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <MapPin size={20} style={{ color: 'var(--primary-blue)' }} /> Villes desservies en Provence (Rayon 70 km)
+                  <MapPin size={20} style={{ color: 'var(--primary-blue)' }} /> Villes & Zones desservies en Provence (Rayon jusqu&apos;à 100 km)
                 </h2>
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-gray)', lineHeight: '1.6', margin: 0 }}>
-                  Nos équipes techniques interviennent à domicile ou en entreprise pour l&apos;entretien et le dépannage de votre climatisation ou pompe à chaleur à <strong>Miramas</strong> (13140), <strong>Salon-de-Provence</strong>, <strong>Istres</strong>, <strong>Saint-Chamas</strong>, <strong>Grans</strong>, <strong>Lançon-de-Provence</strong>, <strong>Pélissanne</strong>, <strong>Marseille</strong>, <strong>Aix-en-Provence</strong>, <strong>Martigues</strong>, <strong>Arles</strong>, <strong>Saint-Martin-de-Crau</strong>, <strong>Vitrolles</strong>, <strong>Marignane</strong> et toutes les communes alentour dans les Bouches-du-Rhône.
+                <p style={{ fontSize: '0.925rem', color: '#334155', lineHeight: '1.65', marginBottom: '1.25rem' }}>
+                  Nos équipes techniques interviennent à domicile ou en entreprise pour l&apos;étude, l&apos;installation, l&apos;entretien et le dépannage de votre climatisation ou pompe à chaleur à <strong>Miramas</strong> (13140), <strong>Salon-de-Provence</strong>, <strong>Istres</strong>, <strong>Saint-Chamas</strong>, <strong>Grans</strong>, <strong>Lançon-de-Provence</strong>, <strong>Pélissanne</strong>, <strong>Marseille</strong>, <strong>Aix-en-Provence</strong>, <strong>Martigues</strong>, <strong>Arles</strong>, <strong>Carry-le-Rouet</strong>, <strong>Sausset-les-Pins</strong>, <strong>La Ciotat</strong>, <strong>Mouriès</strong>, <strong>Maussane-les-Alpilles</strong>, <strong>Saint-Martin-de-Crau</strong>, <strong>Vitrolles</strong>, <strong>Marignane</strong> et toutes les communes alentour dans un rayon allant jusqu&apos;à 100 km.
                 </p>
+                <div style={{ background: '#F0F9FF', borderLeft: '4px solid #0091DA', padding: '1rem 1.25rem', borderRadius: '0.5rem' }}>
+                  <p style={{ fontSize: '0.875rem', color: '#0369A1', lineHeight: '1.55', margin: 0, fontWeight: '500' }}>
+                    💡 <strong>Engagement Conseils & Confort :</strong> Nos experts frigoristes font leur maximum pour analyser la configuration de votre logement ou local et vous apporter les meilleurs conseils orientés confort et économies d&apos;énergie. Nous vous préconisons la solution la plus adaptée à vos besoins : <strong>Climatisation Gainable réversible</strong> (invisible), <strong>Split mural performant</strong>, <strong>Console basse</strong> ou <strong>Pompe à chaleur Air/Eau</strong>.
+                  </p>
+                </div>
               </div>
 
             </div>
