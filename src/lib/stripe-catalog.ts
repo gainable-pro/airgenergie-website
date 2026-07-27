@@ -1,81 +1,81 @@
 // ⚠️ FICHIER AUTO-GÉNÉRÉ — ne pas modifier manuellement
-// Généré le 16/07/2026 par scripts/create-stripe-catalog.mjs
+// Généré le 27/07/2026 par scripts/create-stripe-catalog.mjs
 // Mode: LIVE
 
 export const STRIPE_CATALOG = {
   "diagnostic": {
-    "productId": "prod_UtjvVchx1oxnGu",
-    "priceId": "price_1TtwRcFVMqGo2msFFmSUFlj8",
+    "productId": "prod_UxrMLliZntc74w",
+    "priceId": "price_1TxvdPFVMqGo2msFAL3jN9Gd",
     "name": "Diagnostic & Rapport de panne",
     "price": 100,
     "category": "fixed"
   },
   "thermodynamique": {
-    "productId": "prod_Utjv1H4ZutYPpA",
-    "priceId": "price_1TtwRcFVMqGo2msF3GHxg17u",
+    "productId": "prod_UxrMSzl2otojjt",
+    "priceId": "price_1TxvdPFVMqGo2msF9zYLQ4NM",
     "name": "Entretien ballon thermodynamique",
     "price": 174,
     "category": "fixed"
   },
   "pac-air-eau": {
-    "productId": "prod_UtjviUKFGJXYqx",
-    "priceId": "price_1TtwRdFVMqGo2msFgMFgi8me",
+    "productId": "prod_UxrMLX0uvm0Qpl",
+    "priceId": "price_1TxvdQFVMqGo2msFUAawxSgq",
     "name": "Entretien Pompe à Chaleur Air/Eau",
     "price": 270,
     "category": "fixed"
   },
   "preventive-split": {
-    "productId": "prod_UtjvA0oKRxTBiL",
-    "priceId": "price_1TtwRdFVMqGo2msFiinGgMBH",
+    "productId": "prod_UxrM2vkgIJtsDg",
+    "priceId": "price_1TxvdQFVMqGo2msF1LckDkBq",
     "name": "Split mural — Entretien préventif",
     "price": 156,
     "category": "preventive"
   },
   "preventive-gainable": {
-    "productId": "prod_UtjvluaWY6zkHI",
-    "priceId": "price_1TtwRdFVMqGo2msFPx6lVDox",
+    "productId": "prod_UxrMtxmEy9sCJi",
+    "priceId": "price_1TxvdRFVMqGo2msFIXYj8Fyb",
     "name": "Gainable / Plénum — Entretien préventif",
     "price": 220,
     "category": "preventive"
   },
   "preventive-cassette": {
-    "productId": "prod_UtjvwVFMk8TU3i",
-    "priceId": "price_1TtwReFVMqGo2msFYRzRdYZV",
+    "productId": "prod_UxrMne3239ZK1G",
+    "priceId": "price_1TxvdRFVMqGo2msFpaYLvOGv",
     "name": "Cassette 4 voies — Entretien préventif",
     "price": 180,
     "category": "preventive"
   },
   "preventive-console": {
-    "productId": "prod_Utjv2ft25LPe2E",
-    "priceId": "price_1TtwReFVMqGo2msFBo5EKj3k",
+    "productId": "prod_UxrMq5cGgSTiI0",
+    "priceId": "price_1TxvdSFVMqGo2msF3aBwOpU6",
     "name": "Console basse — Entretien préventif",
     "price": 154,
     "category": "preventive"
   },
   "curative-split": {
-    "productId": "prod_UtjvIaxVdBg9nT",
-    "priceId": "price_1TtwRfFVMqGo2msFaBnMkiSF",
+    "productId": "prod_UxrMs7ZR4Jjbtl",
+    "priceId": "price_1TxvdSFVMqGo2msFQ712JGWL",
     "name": "Split mural — Entretien curatif +++",
     "price": 192,
     "category": "curative"
   },
   "curative-gainable": {
-    "productId": "prod_Utjvk845X7xEeU",
-    "priceId": "price_1TtwRfFVMqGo2msFn8s6nc7L",
+    "productId": "prod_UxrM577wXLXkOl",
+    "priceId": "price_1TxvdTFVMqGo2msFuQWRnBu6",
     "name": "Gainable / Plénum — Entretien curatif +++",
     "price": 260,
     "category": "curative"
   },
   "curative-cassette": {
-    "productId": "prod_UtjvaKph6xpIj4",
-    "priceId": "price_1TtwRgFVMqGo2msFfzQS7R3h",
+    "productId": "prod_UxrMizt9xA4o3X",
+    "priceId": "price_1TxvdTFVMqGo2msFIxQCxh4d",
     "name": "Cassette 4 voies — Entretien curatif +++",
     "price": 220,
     "category": "curative"
   },
   "curative-console": {
-    "productId": "prod_UtjvWoSSKU9DgG",
-    "priceId": "price_1TtwRgFVMqGo2msF9UnFb53r",
+    "productId": "prod_UxrM659OAWaXaS",
+    "priceId": "price_1TxvdTFVMqGo2msFMn7rwpzu",
     "name": "Console basse — Entretien curatif +++",
     "price": 192,
     "category": "curative"

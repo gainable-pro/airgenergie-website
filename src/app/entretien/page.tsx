@@ -4,39 +4,42 @@ import EntretienPageCom from '@/components/templates/com/EntretienPageCom';
 import EntretienPageFr from '@/components/templates/fr/EntretienPageFr';
 
 export async function generateMetadata(): Promise<Metadata> {
+  const domain = await getSeoDomain();
   const alternates = await getSeoAlternates('/entretien');
   return {
-    title: "Entretien & SAV Climatisation | Air G Énergie",
-    description: "Entretien de climatisation à partir de 154 € — splits, gainables, cassettes, VRV/DRV, PAC. Devis gratuit, intervention rapide dans un rayon de 50 km autour de Miramas (13).",
+    title: "Entretien & SAV Climatisation Bouches-du-Rhône (70-100 km) | Air G Énergie",
+    description: "Entretien préventif et curatif de climatisation à partir de 154 € TTC — splits, gainables, cassettes, VRV/DRV, PAC. Devis gratuit, intervention sous 48h sur 70 à 100 km (Miramas, Salon, Aix, Marseille, Arles, Martigues...).",
     alternates,
     other: {
       'application/ld+json': JSON.stringify([
         {
           "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          "@id": "https://airgenergie.fr/#business",
+          "@type": ["HVACBusiness", "LocalBusiness"],
+          "@id": `${domain}/#business`,
           "name": "Air G Énergie",
-          "description": "Entreprise spécialisée dans l'installation, l'entretien et le dépannage de systèmes de climatisation, pompes à chaleur et VRV/DRV en Provence.",
-          "url": "https://airgenergie.fr",
-          "telephone": "+33-9-XX-XX-XX-XX",
-          "image": "https://airgenergie.fr/images/hero-technician.png",
+          "description": "Entreprise spécialisée dans l'installation, l'entretien et le dépannage de systèmes de climatisation, pompes à chaleur et VRV/DRV dans les Bouches-du-Rhône.",
+          "url": domain,
+          "telephone": "+33-4-13-41-49-01",
+          "image": `${domain}/images/hero-technician-ac.png`,
           "priceRange": "€€",
           "address": {
             "@type": "PostalAddress",
+            "streetAddress": "Miramas",
             "addressLocality": "Miramas",
             "postalCode": "13140",
-            "addressRegion": "Provence-Alpes-Côte d'Azur",
+            "addressRegion": "Bouches-du-Rhône",
             "addressCountry": "FR"
           },
           "geo": {
             "@type": "GeoCoordinates",
-            "latitude": 43.5847,
-            "longitude": 5.0005
+            "latitude": 43.5825,
+            "longitude": 5.0011
           },
           "areaServed": [
             "Miramas", "Istres", "Salon-de-Provence", "Martigues", "Fos-sur-Mer",
             "Vitrolles", "Marignane", "Aix-en-Provence", "Marseille", "Arles",
-            "Saint-Rémy-de-Provence", "Tarascon", "Avignon"
+            "Carry-le-Rouet", "Sausset-les-Pins", "La Ciotat", "Mouriès", "Maussane-les-Alpilles",
+            "Saint-Chamas", "Grans", "Lançon-de-Provence", "Pélissanne"
           ],
           "hasOfferCatalog": {
             "@type": "OfferCatalog",
