@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { VRV_COUPON_ID } from '@/lib/stripe-catalog';
+import { createCalendarEvent } from '@/lib/calendar';
+import { supabase } from '@/lib/supabaseClient';
+import { sendBookingNotificationEmail } from '@/lib/email';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_dummy', {
   apiVersion: '2024-06-20',
@@ -202,11 +205,63 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Paramètres manquants' }, { status: 400 });
     }
 
-    // Pour les devis gratuits, on ne passe pas par Stripe
+    // Pour les devis gratuits, on insère dans Google Calendar + Supabase sans passer par Stripe
     if (totalAmount === 0) {
+      const realDuration = durationMins ?? SERVICE_DURATIONS[serviceId] ?? 45;
+      
+      // 1. Bloquer le créneau dans Google Calendar
+      await createCalendarEvent({
+        serviceId,
+        serviceName,
+        composition,
+        totalAmount: 0,
+        durationMins: realDuration,
+        date,
+        slotStartTime: slotStartTime || timeSlot.split(' ')[0] || '14:00',
+        clientNom: client.nom,
+        clientTelephone: client.telephone,
+        clientEmail: client.email,
+        clientVille: client.ville,
+        clientNotes: client.notes,
+        isVrv,
+      });
+
+      // 2. Insérer dans Supabase leads table
+      try {
+        await supabase.from('leads').insert({
+          full_name: client.nom,
+          email: client.email || null,
+          phone: client.telephone,
+          city: client.ville,
+          service_type: `Étude & Devis - ${serviceName}`,
+          message: `[Réservation Gratuite] Prestation: ${serviceName} | Date: ${date} (${timeSlot}) | Notes: ${client.notes || 'Aucune'}`,
+        });
+      } catch (e) {
+        console.warn('Supabase lead insertion notice:', e);
+      }
+
+      // 3. Envoyer l'email de notification "Félicitations vous avez une nouvelle réservation"
+      try {
+        await sendBookingNotificationEmail({
+          serviceName,
+          totalAmount: 0,
+          date,
+          timeSlot,
+          clientNom: client.nom,
+          clientTelephone: client.telephone,
+          clientEmail: client.email,
+          clientVille: client.ville,
+          clientNotes: client.notes,
+          composition,
+          isPaid: false,
+        });
+      } catch (e) {
+        console.warn('Email notification error:', e);
+      }
+
       return NextResponse.json({
         freeService: true,
-        message: 'Service gratuit — pas de paiement requis',
+        message: 'Réservation gratuite enregistrée et créneau bloqué dans le calendrier',
       });
     }
 

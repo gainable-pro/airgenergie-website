@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { google } from 'googleapis';
 import { supabase } from '@/lib/supabaseClient';
+import { sendBookingNotificationEmail } from '@/lib/email';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_dummy', {
   apiVersion: '2024-06-20',
@@ -194,10 +195,24 @@ export async function POST(request: NextRequest) {
     if (session.payment_status === 'paid' && session.metadata) {
       console.log('💳 Payment confirmed for session:', session.id);
 
-      // Run both operations in parallel
+      // Run Google Calendar event creation, Supabase lead insertion, and email notification in parallel
+      const meta = session.metadata;
       await Promise.allSettled([
-        createCalendarEvent(session.metadata),
-        insertSupabaseLead(session.metadata, session.id),
+        createCalendarEvent(meta),
+        insertSupabaseLead(meta, session.id),
+        sendBookingNotificationEmail({
+          serviceName: meta.serviceName,
+          totalAmount: meta.totalAmount,
+          date: meta.date,
+          timeSlot: meta.timeSlot,
+          clientNom: meta.clientNom,
+          clientTelephone: meta.clientTelephone,
+          clientEmail: meta.clientEmail,
+          clientVille: meta.clientVille,
+          clientNotes: meta.clientNotes,
+          composition: meta.composition,
+          isPaid: true,
+        }),
       ]);
     }
   }

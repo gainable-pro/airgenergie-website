@@ -210,47 +210,34 @@ Conditions d'intervention : ACCEPTÉES
 Notes client : ${formData.notes || 'Aucune'}`;
 
     try {
-      // Pour les prestations gratuites (ex: Devis d'installation)
-      if (finalTotal === 0) {
-        const { error } = await supabase.from('leads').insert({
-          full_name: formData.nom,
-          email: formData.email || null,
-          phone: formData.telephone,
-          city: formData.ville,
-          service_type: `Entretien - ${selectedService.name}${isComposer ? ` [${composition}]` : ''}`,
-          message: bookingMessage,
-          status: 'nouveau'
-        });
-        if (error) throw error;
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          serviceId: selectedService.id,
+          serviceName: selectedService.name,
+          composition: isComposer ? composition : '',
+          totalAmount: finalTotal,
+          durationMins: isComposer ? composerDuration : null,
+          date: selectedDate,
+          timeSlot: selectedTimeSlot,
+          slotStartTime: selectedTimeSlot.split(' ')[0], // ex: "14:00"
+          client: formData,
+          isVrv,
+          unitCounts: isComposer ? unitCounts : null,
+        }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Erreur lors de la réservation');
+      }
+
+      if (data.freeService) {
         setSuccess(true);
-      } else {
-        // Pour les interventions payantes, rediriger vers Stripe Checkout
-        const response = await fetch('/api/checkout', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            serviceId: selectedService.id,
-            serviceName: selectedService.name,
-            composition: isComposer ? composition : '',
-            totalAmount: finalTotal,
-            durationMins: isComposer ? composerDuration : null,
-            date: selectedDate,
-            timeSlot: selectedTimeSlot,
-            slotStartTime: selectedTimeSlot.split(' ')[0], // ex: "08:00"
-            client: formData,
-            isVrv,
-            unitCounts: isComposer ? unitCounts : null,
-          }),
-        });
-
-        const data = await response.json();
-        if (!response.ok || !data.checkoutUrl) {
-          throw new Error(data.error || 'Erreur lors de la création du paiement Stripe');
-        }
-
-        // Redirection vers Stripe
+      } else if (data.checkoutUrl) {
         window.location.href = data.checkoutUrl;
       }
     } catch (err) {
