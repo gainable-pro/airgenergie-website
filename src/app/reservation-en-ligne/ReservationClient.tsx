@@ -304,71 +304,29 @@ export default function ReservationClient() {
         </div>
       </section>
 
-      {/* Benefits Grid */}
-      <section className="section-padding" style={{ padding: '5rem 0', background: 'white' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 4rem' }}>
-            <h2 style={{ fontSize: '2.2rem', marginBottom: '1rem', color: '#0F172A', fontWeight: '800' }}>
-              Pourquoi réserver votre entretien de climatisation en ligne ?
-            </h2>
-            <p style={{ fontSize: '1.1rem', color: 'var(--text-gray)' }}>
-              Simple, rapide et sécurisé. Profitez d'une expérience fluide pour assurer la longévité de vos installations.
-            </p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
-            {[
-              {
-                icon: <Wrench size={40} color="var(--primary-blue)" />,
-                title: "Économies d'Énergie",
-                text: "Une climatisation ou PAC bien entretenue consomme jusqu'à 30% d'électricité en moins. Rentabilisez votre forfait rapidement."
-              },
-              {
-                icon: <CheckCircle size={40} color="var(--primary-blue)" />,
-                title: "Qualité de l'Air Garantie",
-                text: "Élimination des pollens, poussières et moisissures. Notre désinfection professionnelle protège la santé de votre foyer."
-              },
-              {
-                icon: <ShieldCheck size={40} color="var(--primary-blue)" />,
-                title: "Garanties Assurances",
-                text: "Attestation légale périodique obligatoire remise à l'issue de l'intervention. Labellisé Entreprise Garantie 2025 et Assurance Décennale."
-              },
-              {
-                icon: <ShieldAlert size={40} color="var(--primary-blue)" />,
-                title: "Rappel Urgent la Veille",
-                text: "Nous confirmons l'heure exacte d'arrivée de notre technicien la veille pour vous éviter de bloquer votre journée."
-              }
-            ].map((item, idx) => (
-              <div key={idx} style={{
-                background: 'white',
-                padding: '2rem',
-                borderRadius: '1rem',
-                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
-                border: '1px solid #E2E8F0',
-                borderTop: '4px solid var(--primary-blue)'
-              }}>
-                <div style={{ marginBottom: '1.25rem' }}>{item.icon}</div>
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', color: '#0F172A', fontWeight: '700' }}>
-                  {item.title}
-                </h3>
-                <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem', lineHeight: '1.6', margin: 0 }}>
-                  {item.text}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Detailed Prestations Section */}
-      <section id="catalogue" style={{ background: '#F8FAFC', padding: '5rem 0', borderTop: '1px solid #E2E8F0', borderBottom: '1px solid #E2E8F0' }}>
+      <section id="catalogue" style={{ background: '#F8FAFC', padding: '5rem 0', borderBottom: '1px solid #E2E8F0' }}>
         <div className="container">
           <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 3rem' }}>
+            <span style={{
+              fontSize: '0.85rem',
+              fontWeight: '700',
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              color: 'var(--primary-blue)',
+              background: 'rgba(0,145,218,0.08)',
+              padding: '0.4rem 1rem',
+              borderRadius: '2rem',
+              display: 'inline-block',
+              marginBottom: '1rem'
+            }}>
+              Tarifs transparents & réservation directe
+            </span>
             <h2 style={{ fontSize: '2.5rem', color: '#0F172A', fontWeight: '800', marginBottom: '1rem', letterSpacing: '-0.02em' }}>
               Catalogue des Prestations & Forfaits
             </h2>
             <p style={{ color: 'var(--text-gray)', fontSize: '1.1rem', marginBottom: '2rem' }}>
-              Sélectionnez ci-dessous la prestation que vous désirez planifier chez vous.
+              Choisissez ci-dessous la prestation que vous désirez planifier chez vous.
             </p>
 
             {/* Category Filter Tabs */}
@@ -645,6 +603,67 @@ export default function ReservationClient() {
 
           {/* Interactive Booking Wizard Component */}
           <BookingWizard initialServiceId={preselectedService} />
+        </div>
+      </section>
+
+      {/* Why Entretien Benefits Section (Placed below catalog) */}
+      <section className="section-padding" style={{ padding: '5rem 0', background: '#F8FAFC', borderTop: '1px solid #E2E8F0' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 4rem' }}>
+            <h2 style={{ fontSize: '2.2rem', marginBottom: '1rem', color: '#0F172A', fontWeight: '800' }}>
+              Pourquoi entretenir sa climatisation & pompe à chaleur chaque année ?
+            </h2>
+            <p style={{ fontSize: '1.1rem', color: 'var(--text-gray)' }}>
+              Conservez le rendement d&apos;origine de votre appareil, réduisez vos factures d&apos;électricité et prolongez la durée de vie de vos équipements.
+            </p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+            {[
+              {
+                icon: <Wrench size={40} color="var(--primary-blue)" />,
+                title: "Économies d'Énergie (-30%)",
+                text: "Une climatisation ou PAC bien entretenue consomme jusqu'à 30% d'électricité en moins. Rentabilisez votre forfait d'entretien immédiatement."
+              },
+              {
+                icon: <FileText size={40} color="var(--primary-blue)" />,
+                title: "Restauration des Capacités Initiales",
+                text: "Le nettoyage de l'évaporateur et de la turbine redonne à votre appareil son débit d'air d'origine et sa capacité de rafraîchissement/chauffage initiale."
+              },
+              {
+                icon: <Clock size={40} color="var(--primary-blue)" />,
+                title: "Longévité Maximale du Matériel",
+                text: "Un entretien annuel prévient les surchauffes du compresseur Inverter et double la durée de vie moyenne de votre matériel (jusqu'à 15-20 ans)."
+              },
+              {
+                icon: <CheckCircle size={40} color="var(--primary-blue)" />,
+                title: "Qualité de l'Air & Santé",
+                text: "Élimination de 99% des pollens, poussières, moisissures et bactéries. Notre désinfection biocide certifiée protège les voies respiratoires de votre foyer."
+              },
+              {
+                icon: <ShieldCheck size={40} color="var(--primary-blue)" />,
+                title: "Conformité & Attestation Légale",
+                text: "Attestation d'entretien périodique obligatoire (Décret 2020-912) remise à l'issue de l'intervention. Labellisé Entreprise Garantie 2025."
+              }
+            ].map((item, idx) => (
+              <div key={idx} style={{
+                background: 'white',
+                padding: '2rem',
+                borderRadius: '1rem',
+                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
+                border: '1px solid #E2E8F0',
+                borderTop: '4px solid var(--primary-blue)'
+              }}>
+                <div style={{ marginBottom: '1.25rem' }}>{item.icon}</div>
+                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', color: '#0F172A', fontWeight: '700' }}>
+                  {item.title}
+                </h3>
+                <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem', lineHeight: '1.6', margin: 0 }}>
+                  {item.text}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </div>
