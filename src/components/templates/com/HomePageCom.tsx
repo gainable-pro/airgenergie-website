@@ -2,6 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Phone, CheckCircle, Clock, Award, MapPin } from 'lucide-react';
+import PartnersCarousel from '@/components/ui/PartnersCarousel';
+import GoogleReviewsCarousel from '@/components/ui/GoogleReviewsCarousel';
 
 export default function HomePageCom() {
   return (
@@ -193,6 +195,9 @@ export default function HomePageCom() {
         </div>
       </section>
 
+      {/* Partners Carousel (Aspiré/Construit avec URLs cliquables) */}
+      <PartnersCarousel />
+
       {/* Service Area Section */}
       <section className="section-padding" style={{ backgroundColor: '#F8FAFC' }}>
         <div className="container">
@@ -300,30 +305,8 @@ export default function HomePageCom() {
         </div>
       </section>
 
-      {/* Google Reviews Section */}
-      <section style={{ background: 'var(--bg-light)', padding: '3rem 0' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem', color: 'var(--text-dark)' }}>
-            Ils Nous Font Confiance
-          </h2>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
-            <div style={{ fontSize: '3rem', color: '#FBBC04' }}>★★★★★</div>
-            <div style={{ textAlign: 'left' }}>
-              <p style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--text-dark)', margin: 0 }}>4.9/5</p>
-              <p style={{ fontSize: '1rem', color: 'var(--text-gray)', margin: 0 }}>Basé sur les avis Google</p>
-            </div>
-          </div>
-          <a
-            href="https://share.google/sLKMxADrGA36sYOhR"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-outline"
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
-          >
-            Voir tous nos avis Google
-          </a>
-        </div>
-      </section>
+      {/* Google Reviews Carousel */}
+      <GoogleReviewsCarousel />
 
       {/* Reassurance Section */}
       <section className="section-padding" style={{ background: 'white' }}>

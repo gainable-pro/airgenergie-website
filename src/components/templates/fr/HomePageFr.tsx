@@ -2,7 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Phone, CheckCircle, Clock, Award, MapPin, Calendar } from 'lucide-react';
-import PartnersBanner from '@/components/ui/PartnersBanner';
+import PartnersCarousel from '@/components/ui/PartnersCarousel';
+import GoogleReviewsCarousel from '@/components/ui/GoogleReviewsCarousel';
 
 export default function HomePageFr() {
   return (
@@ -136,8 +137,8 @@ export default function HomePageFr() {
         </div>
       </section>
 
-      {/* Partners Banner (Aspiré/Construit) */}
-      <PartnersBanner />
+      {/* Partners Banner Carousel (avec URLs cliquables) */}
+      <PartnersCarousel />
 
       {/* High Quality Content Section - .FR Specific */}
       <section className="section-padding" style={{ background: 'white' }}>
@@ -300,29 +301,9 @@ export default function HomePageFr() {
         </div>
       </section>
 
-      {/* Reviews */}
-      <section style={{ background: '#F8FAFC', padding: '4.5rem 0', borderTop: '1px solid #E2E8F0' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <h2 style={{ fontSize: '2rem', color: '#0F172A', fontWeight: '800', marginBottom: '1.5rem' }}>
-            Avis de nos clients
-          </h2>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
-            <span style={{ fontSize: '2.5rem', color: '#FBBC04' }}>★★★★★</span>
-            <div style={{ textAlign: 'left' }}>
-              <span style={{ fontSize: '1.4rem', fontWeight: '800', display: 'block', color: '#0F172A' }}>4.9 / 5</span>
-              <span style={{ fontSize: '0.9rem', color: 'var(--text-light)' }}>Moyenne Google Business Profile</span>
-            </div>
-          </div>
-          <a
-            href="https://share.google/sLKMxADrGA36sYOhR"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-outline"
-          >
-            Consulter les avis clients
-          </a>
-        </div>
-      </section>
+      {/* Google Reviews Carousel */}
+      <GoogleReviewsCarousel />
+
     </div>
   );
 }
