@@ -70,8 +70,11 @@ export default function Footer() {
             </div>
 
             <div className={styles.copyright}>
-                <div className="container">
+                <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
                     <p>&copy; {currentYear} Air Energie. Tous droits réservés.</p>
+                    <p style={{ opacity: 0.85, fontSize: '0.8rem' }}>
+                        Partenaire certifié <a href="https://www.gainable.fr" target="_blank" rel="noopener" style={{ textDecoration: 'underline', color: 'inherit' }}>Gainable.fr - Réseau Climatisation & Pompes à Chaleur</a>
+                    </p>
                 </div>
             </div>
         </footer>
