@@ -14,6 +14,7 @@ const SERVICE_DURATIONS: Record<string, number> = {
   devis: 45, diagnostic: 45, preventive: 45, curative: 60,
   'double-split': 120, 'tri-split': 120, gainable: 45,
   console: 45, cassette: 45, thermodynamique: 45, 'pac-air-eau': 45, vrv: 90,
+  'reprogrammation-thermostat': 90,
 };
 
 function buildStripeLineItems(
@@ -177,6 +178,13 @@ function buildStripeLineItems(
         1,
         "Nettoyage de l'unité extérieure, contrôle de la pression hydraulique et des vases d'expansion."
       ));
+    } else if (serviceId === 'reprogrammation-thermostat') {
+      lineItems.push(formatItem(
+        "Re-programmation thermostat & Régulation",
+        200,
+        1,
+        "Vérification des thermostats, contact support pour mise à jour signal et réglage pression statique."
+      ));
     }
   }
 
@@ -201,7 +209,7 @@ export async function POST(request: NextRequest) {
       unitCounts,   // { split, gainable, cassette, console }
     } = body;
 
-    if (!serviceId || !totalAmount || !date || !timeSlot || !client?.nom || !client?.telephone) {
+    if (!serviceId || typeof totalAmount !== 'number' || !date || !timeSlot || !client?.nom || !client?.telephone) {
       return NextResponse.json({ error: 'Paramètres manquants' }, { status: 400 });
     }
 
@@ -309,7 +317,7 @@ export async function POST(request: NextRequest) {
       payment_method_types: ['card'],
       mode: 'payment',
       locale: 'fr',
-      customer_email: client.email || undefined,
+      customer_email: (client.email && typeof client.email === 'string' && client.email.includes('@')) ? client.email.trim() : undefined,
       line_items: lineItems,
       discounts: discounts.length > 0 ? discounts : undefined,
 

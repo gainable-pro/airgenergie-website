@@ -394,6 +394,37 @@ const SERVICES_CATALOG: Record<string, ServiceData> = {
       'Analyse de l\'eau du réseau (détection de boues ou manque d\'inhibiteur)',
       'Signature et délivrance du Cerfa officiel de contrôle d\'étanchéité'
     ]
+  },
+  'reprogrammation-thermostat': {
+    id: 'reprogrammation-thermostat',
+    category: 'clim',
+    name: 'Re-programmation thermostat',
+    price: 200,
+    duration: '1h à 1h30',
+    image: '/images/thermostat-airzone.jpg',
+    subtitle: 'Régulation gainable, Airzone, multizone • Contrôle, mise à jour & pression statique',
+    desc: 'Vérification du bon fonctionnement des thermostats et de leur mesure, contact avec le support technique pour éventuelle mise à jour système afin de booster le signal, vérification et augmentation de la pression statique. Pour tout remplacement de thermostat Airzone, une commande doit être effectuée au préalable. Si un code erreur est lié à un problème carte ou Webserver, un diagnostic sera effectué au préalable.',
+    details: [
+      'Vérification du bon fonctionnement des thermostats et de leur mesure',
+      'Contact support technique pour éventuelle mise à jour système afin de booster le signal',
+      'Vérification et augmentation de la pression statique du gainable',
+      'Contrôle des communications bus et radio (Airzone, Daikin, Delta Dore, etc.)',
+      'Pour tout remplacement de thermostat Airzone : commande à effectuer au préalable',
+      'Si code erreur lié à la carte ou au Webserver : diagnostic effectué au préalable'
+    ],
+    conseilsTitle: 'Expertise Régulation : Pourquoi re-programmer vos thermostats et ajuster la pression ?',
+    conseilsContent: 'Sur une installation gainable multizone (Airzone, Koolnova, Delta Dore...), la perte de signal radio, le décalage de sonde de température ou une mauvaise pression statique dégradent le confort de vos pièces et entraînent une surconsommation. Notre technicien qualifié contrôle les mesures, contacte le support technique fabricant pour appliquer les dernières mises à jour du firmware afin de booster la portée du signal, et calibre la pression statique pour une circulation d\'air optimale.',
+    conseilsList: [
+      'Une perte récurrente de connexion entre thermostat et centrale nécessite souvent une mise à jour logicielle ou un ré-appairage de canal.',
+      'Pour un thermostat physiquement cassé ou défaillant, contactez-nous au préalable pour commander la référence exacte.',
+      'Si un code d\'erreur pointe vers la carte électronique principale ou le Webserver, un diagnostic électrique approfondi est indispensable.'
+    ],
+    techniqueSpecs: [
+      'Mesure et étalonnage des sondes de température d\'ambiance',
+      'Contrôle du niveau de signal radio / bus filaire de chaque zone',
+      'Accès aux paramètres installateur et passerelle de communication',
+      'Réglage de la pression statique disponible sur le groupe intérieur gainable'
+    ]
   }
 };
 

@@ -223,6 +223,24 @@ const DETAILED_SERVICES = [
       'Test d\'étanchéité électronique du circuit de fluide',
       'Remise du Cerfa réglementaire et de l\'attestation d\'entretien'
     ]
+  },
+  {
+    id: 'reprogrammation-thermostat',
+    category: 'clim',
+    name: 'Re-programmation thermostat',
+    price: 200,
+    duration: '1h à 1h30',
+    image: '/images/thermostat-airzone.jpg',
+    subtitle: 'Régulation gainable, Airzone, multizone • Contrôle, mise à jour & pression statique',
+    desc: 'Vérification du bon fonctionnement des thermostats et de leur mesure, contact avec le support technique pour éventuelle mise à jour système afin de booster le signal, vérification et augmentation de pression statique. Pour tout remplacement de thermostat Airzone, une commande doit être effectuée au préalable. Si un code erreur est lié à un problème carte ou Webserver, un diagnostic sera effectué au préalable.',
+    details: [
+      'Vérification du bon fonctionnement des thermostats et de leur mesure',
+      'Contact support technique pour éventuelle mise à jour système afin de booster le signal',
+      'Vérification et augmentation de la pression statique du gainable',
+      'Contrôle des communications bus et radio (Airzone, Daikin, Delta Dore, etc.)',
+      'Pour tout remplacement de thermostat Airzone : commande à effectuer au préalable',
+      'Si code erreur lié à la carte ou au Webserver : diagnostic effectué au préalable'
+    ]
   }
 ];
 

@@ -17,7 +17,8 @@ const MAINTENANCE_SERVICES = [
   { id: 'cassette', name: 'Entretien de climatisation cassette', price: 180, duration: '45 min', desc: 'Nettoyage de cassette de soufflage 4 voies encastrée dans le plafond (bureaux ou commerces).' },
   { id: 'thermodynamique', name: 'Entretien ballon thermodynamique', price: 174, duration: '45 min', desc: 'Contrôle étanchéité fluide, nettoyage évaporateur, vérification de l\'anode et contrôle du bon fonctionnement.' },
   { id: 'pac-air-eau', name: 'Entretien – Pompe à Chaleur Air/Eau', price: 270, duration: '45 min', desc: 'Nettoyage et contrôle de l\'unité extérieure, contrôle de la pression hydraulique et des vases d\'expansion.' },
-  { id: 'vrv', name: 'Entretien Système VRV / DRV', price: 0, duration: 'Sur mesure', desc: 'Entretien technique complet de vos installations VRV/DRV. Composez votre installation par type d\'unités (splits, gainables, cassettes, consoles) pour un tarif remisé de -10%.' }
+  { id: 'vrv', name: 'Entretien Système VRV / DRV', price: 0, duration: 'Sur mesure', desc: 'Entretien technique complet de vos installations VRV/DRV. Composez votre installation par type d\'unités (splits, gainables, cassettes, consoles) pour un tarif remisé de -10%.' },
+  { id: 'reprogrammation-thermostat', name: 'Re-programmation thermostat', price: 200, duration: '1h à 1h30', desc: 'Vérification thermostats et mesures, contact support technique pour mise à jour signal, vérification et augmentation pression statique.' }
 ];
 
 // Unit type prices for multi-unit and VRV composer
@@ -240,9 +241,9 @@ Notes client : ${formData.notes || 'Aucune'}`;
       } else if (data.checkoutUrl) {
         window.location.href = data.checkoutUrl;
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error creating booking:', err);
-      alert('Une erreur est survenue lors de la réservation. Veuillez réessayer ou nous contacter directement par téléphone.');
+      alert(err?.message || 'Une erreur est survenue lors de la réservation. Veuillez réessayer ou nous contacter directement par téléphone.');
     } finally {
       setLoading(false);
     }
