@@ -20,11 +20,6 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/booking/:path*',
-        destination: '/entretien',
-        permanent: true,
-      },
-      {
         source: '/member-profiles',
         destination: '/',
         permanent: true,

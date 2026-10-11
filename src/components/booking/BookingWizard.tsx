@@ -151,7 +151,7 @@ export default function BookingWizard({ initialServiceId }: { initialServiceId?:
   const getNextDays = () => {
     const days = [];
     const today = new Date();
-    let current = new Date(today);
+    const current = new Date(today);
     current.setDate(current.getDate() + 1);
     while (days.length < 14) {
       if (current.getDay() !== 0) {
