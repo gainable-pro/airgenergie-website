@@ -112,6 +112,13 @@ const OFFICIAL_CATALOG = [
     price: 270,
     category: 'pac',
   },
+  {
+    id: 'reprogrammation-thermostat',
+    name: 'Re-programmation thermostat',
+    description: "Vérification du bon fonctionnement des thermostats et de leur mesure, contact avec le support technique pour éventuelle mise à jour système afin de booster le signal, vérification et augmentation de la pression statique. Pour tout remplacement de thermostat Airzone, une commande doit être effectuée au préalable.",
+    price: 200,
+    category: 'clim',
+  },
 
   // ── Extra unit items for dynamic composer ──────────────────────────────────
   {

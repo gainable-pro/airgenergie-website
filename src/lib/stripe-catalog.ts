@@ -108,6 +108,13 @@ export const STRIPE_CATALOG = {
     "price": 192,
     "category": "curative"
   },
+  "reprogrammation-thermostat": {
+    "productId": "prod_VQo0HHQlYM4TTL",
+    "priceId": "price_1UPwOqFVMqGo2msFg2quphqv",
+    "name": "Re-programmation thermostat",
+    "price": 200,
+    "category": "clim"
+  },
   "VRV_COUPON_ID": "VRV-10PCT"
 } as const;
 
