@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { google } from 'googleapis';
-import { supabase } from '@/lib/supabaseClient';
-import { sendBookingNotificationEmail } from '@/lib/email';
+import { fulfillPaidBooking } from '@/lib/booking-fulfillment';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_dummy', {
   apiVersion: '2024-06-20',
@@ -195,25 +193,25 @@ export async function POST(request: NextRequest) {
     if (session.payment_status === 'paid' && session.metadata) {
       console.log('💳 Payment confirmed for session:', session.id);
 
-      // Run Google Calendar event creation, Supabase lead insertion, and email notification in parallel
-      const meta = session.metadata;
-      await Promise.allSettled([
-        createCalendarEvent(meta),
-        insertSupabaseLead(meta, session.id),
-        sendBookingNotificationEmail({
-          serviceName: meta.serviceName,
-          totalAmount: meta.totalAmount,
-          date: meta.date,
-          timeSlot: meta.timeSlot,
-          clientNom: meta.clientNom,
-          clientTelephone: meta.clientTelephone,
-          clientEmail: meta.clientEmail,
-          clientVille: meta.clientVille,
-          clientNotes: meta.clientNotes,
-          composition: meta.composition,
-          isPaid: true,
-        }),
-      ]);
+      let invoicePdf: string | null = null;
+      let hostedInvoiceUrl: string | null = null;
+      if (session.invoice) {
+        try {
+          const invoice = typeof session.invoice === 'string'
+            ? await stripe.invoices.retrieve(session.invoice)
+            : session.invoice;
+          invoicePdf = invoice.invoice_pdf || invoice.hosted_invoice_url || null;
+          hostedInvoiceUrl = invoice.hosted_invoice_url || null;
+        } catch (e) {
+          console.warn('Could not retrieve invoice for webhook:', e);
+        }
+      }
+
+      await fulfillPaidBooking({
+        session,
+        invoicePdf,
+        hostedInvoiceUrl,
+      });
     }
   }
 

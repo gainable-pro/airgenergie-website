@@ -52,6 +52,7 @@ export interface BookingCalendarData {
   clientVille: string;
   clientNotes?: string;
   isVrv?: boolean | string;
+  stripeSessionId?: string;
 }
 
 export async function createCalendarEvent(data: BookingCalendarData) {
@@ -63,6 +64,23 @@ export async function createCalendarEvent(data: BookingCalendarData) {
 
   try {
     const calendar = getGoogleCalendarClient();
+
+    // Prevent duplicate event creation if already created for this Stripe session
+    if (data.stripeSessionId) {
+      try {
+        const existing = await calendar.events.list({
+          calendarId,
+          q: data.stripeSessionId,
+          maxResults: 5,
+        });
+        if (existing.data.items && existing.data.items.length > 0) {
+          console.log(`ℹ️ Google Calendar event already exists for session ${data.stripeSessionId}`);
+          return existing.data.items[0];
+        }
+      } catch (listErr) {
+        console.warn('Could not check existing calendar events:', listErr);
+      }
+    }
 
     const realDuration = typeof data.durationMins === 'string' ? parseInt(data.durationMins || '45') : (data.durationMins || 45);
     const startTime = data.slotStartTime || '08:00';
@@ -81,6 +99,7 @@ export async function createCalendarEvent(data: BookingCalendarData) {
       data.clientEmail ? `📧 Email : ${data.clientEmail}` : null,
       `📍 Ville : ${data.clientVille}`,
       data.clientNotes ? `📝 Notes : ${data.clientNotes}` : null,
+      data.stripeSessionId ? `💳 Stripe Session : ${data.stripeSessionId}` : null,
       `\n⏱️ Durée réelle : ${realDuration} min`,
       `🚗 Buffer trajet inclus : ${TRAVEL_BUFFER_MINUTES} min`,
     ].filter(Boolean).join('\n');

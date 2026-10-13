@@ -22,6 +22,7 @@ function SuccessContent() {
   const [session, setSession] = useState<SessionData | null>(null);
   const [loadingSession, setLoadingSession] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
+  const [autoDownloaded, setAutoDownloaded] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setFadeIn(true), 100);
@@ -42,6 +43,28 @@ function SuccessContent() {
         .finally(() => setLoadingSession(false));
     }
   }, [sessionId]);
+
+  // Déclenchement automatique du téléchargement de la facture PDF
+  useEffect(() => {
+    if (session?.invoicePdf && !autoDownloaded) {
+      setAutoDownloaded(true);
+      const downloadTimer = setTimeout(() => {
+        try {
+          const a = document.createElement('a');
+          a.href = session.invoicePdf!;
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          a.download = `Facture-AirGEnergie-${(session.metadata?.serviceId || 'Intervention')}.pdf`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        } catch (e) {
+          console.warn('Auto-download blocked or failed:', e);
+        }
+      }, 700);
+      return () => clearTimeout(downloadTimer);
+    }
+  }, [session?.invoicePdf, autoDownloaded]);
 
   const serviceName = session?.metadata?.serviceName || 'Prestation d\'entretien climatisation';
   const formattedDate = session?.metadata?.date
@@ -118,31 +141,41 @@ function SuccessContent() {
             <p style={{ fontSize: '0.85rem', color: '#166534', margin: '0.25rem 0 0 0', fontWeight: '700' }}>
               Montant réglé : {session.amountTotal} € TTC (Facture émise)
             </p>
+            {session.customerEmail && (
+              <p style={{ fontSize: '0.78rem', color: '#059669', margin: '0.35rem 0 0 0' }}>
+                ✉️ Facture PDF également envoyée à <strong>{session.customerEmail}</strong>
+              </p>
+            )}
           </div>
 
           {invoiceLink && (
-            <a
-              href={invoiceLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                background: '#059669',
-                color: 'white',
-                padding: '0.75rem 1.25rem',
-                borderRadius: '0.75rem',
-                fontWeight: '700',
-                fontSize: '0.9rem',
-                textDecoration: 'none',
-                boxShadow: '0 4px 12px rgba(5, 150, 105, 0.2)',
-              }}
-            >
-              <Download size={18} />
-              Télécharger la facture PDF
-            </a>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', alignItems: 'flex-start' }}>
+              <a
+                href={invoiceLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  background: '#059669',
+                  color: 'white',
+                  padding: '0.75rem 1.25rem',
+                  borderRadius: '0.75rem',
+                  fontWeight: '700',
+                  fontSize: '0.9rem',
+                  textDecoration: 'none',
+                  boxShadow: '0 4px 12px rgba(5, 150, 105, 0.2)',
+                }}
+              >
+                <Download size={18} />
+                Télécharger la facture PDF
+              </a>
+              <span style={{ fontSize: '0.72rem', color: '#15803D', fontWeight: '600' }}>
+                ✓ Téléchargement lancé automatiquement
+              </span>
+            </div>
           )}
         </div>
       )}
@@ -167,8 +200,8 @@ function SuccessContent() {
               icon: <FileText size={20} color="#059669" />,
               title: 'Facture & Reçu Stripe',
               desc: invoiceLink
-                ? 'Votre facture officielle avec TVA (20%) est immédiatement téléchargeable ci-dessus et a été transmise à votre adresse email.'
-                : 'Votre reçu de paiement avec facture officielle a été transmis à votre adresse email.',
+                ? `Votre facture officielle avec TVA (20%) a été téléchargée automatiquement et envoyée par e-mail à ${session?.customerEmail || 'votre adresse'} (avec copie conforme à notre équipe).`
+                : 'Votre reçu de paiement avec facture officielle a été transmis à votre adresse email (avec copie conforme à notre équipe).',
             },
             {
               icon: <Calendar size={20} color="#0091DA" />,

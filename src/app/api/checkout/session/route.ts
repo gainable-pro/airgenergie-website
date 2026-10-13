@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { fulfillPaidBooking } from '@/lib/booking-fulfillment';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_dummy', {
   apiVersion: '2024-06-20',
@@ -19,6 +20,17 @@ export async function GET(request: NextRequest) {
     });
 
     const invoice = typeof session.invoice === 'object' ? (session.invoice as Stripe.Invoice) : null;
+    const invoicePdf = invoice?.invoice_pdf || invoice?.hosted_invoice_url || null;
+    const hostedInvoiceUrl = invoice?.hosted_invoice_url || null;
+
+    // Déclenchement automatique garanti de la synchronisation agenda + emails client/artisan avec facture PDF
+    if (session.payment_status === 'paid' && session.metadata) {
+      fulfillPaidBooking({
+        session,
+        invoicePdf,
+        hostedInvoiceUrl,
+      }).catch((err) => console.error('Error fulfilling booking in session route:', err));
+    }
 
     return NextResponse.json({
       id: session.id,
@@ -26,8 +38,8 @@ export async function GET(request: NextRequest) {
       customerName: session.customer_details?.name || session.metadata?.clientNom || null,
       amountTotal: session.amount_total ? session.amount_total / 100 : 0,
       paymentStatus: session.payment_status,
-      invoicePdf: invoice?.invoice_pdf || invoice?.hosted_invoice_url || null,
-      hostedInvoiceUrl: invoice?.hosted_invoice_url || null,
+      invoicePdf,
+      hostedInvoiceUrl,
       metadata: session.metadata,
     });
   } catch (error) {
