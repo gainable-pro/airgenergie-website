@@ -11,9 +11,7 @@ interface PageProps {
     params: Promise<{ ville: string }>;
 }
 
-export async function generateStaticParams() {
-    return [];
-}
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { ville } = await params;

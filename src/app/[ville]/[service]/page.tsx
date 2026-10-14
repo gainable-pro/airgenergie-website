@@ -11,10 +11,7 @@ interface PageProps {
     params: Promise<{ ville: string; service: string }>;
 }
 
-export async function generateStaticParams() {
-    // Generate only a subset of params if necessary, or let it generate dynamically
-    return []; 
-}
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { ville, service } = await params;
@@ -30,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const alternates = await getSeoAlternates(`/${ville}/${service}`);
 
     return {
-        title: `${serviceName} à ${cityName} - Expert Garantie 2025 | Air G Energie`,
+        title: `${serviceName} à ${cityName} - Artisan RGE & Devis Gratuit | Air G Energie`,
         description: spine.heroSubtitle.substring(0, 155),
         alternates,
         openGraph: {
