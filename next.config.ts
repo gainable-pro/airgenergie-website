@@ -117,6 +117,38 @@ const nextConfig: NextConfig = {
         destination: '/climatisation',
         permanent: true,
       },
+
+      // ─── 24 URLs Indexées Wix airgenergie.fr (Conservation Ancienneté & SEO) ───
+      { source: '/plomberie-sanitaire', destination: '/contact', permanent: true },
+      { source: '/depannage-plomberie', destination: '/contact', permanent: true },
+      { source: '/contacter-air-energie', destination: '/contact', permanent: true },
+      { source: '/book-online', destination: '/reservation-en-ligne', permanent: true },
+      { source: '/interventions-realisations', destination: '/zones-intervention', permanent: true },
+
+      // Villes directes Wix
+      { source: '/installation-climatisation-miramas', destination: '/miramas/climatisation', permanent: true },
+      { source: '/pompe-a-chaleur-miramas', destination: '/miramas/pompe-a-chaleur', permanent: true },
+      { source: '/installation-climatisation/saint-chamas', destination: '/saint-chamas/climatisation', permanent: true },
+      { source: '/installation-climatisation/lambesc', destination: '/lambesc/climatisation', permanent: true },
+      { source: '/installation-climatisation/velaux', destination: '/velaux/climatisation', permanent: true },
+      { source: '/installation-climatisation/senas', destination: '/senas/climatisation', permanent: true },
+      { source: '/installation-climatisation/mouries', destination: '/mouries/climatisation', permanent: true },
+      { source: '/installation-climatisation/jouques', destination: '/jouques/climatisation', permanent: true },
+      { source: '/installation-climatisation/cabannes', destination: '/cabannes/climatisation', permanent: true },
+      { source: '/installation-climatisation/gainable-grans', destination: '/grans/climatisation', permanent: true },
+      { source: '/installation-climatisation/eco-expert-heiwa-lancon-provence', destination: '/lancon-provence/climatisation', permanent: true },
+
+      // Pompes à chaleur villes Wix
+      { source: '/pompe-a-chaleur/saint-victoret-heiwa', destination: '/pompe-a-chaleur', permanent: true },
+      { source: '/pompe-a-chaleur/molleges-daikin', destination: '/molleges/pompe-a-chaleur', permanent: true },
+      { source: '/pompe-a-chaleur/saint-remy-de-provence-daikin', destination: '/saint-remy-de-provence/pompe-a-chaleur', permanent: true },
+
+      // Services / Forfaits Wix
+      { source: '/service-page/entretien-de-climatisation-gainable', destination: '/gainable', permanent: true },
+      { source: '/service-page/entretien-de-climatisation-cassette', destination: '/reservation-en-ligne/cassette', permanent: true },
+      { source: '/service-page/tri-split-entretien-de-climatisation', destination: '/reservation-en-ligne/tri-split', permanent: true },
+      { source: '/service-page/entretien-pompe-:path*', destination: '/reservation-en-ligne/pac-air-eau', permanent: true },
+      { source: '/service-page/:path*', destination: '/reservation-en-ligne', permanent: true },
     ];
   },
 };
