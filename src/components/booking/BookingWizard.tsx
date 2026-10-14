@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { supabase } from '@/lib/supabaseClient';
-import { Check, Calendar as CalendarIcon, Clock, User, Phone, Mail, MapPin, ChevronRight, ChevronLeft, ShieldCheck, Info } from 'lucide-react';
+import { Check, Calendar as CalendarIcon, Clock, User, Phone, Mail, MapPin, ChevronRight, ChevronLeft, ShieldCheck, Info, Loader2 } from 'lucide-react';
 import { BOOKING_CITIES_50KM, BOOKING_CITIES_100KM } from '@/lib/seo-data';
 
 const MAINTENANCE_SERVICES = [
@@ -148,22 +148,83 @@ export default function BookingWizard({ initialServiceId }: { initialServiceId?:
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const getNextDays = () => {
-    const days = [];
-    const today = new Date();
-    const current = new Date(today);
-    current.setDate(current.getDate() + 1);
-    while (days.length < 14) {
-      if (current.getDay() !== 0) {
-        const dateStr = current.toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short' });
-        const fullDate = current.toISOString().split('T')[0];
-        days.push({ display: dateStr, value: fullDate });
-      }
-      current.setDate(current.getDate() + 1);
-    }
-    return days;
+  // Mois courant affiché dans le calendrier
+  const [currentMonth, setCurrentMonth] = useState<Date>(() => new Date());
+
+  // Disponibilités Google Calendar en temps réel pour le jour sélectionné
+  const [slotsAvailability, setSlotsAvailability] = useState<{ id: string; label: string; available: boolean; reason: string | null }[]>([]);
+  const [loadingSlots, setLoadingSlots] = useState<boolean>(false);
+
+  // Navigation mensuelle (max 3 mois dans le futur)
+  const today = new Date();
+  const isCurrentMonth = currentMonth.getFullYear() === today.getFullYear() && currentMonth.getMonth() === today.getMonth();
+  const maxMonth = new Date(today.getFullYear(), today.getMonth() + 3, 1);
+  const isMaxMonth = currentMonth >= maxMonth;
+
+  const handlePrevMonth = () => {
+    if (isCurrentMonth) return;
+    setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1));
   };
-  const days = getNextDays();
+
+  const handleNextMonth = () => {
+    if (isMaxMonth) return;
+    setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1));
+  };
+
+  // Génération des jours du mois sélectionné
+  const year = currentMonth.getFullYear();
+  const month = currentMonth.getMonth();
+  const totalDaysInMonth = new Date(year, month + 1, 0).getDate();
+  const firstDayOfWeek = (new Date(year, month, 1).getDay() + 6) % 7; // 0 = Lundi, 6 = Dimanche
+
+  const todayStr = new Date().toISOString().split('T')[0];
+
+  const daysInMonth = [];
+  for (let d = 1; d <= totalDaysInMonth; d++) {
+    const dateObj = new Date(year, month, d);
+    const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+    const isSunday = dateObj.getDay() === 0;
+    const isPastOrToday = dateStr <= todayStr; // Réservations à partir de demain
+    daysInMonth.push({
+      dayNumber: d,
+      dateStr,
+      isSunday,
+      isPastOrToday,
+      disabled: isSunday || isPastOrToday,
+    });
+  }
+
+  // Interrogation en direct de Google Calendar dès qu'une date est cliquée
+  React.useEffect(() => {
+    if (!selectedDate) {
+      setSlotsAvailability([]);
+      return;
+    }
+    let isCancelled = false;
+    setLoadingSlots(true);
+    setSelectedTimeSlot('');
+
+    fetch(`/api/availability?date=${selectedDate}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (!isCancelled && data.slots) {
+          setSlotsAvailability(data.slots);
+        }
+      })
+      .catch((err) => {
+        console.warn('Erreur vérification disponibilité Google Calendar:', err);
+        if (!isCancelled) {
+          setSlotsAvailability(TIME_SLOTS.map((s) => ({ id: s.split(' ')[0], label: s, available: true, reason: null })));
+        }
+      })
+      .finally(() => {
+        if (!isCancelled) setLoadingSlots(false);
+      });
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [selectedDate]);
 
   const updateUnit = (type: keyof UnitCounts, delta: number) => {
     setUnitCounts(prev => ({ ...prev, [type]: Math.max(0, prev[type] + delta) }));
@@ -390,35 +451,220 @@ Notes client : ${formData.notes || 'Aucune'}`;
             <h3 style={{ fontSize: '1.25rem', color: '#0F172A', fontWeight: '800', marginBottom: '1.5rem' }}>
               Étape 1 : Sélectionnez la date et le créneau horaire
             </h3>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+              {/* Calendrier Mensuel avec navigation */}
               <div>
-                <h4 style={{ fontSize: '1rem', fontWeight: '700', color: '#0F172A', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <CalendarIcon size={18} style={{ color: 'var(--primary-blue)' }} /> Choisir le jour :
+                <h4 style={{ fontSize: '1rem', fontWeight: '700', color: '#0F172A', marginBottom: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <CalendarIcon size={18} style={{ color: 'var(--primary-blue)' }} /> Choisir le jour d&apos;intervention :
                 </h4>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.5rem', maxHeight: '260px', overflowY: 'auto', paddingRight: '0.25rem' }} className="styled-scrollbar">
-                  {days.map((day) => (
-                    <button key={day.value} type="button" onClick={() => setSelectedDate(day.value)}
-                      style={{ padding: '0.75rem 0.25rem', border: selectedDate === day.value ? '2px solid var(--primary-blue)' : '1px solid #E2E8F0', background: selectedDate === day.value ? 'rgba(0,145,218,0.05)' : 'white', borderRadius: '0.5rem', cursor: 'pointer', textAlign: 'center', fontSize: '0.85rem', fontWeight: selectedDate === day.value ? '700' : '500', color: selectedDate === day.value ? 'var(--primary-blue)' : '#475569', transition: 'all 0.15s ease' }}>
-                      <span style={{ display: 'block', fontSize: '0.7rem', textTransform: 'uppercase', opacity: 0.7 }}>{day.display.split(' ')[0]}</span>
-                      <span style={{ display: 'block', fontSize: '1.1rem', fontWeight: 'bold' }}>{day.display.split(' ')[1]}</span>
-                      <span style={{ display: 'block', fontSize: '0.7rem', opacity: 0.7 }}>{day.display.split(' ')[2]}</span>
-                    </button>
+
+                {/* Sélecteur de mois */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem', background: '#F8FAFC', padding: '0.6rem 0.85rem', borderRadius: '0.75rem', border: '1px solid #E2E8F0' }}>
+                  <button
+                    type="button"
+                    onClick={handlePrevMonth}
+                    disabled={isCurrentMonth}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.2rem',
+                      padding: '0.35rem 0.65rem',
+                      border: '1px solid #CBD5E1',
+                      borderRadius: '0.5rem',
+                      background: isCurrentMonth ? '#F1F5F9' : 'white',
+                      color: isCurrentMonth ? '#94A3B8' : '#0F172A',
+                      cursor: isCurrentMonth ? 'not-allowed' : 'pointer',
+                      fontSize: '0.8rem',
+                      fontWeight: '700',
+                      transition: 'all 0.15s ease',
+                    }}
+                  >
+                    <ChevronLeft size={16} /> Préc.
+                  </button>
+
+                  <div style={{ fontSize: '1rem', fontWeight: '800', color: '#0F172A', textTransform: 'capitalize' }}>
+                    {currentMonth.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })}
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={handleNextMonth}
+                    disabled={isMaxMonth}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.2rem',
+                      padding: '0.35rem 0.65rem',
+                      border: '1px solid #CBD5E1',
+                      borderRadius: '0.5rem',
+                      background: isMaxMonth ? '#F1F5F9' : 'white',
+                      color: isMaxMonth ? '#94A3B8' : '#0F172A',
+                      cursor: isMaxMonth ? 'not-allowed' : 'pointer',
+                      fontSize: '0.8rem',
+                      fontWeight: '700',
+                      transition: 'all 0.15s ease',
+                    }}
+                  >
+                    Suiv. <ChevronRight size={16} />
+                  </button>
+                </div>
+
+                {/* En-tête des jours de la semaine */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '0.35rem', marginBottom: '0.35rem', textAlign: 'center' }}>
+                  {['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'].map((w) => (
+                    <div key={w} style={{ fontSize: '0.72rem', fontWeight: '800', color: w === 'Dim' ? '#EF4444' : '#64748B', textTransform: 'uppercase' }}>
+                      {w}
+                    </div>
                   ))}
+                </div>
+
+                {/* Grille des jours du mois */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '0.35rem' }}>
+                  {/* Espaces vides début de mois */}
+                  {Array.from({ length: firstDayOfWeek }).map((_, i) => (
+                    <div key={`empty-${i}`} style={{ height: '38px' }} />
+                  ))}
+
+                  {/* Boutons des jours */}
+                  {daysInMonth.map((day) => {
+                    const isSelected = selectedDate === day.dateStr;
+                    return (
+                      <button
+                        key={day.dateStr}
+                        type="button"
+                        disabled={day.disabled}
+                        onClick={() => setSelectedDate(day.dateStr)}
+                        title={day.isSunday ? 'Fermé le dimanche' : day.isPastOrToday ? 'Réservations à partir de demain' : undefined}
+                        style={{
+                          height: '38px',
+                          border: isSelected ? '2px solid var(--primary-blue)' : '1px solid #E2E8F0',
+                          background: isSelected ? 'var(--primary-blue)' : day.disabled ? '#F8FAFC' : 'white',
+                          color: isSelected ? 'white' : day.disabled ? '#CBD5E1' : '#0F172A',
+                          borderRadius: '0.5rem',
+                          cursor: day.disabled ? 'not-allowed' : 'pointer',
+                          fontSize: '0.88rem',
+                          fontWeight: isSelected ? '800' : '600',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          transition: 'all 0.15s ease',
+                          boxShadow: isSelected ? '0 2px 8px rgba(0,145,218,0.3)' : 'none',
+                        }}
+                      >
+                        {day.dayNumber}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.75rem', fontSize: '0.75rem', color: '#64748B' }}>
+                  <span>✓ Réservations possibles jusqu&apos;à 3 mois</span>
+                  <span style={{ color: '#EF4444', fontWeight: '600' }}>Dimanche : Fermé</span>
                 </div>
               </div>
+
+              {/* Créneaux horaires synchronisés en direct */}
               <div>
-                <h4 style={{ fontSize: '1rem', fontWeight: '700', color: '#0F172A', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <Clock size={18} style={{ color: 'var(--primary-blue)' }} /> Choisir le créneau :
+                <h4 style={{ fontSize: '1rem', fontWeight: '700', color: '#0F172A', marginBottom: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <Clock size={18} style={{ color: 'var(--primary-blue)' }} /> Choisir le créneau horaire :
                 </h4>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                  {TIME_SLOTS.map((slot) => (
-                    <button key={slot} type="button" disabled={!selectedDate} onClick={() => setSelectedTimeSlot(slot)}
-                      style={{ padding: '1rem', border: selectedTimeSlot === slot ? '2px solid var(--primary-blue)' : '1px solid #E2E8F0', background: selectedTimeSlot === slot ? 'rgba(0,145,218,0.05)' : 'white', borderRadius: '0.75rem', cursor: selectedDate ? 'pointer' : 'not-allowed', textAlign: 'left', fontSize: '1rem', fontWeight: selectedTimeSlot === slot ? '700' : '500', color: selectedTimeSlot === slot ? 'var(--primary-blue)' : '#334155', opacity: selectedDate ? 1 : 0.5, transition: 'all 0.15s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span>{slot}</span>
-                      {selectedTimeSlot === slot && <Check size={18} style={{ color: 'var(--primary-blue)' }} />}
-                    </button>
-                  ))}
-                </div>
+
+                {!selectedDate ? (
+                  <div style={{ background: '#F8FAFC', border: '1.5px dashed #CBD5E1', borderRadius: '0.75rem', padding: '2.5rem 1.5rem', textAlign: 'center', color: '#64748B' }}>
+                    <CalendarIcon size={36} style={{ margin: '0 auto 0.5rem', opacity: 0.4, color: 'var(--primary-blue)' }} />
+                    <p style={{ margin: 0, fontSize: '0.92rem', fontWeight: '700', color: '#334155' }}>
+                      Sélectionnez un jour sur le calendrier
+                    </p>
+                    <p style={{ margin: '0.35rem 0 0 0', fontSize: '0.8rem', color: '#64748B' }}>
+                      Les disponibilités de notre agenda s&apos;afficheront en temps réel.
+                    </p>
+                  </div>
+                ) : loadingSlots ? (
+                  <div style={{ background: '#F0F9FF', border: '1px solid #BAE6FD', borderRadius: '0.75rem', padding: '2.5rem 1.5rem', textAlign: 'center', color: '#0369A1' }}>
+                    <Loader2 size={32} style={{ margin: '0 auto 0.75rem', animation: 'spin 1s linear infinite' }} />
+                    <p style={{ margin: 0, fontSize: '0.95rem', fontWeight: '800' }}>
+                      Vérification de l&apos;agenda en direct...
+                    </p>
+                    <p style={{ margin: '0.35rem 0 0 0', fontSize: '0.8rem', color: '#0284C7' }}>
+                      Interrogation de Google Calendar pour le {new Date(selectedDate).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}
+                    </p>
+                  </div>
+                ) : (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                    <div style={{ fontSize: '0.82rem', fontWeight: '700', color: '#0284C7', background: '#F0F9FF', padding: '0.4rem 0.75rem', borderRadius: '0.5rem', border: '1px solid #BAE6FD', marginBottom: '0.25rem' }}>
+                      📅 {new Date(selectedDate).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}
+                    </div>
+
+                    {(slotsAvailability.length > 0 ? slotsAvailability : TIME_SLOTS.map(s => ({ id: s.split(' ')[0], label: s, available: true, reason: null }))).map((slot) => {
+                      const isSelected = selectedTimeSlot === slot.label;
+                      const isAvailable = slot.available;
+                      return (
+                        <button
+                          key={slot.id}
+                          type="button"
+                          disabled={!isAvailable}
+                          onClick={() => setSelectedTimeSlot(slot.label)}
+                          style={{
+                            padding: '0.95rem 1.15rem',
+                            border: isSelected
+                              ? '2px solid var(--primary-blue)'
+                              : !isAvailable
+                              ? '1px solid #E2E8F0'
+                              : '1px solid #CBD5E1',
+                            background: isSelected
+                              ? 'rgba(0,145,218,0.06)'
+                              : !isAvailable
+                              ? '#F8FAFC'
+                              : 'white',
+                            borderRadius: '0.75rem',
+                            cursor: isAvailable ? 'pointer' : 'not-allowed',
+                            textAlign: 'left',
+                            fontSize: '0.95rem',
+                            fontWeight: isSelected ? '800' : '600',
+                            color: isSelected
+                              ? 'var(--primary-blue)'
+                              : !isAvailable
+                              ? '#94A3B8'
+                              : '#1E293B',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            transition: 'all 0.15s ease',
+                            boxShadow: isSelected ? '0 2px 8px rgba(0,145,218,0.12)' : 'none',
+                          }}
+                        >
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                            <span
+                              style={{
+                                width: '10px',
+                                height: '10px',
+                                borderRadius: '50%',
+                                background: isAvailable ? '#10B981' : '#EF4444',
+                                display: 'inline-block',
+                                flexShrink: 0,
+                              }}
+                            />
+                            <span>{slot.label}</span>
+                          </div>
+
+                          <div>
+                            {isSelected && <Check size={18} style={{ color: 'var(--primary-blue)' }} />}
+                            {!isAvailable && (
+                              <span style={{ fontSize: '0.75rem', background: '#FEE2E2', color: '#B91C1C', padding: '0.2rem 0.55rem', borderRadius: '0.35rem', fontWeight: '700' }}>
+                                🔒 Réservé
+                              </span>
+                            )}
+                            {isAvailable && !isSelected && (
+                              <span style={{ fontSize: '0.75rem', color: '#059669', fontWeight: '600' }}>
+                                Disponible
+                              </span>
+                            )}
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             </div>
           </div>
