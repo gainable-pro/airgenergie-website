@@ -49,6 +49,7 @@ export async function fulfillPaidBooking({ session, invoicePdf, hostedInvoiceUrl
     totalAmount,
     durationMins,
     date,
+    timeSlot,
     slotStartTime,
     clientNom,
     clientTelephone,
@@ -57,6 +58,7 @@ export async function fulfillPaidBooking({ session, invoicePdf, hostedInvoiceUrl
     clientNotes,
     isVrv,
     stripeSessionId: sessionId,
+    invoicePdf: invoicePdf || undefined,
   }).catch((err) => {
     console.error('❌ Erreur création Google Calendar:', err);
     return null;

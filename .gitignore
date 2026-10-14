@@ -44,3 +44,5 @@ airgenergie-calendar*.json
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.vercel

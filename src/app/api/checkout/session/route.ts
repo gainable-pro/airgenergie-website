@@ -25,11 +25,15 @@ export async function GET(request: NextRequest) {
 
     // Déclenchement automatique garanti de la synchronisation agenda + emails client/artisan avec facture PDF
     if (session.payment_status === 'paid' && session.metadata) {
-      fulfillPaidBooking({
-        session,
-        invoicePdf,
-        hostedInvoiceUrl,
-      }).catch((err) => console.error('Error fulfilling booking in session route:', err));
+      try {
+        await fulfillPaidBooking({
+          session,
+          invoicePdf,
+          hostedInvoiceUrl,
+        });
+      } catch (err) {
+        console.error('Error fulfilling booking in session route:', err);
+      }
     }
 
     return NextResponse.json({

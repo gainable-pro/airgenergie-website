@@ -1,8 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { google } from 'googleapis';
-
-// ─── Configuration ────────────────────────────────────────────────────────────
-const TRAVEL_BUFFER_MINUTES = 25;
+import { getGoogleCalendarClient, getCalendarId } from '@/lib/calendar';
 
 const ALL_SLOTS = [
   { id: '08:00', label: '08:00 - 10:00', start: '08:00', end: '10:00' },
@@ -11,67 +8,32 @@ const ALL_SLOTS = [
   { id: '16:00', label: '16:00 - 18:00', start: '16:00', end: '18:00' },
 ];
 
-// ─── Google Calendar Auth ──────────────────────────────────────────────────────
-function getGoogleAuth() {
-  const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
-  const clientEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-
-  if (!privateKey || !clientEmail) {
-    throw new Error('Google Calendar credentials not configured');
-  }
-
-  return new google.auth.GoogleAuth({
-    credentials: {
-      type: 'service_account',
-      client_email: clientEmail,
-      private_key: privateKey,
-    },
-    scopes: ['https://www.googleapis.com/auth/calendar.readonly'],
-  });
+function parseDateTimeParis(dateStr: string, timeStr: string): Date {
+  return new Date(`${dateStr}T${timeStr}:00+02:00`);
 }
-
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-
-/**
- * Parse "HH:MM" on a given date string (YYYY-MM-DD) into a Date object (Paris timezone)
- */
-function parseDateTime(dateStr: string, timeStr: string): Date {
-  const [year, month, day] = dateStr.split('-').map(Number);
-  const [hours, minutes] = timeStr.split(':').map(Number);
-  // Create date in Paris time (UTC+2 summer, UTC+1 winter)
-  // We use a simple approach: create UTC and adjust
-  const dt = new Date(Date.UTC(year, month - 1, day, hours, minutes, 0));
-  return dt;
-}
-
-function addMinutes(date: Date, minutes: number): Date {
-  return new Date(date.getTime() + minutes * 60 * 1000);
-}
-
-// ─── API Handler ──────────────────────────────────────────────────────────────
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const date = searchParams.get('date'); // format: YYYY-MM-DD
 
   if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
-    return NextResponse.json({ error: 'Invalid date format. Use YYYY-MM-DD' }, { status: 400 });
+    return NextResponse.json({ error: 'Format de date invalide. Utilisez YYYY-MM-DD' }, { status: 400 });
   }
 
-  // Check it's not Sunday (0) — we don't work Sundays
+  // Vérification fermeture le dimanche
   const dayOfWeek = new Date(date + 'T12:00:00Z').getUTCDay();
   if (dayOfWeek === 0) {
-    return NextResponse.json({ slots: ALL_SLOTS.map(s => ({ ...s, available: false, reason: 'Fermé le dimanche' })) });
+    return NextResponse.json({
+      slots: ALL_SLOTS.map(s => ({ ...s, available: false, reason: 'Fermé le dimanche' })),
+      date,
+    });
   }
 
   try {
-    const calendarId = process.env.GOOGLE_CALENDAR_ID;
-    if (!calendarId) throw new Error('GOOGLE_CALENDAR_ID not configured');
+    const calendarId = getCalendarId();
+    const calendar = getGoogleCalendarClient('read');
 
-    const auth = getGoogleAuth();
-    const calendar = google.calendar({ version: 'v3', auth });
-
-    // Fetch events for the entire day (Paris time = UTC+2 in summer)
+    // Récupération des événements de la journée sur l'agenda
     const timeMin = `${date}T00:00:00+02:00`;
     const timeMax = `${date}T23:59:59+02:00`;
 
@@ -85,38 +47,53 @@ export async function GET(request: NextRequest) {
 
     const events = eventsResponse.data.items ?? [];
 
-    // For each slot, check if it overlaps with any existing event (including buffer)
+    // 1. Vérifier si un événement journée entière bloque tout le jour (ex: Congés, Absence, Indisponible)
+    const hasAllDayBlock = events.some((event) => {
+      if (event.start?.date) {
+        const startDate = event.start.date;
+        const endDate = event.end?.date || startDate;
+        // Pour les all-day events Google, endDate est exclu (ex: start=2026-10-15, end=2026-10-16 pour 1 jour)
+        return date >= startDate && date < endDate;
+      }
+      return false;
+    });
+
+    if (hasAllDayBlock) {
+      return NextResponse.json({
+        slots: ALL_SLOTS.map(s => ({ ...s, available: false, reason: 'Journée bloquée dans votre agenda' })),
+        date,
+      });
+    }
+
+    // 2. Pour chaque créneau, vérifier s'il chevauche un événement précis dans l'agenda
     const slots = ALL_SLOTS.map((slot) => {
-      const slotStart = parseDateTime(date, slot.start);
-      const slotEnd = parseDateTime(date, slot.end);
+      const slotStart = parseDateTimeParis(date, slot.start);
+      const slotEnd = parseDateTimeParis(date, slot.end);
 
       const isBlocked = events.some((event) => {
-        // Skip all-day events or events without datetime
         if (!event.start?.dateTime || !event.end?.dateTime) return false;
 
         const eventStart = new Date(event.start.dateTime);
-        // eventEnd already includes TRAVEL_BUFFER_MINUTES (added when creating events)
         const eventEnd = new Date(event.end.dateTime);
 
-        // Check overlap: slotStart < eventEnd AND slotEnd > eventStart
+        // Chevauchement : slotStart < eventEnd ET slotEnd > eventStart
         return slotStart < eventEnd && slotEnd > eventStart;
       });
 
       return {
         ...slot,
         available: !isBlocked,
-        reason: isBlocked ? 'Créneau réservé' : null,
+        reason: isBlocked ? 'Créneau indisponible (réservé)' : null,
       };
     });
 
     return NextResponse.json({ slots, date });
   } catch (error) {
-    // If Google Calendar is not configured (dev mode), return all slots as available
-    console.warn('Google Calendar not configured, returning all slots as available:', error);
+    console.warn('⚠️ Google Calendar inaccessible ou non configuré, affichage par défaut:', error);
     return NextResponse.json({
       slots: ALL_SLOTS.map(s => ({ ...s, available: true, reason: null })),
       date,
-      _warning: 'Google Calendar not configured — showing all slots as available',
+      _warning: 'Google Calendar non configuré — affichage des créneaux par défaut',
     });
   }
 }

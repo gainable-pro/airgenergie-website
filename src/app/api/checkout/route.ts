@@ -45,7 +45,7 @@ function buildStripeLineItems(
         unit_amount: Math.round(priceInEuros * 100),
         product_data: {
           name,
-          description: `${description} (Planifié pour le ${formattedDate} sur le créneau ${timeSlot})`,
+          description: `${description} | Planifié le ${formattedDate} (${timeSlot}) | Attestation Cerfa incluse`,
           images: ['https://www.airgenergie.fr/images/hero-technician-ac.png'],
         },
       },
@@ -58,34 +58,34 @@ function buildStripeLineItems(
     if (isCurative) {
       if (unitCounts.split > 0) {
         lineItems.push(formatItem(
-          "Entretien curatif +++ — Split mural",
+          "Entretien curatif +++ — Split mural (Dégraissage turbine sous bâche, désinfection complète & fongicide)",
           192,
           unitCounts.split,
-          "Désinfection et nettoyage complet en profondeur de l'unité intérieure split murale."
+          "Nettoyage haute intensité sous bâche étanche, dégraissage en profondeur de la turbine au nettoyeur basse pression, traitement bactéricide et fongicide anti-odeurs, nettoyage échangeur extérieur et contrôle des pressions."
         ));
       }
       if (unitCounts.gainable > 0) {
         lineItems.push(formatItem(
-          "Entretien curatif +++ — Gainable / Plénum",
+          "Entretien curatif +++ — Gainable / Plénum (Désinfection turbine, plénum & assainissement circuit)",
           260,
           unitCounts.gainable,
-          "Désinfection et nettoyage complet de l'unité gainable en comble / plénum."
+          "Désinfection et nettoyage haute performance de l'unité gainable en comble/faux-plafond, pulvérisation fongicide dans le plénum et traitement anti-bactérien approfondi."
         ));
       }
       if (unitCounts.cassette > 0) {
         lineItems.push(formatItem(
-          "Entretien curatif +++ — Cassette 4 voies",
+          "Entretien curatif +++ — Cassette 4 voies (Nettoyage bac condensats, turbine & désinfection)",
           220,
           unitCounts.cassette,
-          "Désinfection et nettoyage complet de cassette de soufflage encastrée 4 voies."
+          "Démontage sous-face, nettoyage en profondeur du bac à condensats, traitement bactéricide de la turbine 4 voies et contrôle de la pompe de relevage."
         ));
       }
       if (unitCounts.console > 0) {
         lineItems.push(formatItem(
-          "Entretien curatif +++ — Console basse",
+          "Entretien curatif +++ — Console basse (Dégraissage, désinfection & traitement assainissant)",
           192,
           unitCounts.console,
-          "Désinfection et nettoyage de l'unité console basse posée au sol."
+          "Désinfection haute intensité et nettoyage de l'unité console basse posée au sol, filtres, turbine et bac à condensats."
         ));
       }
     } else {
@@ -94,62 +94,62 @@ function buildStripeLineItems(
         const splitCount = unitCounts.split;
         if (splitCount === 1) {
           lineItems.push(formatItem(
-            "Entretien préventif — Split mural",
+            "Entretien préventif — Split mural (Nettoyage filtres, désinfection antibactérienne & contrôle pressions)",
             156,
             1,
-            "Nettoyage de filtre, désinfection et contrôle de performance d'un split mural."
+            "Nettoyage et désinfection complète de l'unité intérieure split, dépoussiérage échangeur, contrôle des pressions frigorifiques et températures, vérification écoulement condensats, nettoyage groupe extérieur."
           ));
         } else if (splitCount === 2) {
           lineItems.push(formatItem(
-            "Forfait Entretien Double-split (2 Splits muraux)",
+            "Forfait Entretien Double-split (2 Splits muraux — Nettoyage, désinfection complète & contrôle global)",
             270,
             1,
-            "Forfait préférentiel d'entretien préventif pour 2 splits muraux."
+            "Forfait d'entretien préventif pour 2 unités splits intérieures et 1 groupe extérieur : nettoyage filtres, traitement antibactérien des turbines, contrôle des pressions et températures."
           ));
         } else if (splitCount === 3) {
           lineItems.push(formatItem(
-            "Forfait Entretien Tri-split (3 Splits muraux)",
+            "Forfait Entretien Tri-split (3 Splits muraux — Nettoyage, désinfection complète & contrôle global)",
             380,
             1,
-            "Forfait préférentiel d'entretien préventif pour 3 splits muraux."
+            "Forfait préférentiel pour 3 unités splits intérieures et groupe extérieur : nettoyage complet des filtres, désinfection des 3 turbines, contrôle étanchéité et pressions frigorifiques."
           ));
         } else {
           lineItems.push(formatItem(
-            "Forfait Entretien Tri-split (3 Splits muraux)",
+            "Forfait Entretien Tri-split (3 Splits muraux — Nettoyage, désinfection complète & contrôle global)",
             380,
             1,
-            "Forfait préférentiel d'entretien préventif pour 3 splits muraux."
+            "Forfait préférentiel pour 3 unités splits intérieures et groupe extérieur : nettoyage complet des filtres, désinfection des 3 turbines, contrôle étanchéité et pressions frigorifiques."
           ));
           lineItems.push(formatItem(
-            "Split mural supplémentaire — Entretien préventif",
+            "Split mural supplémentaire — Entretien préventif complet",
             156,
             splitCount - 3,
-            "Nettoyage et contrôle de performance de split mural supplémentaire."
+            "Nettoyage, désinfection antibactérienne et contrôle de performance pour unité split murale supplémentaire."
           ));
         }
       }
       if (unitCounts.gainable > 0) {
         lineItems.push(formatItem(
-          "Entretien préventif — Gainable / Plénum",
+          "Entretien préventif — Climatisation gainable / plénum (Nettoyage unité comble, filtres & contrôle soufflage)",
           220,
           unitCounts.gainable,
-          "Nettoyage de l'échangeur, désinfection de la turbine et plénum pour gainable."
+          "Entretien technique de l'unité en comble/faux-plafond, désinfection de la turbine et du plénum, nettoyage des filtres d'aspiration, contrôle des grilles de soufflage et du groupe extérieur."
         ));
       }
       if (unitCounts.cassette > 0) {
         lineItems.push(formatItem(
-          "Entretien préventif — Cassette 4 voies",
+          "Entretien préventif — Cassette 4 voies (Nettoyage bac condensats, turbine & filtres)",
           180,
           unitCounts.cassette,
-          "Nettoyage de turbine et bac à condensats pour cassette de soufflage encastrée 4 voies."
+          "Nettoyage de turbine, contrôle du bac à condensats et de la pompe de relevage, désinfection pour cassette encastrée 4 voies."
         ));
       }
       if (unitCounts.console > 0) {
         lineItems.push(formatItem(
-          "Entretien préventif — Console basse",
+          "Entretien préventif — Console basse (Nettoyage filtres, échangeur & contrôle frigorifique)",
           154,
           unitCounts.console,
-          "Nettoyage complet pour climatiseur de type console basse posée au sol."
+          "Nettoyage complet de l'unité console basse posée au sol, filtres, turbine et vérification des connexions frigorifiques."
         ));
       }
     }
@@ -159,31 +159,31 @@ function buildStripeLineItems(
   if (lineItems.length === 0) {
     if (serviceId === 'diagnostic') {
       lineItems.push(formatItem(
-        "Diagnostic & Rapport de panne",
+        "Diagnostic & Rapport de panne technique (Recherche de panne sur site & examen codes défauts)",
         100,
         1,
-        "Recherche de panne technique, examen des codes défauts et diagnostic détaillé."
+        "Recherche de panne sur site par un technicien qualifié, diagnostic électrique et frigorifique complet, lecture des codes défauts et devis de réparation détaillé."
       ));
     } else if (serviceId === 'thermodynamique') {
       lineItems.push(formatItem(
-        "Entretien ballon thermodynamique",
+        "Entretien chauffe-eau thermodynamique (Nettoyage évaporateur, contrôle anode magnésium & étanchéité)",
         174,
         1,
-        "Nettoyage évaporateur, contrôle d'usure de l'anode de protection et étanchéité."
+        "Nettoyage et dépoussiérage de l'évaporateur, contrôle d'usure de l'anode sacrificielle de protection, contrôle de l'étanchéité du fluide frigorigène et test des sécurités."
       ));
     } else if (serviceId === 'pac-air-eau') {
       lineItems.push(formatItem(
-        "Entretien — Pompe à Chaleur Air/Eau",
+        "Entretien — Pompe à Chaleur Air/Eau (Contrôle pression hydraulique, vase d'expansion & unité extérieure)",
         270,
         1,
-        "Nettoyage de l'unité extérieure, contrôle de la pression hydraulique et des vases d'expansion."
+        "Nettoyage de l'unité extérieure, contrôle de la pression hydraulique et des vases d'expansion, vérification de l'appoint électrique, contrôle étanchéité circuit et remise attestation Cerfa."
       ));
     } else if (serviceId === 'reprogrammation-thermostat') {
       lineItems.push(formatItem(
-        "Re-programmation thermostat & Régulation",
+        "Re-programmation thermostat & Régulation (Vérification thermostats, signal commande & réglage pression statique)",
         200,
         1,
-        "Vérification des thermostats, contact support pour mise à jour signal et réglage pression statique."
+        "Vérification complète des thermostats, test des sondes et signaux de commande, réglage de la pression statique, coordination support technique fabricant et optimisation de la régulation."
       ));
     }
   }
@@ -313,6 +313,27 @@ export async function POST(request: NextRequest) {
       });
     }
 
+    const formattedInvoiceDate = new Date(date).toLocaleDateString('fr-FR', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
+
+    const isCurativeService = serviceId === 'curative';
+    const operationsSummary = isCurativeService
+      ? "Nettoyage haute intensité sous bâche étanche, dégraissage approfondi turbine au nettoyeur basse pression, traitement bactéricide & fongicide anti-odeurs, nettoyage groupe extérieur, contrôle pressions et températures, remise attestation d'entretien Cerfa."
+      : "Nettoyage approfondi des filtres, désinfection antibactérienne/fongicide unité intérieure, vérification écoulement condensats, contrôle températures et pressions frigorifiques, nettoyage groupe extérieur, remise attestation Cerfa.";
+
+    const invoiceFullDescription = [
+      `PRESTATION : ${serviceName}${composition ? ` (${composition})` : ''}`,
+      `OPÉRATIONS INCLUSES : ${operationsSummary}`,
+      `DATE & CRÉNEAU : ${formattedInvoiceDate} sur la plage ${timeSlot} (plage d'intervention de 2h)`,
+      `ADRESSE D'INTERVENTION : ${client.ville}${client.notes ? ` — ${client.notes.replace(/\n/g, ', ')}` : ''}`,
+      `CLIENT : ${client.nom} — Tél : ${client.telephone}${client.email ? ` • Email : ${client.email}` : ''}`,
+      `Tarifs TTC (TVA 20% incluse). Attestation réglementaire Cerfa remise sur site à l'issue de l'intervention.`,
+    ].join('\n\n');
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: 'payment',
@@ -321,16 +342,17 @@ export async function POST(request: NextRequest) {
       line_items: lineItems,
       discounts: discounts.length > 0 ? discounts : undefined,
 
-      // Auto-génération de la facture Stripe téléchargeable après paiement
+      // Auto-génération de la facture Stripe téléchargeable après paiement avec détails complets
       invoice_creation: {
         enabled: true,
         invoice_data: {
-          description: `Intervention d'entretien climatisation le ${new Date(date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })} sur le créneau ${timeSlot} à ${client.ville}. Client : ${client.nom} (${client.telephone}). Tarifs exprimés en TTC (TVA 20% incluse).`,
-          footer: "Air G Énergie — Entretien & Dépannage Climatisation | Tarifs indiqués en TTC (TVA 20% incluse). Merci pour votre confiance.",
+          description: invoiceFullDescription,
+          footer: "Air G Énergie — Entretien & Dépannage Climatisation & PAC | Attestation Cerfa remise sur site | Tarifs TTC (TVA 20% incluse) | Tél : 04 13 41 49 01 — contact@airgenergie.fr",
           custom_fields: [
-            { name: "Date intervention", value: date },
+            { name: "Date intervention", value: new Date(date).toLocaleDateString('fr-FR') },
             { name: "Creneau horaire", value: timeSlot },
             { name: "Lieu intervention", value: client.ville },
+            { name: "Attestation Cerfa", value: "Remise sur site" },
           ]
         }
       },

@@ -115,7 +115,7 @@ export async function sendBookingNotificationEmail(booking: BookingEmailData) {
 
     const data = await resend.emails.send({
       from: 'Air G Énergie <contact@airgenergie.com>',
-      to: ['contact@airgenergie.fr'],
+      to: ['contact@airgenergie.fr', 'airgenergie@gmail.com'],
       replyTo: booking.clientEmail || 'contact@airgenergie.fr',
       subject,
       html,
@@ -254,7 +254,7 @@ export async function sendCustomerConfirmationEmail(booking: CustomerConfirmatio
     const data = await resend.emails.send({
       from: 'Air G Énergie <contact@airgenergie.com>',
       to: [booking.clientEmail],
-      cc: ['contact@airgenergie.fr'],
+      cc: ['contact@airgenergie.fr', 'airgenergie@gmail.com'],
       replyTo: 'contact@airgenergie.fr',
       subject,
       html,
