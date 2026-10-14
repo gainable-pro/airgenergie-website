@@ -273,7 +273,7 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://www.airgenergie.com';
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://www.airgenergie.fr';
     const realDuration = durationMins ?? SERVICE_DURATIONS[serviceId] ?? 45;
 
     // Détermination des line_items Stripe
