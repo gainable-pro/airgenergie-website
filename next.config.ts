@@ -147,7 +147,8 @@ const nextConfig: NextConfig = {
       { source: '/service-page/entretien-de-climatisation-gainable', destination: '/gainable', permanent: true },
       { source: '/service-page/entretien-de-climatisation-cassette', destination: '/reservation-en-ligne/cassette', permanent: true },
       { source: '/service-page/tri-split-entretien-de-climatisation', destination: '/reservation-en-ligne/tri-split', permanent: true },
-      { source: '/service-page/entretien-pompe-:path*', destination: '/reservation-en-ligne/pac-air-eau', permanent: true },
+      { source: '/service-page/entretien-pompe-air-eau-1', destination: '/reservation-en-ligne/pac-air-eau', permanent: true },
+      { source: '/service-page/entretien-pompe-a-chaleur-air-eau-1', destination: '/reservation-en-ligne/pac-air-eau', permanent: true },
       { source: '/service-page/:path*', destination: '/reservation-en-ligne', permanent: true },
     ];
   },
