@@ -243,7 +243,7 @@ const SERVICES_CATALOG: Record<string, ServiceData> = {
     id: 'console',
     category: 'clim',
     name: 'Entretien de climatisation console',
-    price: 154,
+    price: 165,
     duration: '45 min',
     image: '/images/console-ac.png',
     subtitle: 'Nettoyage complet pour climatiseur console basse au sol',
@@ -308,8 +308,8 @@ const SERVICES_CATALOG: Record<string, ServiceData> = {
     price: 0,
     duration: 'Sur mesure',
     image: '/images/vrv-commercial.png',
-    subtitle: 'Hôtels • Restaurants • Bureaux • ERP — Remise –10% automatique',
-    desc: 'Solution de maintenance taillée pour les installations VRV (Daikin) et DRV (Mitsubishi, Samsung) dans les bâtiments tertiaires et de grande surface habitable. Composez librement la liste de vos unités intérieures pour obtenir un tarif remisé de 10% automatiquement.',
+    subtitle: 'Hôtels • Restaurants • Bureaux • ERP — Remise –20% automatique',
+    desc: 'Solution de maintenance taillée pour les installations VRV (Daikin) et DRV (Mitsubishi, Samsung) dans les bâtiments tertiaires et de grande surface habitable. Composez librement la liste de vos unités intérieures pour obtenir un tarif remisé de 20% automatiquement.',
     details: [
       'Contrôle pression du circuit frigorifique principal (haute/basse)',
       'Nettoyage de l\'unité extérieure VRV — condenseur et ventilateurs',
@@ -317,10 +317,10 @@ const SERVICES_CATALOG: Record<string, ServiceData> = {
       'Vérification des modules bus de communication BACnet / Modbus',
       'Contrôle et nettoyage des grilles et filtres des centrales de traitement d\'air',
       'Rapport d\'inspection multi-zones avec attestation Cerfa annuelle',
-      'Tarification à la composition : –10% sur chaque unité en installation VRV'
+      'Tarification à la composition : –20% sur chaque unité en installation VRV'
     ],
     conseilsTitle: 'Hôtels, Restaurants : Pourquoi le suivi d\'un système VRV/DRV est-il stratégique ?',
-    conseilsContent: 'Un système VRV (ou DRV) relie des dizaines d\'unités intérieures à un seul groupe de forte puissance. Dans un hôtel, restaurant ou établissement en Provence (Miramas, Salon, Aix, Marseille, Arles...), une panne sur le groupe extérieur met à l\'arrêt l\'ensemble de l\'établissement. Un entretien planifié permet d\'éviter ce sinistre en contrôlant l\'usure du compresseur Inverter, l\'état des vannes solénoïdes et la communication du réseau de régulation. Notre configurateur de tarification applique automatiquement une réduction de 10% sur chaque unité pour les systèmes VRV.',
+    conseilsContent: 'Un système VRV (ou DRV) relie des dizaines d\'unités intérieures à un seul groupe de forte puissance. Dans un hôtel, restaurant ou établissement en Provence (Miramas, Salon, Aix, Marseille, Arles...), une panne sur le groupe extérieur met à l\'arrêt l\'ensemble de l\'établissement. Un entretien planifié permet d\'éviter ce sinistre en contrôlant l\'usure du compresseur Inverter, l\'état des vannes solénoïdes et la communication du réseau de régulation. Notre configurateur de tarification applique automatiquement une réduction de 20% sur chaque unité pour les systèmes VRV.',
     conseilsList: [
       'L\'entretien bisannuel est une obligation légale pour les installations contenant plus de 2 kg de fluide.',
       'Un rapport par zone est fourni pour faciliter la gestion de votre registre de sécurité.',

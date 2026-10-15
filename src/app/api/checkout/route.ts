@@ -147,7 +147,7 @@ function buildStripeLineItems(
       if (unitCounts.console > 0) {
         lineItems.push(formatItem(
           "Entretien préventif — Console basse (Nettoyage filtres, échangeur & contrôle frigorifique)",
-          154,
+          165,
           unitCounts.console,
           "Nettoyage complet de l'unité console basse posée au sol, filtres, turbine et vérification des connexions frigorifiques."
         ));
@@ -280,7 +280,7 @@ export async function POST(request: NextRequest) {
     const lineItems = buildStripeLineItems(serviceId, unitCounts, date, timeSlot);
     const discounts: Stripe.Checkout.SessionCreateParams.Discount[] = [];
 
-    // Appliquer le coupon -10% pour le VRV/DRV
+    // Appliquer le coupon -20% pour le VRV/DRV
     if (isVrv) {
       discounts.push({ coupon: VRV_COUPON_ID });
     }
@@ -304,7 +304,7 @@ export async function POST(request: NextRequest) {
               `Date : ${new Date(date).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}`,
               `Créneau : ${timeSlot}`,
               `Ville : ${client.ville}`,
-              isVrv ? '✓ Remise VRV -10% incluse' : null,
+              isVrv ? '✓ Remise VRV -20% incluse' : null,
             ].filter(Boolean).join(' | '),
             images: ['https://www.airgenergie.fr/images/hero-technician-ac.png'],
           },

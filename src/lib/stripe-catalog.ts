@@ -54,9 +54,9 @@ export const STRIPE_CATALOG = {
   },
   "preventive-console": {
     "productId": "prod_UxrONeannO5t2h",
-    "priceId": "price_1TxvfLFVMqGo2msFa6BMx2PL",
+    "priceId": "price_1UQf2oFVMqGo2msFKnPH2miR",
     "name": "Entretien de climatisation console basse",
-    "price": 154,
+    "price": 165,
     "category": "clim"
   },
   "preventive-cassette": {
@@ -115,11 +115,11 @@ export const STRIPE_CATALOG = {
     "price": 200,
     "category": "clim"
   },
-  "VRV_COUPON_ID": "VRV-10PCT"
+  "VRV_COUPON_ID": "VRV-20PCT"
 } as const;
 
-/** Coupon VRV/DRV -10% */
-export const VRV_COUPON_ID = 'VRV-10PCT';
+/** Coupon VRV/DRV -20% */
+export const VRV_COUPON_ID = 'VRV-20PCT';
 
 /** Récupère le price_id d'une unité selon le type de service et le type d'unité */
 export function getPriceId(

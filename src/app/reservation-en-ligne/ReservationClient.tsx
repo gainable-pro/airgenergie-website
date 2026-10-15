@@ -137,7 +137,7 @@ const DETAILED_SERVICES = [
     id: 'console',
     category: 'clim',
     name: 'Entretien de climatisation console',
-    price: 154,
+    price: 165,
     duration: '45 min',
     image: '/images/console-ac.png',
     subtitle: 'Nettoyage complet pour console basse au sol',
@@ -176,9 +176,9 @@ const DETAILED_SERVICES = [
     price: 0,
     duration: 'Sur mesure',
     image: '/images/vrv-commercial.png',
-    subtitle: 'Hôtels • Résidences • Commerces • Banques — Remise –10% incluse',
+    subtitle: 'Hôtels • Résidences • Commerces • Banques — Remise –20% incluse',
     isRecommended: false,
-    desc: 'Solution de maintenance taillée pour les installations VRV (Daikin) et DRV (Mitsubishi, Samsung) dans les bâtiments tertiaires et de grande surface habitable. Composez librement la liste de vos unités intérieures pour obtenir un tarif remisé de 10% automatiquement.',
+    desc: 'Solution de maintenance taillée pour les installations VRV (Daikin) et DRV (Mitsubishi, Samsung) dans les bâtiments tertiaires et de grande surface habitable. Composez librement la liste de vos unités intérieures pour obtenir un tarif remisé de 20% automatiquement.',
     details: [
       'Contrôle pression du circuit frigorifique principal (haute/basse)',
       'Nettoyage de l\'unité extérieure VRV — condenseur et ventilateurs',
@@ -186,7 +186,7 @@ const DETAILED_SERVICES = [
       'Vérification des modules bus de communication BACnet / Modbus',
       'Contrôle et nettoyage des grilles et filtres des centrales de traitement d\'air',
       'Rapport d\'inspection multi-zones avec attestation Cerfa annuelle',
-      'Tarification à la composition : –10% sur chaque unité en installation VRV'
+      'Tarification à la composition : –20% sur chaque unité en installation VRV'
     ]
   },
   {

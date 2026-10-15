@@ -13,11 +13,11 @@ const MAINTENANCE_SERVICES = [
   { id: 'double-split', name: 'Double-split Entretien de climatisation', price: 270, duration: '2 h', desc: 'Nettoyage et contrôle complet pour une installation bi-split (2 unités intérieures, 1 groupe extérieur).' },
   { id: 'tri-split', name: 'Tri-split Entretien de climatisation', price: 380, duration: '2 h', desc: 'Nettoyage et contrôle complet pour une installation tri-split (3 unités intérieures, 1 groupe extérieur).' },
   { id: 'gainable', name: 'Entretien de climatisation gainable', price: 220, duration: '45 min', desc: 'Entretien de l\'unité en comble/faux-plafond, nettoyage plénum, contrôle des grilles de soufflage et filtres.' },
-  { id: 'console', name: 'Entretien de climatisation console', price: 154, duration: '45 min', desc: 'Nettoyage complet pour climatiseur de type console basse posée au sol.' },
+  { id: 'console', name: 'Entretien de climatisation console', price: 165, duration: '45 min', desc: 'Nettoyage complet pour climatiseur de type console basse posée au sol.' },
   { id: 'cassette', name: 'Entretien de climatisation cassette', price: 180, duration: '45 min', desc: 'Nettoyage de cassette de soufflage 4 voies encastrée dans le plafond (bureaux ou commerces).' },
   { id: 'thermodynamique', name: 'Entretien ballon thermodynamique', price: 174, duration: '45 min', desc: 'Contrôle étanchéité fluide, nettoyage évaporateur, vérification de l\'anode et contrôle du bon fonctionnement.' },
   { id: 'pac-air-eau', name: 'Entretien – Pompe à Chaleur Air/Eau', price: 270, duration: '45 min', desc: 'Nettoyage et contrôle de l\'unité extérieure, contrôle de la pression hydraulique et des vases d\'expansion.' },
-  { id: 'vrv', name: 'Entretien Système VRV / DRV', price: 0, duration: 'Sur mesure', desc: 'Entretien technique complet de vos installations VRV/DRV. Composez votre installation par type d\'unités (splits, gainables, cassettes, consoles) pour un tarif remisé de -10%.' },
+  { id: 'vrv', name: 'Entretien Système VRV / DRV', price: 0, duration: 'Sur mesure', desc: 'Entretien technique complet de vos installations VRV/DRV. Composez votre installation par type d\'unités (splits, gainables, cassettes, consoles) pour un tarif remisé de -20%.' },
   { id: 'reprogrammation-thermostat', name: 'Re-programmation thermostat', price: 200, duration: '1h à 1h30', desc: 'Vérification thermostats et mesures, contact support technique pour mise à jour signal, vérification et augmentation pression statique.' }
 ];
 
@@ -26,7 +26,7 @@ const UNIT_PRICES = {
   split: { label: 'Split mural', price: 156, duration: 45 },
   gainable: { label: 'Gainable / Plénum', price: 220, duration: 45 },
   cassette: { label: 'Cassette 4 voies', price: 180, duration: 45 },
-  console: { label: 'Console basse', price: 154, duration: 45 },
+  console: { label: 'Console basse', price: 165, duration: 45 },
 };
 
 type UnitCounts = {
@@ -83,7 +83,7 @@ const calculateUnitTotal = (units: UnitCounts, isCurative: boolean, isVrv: boole
     units.gainable * prices.gainable.price +
     units.cassette * prices.cassette.price +
     units.console * prices.console.price;
-  return isVrv ? Math.round(raw * 0.9) : raw;
+  return isVrv ? Math.round(raw * 0.8) : raw;
 };
 
 const calculateUnitDuration = (units: UnitCounts, isCurative: boolean): number => {
@@ -265,7 +265,7 @@ export default function BookingWizard({ initialServiceId }: { initialServiceId?:
     const bookingMessage = `[Réservation en Ligne]
 Prestation : ${selectedService.name}
 ${isComposer ? `Composition : ${composition}` : ''}
-Total estimé : ${finalTotal === 0 ? 'Gratuit' : `${finalTotal} €`}${isVrv ? ' (remise VRV -10%)' : ''}
+Total estimé : ${finalTotal === 0 ? 'Gratuit' : `${finalTotal} €`}${isVrv ? ' (remise VRV -20%)' : ''}
 Date souhaitée : ${formattedDate}
 Créneau : ${selectedTimeSlot}
 Conditions d'intervention : ACCEPTÉES
@@ -330,7 +330,7 @@ Notes client : ${formData.notes || 'Aucune'}`;
             <li>• <strong>Service :</strong> {selectedService.name}</li>
             {composition && <li>• <strong>Composition :</strong> {composition}</li>}
             <li>• <strong>Date :</strong> {formattedDate} ({selectedTimeSlot})</li>
-            <li>• <strong>Montant estimé :</strong> {finalTotal === 0 ? 'Gratuit' : `${finalTotal} €`}{isVrv ? ' (remise VRV -10% incluse)' : ''}</li>
+            <li>• <strong>Montant estimé :</strong> {finalTotal === 0 ? 'Gratuit' : `${finalTotal} €`}{isVrv ? ' (remise VRV -20% incluse)' : ''}</li>
             <li>• <strong>Lieu :</strong> {formData.ville}</li>
           </ul>
         </div>
@@ -389,7 +389,7 @@ Notes client : ${formData.notes || 'Aucune'}`;
             <div style={{ textAlign: 'right', flexShrink: 0 }}>
               <span style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--primary-blue)', display: 'block' }}>
                 {finalTotal === 0 && !isComposer ? 'Gratuit' : finalTotal === 0 ? 'À calculer' : `${finalTotal} €`}
-                {isVrv && finalTotal > 0 && <span style={{ fontSize: '0.75rem', color: '#48BB78', display: 'block', fontWeight: '700' }}>– 10% VRV inclus</span>}
+                {isVrv && finalTotal > 0 && <span style={{ fontSize: '0.75rem', color: '#48BB78', display: 'block', fontWeight: '700' }}>– 20% VRV inclus</span>}
               </span>
               {isComposer && composerDuration > 0 && (
                 <span style={{ fontSize: '0.8rem', color: 'var(--text-light)', display: 'flex', alignItems: 'center', gap: '0.25rem', justifyContent: 'flex-end' }}>
@@ -406,7 +406,7 @@ Notes client : ${formData.notes || 'Aucune'}`;
                 <Info size={16} style={{ color: 'var(--primary-blue)', flexShrink: 0 }} />
                 <span style={{ fontSize: '0.88rem', fontWeight: '600', color: '#475569' }}>
                   Composez votre installation — sélectionnez le nombre d&apos;unités par type :
-                  {isVrv && <span style={{ color: '#48BB78', marginLeft: '0.5rem' }}>Remise VRV -10% automatique</span>}
+                  {isVrv && <span style={{ color: '#48BB78', marginLeft: '0.5rem' }}>Remise VRV -20% automatique</span>}
                 </span>
               </div>
 
@@ -421,7 +421,7 @@ Notes client : ${formData.notes || 'Aucune'}`;
                         <div style={{ fontSize: '0.88rem', fontWeight: '700', color: '#0F172A', lineHeight: '1.2' }}>{unitInfo.label}</div>
                         <div style={{ fontSize: '0.78rem', color: count > 0 ? 'var(--primary-blue)' : 'var(--text-light)', fontWeight: '600', marginTop: '0.15rem' }}>
                           {unitInfo.price} € / unité
-                          {isVrv && <span style={{ color: '#48BB78' }}> → {Math.round(unitInfo.price * 0.9)} €</span>}
+                          {isVrv && <span style={{ color: '#48BB78' }}> → {Math.round(unitInfo.price * 0.8)} €</span>}
                         </div>
                       </div>
                       <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #CBD5E0', borderRadius: '0.5rem', background: 'white', flexShrink: 0 }}>

@@ -75,7 +75,7 @@ export async function fulfillPaidBooking({ session, invoicePdf, hostedInvoiceUrl
         `[Réservation Payée en Ligne]`,
         `Prestation : ${serviceName}`,
         composition ? `Composition : ${composition}` : null,
-        `Total payé : ${totalAmount} € TTC${isVrv ? ' (remise VRV -10%)' : ''}`,
+        `Total payé : ${totalAmount} € TTC${isVrv ? ' (remise VRV -20%)' : ''}`,
         `Date : ${formattedDate}`,
         `Créneau : ${timeSlot}`,
         `Durée : ${durationMins} min`,

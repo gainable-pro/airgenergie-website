@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const alternates = await getSeoAlternates('/entretien');
   return {
     title: "Entretien & SAV Climatisation Bouches-du-Rhône (70-100 km) | Air G Énergie",
-    description: "Entretien préventif et curatif de climatisation à partir de 154 € TTC — splits, gainables, cassettes, VRV/DRV, PAC. Devis gratuit, intervention sous 48h sur 70 à 100 km (Miramas, Salon, Aix, Marseille, Arles, Martigues...).",
+    description: "Entretien préventif et curatif de climatisation à partir de 156 € TTC — splits, gainables, consoles, cassettes, VRV/DRV, PAC. Devis gratuit, intervention sous 48h sur 70 à 100 km (Miramas, Salon, Aix, Marseille, Arles, Martigues...).",
     alternates,
     other: {
       'application/ld+json': JSON.stringify([
@@ -122,7 +122,7 @@ export async function generateMetadata(): Promise<Metadata> {
                 "@id": "https://airgenergie.fr/entretien#console",
                 "name": "Entretien climatisation console basse",
                 "description": "Nettoyage complet de climatiseur console posé au sol.",
-                "price": "154",
+                "price": "165",
                 "priceCurrency": "EUR",
                 "eligibleRegion": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 43.5847, "longitude": 5.0005 }, "geoRadius": "50000" },
                 "availability": "https://schema.org/InStock",
@@ -154,10 +154,10 @@ export async function generateMetadata(): Promise<Metadata> {
                 "@type": "Offer",
                 "@id": "https://airgenergie.fr/entretien#vrv",
                 "name": "Entretien Système VRV / DRV — Résidentiel & Tertiaire",
-                "description": "Entretien technique VRV/DRV pour hôtels, résidences, commerces, banques. Tarif remisé -10% selon composition (splits, gainables, cassettes, consoles).",
+                "description": "Entretien technique VRV/DRV pour hôtels, résidences, commerces, banques. Tarif remisé -20% selon composition (splits, gainables, cassettes, consoles).",
                 "price": "0",
                 "priceCurrency": "EUR",
-                "priceSpecification": { "@type": "PriceSpecification", "description": "Sur devis, remise -10% VRV incluse" },
+                "priceSpecification": { "@type": "PriceSpecification", "description": "Sur devis, remise -20% VRV incluse" },
                 "eligibleRegion": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 43.5847, "longitude": 5.0005 }, "geoRadius": "50000" },
                 "availability": "https://schema.org/InStock",
                 "url": "https://airgenergie.fr/entretien?service=vrv"
@@ -180,7 +180,7 @@ export async function generateMetadata(): Promise<Metadata> {
             {
               "@type": "Question",
               "name": "Quel est le prix d'un entretien de climatisation ?",
-              "acceptedAnswer": { "@type": "Answer", "text": "L'entretien d'un split mural commence à 156 € TTC (préventif), 192 € pour un curatif approfondi. Gainable : 220 €, Cassette : 180 €, Console : 154 €. Tarif VRV/DRV : sur devis avec remise -10%." }
+              "acceptedAnswer": { "@type": "Answer", "text": "L'entretien d'un split mural commence à 156 € TTC (préventif), 192 € pour un curatif approfondi. Gainable : 220 €, Cassette : 180 €, Console : 165 €. Tarif VRV/DRV : sur devis avec remise -20%." }
             },
             {
               "@type": "Question",
