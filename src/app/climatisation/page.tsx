@@ -18,9 +18,9 @@ export default function ClimatisationPage() {
             {/* Hero Service */}
             <section style={{ background: '#0F172A', color: 'white', padding: '5rem 0', textAlign: 'center' }}>
                 <div className="container">
-                    <h1 style={{ color: 'white' }}>Profitez de votre maison, même en pleine canicule</h1>
-                    <p style={{ maxWidth: 600, margin: '0 auto 2rem', color: '#CBD5E1' }}>
-                        Ne subissez plus les records de chaleur. Équipez votre logement d&apos;une solution durable qui rafraîchit l&apos;été et chauffe l&apos;hiver.
+                    <h1 style={{ color: 'white' }}>Installation de Climatisation Réversible en Bouches-du-Rhône</h1>
+                    <p style={{ maxWidth: 650, margin: '0 auto 2rem', color: '#CBD5E1' }}>
+                        Profitez de votre logement toute l&apos;année, été comme hiver. Pose et entretien par artisan frigoriste RGE QualiPAC intervenant sous 48h.
                     </p>
                     <Link href="/contact" className="btn btn-primary">
                         Obtenir mon devis gratuit

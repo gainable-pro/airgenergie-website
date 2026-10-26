@@ -6,15 +6,15 @@ export async function generateMetadata(): Promise<Metadata> {
   const domain = await getSeoDomain();
   const alternates = await getSeoAlternates('/reservation-en-ligne');
   return {
-    title: "Réservation en Ligne | Climatisation & PAC Bouches-du-Rhône | Air G Énergie",
-    description: "Réservez votre entretien de climatisation ou étude de pompe à chaleur en ligne dans les Bouches-du-Rhône. Planification en temps réel, tarifs transparents TTC et paiement sécurisé Stripe.",
+    title: "Entretien Climatisation dès 156€ TTC | Réservation en Ligne 48h | Air G Énergie",
+    description: "Réservez votre entretien de climatisation dès 156€ TTC dans les Bouches-du-Rhône. Forfaits splits, gainables, PAC et VRV. Créneau en direct sous 48h, artisan certifié RGE et attestation Cerfa officielle.",
     alternates,
     openGraph: {
-      title: "Réservation en Ligne | Climatisation & PAC Bouches-du-Rhône | Air G Énergie",
-      description: "Réservez votre entretien de climatisation ou étude de pompe à chaleur en ligne dans les Bouches-du-Rhône (Miramas, Salon, Aix, Marseille, Arles, Martigues).",
+      title: "Entretien Climatisation dès 156€ TTC | Réservation en Ligne 48h | Air G Énergie",
+      description: "Réservez votre entretien de climatisation ou PAC dès 156€ TTC dans les Bouches-du-Rhône (Miramas, Salon, Aix, Marseille, Arles, Martigues). Créneau en direct sous 48h avec attestation Cerfa.",
       url: alternates.canonical,
       siteName: "Air G Énergie",
-      images: [{ url: "/images/hero-technician-ac.png", width: 1200, height: 630, alt: "Réservation climatisation Air G Énergie" }],
+      images: [{ url: "/images/hero-technician-ac.png", width: 1200, height: 630, alt: "Entretien et réservation climatisation Air G Énergie" }],
       locale: "fr_FR",
       type: "website",
     },

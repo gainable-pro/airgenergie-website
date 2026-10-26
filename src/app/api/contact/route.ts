@@ -43,6 +43,17 @@ export async function POST(request: Request) {
             `,
         });
 
+        // Sync with ProGBat as prospect/client in background
+        import('@/lib/progbat').then(({ findOrCreateProgbatCustomer }) => {
+            findOrCreateProgbatCustomer({
+                name: nom,
+                email,
+                phone: telephone,
+                city: ville,
+                notes: `[Contact Web - ${service}] ${message}`,
+            }).catch(err => console.warn('ProGBat contact sync warning:', err?.message));
+        }).catch(() => {});
+
         return NextResponse.json(data);
     } catch (error) {
         console.error('Resend Error:', error);

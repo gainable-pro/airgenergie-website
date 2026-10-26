@@ -136,11 +136,43 @@ export async function fulfillPaidBooking({ session, invoicePdf, hostedInvoiceUrl
     invoicePdf: invoicePdf || undefined,
   });
 
+  // 5. Création automatique du Client et de la Facture officielle dans ProGBat
+  const progbatPromise = (async () => {
+    try {
+      const { findOrCreateProgbatCustomer, createProgbatInvoice } = await import('./progbat');
+      const customer = await findOrCreateProgbatCustomer({
+        name: clientNom,
+        email: clientEmail,
+        phone: clientTelephone,
+        city: clientVille,
+        notes: clientNotes,
+      });
+
+      if (customer?.id) {
+        await createProgbatInvoice({
+          thirdId: customer.id,
+          clientName: clientNom,
+          clientCity: clientVille,
+          serviceId,
+          serviceName,
+          totalAmountTTC: Number(totalAmount),
+          date,
+          timeSlot,
+          stripePaymentId: sessionId,
+        });
+        console.log(`✅ Client et Facture ProGBat générés automatiquement pour ${clientNom}`);
+      }
+    } catch (err) {
+      console.error('⚠️ Note ProGBat Sync:', err);
+    }
+  })();
+
   await Promise.allSettled([
     calendarPromise,
     supabasePromise,
     customerEmailPromise,
     adminNotificationPromise,
+    progbatPromise,
   ]);
 
   console.log(`✅ Réservation finalisée avec succès pour ${clientNom} (${sessionId})`);

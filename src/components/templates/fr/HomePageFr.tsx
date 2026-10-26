@@ -51,7 +51,7 @@ export default function HomePageFr() {
             {/* CTA Buttons */}
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginBottom: '2.5rem', flexWrap: 'wrap' }}>
               <Link
-                href="/entretien#reserve"
+                href="/reservation-en-ligne"
                 className="btn"
                 style={{
                   background: '#48BB78',
@@ -67,7 +67,7 @@ export default function HomePageFr() {
                 }}
               >
                 <Calendar size={20} />
-                Réserver un Entretien
+                Réserver un Entretien en Ligne
               </Link>
 
               <Link

@@ -7,8 +7,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const domain = await getSeoDomain();
   const alternates = await getSeoAlternates('/entretien');
   return {
-    title: "Entretien & SAV Climatisation Bouches-du-Rhône (70-100 km) | Air G Énergie",
-    description: "Entretien préventif et curatif de climatisation à partir de 156 € TTC — splits, gainables, consoles, cassettes, VRV/DRV, PAC. Devis gratuit, intervention sous 48h sur 70 à 100 km (Miramas, Salon, Aix, Marseille, Arles, Martigues...).",
+    title: "Entretien Climatisation dès 156€ TTC | Artisans RGE Bouches-du-Rhône | Air G Énergie",
+    description: "Entretien de climatisation réversible et pompe à chaleur dès 156€ TTC dans les Bouches-du-Rhône. Nettoyage antibactérien, attestation Cerfa obligatoire assurances. Réservez en direct sous 48h.",
     alternates,
     other: {
       'application/ld+json': JSON.stringify([

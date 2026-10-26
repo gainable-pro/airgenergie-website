@@ -434,20 +434,79 @@ export async function generateStaticParams() {
   }));
 }
 
+const SERVICE_SEO_META: Record<string, { title: string; desc: string }> = {
+  preventive: {
+    title: "Entretien Climatisation Mono-Split dès 156€ TTC | Réservation 48h - Air G Énergie",
+    desc: "Forfait entretien climatisation mono-split à 156€ TTC : nettoyage filtres, désinfection bactéricide, contrôle pressions fluide et attestation Cerfa. Réservez en ligne sous 48h.",
+  },
+  curative: {
+    title: "Entretien Climatisation Curatif Vapeur 100°C 192€ TTC | Réservation en Direct",
+    desc: "Nettoyage intensif climatisation à la vapeur 100°C sous pression à 192€ TTC. Élimination complète des moisissures, bactéries et odeurs. Technicien sous 48h.",
+  },
+  'double-split': {
+    title: "Entretien Climatisation Bi-Split 270€ TTC | Réservation en Ligne 48h - Air G Énergie",
+    desc: "Entretien complet pour installation bi-split (2 unités + groupe extérieur) à 270€ TTC. Nettoyage, désinfection biocide, contrôle étanchéité et attestation légale Cerfa.",
+  },
+  'tri-split': {
+    title: "Entretien Climatisation Tri-Split 380€ TTC | Réservation en Ligne 48h - Air G Énergie",
+    desc: "Entretien complet pour installation tri-split (3 unités intérieures) à 380€ TTC. Désinfection complète et contrôle annuel obligatoire dans le 13.",
+  },
+  gainable: {
+    title: "Entretien Climatisation Gainable & Airzone 220€ TTC | Réservation Directe 48h",
+    desc: "Entretien de gainable en combles à 220€ TTC : nettoyage filtres de reprise, désinfection réseau aéraulique, contrôle régulation Airzone et remise du Cerfa légal.",
+  },
+  console: {
+    title: "Entretien Climatisation Console 165€ TTC | Réservation en Ligne 48h - Air G Énergie",
+    desc: "Entretien complet pour console basse au sol à 165€ TTC. Nettoyage filtres, désinfection évaporateur double flux, contrôle intensité et attestation légale.",
+  },
+  cassette: {
+    title: "Entretien Climatisation Cassette 4 Voies 180€ TTC | Commerces & Bureaux",
+    desc: "Nettoyage et désinfection de cassette 4 voies encastrée au plafond à 180€ TTC. Idéal commerces, boutiques et bureaux. Conforme ERP et Code du travail.",
+  },
+  vrv: {
+    title: "Entretien Système VRV / DRV (-20% remise auto) | Commerces & Tertiaire - Air G Énergie",
+    desc: "Maintenance et audit sur mesure VRV (Daikin) et DRV (Mitsubishi) pour magasins, hôtels et bureaux. Remise automatique de -20% en ligne. Cerfa officiel annuel.",
+  },
+  'pac-air-eau': {
+    title: "Entretien Pompe à Chaleur Air/Eau 270€ TTC | Contrôle Obligatoire Cerfa",
+    desc: "Entretien annuel obligatoire PAC air/eau à 270€ TTC. Nettoyage échangeur, pression hydraulique, contrôle fluide et délivrance de l'attestation Cerfa pour assurance.",
+  },
+  thermodynamique: {
+    title: "Entretien Chauffe-Eau Thermodynamique 174€ TTC | Contrôle Annuel & Cerfa",
+    desc: "Entretien et contrôle de chauffe-eau thermodynamique à 174€ TTC. Nettoyage filtre et évaporateur, contrôle anode, sécurité électrique et rapport d'intervention.",
+  },
+  diagnostic: {
+    title: "Diagnostic Panne Climatisation 100€ | Rapport Écrit Assurance - Air G Énergie",
+    desc: "Recherche de panne climatisation et PAC à 100€. Détection fuite, test électrique, décodage codes erreur et remise d'un rapport certifié pour votre assurance.",
+  },
+  devis: {
+    title: "Devis Climatisation & PAC Gratuit (0€) | Sous 48h Bouches-du-Rhône - Air G Énergie",
+    desc: "Étude thermique et devis d'installation gratuit sous 48h. Déplacement offert dans toutes les Bouches-du-Rhône par artisan frigoriste certifié RGE QualiPAC.",
+  },
+  'reprogrammation-thermostat': {
+    title: "Re-programmation Thermostat Gainable & Airzone 200€ | Réglage & Pression",
+    desc: "Contrôle, recalibrage et mise à jour de thermostat gainable Airzone à 200€. Optimisation portée du signal et réglage de pression statique dans le 13.",
+  },
+};
+
 export async function generateMetadata({ params }: { params: Promise<{ service: string }> }): Promise<Metadata> {
   const { service } = await params;
   const data = SERVICES_CATALOG[service];
   if (!data) return { title: 'Prestation - Air G Énergie' };
 
   const alternates = await getSeoAlternates(`/reservation-en-ligne/${service}`);
+  const seo = SERVICE_SEO_META[service] || {
+    title: `${data.name} à ${data.price === 0 ? 'Gratuit' : data.price + '€ TTC'} | Réservation en Ligne 48h - Air G Énergie`,
+    desc: `${data.subtitle}. ${data.desc} Intervention sous 48h dans les Bouches-du-Rhône. Réservez votre créneau en ligne.`,
+  };
 
   return {
-    title: `${data.name} | Bouches-du-Rhône & Rayon 70 km | Tarif & Réservation | Air G Énergie`,
-    description: `${data.subtitle}. ${data.desc} Intervention sous 48h dans un rayon de 70km autour de Miramas, Salon, Aix, Marseille, Arles, Martigues. Prenez rendez-vous en ligne.`,
+    title: seo.title,
+    description: seo.desc,
     alternates,
     openGraph: {
-      title: `${data.name} | Air G Énergie`,
-      description: data.desc,
+      title: seo.title,
+      description: seo.desc,
       url: alternates.canonical,
       siteName: 'Air G Énergie',
       images: [

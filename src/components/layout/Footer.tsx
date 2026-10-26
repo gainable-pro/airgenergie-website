@@ -40,6 +40,7 @@ export default function Footer() {
                         <li><Link href="/gainable">Systèmes Gainables</Link></li>
                         <li><Link href="/pompe-a-chaleur">Pompes à Chaleur</Link></li>
                         <li><Link href="/entretien">Entretien & SAV</Link></li>
+                        <li><Link href="/reservation-en-ligne" style={{ color: '#0091DA', fontWeight: 'bold' }}>📅 Réservation en Ligne</Link></li>
                         <li><Link href="/drv-cta">Solutions Tertiaires</Link></li>
                         <li><Link href="/blog">Blog</Link></li>
                         <li><Link href="/contact">Contact</Link></li>

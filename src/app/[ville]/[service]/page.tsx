@@ -26,13 +26,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
     const alternates = await getSeoAlternates(`/${ville}/${service}`);
 
+    const isEntretien = service === 'entretien';
+    const customTitle = isEntretien
+        ? `Entretien Climatisation à ${cityName} dès 156€ | Réservation en direct 48h - Air G Énergie`
+        : `${serviceName} à ${cityName} - Artisan RGE & Devis Gratuit | Air G Energie`;
+    const customDesc = isEntretien
+        ? `Entretien et nettoyage de climatisation à ${cityName} dès 156€ TTC. Désinfection complète, contrôle fluide frigorigène et attestation légale Cerfa. Réservez votre créneau en 2 min.`
+        : spine.heroSubtitle.substring(0, 155);
+
     return {
-        title: `${serviceName} à ${cityName} - Artisan RGE & Devis Gratuit | Air G Energie`,
-        description: spine.heroSubtitle.substring(0, 155),
+        title: customTitle,
+        description: customDesc,
         alternates,
         openGraph: {
-            title: `${serviceName} à ${cityName} - Devis Gratuit`,
-            description: spine.heroSubtitle,
+            title: customTitle,
+            description: customDesc,
             url: alternates.canonical,
             siteName: "AIR G Energie",
             locale: "fr_FR",
@@ -126,7 +134,12 @@ export default async function DynamicSeoMatrixPage({ params }: PageProps) {
                         {spine.heroSubtitle}
                     </p>
                     <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                        <a href="tel:0413414901" className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: '#FF6B00', border: 'none' }}>
+                        {service === 'entretien' ? (
+                            <Link href="/reservation-en-ligne" className="btn" style={{ background: '#FF6B00', color: 'white', border: 'none', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '0.5rem', boxShadow: '0 4px 14px rgba(255, 107, 0, 0.4)' }}>
+                                📅 Réserver en ligne (dès 156€)
+                            </Link>
+                        ) : null}
+                        <a href="tel:0413414901" className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: service === 'entretien' ? 'rgba(255,255,255,0.15)' : '#FF6B00', border: 'none' }}>
                             <Phone size={20} />
                             04 13 41 49 01
                         </a>
@@ -165,9 +178,16 @@ export default async function DynamicSeoMatrixPage({ params }: PageProps) {
                     <p style={{ fontSize: '1.1rem', color: 'var(--text-gray)', marginBottom: '2rem' }}>
                         Notre équipe de techniciens frigoristes certifiés est prête à intervenir.
                     </p>
-                    <Link href="/contact" className="btn btn-primary" style={{ fontSize: '1.1rem', padding: '1rem 2.5rem' }}>
-                        Contacter notre équipe locale
-                    </Link>
+                    <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+                        {service === 'entretien' ? (
+                            <Link href="/reservation-en-ligne" className="btn btn-primary" style={{ fontSize: '1.1rem', padding: '1rem 2rem', background: '#FF6B00', border: 'none', boxShadow: '0 4px 14px rgba(255, 107, 0, 0.4)' }}>
+                                📅 Réserver mon entretien à {cityName} (dès 156€)
+                            </Link>
+                        ) : null}
+                        <Link href="/contact" className="btn" style={{ fontSize: '1.1rem', padding: '1rem 2rem', background: service === 'entretien' ? '#FFFFFF' : 'var(--primary-blue)', color: service === 'entretien' ? 'var(--text-dark)' : 'white', border: service === 'entretien' ? '1px solid #CBD5E1' : 'none' }}>
+                            Demander un devis gratuit
+                        </Link>
+                    </div>
                 </div>
             </section>
         </div>
