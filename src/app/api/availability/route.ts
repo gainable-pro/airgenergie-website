@@ -66,11 +66,25 @@ export async function GET(request: NextRequest) {
 
     // Filtrer les événements bloquants :
     // - On ignore les événements annulés
-    // - On ignore les événements marqués "Disponible" (transparency: 'transparent'),
-    //   tels que la "Présence apprenti — Entreprise", les rappels, ou les événements informatifs non bloquants
+    // - On ignore les événements marqués "Disponible" (transparency: 'transparent')
+    // - On ignore expressément tous les événements liés aux apprentis/alternants (ex: "Présence apprenti")
     const blockingEvents = events.filter((event) => {
       if (event.status === 'cancelled') return false;
       if (event.transparency === 'transparent') return false;
+
+      // Règle explicite : les événements de présence apprenti, alternant, cours BTS ou marqués non bloquants ne doivent jamais bloquer le calendrier client
+      const summary = (event.summary || '').toLowerCase();
+      const description = (event.description || '').toLowerCase();
+      if (
+        summary.includes('apprenti') ||
+        summary.includes('alternan') ||
+        summary.includes('bts') ||
+        description.includes('apprenti') ||
+        description.includes('non bloquant')
+      ) {
+        return false;
+      }
+
       return true;
     });
 
