@@ -79,8 +79,24 @@ export function getGoogleCalendarClient(scope: 'read' | 'write' = 'write') {
   return google.calendar({ version: 'v3', auth });
 }
 
+function getParisOffset(dateStr: string): string {
+  try {
+    const testDate = new Date(`${dateStr}T12:00:00Z`);
+    const dtf = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'Europe/Paris',
+      timeZoneName: 'longOffset',
+    });
+    const parts = dtf.formatToParts(testDate);
+    const tzPart = parts.find((p) => p.type === 'timeZoneName');
+    return tzPart ? tzPart.value.replace('GMT', '') : '+01:00';
+  } catch {
+    return '+01:00';
+  }
+}
+
 function parseTimeOnDate(dateStr: string, timeStr: string): Date {
-  return new Date(`${dateStr}T${timeStr}:00+02:00`);
+  const offset = getParisOffset(dateStr);
+  return new Date(`${dateStr}T${timeStr}:00${offset}`);
 }
 
 function slotStartToEndTime(slotStartTime: string, durationMins: number): string {

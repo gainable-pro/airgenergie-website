@@ -8,8 +8,24 @@ const ALL_SLOTS = [
   { id: '16:00', label: '16:00 - 18:00', start: '16:00', end: '18:00' },
 ];
 
+function getParisOffset(dateStr: string): string {
+  try {
+    const testDate = new Date(`${dateStr}T12:00:00Z`);
+    const dtf = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'Europe/Paris',
+      timeZoneName: 'longOffset',
+    });
+    const parts = dtf.formatToParts(testDate);
+    const tzPart = parts.find((p) => p.type === 'timeZoneName');
+    return tzPart ? tzPart.value.replace('GMT', '') : '+01:00';
+  } catch {
+    return '+01:00';
+  }
+}
+
 function parseDateTimeParis(dateStr: string, timeStr: string): Date {
-  return new Date(`${dateStr}T${timeStr}:00+02:00`);
+  const offset = getParisOffset(dateStr);
+  return new Date(`${dateStr}T${timeStr}:00${offset}`);
 }
 
 export async function GET(request: NextRequest) {
@@ -33,9 +49,10 @@ export async function GET(request: NextRequest) {
     const calendarId = getCalendarId();
     const calendar = getGoogleCalendarClient('read');
 
-    // Récupération des événements de la journée sur l'agenda
-    const timeMin = `${date}T00:00:00+02:00`;
-    const timeMax = `${date}T23:59:59+02:00`;
+    // Récupération des événements de la journée sur l'agenda avec le décalage horaire Paris exact (CET +01:00 ou CEST +02:00)
+    const offset = getParisOffset(date);
+    const timeMin = `${date}T00:00:00${offset}`;
+    const timeMax = `${date}T23:59:59${offset}`;
 
     const eventsResponse = await calendar.events.list({
       calendarId,
@@ -47,8 +64,18 @@ export async function GET(request: NextRequest) {
 
     const events = eventsResponse.data.items ?? [];
 
+    // Filtrer les événements bloquants :
+    // - On ignore les événements annulés
+    // - On ignore les événements marqués "Disponible" (transparency: 'transparent'),
+    //   tels que la "Présence apprenti — Entreprise", les rappels, ou les événements informatifs non bloquants
+    const blockingEvents = events.filter((event) => {
+      if (event.status === 'cancelled') return false;
+      if (event.transparency === 'transparent') return false;
+      return true;
+    });
+
     // 1. Vérifier si un événement journée entière bloque tout le jour (ex: Congés, Absence, Indisponible)
-    const hasAllDayBlock = events.some((event) => {
+    const hasAllDayBlock = blockingEvents.some((event) => {
       if (event.start?.date) {
         const startDate = event.start.date;
         const endDate = event.end?.date || startDate;
@@ -70,7 +97,7 @@ export async function GET(request: NextRequest) {
       const slotStart = parseDateTimeParis(date, slot.start);
       const slotEnd = parseDateTimeParis(date, slot.end);
 
-      const isBlocked = events.some((event) => {
+      const isBlocked = blockingEvents.some((event) => {
         if (!event.start?.dateTime || !event.end?.dateTime) return false;
 
         const eventStart = new Date(event.start.dateTime);
