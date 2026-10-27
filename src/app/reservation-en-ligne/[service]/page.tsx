@@ -425,6 +425,41 @@ const SERVICES_CATALOG: Record<string, ServiceData> = {
       'Accès aux paramètres installateur et passerelle de communication',
       'Réglage de la pression statique disponible sur le groupe intérieur gainable'
     ]
+  },
+  'entretien-vmc': {
+    id: 'entretien-vmc',
+    category: 'vmc',
+    name: 'Entretien annuel VMC',
+    price: 230,
+    duration: '2h à 3h',
+    image: '/images/vmc-ventilation.jpg',
+    subtitle: 'Vérification gaines, démontage, nettoyage VMC & test ventilation',
+    desc: 'Prestation complète d\'entretien annuel de votre système de ventilation VMC (simple flux autoréglable, hygroréglable ou double flux) : démontage et nettoyage turbine caisson, dégraissage des bouches, contrôle et réparation d\'appoint des gaines au scotch isolant, test des débits d\'air.',
+    details: [
+      'Démontage complet du caisson moteur VMC et nettoyage en profondeur de la turbine',
+      'Dépoussiérage et dégraissage des bouches d\'extraction (cuisine, salle de bain, WC)',
+      'Vérification minutieuse de l\'état des gaines de ventilation en comble ou faux-plafond',
+      'Rattrapage d\'appoint avec scotch isolant armé si gaine déchirée ou rongée par rongeur',
+      'Test du débit de renouvellement d\'air et du bon tirage de ventilation',
+      'Contrôle électrique, vérification des fixations et suspensions antivibratiles',
+      'Si remplacement nécessaire de gaines ou du moteur : devis de remplacement édité sur place',
+      'Option remplacement intégral de VMC simple flux proposée en moyenne à 693 € TTC'
+    ],
+    conseilsTitle: 'Conseil de l\'expert : Pourquoi l\'entretien régulier de votre VMC est-il indispensable ?',
+    conseilsContent: 'Une VMC encrassée perd jusqu\'à 50% de son efficacité d\'extraction, favorisant l\'accumulation d\'humidité, l\'apparition de moisissures nocives et la dégradation de la qualité de l\'air intérieur. Pire encore, les graisses et poussières accumulées sur le moteur et dans les gaines créent une surchauffe et représentent l\'une des premières causes de départ de feu dans les combles. Notre intervention de 2 à 3 heures assure la sécurité de votre habitation et la pérennité de votre installation.',
+    conseilsList: [
+      'Nettoyez régulièrement les grilles d\'extraction de votre cuisine et salle de bain pour éviter l\'encrassement du moteur.',
+      'En cas de bruits anormaux ou de sifflements dans les combles, faites vérifier la turbine et l\'équilibrage du moteur sans attendre.',
+      'Si vos gaines en combles ont été endommagées ou percées par des rongeurs, une étanchéité immédiate évite la condensation et les fuites d\'air chaud dans l\'isolant.'
+    ],
+    techniqueSpecs: [
+      'Nettoyage et dégraissage turbine centrifuge VMC',
+      'Vérification étanchéité et intégrité des gaines d\'extraction',
+      'Réparation d\'appoint au scotch adhésif aluminium armé / isolant',
+      'Mesure du débit de dépression d\'air en sortie de bouche',
+      'Contrôle des intensités et de la conformité du circuit électrique',
+      'Proposition de remplacement complet VMC simple flux (moyenne 693 € TTC) si vétuste'
+    ]
   }
 };
 
@@ -486,6 +521,10 @@ const SERVICE_SEO_META: Record<string, { title: string; desc: string }> = {
   'reprogrammation-thermostat': {
     title: "Re-programmation Thermostat Gainable & Airzone 200€ | Réglage & Pression",
     desc: "Contrôle, recalibrage et mise à jour de thermostat gainable Airzone à 200€. Optimisation portée du signal et réglage de pression statique dans le 13.",
+  },
+  'entretien-vmc': {
+    title: "Entretien Annuel VMC 230€ TTC | Nettoyage, Gaines & Test Débit - Air G Énergie",
+    desc: "Entretien complet de VMC à 230€ TTC : démontage caisson, nettoyage turbine et bouches, vérification gaines et test ventilation. Réservez votre créneau en ligne sous 48h.",
   },
 };
 

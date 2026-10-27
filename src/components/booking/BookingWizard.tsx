@@ -18,7 +18,8 @@ const MAINTENANCE_SERVICES = [
   { id: 'thermodynamique', name: 'Entretien ballon thermodynamique', price: 174, duration: '45 min', desc: 'Contrôle étanchéité fluide, nettoyage évaporateur, vérification de l\'anode et contrôle du bon fonctionnement.' },
   { id: 'pac-air-eau', name: 'Entretien – Pompe à Chaleur Air/Eau', price: 270, duration: '45 min', desc: 'Nettoyage et contrôle de l\'unité extérieure, contrôle de la pression hydraulique et des vases d\'expansion.' },
   { id: 'vrv', name: 'Entretien Système VRV / DRV', price: 0, duration: 'Sur mesure', desc: 'Entretien technique complet de vos installations VRV/DRV. Composez votre installation par type d\'unités (splits, gainables, cassettes, consoles) pour un tarif remisé de -20%.' },
-  { id: 'reprogrammation-thermostat', name: 'Re-programmation thermostat', price: 200, duration: '1h à 1h30', desc: 'Vérification thermostats et mesures, contact support technique pour mise à jour signal, vérification et augmentation pression statique.' }
+  { id: 'reprogrammation-thermostat', name: 'Re-programmation thermostat', price: 200, duration: '1h à 1h30', desc: 'Vérification thermostats et mesures, contact support technique pour mise à jour signal, vérification et augmentation pression statique.' },
+  { id: 'entretien-vmc', name: 'Entretien annuel VMC', price: 230, duration: '2h à 3h', desc: 'Vérification des gaines, démontage et nettoyage VMC, test de ventilation. Réparation d\'appoint au scotch isolant si gaine déchirée/rongée. Devis si remplacement nécessaire de gaine ou moteur (remplacement intégral VMC simple flux proposé en moyenne à 693 € TTC).' }
 ];
 
 // Unit type prices for multi-unit and VRV composer

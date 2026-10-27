@@ -241,6 +241,27 @@ const DETAILED_SERVICES = [
       'Pour tout remplacement de thermostat Airzone : commande à effectuer au préalable',
       'Si code erreur lié à la carte ou au Webserver : diagnostic effectué au préalable'
     ]
+  },
+  {
+    id: 'entretien-vmc',
+    category: 'vmc',
+    name: 'Entretien annuel VMC',
+    price: 230,
+    duration: '2h à 3h',
+    image: '/images/vmc-ventilation.jpg',
+    subtitle: 'Vérification gaines, démontage, nettoyage VMC & test ventilation',
+    isRecommended: true,
+    desc: 'Entretien annuel complet de votre système de ventilation VMC (simple ou double flux) pour un air renouvelé, une maison sans humidité et une sécurité incendie assurée.',
+    details: [
+      'Démontage complet du caisson moteur VMC et nettoyage de la turbine',
+      'Dépoussiérage et dégraissage des bouches d\'extraction (cuisine, salle de bain, WC)',
+      'Vérification minutieuse de l\'état des gaines de ventilation',
+      'Rattrapage d\'appoint avec scotch isolant armé si gaine déchirée ou rongée par rongeur',
+      'Test du débit de renouvellement d\'air et du bon tirage de ventilation',
+      'Contrôle électrique, vérification des fixations et suspensions antivibratiles',
+      'Si remplacement nécessaire de gaines ou du moteur : devis de remplacement édité sur place',
+      'Option remplacement intégral de VMC simple flux proposée en moyenne à 693 € TTC'
+    ]
   }
 ];
 
@@ -438,6 +459,7 @@ export default function EntretienPageFr() {
               { id: 'all', label: 'Toutes nos prestations' },
               { id: 'clim', label: 'Entretien Climatisation' },
               { id: 'pac', label: 'Pompe à Chaleur & Ballon' },
+              { id: 'vmc', label: 'VMC' },
               { id: 'depannage', label: 'Diagnostic & Devis' }
             ].map((tab) => (
               <button

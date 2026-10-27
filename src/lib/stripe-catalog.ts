@@ -87,6 +87,13 @@ export const STRIPE_CATALOG = {
     "price": 270,
     "category": "pac"
   },
+  "entretien-vmc": {
+    "productId": "prod_VWM5MjxwvFJg1K",
+    "priceId": "price_1UVJNIFVMqGo2msFuuQOG3LY",
+    "name": "Entretien annuel VMC",
+    "price": 230,
+    "category": "vmc"
+  },
   "curative-gainable": {
     "productId": "prod_UxrOSLOh5xSSJy",
     "priceId": "price_1TxvfNFVMqGo2msFWtaJYKi0",

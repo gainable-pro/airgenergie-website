@@ -48,7 +48,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const serviceDetailRoutes = [
         'devis', 'diagnostic', 'preventive', 'curative', 'double-split',
         'tri-split', 'gainable', 'console', 'cassette', 'vrv',
-        'thermodynamique', 'pac-air-eau'
+        'thermodynamique', 'pac-air-eau', 'reprogrammation-thermostat', 'entretien-vmc'
     ].map((service) => ({
         url: `${baseUrl}/reservation-en-ligne/${service}`,
         lastModified: new Date(),

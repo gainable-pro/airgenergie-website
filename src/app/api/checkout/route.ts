@@ -14,7 +14,7 @@ const SERVICE_DURATIONS: Record<string, number> = {
   devis: 45, diagnostic: 45, preventive: 45, curative: 60,
   'double-split': 120, 'tri-split': 120, gainable: 45,
   console: 45, cassette: 45, thermodynamique: 45, 'pac-air-eau': 45, vrv: 90,
-  'reprogrammation-thermostat': 90,
+  'reprogrammation-thermostat': 90, 'entretien-vmc': 150,
 };
 
 function buildStripeLineItems(
@@ -184,6 +184,13 @@ function buildStripeLineItems(
         200,
         1,
         "Vérification complète des thermostats, test des sondes et signaux de commande, réglage de la pression statique, coordination support technique fabricant et optimisation de la régulation."
+      ));
+    } else if (serviceId === 'entretien-vmc') {
+      lineItems.push(formatItem(
+        "Entretien annuel VMC (Vérification gaines, démontage, nettoyage caisson/bouches & test ventilation)",
+        230,
+        1,
+        "Vérification des gaines, démontage et nettoyage complet du caisson VMC et des bouches d'extraction, test des débits d'air et de la ventilation. Réparation d'appoint au scotch isolant si gaine déchirée ou rongée par des rongeurs. Remise d'un devis si remplacement nécessaire de gaines ou moteur (prestation de remplacement intégral de VMC simple flux proposée en moyenne à 693 € TTC). Durée d'intervention : 2h à 3h."
       ));
     }
   }

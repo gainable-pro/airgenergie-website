@@ -119,6 +119,13 @@ const OFFICIAL_CATALOG = [
     price: 200,
     category: 'clim',
   },
+  {
+    id: 'entretien-vmc',
+    name: 'Entretien annuel VMC',
+    description: "Vérification des gaines, démontage et nettoyage VMC, test de ventilation. Réparation d'appoint au scotch isolant si gaine déchirée ou rongée par rongeurs. Établissement d'un devis si remplacement nécessaire de gaines ou moteur (prestation de remplacement intégral de VMC simple flux proposée en moyenne à 693 € TTC). Durée d'intervention : 2 à 3 h.",
+    price: 230,
+    category: 'vmc',
+  },
 
   // ── Extra unit items for dynamic composer ──────────────────────────────────
   {
