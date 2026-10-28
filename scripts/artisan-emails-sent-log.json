@@ -1,0 +1,50 @@
+[
+  {
+    "id": "01a17fcc-2818-7276-acbe-bf1aa1a62948",
+    "to": "contact.climairpro@gmail.com",
+    "nomEntreprise": "Clim Air Pro",
+    "prenom": null,
+    "sentAt": "2026-10-27T23:57:29.156Z",
+    "status": "sent"
+  },
+  {
+    "id": "01a17fcc-2bf9-79fc-b63c-f2fd84b17a99",
+    "to": "julien.marmin@jmlelec.com",
+    "nomEntreprise": "JML Elec",
+    "prenom": "Julien",
+    "sentAt": "2026-10-27T23:57:30.131Z",
+    "status": "sent"
+  },
+  {
+    "id": "01a17fcc-2fca-72a6-b225-516f46a7e197",
+    "to": "contact@clim-eco.fr",
+    "nomEntreprise": "Clim Eco",
+    "prenom": null,
+    "sentAt": "2026-10-27T23:57:31.108Z",
+    "status": "sent"
+  },
+  {
+    "id": "01a17fcc-3399-7094-ba8f-a4bb2efb46fa",
+    "to": "guihomechauffage@gmail.com",
+    "nomEntreprise": "Guihome Chauffage",
+    "prenom": null,
+    "sentAt": "2026-10-27T23:57:32.093Z",
+    "status": "sent"
+  },
+  {
+    "id": "01a17fdc-a4cb-7d18-9c7e-a5ef181f1218",
+    "to": "airgenergie@gmail.com",
+    "nomEntreprise": "Air G Energie",
+    "prenom": null,
+    "sentAt": "2026-10-28T00:15:29.744Z",
+    "status": "sent"
+  },
+  {
+    "id": "01a17fe1-18f7-767b-a8a1-78a270a21a38",
+    "to": "airgenergie@gmail.com",
+    "nomEntreprise": "Air G Energie",
+    "prenom": null,
+    "sentAt": "2026-10-28T00:20:21.578Z",
+    "status": "sent"
+  }
+]
