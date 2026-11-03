@@ -8,6 +8,8 @@ export interface BookingEmailData {
   clientNom: string;
   clientTelephone: string;
   clientEmail?: string;
+  clientAdresse?: string;
+  clientCodePostal?: string;
   clientVille: string;
   clientNotes?: string;
   composition?: string;
@@ -23,6 +25,8 @@ export interface CustomerConfirmationEmailData {
   clientNom: string;
   clientTelephone: string;
   clientEmail: string;
+  clientAdresse?: string;
+  clientCodePostal?: string;
   clientVille: string;
   clientNotes?: string;
   composition?: string;
@@ -46,6 +50,11 @@ export async function sendBookingNotificationEmail(booking: BookingEmailData) {
       month: 'long',
       year: 'numeric',
     });
+
+    const fullAddress = [
+      booking.clientAdresse,
+      [booking.clientCodePostal, booking.clientVille].filter(Boolean).join(' ')
+    ].filter(Boolean).join(', ');
 
     const subject = `🎉 Félicitations ! Nouvelle réservation : ${booking.clientNom} (${booking.clientVille})`;
 
@@ -75,7 +84,7 @@ export async function sendBookingNotificationEmail(booking: BookingEmailData) {
             <li><strong>Nom & Prénom :</strong> <span style="font-size: 15px; font-weight: bold; color: #0f172a;">${booking.clientNom}</span></li>
             <li><strong>Téléphone / Portable :</strong> <a href="tel:${booking.clientTelephone}" style="color:#0091DA; font-weight:bold; font-size:15px; text-decoration:none;">${booking.clientTelephone}</a></li>
             <li><strong>Adresse Email :</strong> ${booking.clientEmail ? `<a href="mailto:${booking.clientEmail}" style="color:#0091DA; text-decoration:none;">${booking.clientEmail}</a>` : 'Non renseignée'}</li>
-            <li><strong>Ville / Adresse d'intervention :</strong> <strong>${booking.clientVille}</strong></li>
+            <li><strong>Adresse complète d'intervention :</strong> <strong style="color:#0f172a;">${fullAddress}</strong></li>
             ${booking.clientNotes ? `<li><strong>Notes & Précisions client :</strong> <em>${booking.clientNotes}</em></li>` : ''}
           </ul>
 
@@ -147,6 +156,11 @@ export async function sendCustomerConfirmationEmail(booking: CustomerConfirmatio
       year: 'numeric',
     });
 
+    const fullCustomerAddress = [
+      booking.clientAdresse,
+      [booking.clientCodePostal, booking.clientVille].filter(Boolean).join(' ')
+    ].filter(Boolean).join(', ');
+
     const subject = `✅ Confirmation de votre intervention : ${booking.serviceName} | Air G Énergie`;
 
     const html = `
@@ -185,8 +199,8 @@ export async function sendCustomerConfirmationEmail(booking: CustomerConfirmatio
                 <td style="padding: 6px 0; font-weight: bold; color: #b45309;">${booking.timeSlot}</td>
               </tr>
               <tr>
-                <td style="padding: 6px 0; font-weight: bold;">Lieu d'intervention :</td>
-                <td style="padding: 6px 0;">${booking.clientVille}</td>
+                <td style="padding: 6px 0; font-weight: bold;">Adresse d'intervention :</td>
+                <td style="padding: 6px 0;">${fullCustomerAddress}</td>
               </tr>
               <tr>
                 <td style="padding: 6px 0; font-weight: bold;">Montant réglé :</td>

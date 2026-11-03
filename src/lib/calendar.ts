@@ -119,6 +119,8 @@ export interface BookingCalendarData {
   clientNom: string;
   clientTelephone: string;
   clientEmail?: string;
+  clientAdresse?: string;
+  clientCodePostal?: string;
   clientVille: string;
   clientNotes?: string;
   isVrv?: boolean | string;
@@ -173,6 +175,11 @@ export async function createCalendarEvent(data: BookingCalendarData) {
       ? 'Gratuit (Étude & Devis sur place)'
       : `${data.totalAmount} € TTC (Payé en ligne via Stripe)`;
 
+    const fullAddress = [
+      data.clientAdresse,
+      [data.clientCodePostal, data.clientVille].filter(Boolean).join(' ')
+    ].filter(Boolean).join(', ');
+
     const description = [
       `📋 Prestation : ${data.serviceName}`,
       data.composition ? `🔧 Composition : ${data.composition}` : null,
@@ -182,8 +189,8 @@ export async function createCalendarEvent(data: BookingCalendarData) {
       `👤 Client : ${data.clientNom}`,
       `📞 Téléphone : ${data.clientTelephone}`,
       data.clientEmail ? `📧 Email : ${data.clientEmail}` : null,
-      `📍 Ville / Commune : ${data.clientVille}`,
-      data.clientNotes ? `📝 Notes & Adresse exacte : ${data.clientNotes}` : null,
+      `📍 Adresse complète : ${fullAddress}`,
+      data.clientNotes ? `📝 Notes & Précisions : ${data.clientNotes}` : null,
       data.invoicePdf ? `📄 Facture officielle Stripe PDF : ${data.invoicePdf}` : null,
       data.stripeSessionId ? `💳 Stripe Session ID : ${data.stripeSessionId}` : null,
     ].filter(Boolean).join('\n');
@@ -192,6 +199,7 @@ export async function createCalendarEvent(data: BookingCalendarData) {
       calendarId,
       requestBody: {
         summary: `🔧 [Air G] ${data.serviceName} — ${data.clientNom} (${data.clientVille})`,
+        location: fullAddress,
         description,
         start: {
           dateTime: interventionStart.toISOString(),

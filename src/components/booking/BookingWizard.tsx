@@ -145,7 +145,7 @@ export default function BookingWizard({ initialServiceId }: { initialServiceId?:
 
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [selectedTimeSlot, setSelectedTimeSlot] = useState<string>('');
-  const [formData, setFormData] = useState({ nom: '', email: '', telephone: '', ville: 'Miramas', notes: '' });
+  const [formData, setFormData] = useState({ nom: '', email: '', telephone: '', adresse: '', codePostal: '', ville: 'Miramas', notes: '' });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -254,7 +254,7 @@ export default function BookingWizard({ initialServiceId }: { initialServiceId?:
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedService || !selectedDate || !selectedTimeSlot || !formData.nom || !formData.telephone) return;
+    if (!selectedService || !selectedDate || !selectedTimeSlot || !formData.nom || !formData.telephone || !formData.adresse) return;
     if (!termsAccepted) {
       alert('Veuillez cocher la case de confirmation des conditions d\'intervention avant de valider.');
       return;
@@ -332,13 +332,13 @@ Notes client : ${formData.notes || 'Aucune'}`;
             {composition && <li>• <strong>Composition :</strong> {composition}</li>}
             <li>• <strong>Date :</strong> {formattedDate} ({selectedTimeSlot})</li>
             <li>• <strong>Montant estimé :</strong> {finalTotal === 0 ? 'Gratuit' : `${finalTotal} €`}{isVrv ? ' (remise VRV -20% incluse)' : ''}</li>
-            <li>• <strong>Lieu :</strong> {formData.ville}</li>
+            <li>• <strong>Adresse :</strong> {[formData.adresse, formData.codePostal, formData.ville].filter(Boolean).join(', ')}</li>
           </ul>
         </div>
         <p style={{ color: 'var(--text-light)', fontSize: '0.85rem', marginBottom: '2rem', background: '#FFFBEB', padding: '0.75rem 1rem', borderRadius: '0.5rem', border: '1px solid #FCD34D' }}>
           ⚠️ Un contrôle de performance sera réalisé avant toute intervention. Notre secrétariat vous confirmera le rendez-vous sous 2h au <strong>{formData.telephone}</strong>.
         </p>
-        <button type="button" onClick={() => { setStep(1); setSelectedService(null); setSelectedDate(''); setSelectedTimeSlot(''); setFormData({ nom: '', email: '', telephone: '', ville: 'miramas', notes: '' }); setSuccess(false); setTermsAccepted(false); }} className="btn btn-secondary" style={{ width: '100%' }}>
+        <button type="button" onClick={() => { setStep(1); setSelectedService(null); setSelectedDate(''); setSelectedTimeSlot(''); setFormData({ nom: '', email: '', telephone: '', adresse: '', codePostal: '', ville: 'Miramas', notes: '' }); setSuccess(false); setTermsAccepted(false); }} className="btn btn-secondary" style={{ width: '100%' }}>
           Faire une autre demande
         </button>
       </div>
@@ -725,6 +725,23 @@ Notes client : ${formData.notes || 'Aucune'}`;
                 <div style={{ position: 'relative' }}>
                   <Mail size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: '#94A3B8' }} />
                   <input type="email" placeholder="contact@email.fr" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} style={{ width: '100%', padding: '0.75rem 1rem 0.75rem 2.75rem', border: '1px solid #E2E8F0', borderRadius: '0.5rem', outline: 'none', fontSize: '1rem' }} />
+                </div>
+              </div>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: '600', color: '#334155', marginBottom: '0.5rem' }}>Adresse d&apos;intervention (N° et rue) *</label>
+                <div style={{ position: 'relative' }}>
+                  <MapPin size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: '#94A3B8' }} />
+                  <input type="text" required placeholder="Ex : 12 Avenue Charles de Gaulle" value={formData.adresse} onChange={(e) => setFormData({ ...formData, adresse: e.target.value })} style={{ width: '100%', padding: '0.75rem 1rem 0.75rem 2.75rem', border: '1px solid #E2E8F0', borderRadius: '0.5rem', outline: 'none', fontSize: '1rem' }} />
+                </div>
+              </div>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem', marginBottom: '1rem' }}>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: '600', color: '#334155', marginBottom: '0.5rem' }}>Code postal *</label>
+                <div style={{ position: 'relative' }}>
+                  <MapPin size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: '#94A3B8' }} />
+                  <input type="text" required placeholder="Ex : 13140" value={formData.codePostal} onChange={(e) => setFormData({ ...formData, codePostal: e.target.value })} style={{ width: '100%', padding: '0.75rem 1rem 0.75rem 2.75rem', border: '1px solid #E2E8F0', borderRadius: '0.5rem', outline: 'none', fontSize: '1rem' }} />
                 </div>
               </div>
               <div>

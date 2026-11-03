@@ -223,6 +223,10 @@ export async function POST(request: NextRequest) {
     // Pour les devis gratuits, on insère dans Google Calendar + Supabase sans passer par Stripe
     if (totalAmount === 0) {
       const realDuration = durationMins ?? SERVICE_DURATIONS[serviceId] ?? 45;
+      const fullAddress = [
+        client.adresse,
+        [client.codePostal, client.ville].filter(Boolean).join(' ')
+      ].filter(Boolean).join(', ');
       
       // 1. Bloquer le créneau dans Google Calendar
       await createCalendarEvent({
@@ -236,6 +240,8 @@ export async function POST(request: NextRequest) {
         clientNom: client.nom,
         clientTelephone: client.telephone,
         clientEmail: client.email,
+        clientAdresse: client.adresse,
+        clientCodePostal: client.codePostal,
         clientVille: client.ville,
         clientNotes: client.notes,
         isVrv,
@@ -247,9 +253,9 @@ export async function POST(request: NextRequest) {
           full_name: client.nom,
           email: client.email || null,
           phone: client.telephone,
-          city: client.ville,
+          city: fullAddress,
           service_type: `Étude & Devis - ${serviceName}`,
-          message: `[Réservation Gratuite] Prestation: ${serviceName} | Date: ${date} (${timeSlot}) | Notes: ${client.notes || 'Aucune'}`,
+          message: `[Réservation Gratuite] Prestation: ${serviceName} | Date: ${date} (${timeSlot}) | Adresse: ${fullAddress} | Notes: ${client.notes || 'Aucune'}`,
         });
       } catch (e) {
         console.warn('Supabase lead insertion notice:', e);
@@ -265,6 +271,8 @@ export async function POST(request: NextRequest) {
           clientNom: client.nom,
           clientTelephone: client.telephone,
           clientEmail: client.email,
+          clientAdresse: client.adresse,
+          clientCodePostal: client.codePostal,
           clientVille: client.ville,
           clientNotes: client.notes,
           composition,
@@ -332,11 +340,16 @@ export async function POST(request: NextRequest) {
       ? "Nettoyage haute intensité sous bâche étanche, dégraissage approfondi turbine au nettoyeur basse pression, traitement bactéricide & fongicide anti-odeurs, nettoyage groupe extérieur, contrôle pressions et températures, remise attestation d'entretien Cerfa."
       : "Nettoyage approfondi des filtres, désinfection antibactérienne/fongicide unité intérieure, vérification écoulement condensats, contrôle températures et pressions frigorifiques, nettoyage groupe extérieur, remise attestation Cerfa.";
 
+    const fullAddress = [
+      client.adresse,
+      [client.codePostal, client.ville].filter(Boolean).join(' ')
+    ].filter(Boolean).join(', ');
+
     const invoiceFullDescription = [
       `PRESTATION : ${serviceName}${composition ? ` (${composition})` : ''}`,
       `OPÉRATIONS INCLUSES : ${operationsSummary}`,
       `DATE & CRÉNEAU : ${formattedInvoiceDate} sur la plage ${timeSlot} (plage d'intervention de 2h)`,
-      `ADRESSE D'INTERVENTION : ${client.ville}${client.notes ? ` — ${client.notes.replace(/\n/g, ', ')}` : ''}`,
+      `ADRESSE D'INTERVENTION : ${fullAddress}${client.notes ? ` — ${client.notes.replace(/\n/g, ', ')}` : ''}`,
       `CLIENT : ${client.nom} — Tél : ${client.telephone}${client.email ? ` • Email : ${client.email}` : ''}`,
       `Tarifs TTC (TVA 20% incluse). Attestation réglementaire Cerfa remise sur site à l'issue de l'intervention.`,
     ].join('\n\n');
@@ -358,7 +371,7 @@ export async function POST(request: NextRequest) {
           custom_fields: [
             { name: "Date intervention", value: new Date(date).toLocaleDateString('fr-FR') },
             { name: "Creneau horaire", value: timeSlot },
-            { name: "Lieu intervention", value: client.ville },
+            { name: "Lieu intervention", value: fullAddress.slice(0, 30) },
             { name: "Attestation Cerfa", value: "Remise sur site" },
           ]
         }
@@ -377,6 +390,8 @@ export async function POST(request: NextRequest) {
         clientNom: client.nom,
         clientTelephone: client.telephone,
         clientEmail: client.email ?? '',
+        clientAdresse: client.adresse ?? '',
+        clientCodePostal: client.codePostal ?? '',
         clientVille: client.ville,
         clientNotes: client.notes ?? '',
         isVrv: isVrv ? 'true' : 'false',

@@ -32,12 +32,18 @@ export async function fulfillPaidBooking({ session, invoicePdf, hostedInvoiceUrl
   const date = meta.date || '';
   const timeSlot = meta.timeSlot || '';
   const slotStartTime = meta.slotStartTime || '08:00';
-  const clientVille = meta.clientVille || 'Bouches-du-Rhône';
+  const clientAdresse = meta.clientAdresse || session.customer_details?.address?.line1 || '';
+  const clientCodePostal = meta.clientCodePostal || session.customer_details?.address?.postal_code || '';
+  const clientVille = meta.clientVille || session.customer_details?.address?.city || 'Bouches-du-Rhône';
   const clientNotes = meta.clientNotes || '';
   const composition = meta.composition || '';
   const durationMins = meta.durationMins || '45';
   const isVrv = meta.isVrv === 'true';
   const serviceId = meta.serviceId || 'clim';
+  const fullAddress = [
+    clientAdresse,
+    [clientCodePostal, clientVille].filter(Boolean).join(' ')
+  ].filter(Boolean).join(', ');
 
   console.log(`🚀 Traitement de la réservation payée pour la session ${sessionId}...`);
 
@@ -54,6 +60,8 @@ export async function fulfillPaidBooking({ session, invoicePdf, hostedInvoiceUrl
     clientNom,
     clientTelephone,
     clientEmail,
+    clientAdresse,
+    clientCodePostal,
     clientVille,
     clientNotes,
     isVrv,
@@ -79,6 +87,7 @@ export async function fulfillPaidBooking({ session, invoicePdf, hostedInvoiceUrl
         `Date : ${formattedDate}`,
         `Créneau : ${timeSlot}`,
         `Durée : ${durationMins} min`,
+        `Adresse : ${fullAddress}`,
         `Stripe Session : ${sessionId}`,
         invoicePdf ? `Facture PDF : ${invoicePdf}` : null,
         clientNotes ? `Notes : ${clientNotes}` : null,
@@ -88,7 +97,7 @@ export async function fulfillPaidBooking({ session, invoicePdf, hostedInvoiceUrl
         full_name: clientNom,
         email: clientEmail || null,
         phone: clientTelephone,
-        city: clientVille,
+        city: fullAddress,
         service_type: `Entretien - ${serviceName}${composition ? ` [${composition}]` : ''}`,
         message: bookingMessage,
         status: 'payé',
@@ -112,6 +121,8 @@ export async function fulfillPaidBooking({ session, invoicePdf, hostedInvoiceUrl
       clientNom,
       clientTelephone,
       clientEmail,
+      clientAdresse,
+      clientCodePostal,
       clientVille,
       clientNotes,
       composition,
@@ -129,6 +140,8 @@ export async function fulfillPaidBooking({ session, invoicePdf, hostedInvoiceUrl
     clientNom,
     clientTelephone,
     clientEmail,
+    clientAdresse,
+    clientCodePostal,
     clientVille,
     clientNotes,
     composition,
@@ -144,6 +157,8 @@ export async function fulfillPaidBooking({ session, invoicePdf, hostedInvoiceUrl
         name: clientNom,
         email: clientEmail,
         phone: clientTelephone,
+        address: clientAdresse || undefined,
+        postcode: clientCodePostal || undefined,
         city: clientVille,
         notes: clientNotes,
       });
@@ -152,6 +167,8 @@ export async function fulfillPaidBooking({ session, invoicePdf, hostedInvoiceUrl
         await createProgbatInvoice({
           thirdId: customer.id,
           clientName: clientNom,
+          clientAddress: clientAdresse || undefined,
+          clientPostcode: clientCodePostal || undefined,
           clientCity: clientVille,
           serviceId,
           serviceName,

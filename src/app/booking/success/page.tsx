@@ -71,7 +71,13 @@ function SuccessContent() {
     ? new Date(session.metadata.date).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
     : null;
   const timeSlot = session?.metadata?.timeSlot;
+  const clientAdresse = session?.metadata?.clientAdresse;
+  const clientCodePostal = session?.metadata?.clientCodePostal;
   const clientVille = session?.metadata?.clientVille;
+  const fullLocation = [
+    clientAdresse,
+    [clientCodePostal, clientVille].filter(Boolean).join(' ')
+  ].filter(Boolean).join(', ');
   const invoiceLink = session?.invoicePdf || session?.hostedInvoiceUrl;
 
   return (
@@ -135,7 +141,7 @@ function SuccessContent() {
             </div>
             {formattedDate && (
               <p style={{ fontSize: '0.88rem', color: '#15803D', margin: '0.25rem 0 0 0' }}>
-                📅 {formattedDate} {timeSlot ? `• Créneau : ${timeSlot}` : ''} {clientVille ? `• ${clientVille}` : ''}
+                📅 {formattedDate} {timeSlot ? `• Créneau : ${timeSlot}` : ''} {fullLocation ? `• ${fullLocation}` : ''}
               </p>
             )}
             <p style={{ fontSize: '0.85rem', color: '#166534', margin: '0.25rem 0 0 0', fontWeight: '700' }}>
