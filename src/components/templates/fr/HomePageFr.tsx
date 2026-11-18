@@ -97,7 +97,7 @@ export default function HomePageFr() {
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Award size={18} style={{ color: 'var(--primary-blue)' }} />
-                <span>Garantie Décennale & Entreprise Garantie 2025</span>
+                <span>Garantie Décennale &amp; Artisan Certifié RGE QualiPAC</span>
               </div>
             </div>
           </div>
@@ -145,16 +145,16 @@ export default function HomePageFr() {
         <div className="container">
           <div style={{ maxWidth: '900px', margin: '0 auto' }}>
             <h2 style={{ fontSize: '2.2rem', marginBottom: '1.5rem', color: '#0F172A', fontWeight: '800', textAlign: 'center' }}>
-              Votre Confort Thermique par un Artisan Qualifié & Garantie 2025
+              Votre Confort Thermique par un Artisan Frigoriste Certifié RGE
             </h2>
 
             <div style={{ fontSize: '1.1rem', lineHeight: '1.8', color: 'var(--text-gray)' }}>
               <p style={{ marginBottom: '1.5rem' }}>
-                Chez <strong>Air G Énergie</strong>, nous faisons de la qualité d&apos;installation notre marque de fabrique. Que ce soit pour équiper une villa neuve, rénover un appartement en centre-ville ou optimiser un local commercial, nos solutions de <strong>climatisation réversible</strong> et de <strong>pompe à chaleur</strong> s&apos;adaptent parfaitement aux exigences thermiques de notre région provençale.
+                Chez <strong>Air G Énergie</strong> (SARL basée à Miramas, 13140), nous faisons de la qualité d&apos;installation et de la maintenance notre marque de fabrique. Que ce soit pour équiper une villa neuve, rénover un appartement ou entretenir un parc professionnel, nos solutions de <strong>climatisation réversible</strong> et de <strong>pompe à chaleur</strong> s&apos;adaptent aux exigences thermiques des Bouches-du-Rhône.
               </p>
 
               <p style={{ marginBottom: '1.5rem' }}>
-                Nous maîtrisons les dernières technologies en matière de <strong>climatisation gainable</strong> (système discret et silencieux intégré en faux-plafond avec régulation pièce par pièce Airzone) ainsi que les monosplits et multisplits traditionnels de grandes marques. Notre labellisation <strong>Les Entreprises Garanties 2025</strong> et notre statut d&apos;<strong>Expert Vérifié Gainable.fr</strong> vous garantissent des installations conformes aux exigences thermiques et couvertes par notre assurance décennale.
+                Nous maîtrisons les dernières technologies en matière de <strong>climatisation gainable</strong> (système discret et silencieux intégré en faux-plafond avec régulation pièce par pièce Airzone) ainsi que les monosplits et multisplits traditionnels de grandes marques. Notre qualification <strong>RGE QualiPAC</strong>, notre <strong>attestation de capacité fluides frigorigènes</strong> et notre statut d&apos;<strong>Expert Vérifié Gainable.fr</strong> vous garantissent des interventions conformes aux normes et couvertes par notre assurance décennale.
               </p>
 
               <div style={{
@@ -252,8 +252,8 @@ export default function HomePageFr() {
                   Réservez en ligne votre entretien préventif ou votre diagnostic panne. Tarifs clairs, créneaux garantis pour prolonger l&apos;efficacité de vos climatiseurs.
                 </p>
               </div>
-              <Link href="/entretien" className="btn btn-outline" style={{ display: 'block', textAlign: 'center' }}>
-                Réserver mon créneau
+              <Link href="/reservation-en-ligne" className="btn btn-outline" style={{ display: 'block', textAlign: 'center' }}>
+                Réserver mon créneau (dès 156 €)
               </Link>
             </div>
           </div>

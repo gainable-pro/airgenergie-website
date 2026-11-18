@@ -269,6 +269,10 @@ export default function PartnersCarousel() {
                   <img
                     src={partner.logoImg}
                     alt={partner.name}
+                    width={165}
+                    height={52}
+                    loading="lazy"
+                    decoding="async"
                     style={{
                       maxHeight: '52px',
                       maxWidth: '165px',

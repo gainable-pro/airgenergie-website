@@ -7,8 +7,8 @@ import { getSeoAlternates } from '@/lib/seo-url';
 export async function generateMetadata(): Promise<Metadata> {
     const alternates = await getSeoAlternates('/gainable');
     return {
-        title: "Climatisation Gainable Miramas, Salon, Istres | Installation Invisible | Air G Énergie",
-        description: "Climatisation gainable invisible avec zoning intelligent. Esthétique préservée, confort optimal. Devis gratuit. Prix 10-18k€ TTC. Labellisé Garantie 2025.",
+        title: "Climatisation Gainable Bouches-du-Rhône (13) | Pose & Entretien",
+        description: "Installation de climatisation gainable invisible avec zoning Airzone dans les Bouches-du-Rhône. Devis gratuit, artisan RGE QualiPAC. Entretien gainable 220€ TTC.",
         alternates,
         openGraph: {
             title: "Climatisation Gainable | Confort Invisible & Silencieux | Air G Energie",
@@ -41,13 +41,18 @@ export default function GainablePage() {
             {/* Hero Service */}
             <section style={{ background: '#0F172A', color: 'white', padding: '5rem 0', textAlign: 'center' }}>
                 <div className="container">
-                    <h1 style={{ color: 'white' }}>Le confort absolu, sans rien voir</h1>
-                    <p style={{ maxWidth: 600, margin: '0 auto 2rem', color: '#CBD5E1' }}>
-                        Le gainable est la &quot;Rolls&quot; de la climatisation. Plus de blocs aux murs, juste une température parfaite et un silence d&apos;or.
+                    <h1 style={{ color: 'white' }}>Installation de Climatisation Gainable Invisible dans les Bouches-du-Rhône</h1>
+                    <p style={{ maxWidth: 680, margin: '0 auto 2rem', color: '#CBD5E1' }}>
+                        Le confort absolu sans blocs aux murs : pose de gainable réversible avec régulation pièce par pièce Airzone et entretien annuel à 220 € TTC par artisan frigoriste RGE.
                     </p>
-                    <Link href="/contact" className="btn btn-primary">
-                        Étudier mon projet Gainable
-                    </Link>
+                    <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                        <Link href="/contact" className="btn btn-primary">
+                            Étudier mon projet Gainable
+                        </Link>
+                        <Link href="/reservation-en-ligne/gainable" className="btn" style={{ background: '#48BB78', color: 'white', border: 'none' }}>
+                            Entretien Gainable (220 € TTC)
+                        </Link>
+                    </div>
                 </div>
             </section>
 
@@ -58,7 +63,7 @@ export default function GainablePage() {
                         <h2 className="text-center" style={{ marginBottom: '2rem' }}>Qu&apos;est-ce que la climatisation gainable ?</h2>
 
                         <p style={{ fontSize: '1.1rem', lineHeight: '1.8', marginBottom: '1.5rem', color: 'var(--text-gray)' }}>
-                            La <strong>climatisation gainable</strong> est la solution haut de gamme pour climatiser votre maison tout en préservant l&apos;esthétique de votre intérieur. Contrairement aux splits muraux visibles, le système gainable est entièrement dissimulé dans vos combles ou faux-plafonds. Seules de discrètes grilles de diffusion, intégrées au plafond, témoignent de sa présence. Très prisée à <Link href='/ville/miramas' style={{ color: 'var(--primary-blue)', textDecoration: 'underline' }}>Miramas</Link>, <Link href='/ville/aix-en-provence' style={{ color: 'var(--primary-blue)', textDecoration: 'underline' }}>Aix-en-Provence</Link> et <Link href='/ville/istres' style={{ color: 'var(--primary-blue)', textDecoration: 'underline' }}>Istres</Link>, cette solution offre un confort optimal sans compromettre votre décoration.
+                            La <strong>climatisation gainable</strong> est la solution haut de gamme pour climatiser votre maison tout en préservant l&apos;esthétique de votre intérieur. Contrairement aux splits muraux visibles, le système gainable est entièrement dissimulé dans vos combles ou faux-plafonds. Seules de discrètes grilles de diffusion, intégrées au plafond, témoignent de sa présence. Très prisée à <Link href='/miramas' style={{ color: 'var(--primary-blue)', textDecoration: 'underline' }}>Miramas</Link>, <Link href='/aix-en-provence' style={{ color: 'var(--primary-blue)', textDecoration: 'underline' }}>Aix-en-Provence</Link> et <Link href='/istres' style={{ color: 'var(--primary-blue)', textDecoration: 'underline' }}>Istres</Link>, cette solution offre un confort optimal sans compromettre votre décoration. Déjà équipé ? <Link href='/reservation-en-ligne/gainable' style={{ color: 'var(--primary-blue)', textDecoration: 'underline', fontWeight: '600' }}>Réservez votre entretien gainable &amp; Airzone à 220 € TTC</Link>.
                         </p>
 
                         <p style={{ fontSize: '1.1rem', lineHeight: '1.8', marginBottom: '2rem', color: 'var(--text-gray)' }}>

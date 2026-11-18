@@ -1,211 +1,95 @@
 import type { Metadata } from 'next';
-import { getSeoAlternates, getSeoDomain } from '@/lib/seo-url';
-import EntretienPageCom from '@/components/templates/com/EntretienPageCom';
+import { getSeoAlternates, CANONICAL_DOMAIN } from '@/lib/seo-url';
 import EntretienPageFr from '@/components/templates/fr/EntretienPageFr';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const domain = await getSeoDomain();
   const alternates = await getSeoAlternates('/entretien');
   return {
-    title: "Entretien Climatisation dès 156€ TTC | Artisans RGE Bouches-du-Rhône | Air G Énergie",
-    description: "Entretien de climatisation réversible et pompe à chaleur dès 156€ TTC dans les Bouches-du-Rhône. Nettoyage antibactérien, attestation Cerfa obligatoire assurances. Réservez en direct sous 48h.",
+    title: "Entretien Clim & PAC Obligatoire (13) | Guide, Protocole & Contrats",
+    description: "Tout savoir sur l'entretien obligatoire de climatisation et PAC (Décret n° 2020-912, Cerfa, protocole en 10 points, contrats pros VRV) dans les Bouches-du-Rhône.",
     alternates,
-    other: {
-      'application/ld+json': JSON.stringify([
-        {
-          "@context": "https://schema.org",
-          "@type": ["HVACBusiness", "LocalBusiness"],
-          "@id": `${domain}/#business`,
-          "name": "Air G Énergie",
-          "description": "Entreprise spécialisée dans l'installation, l'entretien et le dépannage de systèmes de climatisation, pompes à chaleur et VRV/DRV dans les Bouches-du-Rhône.",
-          "url": domain,
-          "telephone": "+33-4-13-41-49-01",
-          "image": `${domain}/images/hero-technician-ac.png`,
-          "priceRange": "€€",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Miramas",
-            "addressLocality": "Miramas",
-            "postalCode": "13140",
-            "addressRegion": "Bouches-du-Rhône",
-            "addressCountry": "FR"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 43.5825,
-            "longitude": 5.0011
-          },
-          "areaServed": [
-            "Miramas", "Istres", "Salon-de-Provence", "Martigues", "Fos-sur-Mer",
-            "Vitrolles", "Marignane", "Aix-en-Provence", "Marseille", "Arles",
-            "Carry-le-Rouet", "Sausset-les-Pins", "La Ciotat", "Mouriès", "Maussane-les-Alpilles",
-            "Saint-Chamas", "Grans", "Lançon-de-Provence", "Pélissanne"
-          ],
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Catalogue Entretien & SAV Climatisation",
-            "itemListElement": [
-              {
-                "@type": "Offer",
-                "@id": "https://airgenergie.fr/entretien#devis",
-                "name": "Étude & Devis d'installation",
-                "description": "Déplacement gratuit pour étudier votre projet d'installation de climatisation ou pompe à chaleur. Rayon 100 km autour de Miramas.",
-                "price": "0",
-                "priceCurrency": "EUR",
-                "priceSpecification": {
-                  "@type": "PriceSpecification",
-                  "price": "0",
-                  "priceCurrency": "EUR",
-                  "description": "Gratuit"
-                },
-                "eligibleRegion": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 43.5847, "longitude": 5.0005 }, "geoRadius": "100000" },
-                "availability": "https://schema.org/InStock",
-                "url": "https://airgenergie.fr/entretien?service=devis"
-              },
-              {
-                "@type": "Offer",
-                "@id": "https://airgenergie.fr/entretien#diagnostic",
-                "name": "Diagnostic & Rapport de panne",
-                "description": "Recherche de panne, diagnostic technique et rapport écrit. Devis de réparation inclus.",
-                "price": "100",
-                "priceCurrency": "EUR",
-                "eligibleRegion": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 43.5847, "longitude": 5.0005 }, "geoRadius": "100000" },
-                "availability": "https://schema.org/InStock",
-                "url": "https://airgenergie.fr/entretien?service=diagnostic"
-              },
-              {
-                "@type": "Offer",
-                "@id": "https://airgenergie.fr/entretien#preventive",
-                "name": "Entretien climatisation préventif — Split mural",
-                "description": "Nettoyage des filtres, désinfection, vérification de pression et nettoyage échangeur extérieur (1 unité).",
-                "price": "156",
-                "priceCurrency": "EUR",
-                "eligibleRegion": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 43.5847, "longitude": 5.0005 }, "geoRadius": "50000" },
-                "availability": "https://schema.org/InStock",
-                "url": "https://airgenergie.fr/entretien?service=preventive"
-              },
-              {
-                "@type": "Offer",
-                "@id": "https://airgenergie.fr/entretien#curative",
-                "name": "Entretien climatisation curatif approfondi",
-                "description": "Nettoyage en profondeur avec turbine, dégraissage, traitement fongicide et désinfection complète.",
-                "price": "192",
-                "priceCurrency": "EUR",
-                "eligibleRegion": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 43.5847, "longitude": 5.0005 }, "geoRadius": "50000" },
-                "availability": "https://schema.org/InStock",
-                "url": "https://airgenergie.fr/entretien?service=curative"
-              },
-              {
-                "@type": "Offer",
-                "@id": "https://airgenergie.fr/entretien#gainable",
-                "name": "Entretien climatisation gainable",
-                "description": "Entretien unité en combles ou faux-plafond, nettoyage plénum, contrôle des grilles et filtres.",
-                "price": "220",
-                "priceCurrency": "EUR",
-                "eligibleRegion": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 43.5847, "longitude": 5.0005 }, "geoRadius": "50000" },
-                "availability": "https://schema.org/InStock",
-                "url": "https://airgenergie.fr/entretien?service=gainable"
-              },
-              {
-                "@type": "Offer",
-                "@id": "https://airgenergie.fr/entretien#cassette",
-                "name": "Entretien climatisation cassette 4 voies",
-                "description": "Nettoyage complet de cassette de soufflage 4 voies encastrée (bureaux, commerces).",
-                "price": "180",
-                "priceCurrency": "EUR",
-                "eligibleRegion": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 43.5847, "longitude": 5.0005 }, "geoRadius": "50000" },
-                "availability": "https://schema.org/InStock",
-                "url": "https://airgenergie.fr/entretien?service=cassette"
-              },
-              {
-                "@type": "Offer",
-                "@id": "https://airgenergie.fr/entretien#console",
-                "name": "Entretien climatisation console basse",
-                "description": "Nettoyage complet de climatiseur console posé au sol.",
-                "price": "165",
-                "priceCurrency": "EUR",
-                "eligibleRegion": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 43.5847, "longitude": 5.0005 }, "geoRadius": "50000" },
-                "availability": "https://schema.org/InStock",
-                "url": "https://airgenergie.fr/entretien?service=console"
-              },
-              {
-                "@type": "Offer",
-                "@id": "https://airgenergie.fr/entretien#thermodynamique",
-                "name": "Entretien ballon thermodynamique",
-                "description": "Contrôle étanchéité fluide, nettoyage évaporateur, vérification de l'anode.",
-                "price": "174",
-                "priceCurrency": "EUR",
-                "eligibleRegion": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 43.5847, "longitude": 5.0005 }, "geoRadius": "50000" },
-                "availability": "https://schema.org/InStock",
-                "url": "https://airgenergie.fr/entretien?service=thermodynamique"
-              },
-              {
-                "@type": "Offer",
-                "@id": "https://airgenergie.fr/entretien#pac-air-eau",
-                "name": "Entretien Pompe à Chaleur Air/Eau",
-                "description": "Nettoyage unité extérieure, contrôle pression hydraulique et vases d'expansion.",
-                "price": "270",
-                "priceCurrency": "EUR",
-                "eligibleRegion": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 43.5847, "longitude": 5.0005 }, "geoRadius": "50000" },
-                "availability": "https://schema.org/InStock",
-                "url": "https://airgenergie.fr/entretien?service=pac-air-eau"
-              },
-              {
-                "@type": "Offer",
-                "@id": "https://airgenergie.fr/entretien#vrv",
-                "name": "Entretien Système VRV / DRV — Résidentiel & Tertiaire",
-                "description": "Entretien technique VRV/DRV pour hôtels, résidences, commerces, banques. Tarif remisé -20% selon composition (splits, gainables, cassettes, consoles).",
-                "price": "0",
-                "priceCurrency": "EUR",
-                "priceSpecification": { "@type": "PriceSpecification", "description": "Sur devis, remise -20% VRV incluse" },
-                "eligibleRegion": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 43.5847, "longitude": 5.0005 }, "geoRadius": "50000" },
-                "availability": "https://schema.org/InStock",
-                "url": "https://airgenergie.fr/entretien?service=vrv"
-              }
-            ]
-          }
-        },
-        {
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://airgenergie.fr" },
-            { "@type": "ListItem", "position": 2, "name": "Entretien & SAV", "item": "https://airgenergie.fr/entretien" }
-          ]
-        },
-        {
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Quel est le prix d'un entretien de climatisation ?",
-              "acceptedAnswer": { "@type": "Answer", "text": "L'entretien d'un split mural commence à 156 € TTC (préventif), 192 € pour un curatif approfondi. Gainable : 220 €, Cassette : 180 €, Console : 165 €. Tarif VRV/DRV : sur devis avec remise -20%." }
-            },
-            {
-              "@type": "Question",
-              "name": "Quelle est la zone d'intervention d'Air G Énergie ?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Air G Énergie intervient dans un rayon de 50 km autour de Miramas (13) pour les entretiens et dépannages. Les études de faisabilité et diagnostics s'étendent jusqu'à 100 km (Avignon, Toulon, Nîmes)." }
-            },
-            {
-              "@type": "Question",
-              "name": "Que se passe-t-il si mon système est en panne lors de l'entretien ?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Un contrôle de performance est systématiquement effectué avant l'intervention. En cas de défaut détecté, Air G Énergie se réserve le droit de convertir la prestation en diagnostic facturable à 100 € ou d'annuler l'intervention." }
-            }
-          ]
-        }
-      ])
-    }
+    openGraph: {
+      title: "Entretien Climatisation & PAC Obligatoire (13) | Guide & Contrats | Air G Énergie",
+      description: "Obligations légales Décret 2020-912, protocole technique complet, différence préventif vs curatif vapeur et contrats annuels pros dans les Bouches-du-Rhône.",
+      url: alternates.canonical,
+      siteName: "Air G Énergie",
+      images: [{ url: "/images/hero-maintenance.png", width: 1200, height: 630, alt: "Guide entretien climatisation et pompe à chaleur Air G Énergie" }],
+      locale: "fr_FR",
+      type: "website",
+    },
   };
 }
 
-export default async function EntretienPage() {
-  const domain = await getSeoDomain();
+export default function EntretienPage() {
+  const domain = CANONICAL_DOMAIN;
 
-  if (domain.includes('airgenergie.fr') || domain.includes('rgenergie.fr')) {
-    return <EntretienPageFr />;
-  }
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${domain}/entretien/#webpage`,
+        "url": `${domain}/entretien`,
+        "name": "Entretien Climatisation & Pompe à Chaleur Obligatoire dans les Bouches-du-Rhône — Guide, Protocole & Contrats",
+        "inLanguage": "fr-FR",
+        "isPartOf": { "@id": `${domain}/#organization` },
+        "about": { "@id": `${domain}/reservation-en-ligne/#service` },
+        "dateModified": "2026-11-18"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Accueil", "item": domain },
+          { "@type": "ListItem", "position": 2, "name": "Guide Entretien & Contrats", "item": `${domain}/entretien` }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Que dit le décret n° 2020-912 sur l'entretien obligatoire d'une climatisation ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Le décret n° 2020-912 du 28 juillet 2020 impose un entretien périodique au moins tous les 2 ans pour tout système thermodynamique (climatisation réversible ou pompe à chaleur) d'une puissance nominale comprise entre 4 kW et 70 kW. L'entretien doit être réalisé par un professionnel titulaire de l'attestation de capacité fluides frigorigènes, qui remet une attestation officielle dans les 15 jours."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Qui doit payer l'entretien d'une climatisation : le locataire ou le propriétaire ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sauf clause contraire du bail, l'entretien courant et la visite périodique obligatoire d'une climatisation ou pompe à chaleur relèvent des charges locatives (à la charge de l'occupant). Le propriétaire conserve à sa charge les réparations lourdes et le remplacement de l'équipement."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "À quelle fréquence entretenir sa climatisation en Provence (Bouches-du-Rhône) ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Bien que la loi impose un minimum d'une visite tous les 2 ans (entre 4 et 70 kW), une visite annuelle avant l'été ou avant l'hiver est fortement recommandée dans les Bouches-du-Rhône. Le Mistral, les pollens, les poussières et l'usage intensif réversible encrassent plus vite les échangeurs et réduisent le rendement jusqu'à 30 %."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quelles sont les obligations d'entretien pour les commerces, hôtels et bureaux (VRV/DRV) ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Au-delà du décret 2020-912, les installations contenant plus de 5 tonnes équivalent CO2 de fluide frigorigène (souvent à partir de 2 kg de R410A ou ~7,4 kg de R32) sont soumises à un contrôle d'étanchéité annuel obligatoire consigné sur Cerfa F-Gaz (n° 15497). Air G Énergie propose des contrats dédiés avec remise -20 % pour les systèmes VRV/DRV."
+            }
+          }
+        ]
+      }
+    ]
+  };
 
-  return <EntretienPageCom />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <EntretienPageFr />
+    </>
+  );
 }
-

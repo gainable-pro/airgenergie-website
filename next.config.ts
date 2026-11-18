@@ -5,18 +5,49 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
 
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+          { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
+        ],
+      },
+    ];
+  },
+
   // ─────────────────────────────────────────────────────────────────
-  // Redirections 301 — Migration transparente depuis Wix
-  // Ces redirections transfèrent le "jus SEO" des anciennes URLs Wix
-  // vers les nouvelles URLs Next.js identiques ou équivalentes.
-  // Google ne voit aucune rupture.
+  // Redirections 301 — Migration transparente depuis Wix & routes legacy
+  // Ces redirections transfèrent le "jus SEO" des anciennes URLs
+  // vers les nouvelles URLs canoniques www.airgenergie.fr.
   // ─────────────────────────────────────────────────────────────────
   async redirects() {
     return [
+      // ── Anciennes routes /ville/[slug] -> Hubs canoniques /[slug] ──
+      {
+        source: '/ville/:slug',
+        destination: '/:slug',
+        permanent: true,
+      },
+      // ── Commune hors-département (Hérault 34) retirée de la matrice 13 ──
+      {
+        source: '/la-grande-motte',
+        destination: '/zones-intervention',
+        permanent: true,
+      },
+      {
+        source: '/la-grande-motte/:path*',
+        destination: '/zones-intervention',
+        permanent: true,
+      },
       // ── Pages Wix système (ne doivent jamais retourner 404) ──
       {
         source: '/booking',
-        destination: '/entretien',
+        destination: '/reservation-en-ligne',
         permanent: true,
       },
       {
@@ -144,7 +175,7 @@ const nextConfig: NextConfig = {
       { source: '/pompe-a-chaleur/saint-remy-de-provence-daikin', destination: '/saint-remy-de-provence/pompe-a-chaleur', permanent: true },
 
       // Services / Forfaits Wix
-      { source: '/service-page/entretien-de-climatisation-gainable', destination: '/gainable', permanent: true },
+      { source: '/service-page/entretien-de-climatisation-gainable', destination: '/reservation-en-ligne/gainable', permanent: true },
       { source: '/service-page/entretien-de-climatisation-cassette', destination: '/reservation-en-ligne/cassette', permanent: true },
       { source: '/service-page/tri-split-entretien-de-climatisation', destination: '/reservation-en-ligne/tri-split', permanent: true },
       { source: '/service-page/entretien-pompe-air-eau-1', destination: '/reservation-en-ligne/pac-air-eau', permanent: true },

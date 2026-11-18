@@ -11,15 +11,15 @@ export default function Footer() {
 
                 {/* Company Info */}
                 <div className={styles.col}>
-                    <h3 className={styles.colTitle}>AIR G Energie</h3>
+                    <h3 className={styles.colTitle}>Air G Énergie</h3>
                     <p className={styles.description}>
-                        Expert en solutions de confort thermique à Miramas et alentours.
-                        Installation, entretien et dépannage.
+                        Artisan frigoriste RGE QualiPAC à Miramas et dans les Bouches-du-Rhône.
+                        Installation, entretien Cerfa et dépannage.
                     </p>
                     <div className={styles.contactInfo}>
                         <div className={styles.contactItem}>
                             <MapPin size={18} className={styles.icon} />
-                            <span>Zone Industrielle, 13140 Miramas</span>
+                            <span>3 rue du Pourra, Les Bastides de Bauquières, 13140 Miramas</span>
                         </div>
                         <div className={styles.contactItem}>
                             <Phone size={18} className={styles.icon} />
@@ -72,7 +72,12 @@ export default function Footer() {
 
             <div className={styles.copyright}>
                 <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
-                    <p>&copy; {currentYear} Air Energie. Tous droits réservés.</p>
+                    <p>
+                        &copy; {currentYear} Air G Énergie SARL (SIREN 909 266 256). Tous droits réservés.{' '}
+                        <Link href="/mentions-legales" style={{ textDecoration: 'underline', color: 'inherit', marginLeft: '0.5rem' }}>
+                            Mentions légales &amp; RGPD
+                        </Link>
+                    </p>
                     <p style={{ opacity: 0.85, fontSize: '0.8rem' }}>
                         Partenaire certifié <a href="https://www.gainable.fr" target="_blank" rel="noopener" style={{ textDecoration: 'underline', color: 'inherit' }}>Gainable.fr - Réseau Climatisation & Pompes à Chaleur</a>
                     </p>

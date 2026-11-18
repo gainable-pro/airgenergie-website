@@ -28,7 +28,7 @@ const HERO_SUBTITLES = [
 ];
 
 const GEO_CONTEXTS = [
-  "Basés près de chez vous, nous déployons nos équipes techniques sur {city} et dans un rayon de 40 km pour assurer l'installation, le dépannage et la maintenance de vos systèmes de {service}.",
+  "Basés à Miramas (13140), nous déployons nos équipes de frigoristes certifiés sur {city} et dans un rayon de 50 à 70 km pour assurer l'installation, le dépannage et la maintenance de vos systèmes de {service}.",
   "En tant qu'experts régionaux, nous maîtrisons parfaitement les spécificités climatiques de {city}. C'est pourquoi nous recommandons des solutions de {service} adaptées pour garantir des économies d'énergie optimales.",
   "La réactivité est au cœur de notre métier. Pour toute demande concernant votre {service} sur le secteur de {city}, nos techniciens qualifiés interviennent rapidement avec un équipement de pointe.",
   "Votre projet de {service} à {city} mérite un accompagnement professionnel de A à Z. De l'étude thermique préalable jusqu'à la mise en service, Air G Énergie est votre partenaire de confiance."
@@ -44,7 +44,7 @@ const TRUST_CALLOUTS = [
 const BENEFITS = [
   [
     "Bilan thermique offert avant toute installation",
-    "Labellisation Entreprise Garantie 2025",
+    "Artisan qualifié RGE QualiPAC & Expert Vérifié Gainable.fr",
     "Garantie décennale et matériel grandes marques (Daikin, Mitsubishi...)",
     "Contrats de maintenance personnalisés"
   ],

@@ -8,12 +8,12 @@ import { getSeoAlternates } from '@/lib/seo-url';
 export async function generateMetadata(): Promise<Metadata> {
     const alternates = await getSeoAlternates('/pompe-a-chaleur');
     return {
-        title: "Pompe à Chaleur Miramas, Salon, Istres | PAC Air-Air & Air-Eau | Air G Énergie",
-        description: "Installation pompe à chaleur (PAC) air-air et air-eau. Économisez jusqu'à 70% sur votre facture. Devis gratuit. Labellisé Entreprise Garantie 2025.",
+        title: "Pompe à Chaleur Bouches-du-Rhône (13) | Pose & Entretien RGE",
+        description: "Installation et entretien de pompe à chaleur (PAC) Air-Air et Air-Eau dans les Bouches-du-Rhône. Artisan RGE QualiPAC, aides MaPrimeRénov'/CEE, devis gratuit.",
         alternates,
         openGraph: {
-            title: "Pompe à Chaleur Air/Eau | Installation & Remplacement | Air G Energie",
-            description: "Optez pour une pompe à chaleur air/eau performante. Économies d'énergie et installation par des experts labellisés Garantie 2025 à Miramas et alentours.",
+            title: "Pompe à Chaleur Air/Eau & Air/Air | Installation & Entretien | Air G Énergie",
+            description: "Optez pour une pompe à chaleur performante dans les Bouches-du-Rhône. Installation RGE QualiPAC et entretien annuel obligatoire dès 270€ TTC.",
             url: alternates.canonical,
             siteName: "AIR G Energie",
             images: [
@@ -42,13 +42,18 @@ export default function HeatPumpPage() {
             {/* Hero Service */}
             <section style={{ background: '#0F172A', color: 'white', padding: '5rem 0', textAlign: 'center' }}>
                 <div className="container">
-                    <h1 style={{ color: 'white' }}>Chauffez mieux, payez moins</h1>
-                    <p style={{ maxWidth: 600, margin: '0 auto 2rem', color: '#CBD5E1' }}>
-                        La Pompe à Chaleur (PAC) est la solution de chauffage la plus rentable aujourd&apos;hui. Elle capte les calories gratuites de l&apos;air pour chauffer votre maison.
+                    <h1 style={{ color: 'white' }}>Installation &amp; Entretien de Pompe à Chaleur Air-Air &amp; Air-Eau (13)</h1>
+                    <p style={{ maxWidth: 680, margin: '0 auto 2rem', color: '#CBD5E1' }}>
+                        Divisez votre facture de chauffage par 3 en Provence grâce à un artisan frigoriste certifié RGE QualiPAC. Pose éligible MaPrimeRénov&apos;/CEE et entretien annuel obligatoire à 270 € TTC.
                     </p>
-                    <Link href="/contact" className="btn btn-primary">
-                        Calculer mes économies
-                    </Link>
+                    <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                        <Link href="/contact" className="btn btn-primary">
+                            Devis Installation Gratuit
+                        </Link>
+                        <Link href="/reservation-en-ligne/pac-air-eau" className="btn" style={{ background: '#48BB78', color: 'white', border: 'none' }}>
+                            Entretien PAC Air/Eau (270 € TTC)
+                        </Link>
+                    </div>
                 </div>
             </section>
 
@@ -63,7 +68,7 @@ export default function HeatPumpPage() {
                         </p>
 
                         <p style={{ fontSize: '1.1rem', lineHeight: '1.8', marginBottom: '2rem', color: 'var(--text-gray)' }}>
-                            En Provence, où les hivers sont doux (rarement en dessous de 0°C à <Link href='/ville/miramas' style={{ color: 'var(--primary-blue)', textDecoration: 'underline' }}>Miramas</Link> ou <Link href='/ville/salon-de-provence' style={{ color: 'var(--primary-blue)', textDecoration: 'underline' }}>Salon-de-Provence</Link>), la pompe à chaleur est <strong>LE système de chauffage le plus économique</strong>. Elle consomme 3 à 4 fois moins d&apos;énergie qu&apos;un radiateur électrique classique.
+                            En Provence, où les hivers sont doux (rarement en dessous de 0°C à <Link href='/miramas' style={{ color: 'var(--primary-blue)', textDecoration: 'underline' }}>Miramas</Link> ou <Link href='/salon-de-provence' style={{ color: 'var(--primary-blue)', textDecoration: 'underline' }}>Salon-de-Provence</Link>), la pompe à chaleur est <strong>LE système de chauffage le plus économique</strong>. Elle consomme 3 à 4 fois moins d&apos;énergie qu&apos;un radiateur électrique classique. Déjà équipé ? <Link href='/reservation-en-ligne/pac-air-eau' style={{ color: 'var(--primary-blue)', textDecoration: 'underline', fontWeight: '600' }}>Réservez votre entretien PAC Air/Eau (270 € TTC)</Link> ou <Link href='/reservation-en-ligne/thermodynamique' style={{ color: 'var(--primary-blue)', textDecoration: 'underline', fontWeight: '600' }}>ballon thermodynamique (174 € TTC)</Link>.
                         </p>
 
                         <div style={{
@@ -137,7 +142,7 @@ export default function HeatPumpPage() {
                                 </tbody>
                             </table>
                             <p style={{ fontSize: '0.9rem', color: 'var(--text-gray)', marginTop: '1rem', textAlign: 'center' }}>
-                                *Estimations basées sur une maison 100m² en Provence, tarifs 2024
+                                *Estimations basées sur une maison 100m² en Provence (tarifs énergétiques 2026)
                             </p>
                         </div>
 
@@ -305,7 +310,7 @@ export default function HeatPumpPage() {
                         <div className="glass-panel" style={{ padding: '2rem', marginBottom: '1.5rem' }}>
                             <h3 style={{ color: 'var(--primary-blue)', marginBottom: '1rem' }}>Puis-je bénéficier des aides si je remplace des radiateurs électriques ?</h3>
                             <p style={{ color: 'var(--text-gray)', lineHeight: '1.7' }}>
-                                Pour une PAC air-air, vous êtes éligible aux <strong>CEE (500€ à 800€)</strong> et à la <strong>TVA réduite 10%</strong>. MaPrimeRénov&apos; n&apos;est pas disponible pour les PAC air-air. Pour une PAC air-eau, nous assurons des installations conformes aux normes les plus strictes. <strong>Garantie de qualité :</strong> faire appel à un installateur qualifié et labellisé (comme AIR G Energie, labellisé Entreprise Garantie 2025 et Expert Gainable.fr).
+                                Pour une PAC air-air, vous êtes éligible aux <strong>CEE (500€ à 800€)</strong> et à la <strong>TVA réduite 10%</strong>. MaPrimeRénov&apos; est réservée aux PAC air-eau et géothermiques. <strong>Garantie de qualité :</strong> faire appel à un installateur certifié RGE QualiPAC et Expert Vérifié Gainable.fr comme <strong>Air G Énergie</strong> sécurise vos aides et la performance de votre installation.
                             </p>
                         </div>
 

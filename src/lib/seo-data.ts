@@ -20,8 +20,7 @@ export const CITIES_SLUGS = [
   "boulbon", "cabannes", "eyragues", "graveson", "maillane", "mouries", "noves", "orgon", 
   "plan-d-orgon", "fontvieille", "les-baux-de-provence", "maussane-les-alpilles", 
   "le-paradou", "eygalieres", "molleges", "saint-andiol", "verquieres", "saint-etienne-du-gres", 
-  "mas-blanc-des-alpilles", "saint-pierre-de-mezoargues", "ensues-la-redonne", "le-rove",
-  "la-grande-motte"
+  "mas-blanc-des-alpilles", "saint-pierre-de-mezoargues", "ensues-la-redonne", "le-rove"
 ];
 
 // ────────────────────────────────────────────────────────────────────────────

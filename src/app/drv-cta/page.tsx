@@ -47,14 +47,17 @@ export default function DrvCtaPage() {
                 </div>
                 <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                     <h1 style={{ fontSize: '3rem', marginBottom: '1.5rem', fontWeight: '700' }}>
-                        Solutions Tertiaires \u0026 Industrielles
+                        Solutions Tertiaires &amp; Industrielles : DRV / VRV &amp; CTA
                     </h1>
                     <p style={{ fontSize: '1.25rem', maxWidth: '700px', lineHeight: '1.6', marginBottom: '2rem' }}>
-                        Systèmes DRV/VRV et Centrales de Traitement d'Air (CTA) pour grands volumes, bureaux, commerces et bâtiments industriels.
+                        Installation et maintenance réglementaire de systèmes DRV/VRV et Centrales de Traitement d&apos;Air (CTA) pour bureaux, commerces, hôtels et ERP dans les Bouches-du-Rhône.
                     </p>
-                    <div style={{ display: 'flex', gap: '1rem' }}>
+                    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                         <Link href="/contact" className="btn btn-primary" style={{ background: '#FF6B00', border: 'none' }}>
                             Étude de Projet Professionnel
+                        </Link>
+                        <Link href="/reservation-en-ligne/vrv" className="btn" style={{ background: '#48BB78', color: 'white', border: 'none' }}>
+                            Entretien VRV / DRV (-20 % auto)
                         </Link>
                     </div>
                 </div>
@@ -129,9 +132,9 @@ export default function DrvCtaPage() {
                     <h2 style={{ fontSize: '2rem', marginBottom: '3rem', color: '#1a365d' }}>Nous équipons vos locaux professionnels</h2>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem' }}>
                         {[
-                            { icon: <Building2 size={40} className="text-primary" />, label: "Bureaux \u0026 Open Spaces" },
-                            { icon: <Building2 size={40} className="text-primary" />, label: "Commerces \u0026 Retail" },
-                            { icon: <Building2 size={40} className="text-primary" />, label: "Hôtels \u0026 Restaurants" },
+                            { icon: <Building2 size={40} className="text-primary" />, label: "Bureaux & Open Spaces" },
+                            { icon: <Building2 size={40} className="text-primary" />, label: "Commerces & Retail" },
+                            { icon: <Building2 size={40} className="text-primary" />, label: "Hôtels & Restaurants" },
                             { icon: <Building2 size={40} className="text-primary" />, label: "Locaux Industriels" },
                         ].map((item, i) => (
                             <div key={i} style={{ padding: '2rem', border: '1px solid #E2E8F0', borderRadius: '0.5rem' }}>

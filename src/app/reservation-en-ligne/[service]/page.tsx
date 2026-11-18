@@ -9,7 +9,7 @@ import { getSeoAlternates, getSeoDomain } from '@/lib/seo-url';
 
 interface ServiceData {
   id: string;
-  category: 'clim' | 'pac' | 'depannage';
+  category: 'clim' | 'pac' | 'vmc' | 'depannage';
   name: string;
   price: number;
   duration: string;
@@ -471,60 +471,60 @@ export async function generateStaticParams() {
 
 const SERVICE_SEO_META: Record<string, { title: string; desc: string }> = {
   preventive: {
-    title: "Entretien Climatisation Mono-Split dès 156€ TTC | Réservation 48h - Air G Énergie",
-    desc: "Forfait entretien climatisation mono-split à 156€ TTC : nettoyage filtres, désinfection bactéricide, contrôle pressions fluide et attestation Cerfa. Réservez en ligne sous 48h.",
+    title: "Entretien Clim Mono-Split 156€ TTC (13) | Réservation 48h",
+    desc: "Forfait entretien climatisation mono-split à 156€ TTC dans les Bouches-du-Rhône : nettoyage filtres, désinfection biocide, contrôle fluide et Cerfa.",
   },
   curative: {
-    title: "Entretien Climatisation Curatif Vapeur 100°C 192€ TTC | Réservation en Direct",
-    desc: "Nettoyage intensif climatisation à la vapeur 100°C sous pression à 192€ TTC. Élimination complète des moisissures, bactéries et odeurs. Technicien sous 48h.",
+    title: "Entretien Clim Curatif Vapeur 100°C 192€ TTC | Réservation 48h",
+    desc: "Nettoyage intensif climatisation vapeur sèche 100°C à 192€ TTC (Bouches-du-Rhône). Élimination moisissures, bactéries et odeurs. Intervention sous 48h.",
   },
   'double-split': {
-    title: "Entretien Climatisation Bi-Split 270€ TTC | Réservation en Ligne 48h - Air G Énergie",
-    desc: "Entretien complet pour installation bi-split (2 unités + groupe extérieur) à 270€ TTC. Nettoyage, désinfection biocide, contrôle étanchéité et attestation légale Cerfa.",
+    title: "Entretien Clim Bi-Split 270€ TTC (13) | Réservation 48h",
+    desc: "Entretien complet climatisation bi-split (2 unités + groupe extérieur) à 270€ TTC dans les Bouches-du-Rhône. Désinfection biocide, contrôle étanchéité et Cerfa.",
   },
   'tri-split': {
-    title: "Entretien Climatisation Tri-Split 380€ TTC | Réservation en Ligne 48h - Air G Énergie",
-    desc: "Entretien complet pour installation tri-split (3 unités intérieures) à 380€ TTC. Désinfection complète et contrôle annuel obligatoire dans le 13.",
+    title: "Entretien Clim Tri-Split 380€ TTC (13) | Réservation 48h",
+    desc: "Entretien complet climatisation tri-split (3 unités intérieures) à 380€ TTC dans les Bouches-du-Rhône. Désinfection complète, contrôle annuel et attestation Cerfa.",
   },
   gainable: {
-    title: "Entretien Climatisation Gainable & Airzone 220€ TTC | Réservation Directe 48h",
-    desc: "Entretien de gainable en combles à 220€ TTC : nettoyage filtres de reprise, désinfection réseau aéraulique, contrôle régulation Airzone et remise du Cerfa légal.",
+    title: "Entretien Clim Gainable & Airzone 220€ TTC (13) | RDV 48h",
+    desc: "Entretien climatisation gainable en combles à 220€ TTC (13) : filtres reprise, nébulisation gaines, contrôle régulation Airzone et attestation Cerfa.",
   },
   console: {
-    title: "Entretien Climatisation Console 165€ TTC | Réservation en Ligne 48h - Air G Énergie",
-    desc: "Entretien complet pour console basse au sol à 165€ TTC. Nettoyage filtres, désinfection évaporateur double flux, contrôle intensité et attestation légale.",
+    title: "Entretien Clim Console Basse 165€ TTC (13) | Réservation 48h",
+    desc: "Entretien complet climatiseur console basse au sol à 165€ TTC dans les Bouches-du-Rhône. Filtres, évaporateur double flux, étanchéité et attestation Cerfa.",
   },
   cassette: {
-    title: "Entretien Climatisation Cassette 4 Voies 180€ TTC | Commerces & Bureaux",
-    desc: "Nettoyage et désinfection de cassette 4 voies encastrée au plafond à 180€ TTC. Idéal commerces, boutiques et bureaux. Conforme ERP et Code du travail.",
+    title: "Entretien Clim Cassette 4 Voies 180€ TTC | Bureaux & Commerces",
+    desc: "Nettoyage et désinfection de cassette 4 voies plafonnière à 180€ TTC dans les Bouches-du-Rhône. Test pompe de relevage, conforme ERP et Code du travail.",
   },
   vrv: {
-    title: "Entretien Système VRV / DRV (-20% remise auto) | Commerces & Tertiaire - Air G Énergie",
-    desc: "Maintenance et audit sur mesure VRV (Daikin) et DRV (Mitsubishi) pour magasins, hôtels et bureaux. Remise automatique de -20% en ligne. Cerfa officiel annuel.",
+    title: "Entretien VRV / DRV (-20% Auto) | Tertiaire & ERP (13)",
+    desc: "Maintenance sur mesure VRV (Daikin) et DRV (Mitsubishi) pour hôtels, commerces et bureaux dans le 13. Remise automatique -20 % en ligne et Cerfa annuel.",
   },
   'pac-air-eau': {
-    title: "Entretien Pompe à Chaleur Air/Eau 270€ TTC | Contrôle Obligatoire Cerfa",
-    desc: "Entretien annuel obligatoire PAC air/eau à 270€ TTC. Nettoyage échangeur, pression hydraulique, contrôle fluide et délivrance de l'attestation Cerfa pour assurance.",
+    title: "Entretien Pompe à Chaleur Air/Eau 270€ TTC (13) | Cerfa",
+    desc: "Entretien annuel obligatoire PAC Air/Eau à 270€ TTC dans les Bouches-du-Rhône. Nettoyage échangeur, pression hydraulique, contrôle fluide et attestation Cerfa.",
   },
   thermodynamique: {
-    title: "Entretien Chauffe-Eau Thermodynamique 174€ TTC | Contrôle Annuel & Cerfa",
-    desc: "Entretien et contrôle de chauffe-eau thermodynamique à 174€ TTC. Nettoyage filtre et évaporateur, contrôle anode, sécurité électrique et rapport d'intervention.",
+    title: "Entretien Ballon Thermodynamique 174€ TTC (13) | Contrôle",
+    desc: "Entretien chauffe-eau thermodynamique à 174€ TTC dans les Bouches-du-Rhône : nettoyage filtre et évaporateur, contrôle anode anti-corrosion et sécurité ECS.",
   },
   diagnostic: {
-    title: "Diagnostic Panne Climatisation 100€ | Rapport Écrit Assurance - Air G Énergie",
-    desc: "Recherche de panne climatisation et PAC à 100€. Détection fuite, test électrique, décodage codes erreur et remise d'un rapport certifié pour votre assurance.",
+    title: "Diagnostic Panne Clim & PAC 100€ TTC (13) | Rapport Assurance",
+    desc: "Recherche de panne climatisation et PAC à 100€ TTC dans le 13 : détection fuite, test électrique, codes erreur et rapport écrit certifié pour assurance.",
   },
   devis: {
-    title: "Devis Climatisation & PAC Gratuit (0€) | Sous 48h Bouches-du-Rhône - Air G Énergie",
-    desc: "Étude thermique et devis d'installation gratuit sous 48h. Déplacement offert dans toutes les Bouches-du-Rhône par artisan frigoriste certifié RGE QualiPAC.",
+    title: "Devis Climatisation & PAC Gratuit (0€) | Bouches-du-Rhône",
+    desc: "Étude thermique et devis d'installation gratuit sous 48h dans les Bouches-du-Rhône (jusqu'à 100 km autour de Miramas) par artisan certifié RGE QualiPAC.",
   },
   'reprogrammation-thermostat': {
-    title: "Re-programmation Thermostat Gainable & Airzone 200€ | Réglage & Pression",
-    desc: "Contrôle, recalibrage et mise à jour de thermostat gainable Airzone à 200€. Optimisation portée du signal et réglage de pression statique dans le 13.",
+    title: "Re-programmation Thermostat Airzone 200€ TTC (13) | Réglage",
+    desc: "Contrôle, mise à jour firmware et réglage pression statique de thermostat gainable Airzone à 200€ TTC dans les Bouches-du-Rhône. Intervention sous 48h.",
   },
   'entretien-vmc': {
-    title: "Entretien Annuel VMC 230€ TTC | Nettoyage, Gaines & Test Débit - Air G Énergie",
-    desc: "Entretien complet de VMC à 230€ TTC : démontage caisson, nettoyage turbine et bouches, vérification gaines et test ventilation. Réservez votre créneau en ligne sous 48h.",
+    title: "Entretien Annuel VMC 230€ TTC (13) | Nettoyage & Gaines",
+    desc: "Entretien complet VMC simple/double flux à 230€ TTC dans les Bouches-du-Rhône : démontage caisson, turbine, bouches, contrôle gaines et test débit d'air.",
   },
 };
 
@@ -573,54 +573,77 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const domain = await getSeoDomain();
   const pageUrl = `${domain}/reservation-en-ligne/${service}`;
 
-  // Schéma structuré Product & Offer Google Merchant
-  const productSchema = {
+  // Schéma structuré Service + Offer + BreadcrumbList (sans faux warnings e-commerce Product)
+  const isVrv = data.id === 'vrv';
+  const serviceSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Product',
-    'name': `${data.name} — Air G Énergie`,
-    'image': `${domain}${data.image}`,
-    'description': data.desc,
-    'brand': {
-      '@type': 'Brand',
-      'name': 'Air G Énergie'
-    },
-    'offers': {
-      '@type': 'Offer',
-      'price': String(data.price),
-      'priceCurrency': 'EUR',
-      'availability': 'https://schema.org/InStock',
-      'url': pageUrl,
-      'priceValidUntil': '2027-12-31',
-      'priceSpecification': {
-        '@type': 'PriceSpecification',
-        'price': String(data.price),
-        'priceCurrency': 'EUR',
-        'valueAddedTaxIncluded': 'true',
-        'description': data.price === 0 ? 'Étude et devis gratuit sur place' : 'Forfait main d\'œuvre et déplacement inclus'
+    '@graph': [
+      {
+        '@type': 'Service',
+        '@id': `${pageUrl}#service`,
+        'name': `${data.name} — Air G Énergie`,
+        'serviceType': data.name,
+        'image': `${domain}${data.image}`,
+        'description': data.desc,
+        'url': pageUrl,
+        'provider': { '@id': `${domain}/#organization` },
+        'areaServed': [
+          { '@type': 'AdministrativeArea', 'name': 'Bouches-du-Rhône' },
+          { '@type': 'City', 'name': 'Miramas' },
+          { '@type': 'City', 'name': 'Salon-de-Provence' },
+          { '@type': 'City', 'name': 'Aix-en-Provence' },
+          { '@type': 'City', 'name': 'Marseille' },
+          { '@type': 'City', 'name': 'Istres' },
+          { '@type': 'City', 'name': 'Martigues' },
+          { '@type': 'City', 'name': 'Arles' }
+        ],
+        'offers': isVrv
+          ? {
+              '@type': 'Offer',
+              'priceCurrency': 'EUR',
+              'availability': 'https://schema.org/InStock',
+              'url': pageUrl,
+              'priceSpecification': {
+                '@type': 'PriceSpecification',
+                'priceCurrency': 'EUR',
+                'valueAddedTaxIncluded': true,
+                'description': 'Tarification sur mesure à la composition avec remise automatique de 20 %'
+              }
+            }
+          : {
+              '@type': 'Offer',
+              'price': String(data.price),
+              'priceCurrency': 'EUR',
+              'availability': 'https://schema.org/InStock',
+              'url': pageUrl,
+              'priceValidUntil': '2027-12-31',
+              'priceSpecification': {
+                '@type': 'PriceSpecification',
+                'price': String(data.price),
+                'priceCurrency': 'EUR',
+                'valueAddedTaxIncluded': true,
+                'description': data.price === 0 ? 'Étude et devis gratuit sur place' : "Forfait TTC main d'œuvre, déplacement et attestation inclus"
+              }
+            }
       },
-      'seller': {
-        '@type': 'LocalBusiness',
-        'name': 'Air G Énergie',
-        'telephone': '04 13 41 49 01',
-        'image': `${domain}/logo.png`,
-        'address': {
-          '@type': 'PostalAddress',
-          'addressLocality': 'Miramas',
-          'postalCode': '13140',
-          'addressRegion': 'Bouches-du-Rhône',
-          'addressCountry': 'FR'
-        }
+      {
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+          { '@type': 'ListItem', 'position': 1, 'name': 'Accueil', 'item': domain },
+          { '@type': 'ListItem', 'position': 2, 'name': 'Réservation en ligne', 'item': `${domain}/reservation-en-ligne` },
+          { '@type': 'ListItem', 'position': 3, 'name': data.name, 'item': pageUrl }
+        ]
       }
-    }
+    ]
   };
 
-  const formattedPrice = data.price === 0 ? 'Gratuit' : `${data.price} €`;
+  const formattedPrice = isVrv ? 'Sur devis (-20 %)' : data.price === 0 ? 'Gratuit' : `${data.price} € TTC`;
 
   return (
     <div className="service-detail-page" style={{ background: '#F8FAFC', minHeight: '100vh', paddingBottom: '5rem' }}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
 
       {/* Breadcrumbs Navigation */}
@@ -675,7 +698,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <ShieldCheck size={20} />
-                  <span>Garantie Décennale & Entreprise Garantie 2025</span>
+                  <span>Artisan RGE QualiPAC &amp; Garantie Décennale</span>
                 </div>
               </div>
 
@@ -793,9 +816,17 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <Check size={14} style={{ color: '#48BB78' }} /> Assurance Décennale et Responsabilité Civile
                     </li>
                     <li style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <Check size={14} style={{ color: '#48BB78' }} /> Expert Vérifié Gainable.fr & Labellisé Garantie 2025
+                      <Check size={14} style={{ color: '#48BB78' }} /> Expert Vérifié Gainable.fr &amp; RGE QualiPAC
                     </li>
                   </ul>
+                  <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid #F1F5F9', display: 'flex', flexDirection: 'column', gap: '0.45rem', fontSize: '0.84rem' }}>
+                    <Link href="/reservation-en-ligne" style={{ color: '#0077B6', fontWeight: '600', textDecoration: 'underline' }}>
+                      ← Tous les forfaits d&apos;entretien
+                    </Link>
+                    <Link href="/entretien" style={{ color: '#475569', textDecoration: 'underline' }}>
+                      Guide Décret 2020-912 &amp; contrats d&apos;entretien
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

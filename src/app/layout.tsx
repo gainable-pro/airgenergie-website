@@ -75,14 +75,30 @@ export default async function RootLayout({
     "@type": ["HVACBusiness", "LocalBusiness"],
     "@id": `${domain}/#organization`,
     "name": "Air G Énergie",
+    "legalName": "Air G Énergie SARL",
+    "alternateName": ["Airgenergie", "AIR G Energie"],
+    "description": "Artisan frigoriste certifié RGE QualiPAC à Miramas : installation, entretien avec attestation Cerfa (dès 156 € TTC) et dépannage de climatisation réversible, gainable, pompe à chaleur, ballon thermodynamique, VMC et VRV/DRV dans les Bouches-du-Rhône.",
     "url": domain,
-    "logo": `${domain}/images/hero-technician-ac.png`,
+    "logo": `${domain}/logo.png`,
     "image": `${domain}/images/hero-technician-ac.png`,
     "telephone": "+33-4-13-41-49-01",
+    "email": "contact@airgenergie.fr",
     "priceRange": "€€",
+    "foundingDate": "2022-01-14",
+    "taxID": "FR88909266256",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "SIRET",
+      "value": "90926625600017"
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Maroan Gharib",
+      "jobTitle": "Gérant — Artisan frigoriste certifié"
+    },
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Miramas",
+      "streetAddress": "Lotissement Les Bastides de Bauquières, 3 rue du Pourra",
       "addressLocality": "Miramas",
       "postalCode": "13140",
       "addressRegion": "Bouches-du-Rhône",
@@ -96,9 +112,15 @@ export default async function RootLayout({
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
         "opens": "08:00",
-        "closes": "19:00"
+        "closes": "18:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Saturday"],
+        "opens": "08:00",
+        "closes": "12:00"
       }
     ],
     "areaServed": [
@@ -116,15 +138,41 @@ export default async function RootLayout({
       { "@type": "City", "name": "Mouriès" },
       { "@type": "City", "name": "Maussane-les-Alpilles" },
       { "@type": "City", "name": "Vitrolles" },
-      { "@type": "City", "name": "Marignane" }
+      { "@type": "City", "name": "Marignane" },
+      { "@type": "City", "name": "Aubagne" },
+      { "@type": "City", "name": "Gardanne" }
+    ],
+    "hasCredential": [
+      {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "certification",
+        "name": "Qualification RGE QualiPAC"
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "license",
+        "name": "Attestation de capacité à la manipulation des fluides frigorigènes"
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "certification",
+        "name": "Assurance Responsabilité Civile et Garantie Décennale"
+      }
+    ],
+    "sameAs": [
+      "https://annuaire-entreprises.data.gouv.fr/entreprise/909266256",
+      "https://www.gainable.fr"
     ],
     "knowsAbout": [
       "Climatisation réversible",
-      "Climatisation gainable",
+      "Climatisation gainable et régulation Airzone",
       "Pompe à chaleur Air/Eau",
       "Ballon thermodynamique",
-      "Système VRV / DRV",
-      "Entretien et dépannage climatisation",
+      "Entretien climatisation obligatoire Décret 2020-912",
+      "Attestation d'entretien Cerfa",
+      "Entretien VMC simple et double flux",
+      "Système VRV / DRV tertiaire",
+      "Dépannage et diagnostic climatisation",
       "Bilan thermique et dimensionnement"
     ]
   };

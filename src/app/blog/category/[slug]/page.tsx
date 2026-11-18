@@ -7,20 +7,21 @@ import { ArrowLeft } from 'lucide-react';
 import { getSeoAlternates } from '@/lib/seo-url';
 
 interface CategoryPageProps {
-    params: {
+    params: Promise<{
         slug: string;
-    };
+    }>;
 }
 
 // Generate Metadata
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
-    const { category } = await getPostsByCategory(params.slug);
+    const { slug } = await params;
+    const { category } = await getPostsByCategory(slug);
 
     if (!category) {
         return { title: 'Catégorie non trouvée | Air G Énergie' };
     }
 
-    const alternates = await getSeoAlternates(`/blog/category/${params.slug}`);
+    const alternates = await getSeoAlternates(`/blog/category/${slug}`);
 
     return {
         title: `Blog ${category.name} | Conseils Climatisation`,
@@ -30,7 +31,8 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-    const { category, posts } = await getPostsByCategory(params.slug);
+    const { slug } = await params;
+    const { category, posts } = await getPostsByCategory(slug);
 
     if (!category) {
         notFound();

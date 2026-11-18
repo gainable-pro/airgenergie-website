@@ -1,37 +1,39 @@
 import { MetadataRoute } from 'next';
-import { getSeoDomain } from '@/lib/seo-url';
+import { CANONICAL_DOMAIN } from '@/lib/seo-url';
 
-export const dynamic = 'force-dynamic';
-
-export default async function robots(): Promise<MetadataRoute.Robots> {
-    const baseUrl = await getSeoDomain();
-
+export default function robots(): MetadataRoute.Robots {
     return {
         rules: [
+            {
+                userAgent: [
+                    'Googlebot',
+                    'Bingbot',
+                    'Applebot',
+                    'OAI-SearchBot',
+                    'PerplexityBot',
+                    'Claude-SearchBot',
+                ],
+                allow: '/',
+                disallow: ['/admin/', '/api/', '/_api/', '/_partials/', '/*?domain='],
+            },
             {
                 userAgent: '*',
                 allow: '/',
                 disallow: [
                     '/admin/',
                     '/api/',
-                    // Anciennes URLs Wix parasites — à ne pas crawler
-                    '/member-profiles',
-                    '/member-profiles/',
-                    '/booking',
-                    '/booking/',
                     '/_api/',
                     '/_partials/',
                     '/wix-',
-                    // Paramètres de debug local
                     '/*?domain=',
                 ],
             },
             {
-                // Bloquer les bots inutiles qui consomment du crawl budget
-                userAgent: ['AhrefsBot', 'SemrushBot', 'MJ12bot', 'DotBot'],
+                // Bloquer les crawlers SEO tiers consommant du crawl budget
+                userAgent: ['AhrefsBot', 'SemrushBot', 'DotBot'],
                 disallow: '/',
             },
         ],
-        sitemap: `${baseUrl}/sitemap.xml`,
+        sitemap: `${CANONICAL_DOMAIN}/sitemap.xml`,
     };
 }

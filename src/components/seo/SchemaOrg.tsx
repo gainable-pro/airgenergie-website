@@ -1,20 +1,17 @@
-import Script from 'next/script';
-
 interface SchemaOrgProps {
-    type: 'Organization' | 'LocalBusiness' | 'FAQPage';
-    data: any;
+    type: 'Organization' | 'LocalBusiness' | 'FAQPage' | 'Service' | 'BlogPosting';
+    data: Record<string, unknown>;
 }
 
 export default function SchemaOrg({ type, data }: SchemaOrgProps) {
     const schema = {
         '@context': 'https://schema.org',
         '@type': type,
-        ...data
+        ...data,
     };
 
     return (
-        <Script
-            id={`schema-${type.toLowerCase()}`}
+        <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />

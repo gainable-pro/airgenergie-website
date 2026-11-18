@@ -6,8 +6,8 @@ import { getSeoAlternates } from '@/lib/seo-url';
 export async function generateMetadata(): Promise<Metadata> {
     const alternates = await getSeoAlternates('/climatisation');
     return {
-        title: "Climatisation Réversible Miramas, Salon, Istres | Installation & Prix | Air G Énergie",
-        description: "Installation climatisation réversible en Provence : Split, Console, Gainable, Multi-split. Devis gratuit, labellisé Garantie 2025. Prix à partir de 2500€ TTC.",
+        title: "Climatisation Réversible Bouches-du-Rhône (13) | Pose & Prix",
+        description: "Installation climatisation réversible (split, multi-split, console, gainable) dans les Bouches-du-Rhône. Artisan RGE QualiPAC, devis gratuit. Entretien dès 156€ TTC.",
         alternates,
     };
 }
@@ -35,7 +35,7 @@ export default function ClimatisationPage() {
                         <h2 className="text-center" style={{ marginBottom: '2rem' }}>Pourquoi choisir la climatisation réversible en Provence ?</h2>
 
                         <p style={{ fontSize: '1.1rem', lineHeight: '1.8', marginBottom: '1.5rem', color: 'var(--text-gray)' }}>
-                            Avec des étés qui dépassent régulièrement les 35°C à <Link href='/ville/miramas' style={{ color: 'var(--primary-blue)', textDecoration: 'underline' }}>Miramas</Link>, <Link href='/ville/salon-de-provence' style={{ color: 'var(--primary-blue)', textDecoration: 'underline' }}>Salon-de-Provence</Link> ou <Link href='/ville/istres' style={{ color: 'var(--primary-blue)', textDecoration: 'underline' }}>Istres</Link>, la climatisation n&apos;est plus un luxe mais une nécessité pour votre confort quotidien. Mais pourquoi se limiter au rafraîchissement quand vous pouvez aussi chauffer votre logement en hiver ?
+                            Avec des étés qui dépassent régulièrement les 35°C à <Link href='/miramas' style={{ color: 'var(--primary-blue)', textDecoration: 'underline' }}>Miramas</Link>, <Link href='/salon-de-provence' style={{ color: 'var(--primary-blue)', textDecoration: 'underline' }}>Salon-de-Provence</Link> ou <Link href='/istres' style={{ color: 'var(--primary-blue)', textDecoration: 'underline' }}>Istres</Link>, la climatisation n&apos;est plus un luxe mais une nécessité pour votre confort quotidien. Mais pourquoi se limiter au rafraîchissement quand vous pouvez aussi chauffer votre logement en hiver ?
                         </p>
 
                         <p style={{ fontSize: '1.1rem', lineHeight: '1.8', marginBottom: '2rem', color: 'var(--text-gray)' }}>
@@ -197,9 +197,9 @@ export default function ClimatisationPage() {
 
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', marginBottom: '2rem' }}>
                             <div style={{ padding: '1.5rem', background: 'white', borderRadius: '0.75rem', border: '2px solid #E2E8F0' }}>
-                                <h3 style={{ color: 'var(--primary-blue)', fontSize: '1.2rem', marginBottom: '0.75rem' }}>🏆 Label Garantie 2025</h3>
+                                <h3 style={{ color: 'var(--primary-blue)', fontSize: '1.2rem', marginBottom: '0.75rem' }}>🏆 Artisan RGE &amp; Expert Gainable.fr</h3>
                                 <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem' }}>
-                                    Entreprise labellisée Les Entreprises Garanties 2025 et Expert Vérifié Gainable.fr. Gage suprême de qualité et de rigueur d&apos;installation.
+                                    Entreprise qualifiée RGE QualiPAC, titulaire de l&apos;attestation de capacité fluides frigorigènes et Expert Vérifié Gainable.fr.
                                 </p>
                             </div>
 
@@ -251,7 +251,7 @@ export default function ClimatisationPage() {
                         <div className="glass-panel" style={{ padding: '2rem', marginBottom: '1.5rem' }}>
                             <h3 style={{ color: 'var(--primary-blue)', marginBottom: '1rem' }}>L&apos;entretien de la climatisation est-il obligatoire ?</h3>
                             <p style={{ color: 'var(--text-gray)', lineHeight: '1.7' }}>
-                                Oui, depuis 2020, l&apos;entretien annuel est <strong>obligatoire pour les climatisations de plus de 2 kg de fluide frigorigène</strong> (environ 4 kW, soit la majorité des installations). Cet entretien comprend le nettoyage des filtres, la vérification de l&apos;étanchéité du circuit et le contrôle des performances. Tarif indicatif : 120€ à 180€ TTC/an. Un contrat d&apos;entretien vous garantit un rendez-vous prioritaire et des tarifs préférentiels.
+                                Oui. Conformément au <strong>décret n° 2020-912</strong>, l&apos;entretien périodique est obligatoire au moins tous les 2 ans pour les climatisations réversibles de 4 kW à 70 kW (et recommandé chaque année en Provence). Chez Air G Énergie, le forfait <Link href="/reservation-en-ligne/preventive" style={{ color: 'var(--primary-blue)', textDecoration: 'underline', fontWeight: '600' }}>entretien mono-split démarre à 156 € TTC</Link> (ou <Link href="/reservation-en-ligne/curative" style={{ color: 'var(--primary-blue)', textDecoration: 'underline', fontWeight: '600' }}>192 € TTC en curatif vapeur 100°C</Link>), attestation Cerfa incluse. <Link href="/reservation-en-ligne" style={{ color: 'var(--primary-blue)', textDecoration: 'underline', fontWeight: '700' }}>Réservez votre créneau sous 48h en ligne →</Link>
                             </p>
                         </div>
 

@@ -11,13 +11,13 @@ interface PageProps {
     params: Promise<{ ville: string; service: string }>;
 }
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 86400;
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { ville, service } = await params;
-    
+
     if (!CITIES_SLUGS.includes(ville) || !SERVICES_SLUGS.includes(service)) {
-        return { title: "Air G Energie" };
+        return { title: "Air G Énergie" };
     }
 
     const cityName = unslugify(ville);
@@ -28,10 +28,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
     const isEntretien = service === 'entretien';
     const customTitle = isEntretien
-        ? `Entretien Climatisation à ${cityName} dès 156€ | Réservation en direct 48h - Air G Énergie`
-        : `${serviceName} à ${cityName} - Artisan RGE & Devis Gratuit | Air G Energie`;
+        ? `Entretien Clim à ${cityName} dès 156€ TTC | RDV 48h`
+        : `${serviceName} à ${cityName} | Artisan RGE Air G Énergie`;
     const customDesc = isEntretien
-        ? `Entretien et nettoyage de climatisation à ${cityName} dès 156€ TTC. Désinfection complète, contrôle fluide frigorigène et attestation légale Cerfa. Réservez votre créneau en 2 min.`
+        ? `Entretien climatisation, gainable et PAC à ${cityName} dès 156€ TTC. Désinfection biocide, contrôle fluide et attestation Cerfa. Réservez en ligne sous 48h.`
         : spine.heroSubtitle.substring(0, 155);
 
     return {
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             title: customTitle,
             description: customDesc,
             url: alternates.canonical,
-            siteName: "AIR G Energie",
+            siteName: "Air G Énergie",
             locale: "fr_FR",
             type: "website",
         }
@@ -63,31 +63,37 @@ export default async function DynamicSeoMatrixPage({ params }: PageProps) {
 
     const domain = await getSeoDomain();
 
-    // Schema LocalBusiness
-    const schemaLocalBusiness = {
+    // Schema Service + BreadcrumbList (Siège réel Miramas via #organization, ville cible dans areaServed)
+    const schemaCityService = {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": `AIR G Energie - ${serviceName} à ${cityName}`,
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": cityName,
-            "addressRegion": "Bouches-du-Rhône",
-            "addressCountry": "FR"
-        },
-        "telephone": "+33-4-13-41-49-01",
-        "priceRange": "€€",
-        "url": `${domain}/${ville}/${service}`,
-        "areaServed": {
-            "@type": "City",
-            "name": cityName
-        }
+        "@graph": [
+            {
+                "@type": "Service",
+                "name": `${serviceName} à ${cityName} — Air G Énergie`,
+                "serviceType": serviceName,
+                "url": `${domain}/${ville}/${service}`,
+                "provider": { "@id": `${domain}/#organization` },
+                "areaServed": {
+                    "@type": "City",
+                    "name": cityName
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": domain },
+                    { "@type": "ListItem", "position": 2, "name": cityName, "item": `${domain}/${ville}` },
+                    { "@type": "ListItem", "position": 3, "name": serviceName, "item": `${domain}/${ville}/${service}` }
+                ]
+            }
+        ]
     };
 
     return (
         <div className="city-service-page">
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaLocalBusiness) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaCityService) }}
             />
 
             {/* Breadcrumbs */}
@@ -167,6 +173,27 @@ export default async function DynamicSeoMatrixPage({ params }: PageProps) {
                                 </div>
                             ))}
                         </div>
+                    </div>
+
+                    {/* Bloc Tarifs Entretien & Réservation Directe (Enrichit le contenu utile + maillage fort vers /reservation-en-ligne) */}
+                    <div style={{ marginTop: '2.5rem', padding: '2rem', background: '#F0F9FF', borderRadius: '1rem', border: '1px solid #BAE6FD' }}>
+                        <h2 style={{ fontSize: '1.5rem', color: '#0F172A', fontWeight: '800', marginBottom: '0.75rem' }}>
+                            Tarifs d&apos;entretien &amp; dépannage à {cityName} (TTC — Attestation Cerfa incluse)
+                        </h2>
+                        <p style={{ fontSize: '0.98rem', color: '#334155', lineHeight: '1.7', marginBottom: '1.25rem' }}>
+                            Conformément au <strong>décret n° 2020-912</strong>, l&apos;entretien des systèmes thermodynamiques de 4 à 70 kW est obligatoire au moins tous les 2 ans. Nos frigoristes certifiés RGE QualiPAC basés à Miramas interviennent sous 48h à <strong>{cityName}</strong> à tarifs transparents :
+                        </p>
+                        <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.5rem 0', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '0.65rem', fontSize: '0.92rem', color: '#0F172A' }}>
+                            <li>• <Link href="/reservation-en-ligne/preventive" style={{ color: '#0077B6', fontWeight: '700' }}>Entretien Mono-Split préventif</Link> : <strong>156 € TTC</strong></li>
+                            <li>• <Link href="/reservation-en-ligne/curative" style={{ color: '#0077B6', fontWeight: '700' }}>Curatif vapeur 100°C</Link> : <strong>192 € TTC</strong></li>
+                            <li>• <Link href="/reservation-en-ligne/gainable" style={{ color: '#0077B6', fontWeight: '700' }}>Entretien Gainable &amp; Airzone</Link> : <strong>220 € TTC</strong></li>
+                            <li>• <Link href="/reservation-en-ligne/double-split" style={{ color: '#0077B6', fontWeight: '700' }}>Entretien Bi-Split</Link> : <strong>270 € TTC</strong></li>
+                            <li>• <Link href="/reservation-en-ligne/pac-air-eau" style={{ color: '#0077B6', fontWeight: '700' }}>Entretien PAC Air/Eau</Link> : <strong>270 € TTC</strong></li>
+                            <li>• <Link href="/reservation-en-ligne/entretien-vmc" style={{ color: '#0077B6', fontWeight: '700' }}>Entretien annuel VMC</Link> : <strong>230 € TTC</strong></li>
+                        </ul>
+                        <Link href="/reservation-en-ligne" className="btn btn-primary" style={{ background: '#48BB78', border: 'none', fontWeight: '700' }}>
+                            Réserver un créneau en ligne à {cityName} →
+                        </Link>
                     </div>
                 </div>
             </section>

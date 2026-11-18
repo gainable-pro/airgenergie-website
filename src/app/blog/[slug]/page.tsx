@@ -2,24 +2,25 @@ import { getPostBySlug } from '@/lib/blog-public';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Calendar, Tag, ArrowLeft, Clock } from 'lucide-react';
-import { getSeoAlternates } from '@/lib/seo-url';
+import { Calendar, ArrowLeft, Clock, User } from 'lucide-react';
+import { getSeoAlternates, CANONICAL_DOMAIN } from '@/lib/seo-url';
 
 interface ArticlePageProps {
-    params: {
+    params: Promise<{
         slug: string;
-    };
+    }>;
 }
 
 // Generate Metadata for SEO
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
-    const post = await getPostBySlug(params.slug);
+    const { slug } = await params;
+    const post = await getPostBySlug(slug);
 
     if (!post) {
         return { title: 'Article non trouvé | Air G Énergie' };
     }
 
-    const alternates = await getSeoAlternates(`/blog/${params.slug}`);
+    const alternates = await getSeoAlternates(`/blog/${slug}`);
 
     return {
         title: post.meta_title || post.title + ' | Blog Air G Énergie',
@@ -30,12 +31,16 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
             description: post.meta_description || post.excerpt || '',
             images: post.featured_image ? [post.featured_image] : [],
             url: alternates.canonical,
+            type: 'article',
+            publishedTime: post.published_at || post.created_at,
+            modifiedTime: post.updated_at || post.published_at || post.created_at,
         }
     };
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
-    const post = await getPostBySlug(params.slug);
+    const { slug } = await params;
+    const post = await getPostBySlug(slug);
 
     if (!post) {
         notFound();
@@ -46,6 +51,37 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         month: 'long',
         year: 'numeric'
     });
+
+    const articleSchema = {
+        '@context': 'https://schema.org',
+        '@graph': [
+            {
+                '@type': 'BlogPosting',
+                'headline': post.title,
+                'description': post.meta_description || post.excerpt || '',
+                'image': post.featured_image || `${CANONICAL_DOMAIN}/images/hero-technician-ac.png`,
+                'datePublished': post.published_at || post.created_at,
+                'dateModified': post.updated_at || post.published_at || post.created_at,
+                'mainEntityOfPage': `${CANONICAL_DOMAIN}/blog/${slug}`,
+                'inLanguage': 'fr-FR',
+                'author': {
+                    '@type': 'Person',
+                    'name': 'Maroan Gharib',
+                    'jobTitle': 'Gérant — Artisan frigoriste certifié RGE QualiPAC',
+                    'worksFor': { '@id': `${CANONICAL_DOMAIN}/#organization` }
+                },
+                'publisher': { '@id': `${CANONICAL_DOMAIN}/#organization` }
+            },
+            {
+                '@type': 'BreadcrumbList',
+                'itemListElement': [
+                    { '@type': 'ListItem', 'position': 1, 'name': 'Accueil', 'item': CANONICAL_DOMAIN },
+                    { '@type': 'ListItem', 'position': 2, 'name': 'Blog', 'item': `${CANONICAL_DOMAIN}/blog` },
+                    { '@type': 'ListItem', 'position': 3, 'name': post.title, 'item': `${CANONICAL_DOMAIN}/blog/${slug}` }
+                ]
+            }
+        ]
+    };
 
     // Custom CSS for article content
     const articleContentStyles = `
@@ -64,6 +100,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
     return (
         <article className="article-page">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+            />
             <style dangerouslySetInnerHTML={{ __html: articleContentStyles }} />
 
             {/* Header / Hero */}
@@ -93,7 +133,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                         {post.title}
                     </h1>
 
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', color: '#64748B', fontSize: '0.95rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '1.5rem', color: '#64748B', fontSize: '0.95rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            <User size={18} />
+                            <span>Par <strong>Maroan Gharib</strong> — Frigoriste RGE</span>
+                        </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                             <Calendar size={18} />
                             <span>{date}</span>
@@ -141,18 +185,32 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                     <p style={{ fontSize: '1.1rem', color: '#0369a1', marginBottom: '2rem' }}>
                         Nos experts sont à votre disposition pour répondre à toutes vos questions sur la climatisation et les énergies renouvelables.
                     </p>
-                    <Link href="/contact" className="btn btn-primary" style={{
-                        background: '#0284c7',
-                        color: 'white',
-                        padding: '1rem 2rem',
-                        borderRadius: '0.5rem',
-                        fontSize: '1.1rem',
-                        fontWeight: '600',
-                        textDecoration: 'none',
-                        boxShadow: '0 4px 6px rgba(2, 132, 199, 0.3)'
-                    }}>
-                        Contactez-nous
-                    </Link>
+                    <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+                        <Link href="/reservation-en-ligne" className="btn btn-primary" style={{
+                            background: '#48BB78',
+                            color: 'white',
+                            padding: '1rem 2rem',
+                            borderRadius: '0.5rem',
+                            fontSize: '1.05rem',
+                            fontWeight: '700',
+                            textDecoration: 'none',
+                            boxShadow: '0 4px 6px rgba(72, 187, 120, 0.25)'
+                        }}>
+                            Réserver un Entretien (dès 156 € TTC)
+                        </Link>
+                        <Link href="/contact" className="btn btn-primary" style={{
+                            background: '#0284c7',
+                            color: 'white',
+                            padding: '1rem 2rem',
+                            borderRadius: '0.5rem',
+                            fontSize: '1.05rem',
+                            fontWeight: '600',
+                            textDecoration: 'none',
+                            boxShadow: '0 4px 6px rgba(2, 132, 199, 0.3)'
+                        }}>
+                            Demander un Devis Gratuit
+                        </Link>
+                    </div>
                 </div>
             </div>
         </article>

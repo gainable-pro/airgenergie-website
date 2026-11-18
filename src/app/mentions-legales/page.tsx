@@ -16,21 +16,22 @@ export default async function MentionsLegalesPage() {
     const cleanDomain = domain.replace('https://www.', '').replace('https://', '');
 
     return (
-        <main className="container mx-auto px-4 py-12 max-w-4xl">
-            <h1 className="text-3xl font-bold mb-8 text-slate-900 border-b pb-4">Mentions Légales</h1>
+        <div className="container mx-auto px-4 py-12 max-w-4xl">
+            <h1 className="text-3xl font-bold mb-8 text-slate-900 border-b pb-4">Mentions Légales &amp; Confidentialité</h1>
 
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 prose prose-slate max-w-none">
 
                 {/* Section 1: Mentions Légales */}
                 <section className="mb-12">
-                    <h2 className="text-2xl font-bold text-slate-800 mb-4">1. Identité de l'éditeur</h2>
+                    <h2 className="text-2xl font-bold text-slate-800 mb-4">1. Identité de l&apos;éditeur</h2>
                     <p className="mb-4">
-                        Le présent site est édité par l'entreprise individuelle <strong>Air G Énergie</strong>, dirigée par monsieur <strong>Maroan Gharib</strong>.<br />
-                        Spécialisée dans les solutions de climatisation et de chauffage, l'entreprise est établie au :
+                        Le présent site est édité par la société <strong>Air G Énergie</strong> (SARL), dirigée par monsieur <strong>Maroan Gharib</strong>.<br />
+                        Spécialisée dans l&apos;installation, l&apos;entretien et le dépannage de systèmes de climatisation, pompes à chaleur et ventilation, la société est établie au :
                     </p>
                     <div className="bg-slate-50 p-4 rounded-lg mb-6 border border-slate-200">
-                        <p className="mb-1"><strong>Siège social :</strong> Zone Industrielle, 13140 Miramas, France</p>
-                        <p className="mb-1"><strong>SIRET :</strong> 909 266 256 00017</p>
+                        <p className="mb-1"><strong>Siège social :</strong> Lotissement Les Bastides de Bauquières, 3 rue du Pourra, 13140 Miramas, France</p>
+                        <p className="mb-1"><strong>Forme juridique :</strong> Société à responsabilité limitée (SARL) — Créée le 14/01/2022</p>
+                        <p className="mb-1"><strong>SIREN / SIRET :</strong> 909 266 256 / 909 266 256 00017</p>
                         <p className="mb-1"><strong>TVA Intracommunautaire :</strong> FR88 909 266 256</p>
                         <p className="mb-0">
                             <strong>Contact :</strong> 04 13 41 49 01 ou via <a href="mailto:contact@airgenergie.fr" className="text-blue-600 hover:underline">contact@airgenergie.fr</a>
@@ -39,12 +40,11 @@ export default async function MentionsLegalesPage() {
 
                     <h2 className="text-xl font-bold text-slate-800 mt-8 mb-4">2. Hébergement</h2>
                     <p className="mb-4">
-                        L'infrastructure technique du site <em>{cleanDomain}</em> est assurée par la société <strong>OVHcloud</strong>.
+                        L&apos;infrastructure d&apos;hébergement web du site <em>{cleanDomain}</em> est assurée par la société <strong>Vercel Inc.</strong> (déploiement Edge sécurisé HTTPS), avec gestion de nom de domaine et services associés en Europe.
                     </p>
                     <p className="text-sm text-slate-600">
-                        Adresse : 2 rue Kellermann, 59100 Roubaix, France<br />
-                        Support : 1007<br />
-                        Web : <a href="https://www.ovhcloud.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">www.ovhcloud.com</a>
+                        Vercel Inc. — 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis<br />
+                        Web : <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">vercel.com</a>
                     </p>
 
                     <h2 className="text-xl font-bold text-slate-800 mt-8 mb-4">3. Propriété intellectuelle et usage</h2>
@@ -63,7 +63,7 @@ export default async function MentionsLegalesPage() {
 
                 {/* Section 2: Politique de confidentialité */}
                 <section className="mb-12">
-                    <h1 className="text-3xl font-bold mb-8 text-slate-900">Politique de Confidentialité (RGPD)</h1>
+                    <h2 className="text-3xl font-bold mb-8 text-slate-900">Politique de Confidentialité (RGPD)</h2>
                     <p className="mb-6 italic text-slate-600">
                         Air G Énergie s'engage à protéger votre vie privée et vos données personnelles conformément au Règlement Général sur la Protection des Données (RGPD).
                     </p>
@@ -112,7 +112,7 @@ export default async function MentionsLegalesPage() {
 
                 {/* Section 3: CGU */}
                 <section>
-                    <h1 className="text-3xl font-bold mb-8 text-slate-900">Conditions Générales d’Utilisation</h1>
+                    <h2 className="text-3xl font-bold mb-8 text-slate-900">Conditions Générales d’Utilisation</h2>
 
                     <div className="space-y-6">
                         <div>
@@ -146,6 +146,6 @@ export default async function MentionsLegalesPage() {
                 </section>
 
             </div>
-        </main>
+        </div>
     );
 }

@@ -11,7 +11,7 @@ interface PageProps {
     params: Promise<{ ville: string }>;
 }
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 86400;
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { ville } = await params;
@@ -50,45 +50,48 @@ export default async function VilleHubPage({ params }: PageProps) {
 
     const domain = await getSeoDomain();
 
-    // SEO LocalBusiness Schema
-    const schemaLocalBusiness = {
+    // SEO Service & Breadcrumb Schema (Adresse réelle siège Miramas, ville dans areaServed)
+    const schemaCityHub = {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": `AIR G Energie - Climatisation à ${cityName}`,
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": cityName,
-            "addressRegion": "Bouches-du-Rhône",
-            "addressCountry": "FR"
-        },
-        "telephone": "+33-4-13-41-49-01",
-        "priceRange": "€€",
-        "url": `${domain}/${ville}`,
-        "areaServed": {
-            "@type": "City",
-            "name": cityName
-        }
-    };
-
-    // SEO FAQPage Schema
-    const schemaFAQ = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": cityData.faq.map(item => ({
-            "@type": "Question",
-            "name": item.q,
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": item.a
+        "@graph": [
+            {
+                "@type": "Service",
+                "name": `Installation, Entretien & Dépannage Climatisation et PAC à ${cityName}`,
+                "serviceType": "Climatisation réversible, gainable, pompe à chaleur et entretien CVC",
+                "url": `${domain}/${ville}`,
+                "provider": { "@id": `${domain}/#organization` },
+                "areaServed": {
+                    "@type": "City",
+                    "name": cityName
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": domain },
+                    { "@type": "ListItem", "position": 2, "name": "Zones d'intervention", "item": `${domain}/zones-intervention` },
+                    { "@type": "ListItem", "position": 3, "name": cityName, "item": `${domain}/${ville}` }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": cityData.faq.map(item => ({
+                    "@type": "Question",
+                    "name": item.q,
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": item.a
+                    }
+                }))
             }
-        }))
+        ]
     };
 
     return (
         <div className="city-hub-page">
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify([schemaLocalBusiness, schemaFAQ]) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaCityHub) }}
             />
 
             <nav style={{ background: '#F8FAFC', padding: '1rem 0', borderBottom: '1px solid #E2E8F0' }}>
@@ -125,21 +128,24 @@ export default async function VilleHubPage({ params }: PageProps) {
                 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: '#FF6B00' }}>
                         <MapPin size={20} />
-                        <span style={{ textTransform: 'uppercase', fontWeight: 'bold', fontSize: '0.9rem' }}>Votre Artisan Garantie 2025 à {cityName}</span>
+                        <span style={{ textTransform: 'uppercase', fontWeight: 'bold', fontSize: '0.9rem' }}>Artisan Frigoriste RGE QualiPAC à {cityName}</span>
                     </div>
                     {/* OPTIMIZED H1 KEYWORD */}
                     <h1 style={{ color: 'white', fontSize: 'clamp(2rem, 5vw, 3.5rem)', marginBottom: '1.5rem', maxWidth: '800px', lineHeight: '1.2' }}>
-                        Climatisation Réversible & Pompe à Chaleur à {cityName}
+                        Climatisation Réversible &amp; Pompe à Chaleur à {cityName}
                     </h1>
                     <p style={{ maxWidth: '700px', fontSize: '1.2rem', color: 'rgba(255,255,255,0.95)', marginBottom: '2.5rem', lineHeight: '1.7' }}>
                         {cityData.intro}
                     </p>
                     <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                        <a href="tel:0413414901" className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: '#FF6B00', border: 'none', padding: '1rem 2rem', fontSize: '1.1rem' }}>
+                        <Link href="/reservation-en-ligne" className="btn" style={{ background: '#48BB78', color: 'white', border: 'none', padding: '1rem 1.8rem', fontSize: '1.05rem', fontWeight: 'bold' }}>
+                            Réserver un Entretien (dès 156 €)
+                        </Link>
+                        <a href="tel:0413414901" className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: '#FF6B00', border: 'none', padding: '1rem 1.8rem', fontSize: '1.05rem' }}>
                             <Phone size={20} />
                             04 13 41 49 01
                         </a>
-                        <Link href="/contact" className="btn" style={{ background: 'white', color: 'var(--primary-blue)', border: 'none', padding: '1rem 2rem', fontSize: '1.1rem', fontWeight: 'bold' }}>
+                        <Link href="/contact" className="btn" style={{ background: 'white', color: 'var(--primary-blue)', border: 'none', padding: '1rem 1.8rem', fontSize: '1.05rem', fontWeight: 'bold' }}>
                             Devis Gratuit
                         </Link>
                     </div>
@@ -197,13 +203,13 @@ export default async function VilleHubPage({ params }: PageProps) {
                                 <p style={{ fontSize: '1.1rem', color: 'var(--text-gray)', lineHeight: '1.8' }}>{cityData.txt_reversible}</p>
                             </div>
                             <div style={{ flex: '1 1 400px', borderRadius: '1rem', overflow: 'hidden', boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}>
-                                <img src={cityData.img_reversible} alt={cityData.h2_reversible} style={{ width: '100%', height: 'auto', display: 'block' }} />
+                                <img src={cityData.img_reversible} alt={cityData.h2_reversible} loading="lazy" decoding="async" style={{ width: '100%', height: 'auto', display: 'block' }} />
                             </div>
                         </div>
 
                         <div style={{ display: 'flex', flexWrap: 'wrap-reverse', gap: '2rem', alignItems: 'center' }}>
                             <div style={{ flex: '1 1 400px', borderRadius: '1rem', overflow: 'hidden', boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}>
-                                <img src={cityData.img_gainable} alt={cityData.h2_gainable} style={{ width: '100%', height: 'auto', display: 'block' }} />
+                                <img src={cityData.img_gainable} alt={cityData.h2_gainable} loading="lazy" decoding="async" style={{ width: '100%', height: 'auto', display: 'block' }} />
                             </div>
                             <div style={{ flex: '1 1 400px' }}>
                                 <h2 style={{ fontSize: '2rem', color: 'var(--text-dark)', marginBottom: '1.5rem' }}>{cityData.h2_gainable}</h2>
@@ -217,7 +223,7 @@ export default async function VilleHubPage({ params }: PageProps) {
                                 <p style={{ fontSize: '1.1rem', color: 'var(--text-gray)', lineHeight: '1.8' }}>{cityData.txt_why_us}</p>
                             </div>
                             <div style={{ flex: '1 1 400px', borderRadius: '1rem', overflow: 'hidden', boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}>
-                                <img src={cityData.img_install} alt={cityData.h2_why_us} style={{ width: '100%', height: 'auto', display: 'block' }} />
+                                <img src={cityData.img_install} alt={cityData.h2_why_us} loading="lazy" decoding="async" style={{ width: '100%', height: 'auto', display: 'block' }} />
                             </div>
                         </div>
 

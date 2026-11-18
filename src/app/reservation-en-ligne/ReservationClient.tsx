@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Phone, CheckCircle, Clock, ShieldCheck, Wrench, ShieldAlert, Check, FileText } from 'lucide-react';
+import { Phone, CheckCircle, Clock, ShieldCheck, Wrench, ShieldAlert, Check, FileText, MapPin, HelpCircle } from 'lucide-react';
 import BookingWizard from '@/components/booking/BookingWizard';
 
 const DETAILED_SERVICES = [
@@ -323,22 +323,82 @@ export default function ReservationClient() {
             display: 'inline-block',
             marginBottom: '1rem'
           }}>
-            Réservation en Ligne Immédiate
+            Réservation en Ligne 48h • Bouches-du-Rhône (13)
           </span>
-          <h1 style={{ fontSize: '3rem', marginBottom: '1.5rem', fontWeight: '800', letterSpacing: '-0.02em', color: 'white' }}>
-            Planifiez Votre Prestation en 2 Clics
+          <h1 style={{ fontSize: 'clamp(2rem, 4.5vw, 3rem)', marginBottom: '1.25rem', fontWeight: '800', letterSpacing: '-0.02em', color: 'white', lineHeight: '1.15', maxWidth: '880px' }}>
+            Réservation d&apos;Entretien Climatisation, PAC &amp; VMC dans les Bouches-du-Rhône (dès 156 € TTC)
           </h1>
-          <p style={{ fontSize: '1.25rem', maxWidth: '700px', lineHeight: '1.6', marginBottom: '2rem', color: 'rgba(255,255,255,0.95)' }}>
-            Sélectionnez votre forfait, réservez votre créneau en temps réel et réglez en toute sécurité via Stripe. Votre technicien intervient chez vous sans stress.
+          <p style={{ fontSize: '1.15rem', maxWidth: '780px', lineHeight: '1.65', marginBottom: '2rem', color: 'rgba(255,255,255,0.95)' }}>
+            Réservez en 2 minutes votre entretien annuel de climatisation réversible, gainable, pompe à chaleur Air/Eau ou VMC autour de <strong>Miramas, Salon-de-Provence, Aix-en-Provence, Istres, Martigues, Marseille et Arles</strong>. Tarifs transparents dès <strong>156 € TTC</strong>, créneau en temps réel sous 48h, artisan frigoriste certifié RGE et <strong>attestation Cerfa obligatoire</strong> incluse.
           </p>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <a href="#catalogue" className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: '#48BB78', border: 'none', fontSize: '1.1rem', padding: '0.8rem 1.8rem' }}>
-              Voir les Tarifs & Prestations
+            <a href="#reserve" className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: '#48BB78', border: 'none', fontSize: '1.05rem', padding: '0.85rem 1.8rem' }}>
+              Choisir un Créneau en Direct
             </a>
-            <a href="tel:0413414901" className="btn" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'transparent', border: '2px solid white', color: 'white', fontSize: '1.1rem', padding: '0.8rem 1.8rem' }}>
+            <a href="#grille-tarifs" className="btn" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.4)', color: 'white', fontSize: '1.05rem', padding: '0.85rem 1.6rem' }}>
+              Grille des Tarifs TTC
+            </a>
+            <a href="tel:0413414901" className="btn" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'transparent', border: '2px solid white', color: 'white', fontSize: '1.05rem', padding: '0.85rem 1.6rem' }}>
               <Phone size={20} />
-              Assistance : 04 13 41 49 01
+              04 13 41 49 01
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Scannable Pricing Table for Users, Google & AI Engines */}
+      <section id="grille-tarifs" style={{ background: 'white', padding: '3.5rem 0', borderBottom: '1px solid #E2E8F0' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 2rem' }}>
+            <h2 style={{ fontSize: '2rem', color: '#0F172A', fontWeight: '800', marginBottom: '0.75rem' }}>
+              Tarifs d&apos;Entretien Climatisation, PAC &amp; VMC 2026 (TTC)
+            </h2>
+            <p style={{ color: 'var(--text-gray)', fontSize: '1rem', margin: 0 }}>
+              Tous nos forfaits incluent le déplacement dans les Bouches-du-Rhône (rayon 50–70 km autour de Miramas), la main-d&apos;œuvre frigoriste et la remise de l&apos;attestation d&apos;entretien réglementaire.
+            </p>
+          </div>
+          <div style={{ overflowX: 'auto', maxWidth: '1000px', margin: '0 auto', borderRadius: '1rem', border: '1px solid #E2E8F0', boxShadow: '0 4px 12px rgba(15,23,42,0.04)' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', background: 'white', fontSize: '0.94rem' }}>
+              <thead>
+                <tr style={{ background: '#0F172A', color: 'white', textAlign: 'left' }}>
+                  <th style={{ padding: '0.9rem 1.1rem' }}>Prestation / Équipement</th>
+                  <th style={{ padding: '0.9rem 1.1rem' }}>Tarif TTC</th>
+                  <th style={{ padding: '0.9rem 1.1rem' }}>Durée</th>
+                  <th style={{ padding: '0.9rem 1.1rem' }}>Attestation / Inclus</th>
+                  <th style={{ padding: '0.9rem 1.1rem', textAlign: 'right' }}>Fiche</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { id: 'preventive', label: 'Entretien Climatisation Mono-Split (Préventif)', price: '156 € TTC', dur: '45 min', inc: 'Filtres, désinfection biocide, pressions + Cerfa' },
+                  { id: 'curative', label: 'Entretien Curatif Vapeur 100°C (Anti-odeurs)', price: '192 € TTC', dur: '1 h', inc: 'Vapeur sèche ClimWasher+, turbine + Cerfa' },
+                  { id: 'double-split', label: 'Entretien Bi-Split (2 unités intérieures)', price: '270 € TTC', dur: '2 h', inc: '2 évaporateurs + groupe ext. + Cerfa' },
+                  { id: 'tri-split', label: 'Entretien Tri-Split (3 unités intérieures)', price: '380 € TTC', dur: '2 h', inc: '3 évaporateurs + groupe ext. + Cerfa' },
+                  { id: 'gainable', label: 'Entretien Climatisation Gainable & Airzone', price: '220 € TTC', dur: '45 min', inc: 'Plénum combles, nébulisation gaines + Cerfa' },
+                  { id: 'console', label: 'Entretien Climatisation Console basse', price: '165 € TTC', dur: '45 min', inc: 'Double flux, filtres bas, étanchéité + Cerfa' },
+                  { id: 'cassette', label: 'Entretien Cassette 4 voies (Bureaux / Commerces)', price: '180 € TTC', dur: '45 min', inc: 'Bac condensats, pompe de relevage + Cerfa' },
+                  { id: 'pac-air-eau', label: 'Entretien Pompe à Chaleur Air/Eau (Obligatoire)', price: '270 € TTC', dur: '45 min', inc: 'Échangeur, pression hydraulique, boues + Cerfa' },
+                  { id: 'thermodynamique', label: 'Entretien Ballon Thermodynamique', price: '174 € TTC', dur: '45 min', inc: 'PAC intégrée, contrôle anode, sécurité ECS' },
+                  { id: 'entretien-vmc', label: 'Entretien Annuel VMC (Simple / Double flux)', price: '230 € TTC', dur: '2h à 3h', inc: 'Démontage caisson, turbine, bouches, gaines' },
+                  { id: 'reprogrammation-thermostat', label: 'Re-programmation Thermostat Airzone / Gainable', price: '200 € TTC', dur: '1h à 1h30', inc: 'Mise à jour firmware, signal & pression statique' },
+                  { id: 'vrv', label: 'Entretien Système VRV / DRV (Tertiaire / ERP)', price: 'Sur devis (-20 %)', dur: 'Sur mesure', inc: 'Configurateur multi-unités avec remise -20 %' },
+                  { id: 'diagnostic', label: 'Diagnostic & Rapport de Panne Assurance', price: '100 € TTC', dur: '45 min', inc: 'Codes défauts, test fuite, rapport certifié' },
+                  { id: 'devis', label: 'Étude Thermique & Devis d’Installation', price: 'Gratuit (0 €)', dur: '45 min', inc: 'Déplacement offert jusqu’à 100 km autour de Miramas' },
+                ].map((row, i) => (
+                  <tr key={row.id} style={{ borderBottom: '1px solid #E2E8F0', background: i % 2 === 0 ? 'white' : '#F8FAFC' }}>
+                    <td style={{ padding: '0.8rem 1.1rem', fontWeight: '600', color: '#0F172A' }}>{row.label}</td>
+                    <td style={{ padding: '0.8rem 1.1rem', fontWeight: '800', color: '#0077B6', whiteSpace: 'nowrap' }}>{row.price}</td>
+                    <td style={{ padding: '0.8rem 1.1rem', color: '#475569', whiteSpace: 'nowrap' }}>{row.dur}</td>
+                    <td style={{ padding: '0.8rem 1.1rem', color: '#475569' }}>{row.inc}</td>
+                    <td style={{ padding: '0.8rem 1.1rem', textAlign: 'right', whiteSpace: 'nowrap' }}>
+                      <Link href={`/reservation-en-ligne/${row.id}`} style={{ color: '#0077B6', fontWeight: '700', textDecoration: 'underline' }}>
+                        Détails →
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
@@ -503,7 +563,13 @@ export default function ReservationClient() {
                     color: 'white'
                   }}>
                     <span style={{ fontSize: '0.75rem', opacity: 0.9, textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: '700' }}>
-                      {service.category === 'clim' ? 'Climatisation' : service.category === 'pac' ? 'Pompe à Chaleur' : 'Dépannage & Études'}
+                      {service.category === 'clim'
+                        ? 'Climatisation'
+                        : service.category === 'pac'
+                          ? 'Pompe à Chaleur'
+                          : service.category === 'vmc'
+                            ? 'VMC & Ventilation'
+                            : 'Dépannage & Études'}
                     </span>
                   </div>
                 </div>
@@ -536,9 +602,11 @@ export default function ReservationClient() {
                     border: '1px solid #E2E8F0'
                   }}>
                     <div>
-                      <span style={{ fontSize: '0.75rem', color: 'var(--text-light)', display: 'block', textTransform: 'uppercase', fontWeight: '700' }}>Tarif unique</span>
+                      <span style={{ fontSize: '0.75rem', color: 'var(--text-light)', display: 'block', textTransform: 'uppercase', fontWeight: '700' }}>
+                        {service.id === 'vrv' ? 'Tarif sur mesure' : 'Tarif TTC'}
+                      </span>
                       <span style={{ fontSize: '1.3rem', fontWeight: '800', color: 'var(--primary-blue)' }}>
-                        {service.price === 0 ? 'Gratuit' : `${service.price} €`}
+                        {service.id === 'vrv' ? 'Sur devis (-20 %)' : service.price === 0 ? 'Gratuit' : `${service.price} €`}
                       </span>
                     </div>
                     <div style={{ textAlign: 'right' }}>
@@ -682,8 +750,8 @@ export default function ReservationClient() {
               },
               {
                 icon: <ShieldCheck size={40} color="var(--primary-blue)" />,
-                title: "Conformité & Attestation Légale",
-                text: "Attestation d'entretien périodique obligatoire (Décret 2020-912) remise à l'issue de l'intervention. Labellisé Entreprise Garantie 2025."
+                title: "Conformité & Attestation Cerfa",
+                text: "Attestation d'entretien périodique obligatoire (Décret n° 2020-912) remise immédiatement après intervention. Artisan frigoriste certifié RGE QualiPAC & Décennale."
               }
             ].map((item, idx) => (
               <div key={idx} style={{
@@ -701,6 +769,127 @@ export default function ReservationClient() {
                 <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem', lineHeight: '1.6', margin: 0 }}>
                   {item.text}
                 </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Geographic Coverage & Brands Section (Visible Local SEO + GEO Signals) */}
+      <section style={{ padding: '4.5rem 0', background: 'white', borderTop: '1px solid #E2E8F0' }}>
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2.5rem' }}>
+            <div style={{ background: '#F8FAFC', padding: '2rem', borderRadius: '1rem', border: '1px solid #E2E8F0' }}>
+              <h2 style={{ fontSize: '1.5rem', color: '#0F172A', fontWeight: '800', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <MapPin size={22} color="#0091DA" /> Zones d&apos;Intervention Entretien (Bouches-du-Rhône — 13)
+              </h2>
+              <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: '1.65', marginBottom: '1.25rem' }}>
+                Basée à <strong>Miramas (13140)</strong>, notre équipe de frigoristes intervient sous 48h dans un rayon de <strong>50 à 70 km</strong> pour tous vos entretiens et dépannages (et jusqu&apos;à 100 km pour les études &amp; diagnostics) :
+              </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                {[
+                  { slug: 'miramas', label: 'Miramas' },
+                  { slug: 'salon-de-provence', label: 'Salon-de-Provence' },
+                  { slug: 'aix-en-provence', label: 'Aix-en-Provence' },
+                  { slug: 'istres', label: 'Istres' },
+                  { slug: 'martigues', label: 'Martigues' },
+                  { slug: 'marseille', label: 'Marseille' },
+                  { slug: 'arles', label: 'Arles' },
+                  { slug: 'vitrolles', label: 'Vitrolles' },
+                  { slug: 'marignane', label: 'Marignane' },
+                  { slug: 'fos-sur-mer', label: 'Fos-sur-Mer' },
+                  { slug: 'aubagne', label: 'Aubagne' },
+                  { slug: 'gardanne', label: 'Gardanne' },
+                  { slug: 'lambesc', label: 'Lambesc' },
+                  { slug: 'pelissanne', label: 'Pélissanne' },
+                  { slug: 'carry-le-rouet', label: 'Carry-le-Rouet' },
+                  { slug: 'saint-remy-de-provence', label: 'Saint-Rémy-de-Provence' },
+                ].map((city) => (
+                  <Link
+                    key={city.slug}
+                    href={`/${city.slug}/entretien`}
+                    style={{
+                      padding: '0.35rem 0.75rem',
+                      background: 'white',
+                      border: '1px solid #CBD5E1',
+                      borderRadius: '2rem',
+                      fontSize: '0.84rem',
+                      color: '#0F172A',
+                      fontWeight: '600',
+                      textDecoration: 'none'
+                    }}
+                  >
+                    Entretien {city.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ background: '#F8FAFC', padding: '2rem', borderRadius: '1rem', border: '1px solid #E2E8F0' }}>
+              <h2 style={{ fontSize: '1.5rem', color: '#0F172A', fontWeight: '800', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <ShieldCheck size={22} color="#0091DA" /> Marques Entretenues &amp; Certifications
+              </h2>
+              <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: '1.65', marginBottom: '1rem' }}>
+                <strong>Air G Énergie SARL</strong> (SIREN 909 266 256) entretient et dépanne l&apos;ensemble des grandes marques de climatisation, pompes à chaleur et régulations :
+              </p>
+              <p style={{ color: '#0F172A', fontWeight: '600', fontSize: '0.95rem', lineHeight: '1.7', marginBottom: '1.25rem' }}>
+                Daikin • Mitsubishi Electric • Toshiba • Atlantic • Heiwa (Éco Expert) • Fujitsu • Hitachi • Samsung • LG • Panasonic • Airzone • Delta Dore
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.25rem 0', display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.9rem', color: '#334155' }}>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="#48BB78" /> Qualification RGE QualiPAC &amp; Expert Vérifié Gainable.fr</li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="#48BB78" /> Attestation de capacité manipulation des fluides frigorigènes</li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="#48BB78" /> Attestation légale d&apos;entretien Cerfa (Décret n° 2020-912)</li>
+              </ul>
+              <Link href="/entretien" style={{ color: '#0077B6', fontWeight: '700', textDecoration: 'underline', fontSize: '0.92rem' }}>
+                Consulter notre guide complet sur le Décret 2020-912 et les contrats d&apos;entretien →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Visible FAQ Section (Mirrors SSR FAQPage JSON-LD 1:1) */}
+      <section style={{ padding: '4.5rem 0', background: '#F8FAFC', borderTop: '1px solid #E2E8F0' }}>
+        <div className="container" style={{ maxWidth: '900px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+            <h2 style={{ fontSize: '2rem', color: '#0F172A', fontWeight: '800', marginBottom: '0.75rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+              <HelpCircle size={26} color="#0091DA" /> Questions Fréquentes — Réservation &amp; Entretien
+            </h2>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            {[
+              {
+                q: "Quel est le prix de l'entretien d'une climatisation dans les Bouches-du-Rhône ?",
+                a: "Chez Air G Énergie, l'entretien préventif d'une climatisation mono-split coûte 156 € TTC (192 € TTC en curatif vapeur 100°C). Le forfait bi-split est à 270 € TTC, le tri-split à 380 € TTC, le gainable à 220 € TTC, la console à 165 € TTC, la cassette à 180 € TTC, la pompe à chaleur Air/Eau à 270 € TTC et la VMC à 230 € TTC. Déplacement et attestation Cerfa inclus."
+              },
+              {
+                q: "L'entretien d'une climatisation ou pompe à chaleur est-il obligatoire ?",
+                a: "Oui. Selon le décret n° 2020-912 (Code de l'environnement, art. R.224-44-1 à R.224-44-3), l'entretien des systèmes thermodynamiques de 4 kW à 70 kW est obligatoire au moins tous les deux ans. L'attestation d'entretien Cerfa est exigée par votre assurance en cas de sinistre et par les fabricants pour maintenir la garantie."
+              },
+              {
+                q: "Comment fonctionne la réservation en direct sous 48h ?",
+                a: "Vous sélectionnez votre équipement (mono-split, multi-split, gainable, PAC Air/Eau, ballon thermodynamique, VMC ou VRV), choisissez la date et le créneau en temps réel dans notre agenda synchronisé, puis validez votre réservation en ligne sécurisée via Stripe. Un frigoriste certifié Air G Énergie intervient sous 48h ouvrées."
+              },
+              {
+                q: "Dans quelles villes des Bouches-du-Rhône intervenez-vous pour l'entretien ?",
+                a: "Nos techniciens basés à Miramas (13140) interviennent dans un rayon de 50 à 70 km pour l'entretien et le dépannage : Miramas, Salon-de-Provence, Istres, Martigues, Aix-en-Provence, Marseille, Arles, Vitrolles, Marignane, Fos-sur-Mer, Carry-le-Rouet, Sausset-les-Pins, Pélissanne, Lançon-de-Provence, Saint-Rémy-de-Provence et les Alpilles. Les études et diagnostics s'étendent jusqu'à 100 km."
+              },
+              {
+                q: "Quelle est la différence entre entretien préventif (156 €) et curatif vapeur (192 €) ?",
+                a: "L'entretien préventif (156 € TTC) assure la maintenance annuelle complète : nettoyage des filtres, désinfection biocide de l'évaporateur, nettoyage du groupe extérieur, contrôle des pressions et attestation Cerfa. Le forfait curatif (192 € TTC) ajoute un décrassage intensif à la vapeur sèche 100°C sous pression avec bâche ClimWasher+ pour éliminer moisissures incrustées, mauvaises odeurs et dépôts noirs sur la turbine."
+              },
+              {
+                q: "Quelles marques de climatisation et pompe à chaleur entretenez-vous ?",
+                a: "Air G Énergie assure la maintenance multimarques : Daikin, Mitsubishi Electric, Toshiba, Atlantic, Heiwa, Fujitsu, Hitachi, Samsung, LG, Panasonic ainsi que les systèmes de régulation gainable Airzone et Delta Dore."
+              },
+              {
+                q: "Que se passe-t-il si ma climatisation est en panne le jour de l'entretien ?",
+                a: "Un test de bon fonctionnement est systématiquement réalisé avant tout nettoyage. Si une panne matérielle ou une fuite est constatée, le technicien vous propose de convertir l'intervention en diagnostic officiel avec rapport écrit pour votre assurance (100 € TTC) afin d'établir un devis de réparation précis."
+              }
+            ].map((item, idx) => (
+              <div key={idx} style={{ background: 'white', padding: '1.5rem 1.75rem', borderRadius: '0.85rem', border: '1px solid #E2E8F0', borderLeft: '4px solid #0091DA' }}>
+                <h3 style={{ fontSize: '1.08rem', color: '#0F172A', fontWeight: '700', marginBottom: '0.6rem' }}>{item.q}</h3>
+                <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: '1.65', margin: 0 }}>{item.a}</p>
               </div>
             ))}
           </div>

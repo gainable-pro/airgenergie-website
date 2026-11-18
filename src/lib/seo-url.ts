@@ -1,42 +1,21 @@
-import { headers } from 'next/headers';
+export const CANONICAL_DOMAIN = 'https://www.airgenergie.fr';
 
 export async function getSeoDomain(): Promise<string> {
-    try {
-        const headersList = await headers();
-        
-        // Support local testing via middleware domain override header
-        const domainOverride = headersList.get('x-domain-override');
-        if (domainOverride === 'com') {
-            return 'https://www.airgenergie.com';
-        } else if (domainOverride === 'fr') {
-            return 'https://www.airgenergie.fr';
-        }
-
-        const host = headersList.get('host') || 'www.airgenergie.fr';
-        const hostLower = host.toLowerCase();
-        
-        // Si l'hôte correspond spécifiquement au domaine .com (en attendant la redirection DNS complète)
-        if (hostLower.includes('airgenergie.com')) {
-            return 'https://www.airgenergie.com';
-        }
-        return 'https://www.airgenergie.fr';
-    } catch {
-        return 'https://www.airgenergie.fr';
-    }
+    return CANONICAL_DOMAIN;
 }
 
 export async function getSeoAlternates(path: string) {
     const cleanPath = path.startsWith('/') ? path : `/${path}`;
     const normalizedPath = cleanPath === '/' ? '' : cleanPath;
-    
-    // Le domaine canonique est TOUJOURS .fr pour consolider toute l'autorité SEO sur airgenergie.fr
+
+    // Le domaine canonique est TOUJOURS https://www.airgenergie.fr pour consolider 100 % de l'autorité SEO
     return {
-        canonical: `https://www.airgenergie.fr${normalizedPath}`,
+        canonical: `${CANONICAL_DOMAIN}${normalizedPath}`,
         languages: {
-            'fr-FR': `https://www.airgenergie.fr${normalizedPath}`,
-            'fr': `https://www.airgenergie.fr${normalizedPath}`,
-            'x-default': `https://www.airgenergie.fr${normalizedPath}`,
-        }
+            'fr-FR': `${CANONICAL_DOMAIN}${normalizedPath}`,
+            'fr': `${CANONICAL_DOMAIN}${normalizedPath}`,
+            'x-default': `${CANONICAL_DOMAIN}${normalizedPath}`,
+        },
     };
 }
 
