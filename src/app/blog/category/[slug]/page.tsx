@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { getSeoAlternates } from '@/lib/seo-url';
 
+export const revalidate = 300;
+
 interface CategoryPageProps {
     params: Promise<{
         slug: string;

@@ -1,9 +1,16 @@
-import { getPostBySlug } from '@/lib/blog-public';
+import { getPostBySlug, getPublishedPosts } from '@/lib/blog-public';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Calendar, ArrowLeft, Clock, User } from 'lucide-react';
 import { getSeoAlternates, CANONICAL_DOMAIN } from '@/lib/seo-url';
+
+export const revalidate = 300;
+
+export async function generateStaticParams() {
+    const posts = await getPublishedPosts();
+    return posts.map((post) => ({ slug: post.slug }));
+}
 
 interface ArticlePageProps {
     params: Promise<{
@@ -96,6 +103,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         .article-content img { max-width: 100%; height: auto; border-radius: 0.75rem; margin: 2rem 0; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
         .article-content blockquote { border-left: 4px solid #0091DA; padding-left: 1rem; margin-left: 0; font-style: italic; color: #475569; background: #F8FAFC; padding: 1rem; border-radius: 0 0.5rem 0.5rem 0; }
         .article-content iframe { width: 100%; aspect-ratio: 16/9; border-radius: 0.75rem; margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.75rem 0; font-size: 0.95rem; background: white; border: 1px solid #E2E8F0; border-radius: 0.75rem; overflow: hidden; display: block; overflow-x: auto; }
+        .article-content th { background: #0F172A; color: white; font-weight: 700; text-align: left; padding: 0.85rem 1rem; white-space: nowrap; }
+        .article-content td { padding: 0.8rem 1rem; border-bottom: 1px solid #E2E8F0; color: #1E293B; }
+        .article-content tr:nth-child(even) td { background: #F8FAFC; }
+        .article-content .geo-summary { background: #F0F9FF; border-left: 4px solid #0091DA; padding: 1.25rem 1.5rem; border-radius: 0 0.75rem 0.75rem 0; margin-bottom: 2rem; color: #0F172A; font-size: 1.05rem; }
     `;
 
     return (

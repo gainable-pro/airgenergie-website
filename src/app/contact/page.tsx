@@ -75,8 +75,8 @@ export default function ContactPage() {
         <div className="contact-page">
             <section style={{ background: '#0F172A', color: 'white', padding: '3rem 0', textAlign: 'center' }}>
                 <div className="container">
-                    <h1>Contactez-nous</h1>
-                    <p style={{ color: '#CBD5E1' }}>Une réponse sous 24h ouvrées. Un devis gratuit et sans engagement.</p>
+                    <h1 style={{ color: 'white' }}>Contact &amp; Devis Gratuit Climatisation et PAC (Bouches-du-Rhône)</h1>
+                    <p style={{ color: '#CBD5E1' }}>Artisan frigoriste RGE QualiPAC à Miramas — Réponse sous 24h ouvrées, visite technique et devis gratuits sans engagement.</p>
                 </div>
             </section>
 

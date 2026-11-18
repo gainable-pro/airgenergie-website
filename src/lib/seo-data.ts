@@ -149,7 +149,7 @@ export function formatServiceName(slug: string): string {
     case 'climatisation': return 'Climatisation Réversible';
     case 'pompe-a-chaleur': return 'Pompe à Chaleur (PAC)';
     case 'gainable': return 'Climatisation Gainable';
-    case 'entretien': return 'Entretien & Dépannage CVC';
+    case 'entretien': return 'Entretien Climatisation & PAC';
     case 'drv-cta': return 'DRV, VRV & CTA Industriel';
     default: return unslugify(slug);
   }

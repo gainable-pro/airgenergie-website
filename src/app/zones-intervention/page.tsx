@@ -30,11 +30,11 @@ export default function ZonesInterventionPage() {
             {/* Hero */}
             <section style={{ background: 'linear-gradient(135deg, #0091DA 0%, #006BA6 100%)', color: 'white', padding: '4rem 0', textAlign: 'center' }}>
                 <div className="container">
-                    <h1 style={{ color: 'white', fontSize: '3rem', marginBottom: '1rem' }}>
-                        Nos Zones d'Intervention
+                    <h1 style={{ color: 'white', fontSize: 'clamp(2rem, 4.5vw, 3rem)', marginBottom: '1rem' }}>
+                        Zones d&apos;Intervention Climatisation &amp; PAC — Bouches-du-Rhône (13)
                     </h1>
-                    <p style={{ fontSize: '1.3rem', maxWidth: '700px', margin: '0 auto', opacity: 0.95 }}>
-                        Air G Énergie intervient dans plus de 30 communes des Bouches-du-Rhône pour vos installations de climatisation
+                    <p style={{ fontSize: '1.2rem', maxWidth: '760px', margin: '0 auto', opacity: 0.95 }}>
+                        Basé à Miramas (13140), Air G Énergie intervient dans plus de 100 communes des Bouches-du-Rhône pour l&apos;installation, l&apos;entretien dès 156 € TTC et le dépannage.
                     </p>
                 </div>
             </section>

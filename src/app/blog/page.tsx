@@ -3,11 +3,13 @@ import BlogCard from '@/components/blog/BlogCard';
 import { Metadata } from 'next';
 import { getSeoAlternates } from '@/lib/seo-url';
 
+export const revalidate = 300;
+
 export async function generateMetadata(): Promise<Metadata> {
     const alternates = await getSeoAlternates('/blog');
     return {
-        title: 'Le Blog Climatisation & Énergie | Air G Énergie',
-        description: 'Conseils d\'experts, guides pratiques, aides financières et actualités sur la climatisation et les pompes à chaleur dans les Bouches-du-Rhône.',
+        title: 'Blog Climatisation, PAC & Entretien (13) | Air G Énergie',
+        description: "Guides pratiques, tarifs d'entretien, réglementation Décret 2020-912 et aides financières climatisation et pompe à chaleur dans les Bouches-du-Rhône.",
         alternates,
     };
 }
@@ -26,12 +28,12 @@ export default async function BlogIndex() {
             }}>
                 <div className="container" style={{ maxWidth: '800px', margin: '0 auto', padding: '0 1rem' }}>
                     <h1 style={{
-                        fontSize: '3rem',
+                        fontSize: 'clamp(2rem, 4.5vw, 3rem)',
                         marginBottom: '1.5rem',
                         fontWeight: '800',
-                        lineHeight: '1.1'
+                        lineHeight: '1.15'
                     }}>
-                        Le Blog <span style={{ color: '#0091DA' }}>Air G Énergie</span>
+                        Blog &amp; Guides <span style={{ color: '#38BDF8' }}>Climatisation, PAC &amp; Entretien (13)</span>
                     </h1>
                     <p style={{
                         fontSize: '1.25rem',
